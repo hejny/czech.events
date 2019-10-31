@@ -2,11 +2,11 @@ import Head from 'next/head';
 import * as React from 'react';
 import { PAGE_TITLE } from '../config';
 
-interface ILayoutProps {
+interface ILayoutProps{
     title?: string;
 }
 
-export const Layout: React.FunctionComponent<ILayoutProps> = ({ children, title }) => (
+export function Layout({ children, title }: React.PropsWithChildren<ILayoutProps>){ return(
     <>
         <Head>
             <title>{title ? `${title} | ${PAGE_TITLE}` : PAGE_TITLE}</title>
@@ -51,3 +51,4 @@ export const Layout: React.FunctionComponent<ILayoutProps> = ({ children, title 
         </style>
     </>
 );
+            }

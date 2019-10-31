@@ -4,14 +4,17 @@ import { decapitalize, emptyKeysAsUndefined, isNotEmpty } from 'configchecker/li
 import fetch from 'isomorphic-unfetch';
 import papaparse from 'papaparse';
 import { EVENTS_CSV_URL } from '../config';
-import { Talk } from '../model/Talk';
+import { Event } from '../model/Event';
+import { isNull } from 'util';
 
-export async function fetchTalks(): Promise<Talk[]> {
+export async function fetchEvents(): Promise<(Event)[]> {
     const response = await fetch(EVENTS_CSV_URL, { cache: 'reload' });
     const dataString = await response.text();
     const { data } = papaparse.parse(dataString, {
         header: true,
     });
+
+    console.log('data',data);
 
     return (data as IConfigSource[])
         .map((object) =>
@@ -21,7 +24,23 @@ export async function fetchTalks(): Promise<Talk[]> {
             ),
         )
         .map(decapitalize)
-        .filter((data) => data['name'])
         .filter(isNotEmpty)
-        .map((t) => new Talk(t));
+        .filter((t)=>t['inMail'])
+        .map((t) => {
+            
+            try{
+                return new Event(t)
+            }catch(error){
+                return null;
+                //return error as Error;//Event.error(error);
+            }
+        
+        
+        })
+        .filter(isEvent);
+}
+
+
+function isEvent(t:any): t is Event{
+    return t instanceof Event;
 }

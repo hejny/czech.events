@@ -1,24 +1,32 @@
 import * as React from 'react';
 import { Layout } from '../components/Layout';
+import { fetchEvents } from '../utils/fetchEvents';
+import { NextPageContext } from 'next';
+import { EventComponent } from '../components/EventComponent';
+import { LoadingComponent } from '../components/LoadingComponent';
+import { ErrorComponent } from '../components/ErrorComponent';
+import { Event } from '../model/Event';
 
 
 interface TalksPageProps {
-    //error?: string;
-    //talks: Talk[];
+    error?: string;
+    events?: (Event)[];
 }
 
 interface TalksPageState {}
 export default class TalksPage extends React.Component<TalksPageProps, TalksPageState> {
-    /*static getInitialProps = async ({ query }: NextPageContext) => {
-        return {};
+    static getInitialProps = async ({ query }: NextPageContext) => {
         try {
             //const { id } = query;
-            //const talks = await fetchEvents();
-            //return { talks };
+            const events = await fetchEvents();
+            console.log('events',events);
+
+            return { events };
         } catch (error) {
-            //return { error: error.message };
+            console.log('error',error);
+            return { error: error.message };
         }
-    };*/
+    };
 
     render() {
 
@@ -36,12 +44,22 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
 
 
 
+                {this.props.error&&<ErrorComponent><pre>{this.props.error}</pre></ErrorComponent>}
+
+
+
                 <h2>Konference</h2>
 
 
+                {!this.props.events?<LoadingComponent/>:
+
+                this.props.events.map((event,key)=><EventComponent {...{event,key}}/>)
+}
+                
+                {/*
                 <a href="https://www.barcampbrno.cz/2019/index.html"><b>DevOps Summit</b>  – Budoucnost je v udržitelnosti</a>
                 🌆&nbsp;Ostrava 📅&nbsp;Čtvrtek 3. Října ⏱️&nbsp;10:00 💸&nbsp;450 Kč
-
+                */}
 
                 <h2>Meetupy</h2>
 
