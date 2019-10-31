@@ -1,23 +1,18 @@
 import * as React from 'react';
 
-export function LoadingComponent(){
+export function LoadingComponent() {
+    return (
+        <>
+            <div className="loading">Načítání...</div>
 
-    return(
-    <>
-        <div className="loading">
-            Načítání...
-        </div>
-
-        <style jsx>
-            {`
-                .loading {
-                    background-color: #ccc;
-                    color: #fff;
-                }
-            `}
-        </style>
-    </>
-);
-
-
+            <style jsx>
+                {`
+                    .loading {
+                        background-color: #ccc;
+                        color: #fff;
+                    }
+                `}
+            </style>
+        </>
+    );
 }

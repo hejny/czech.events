@@ -14,7 +14,7 @@ export async function fetchEvents(): Promise<(Event)[]> {
         header: true,
     });
 
-    console.log('data',data);
+    console.log('data', data);
 
     return (data as IConfigSource[])
         .map((object) =>
@@ -25,22 +25,18 @@ export async function fetchEvents(): Promise<(Event)[]> {
         )
         .map(decapitalize)
         .filter(isNotEmpty)
-        .filter((t)=>t['inMail'])
+        .filter((t) => t['inMail'])
         .map((t) => {
-            
-            try{
-                return new Event(t)
-            }catch(error){
+            try {
+                return new Event(t);
+            } catch (error) {
                 return null;
                 //return error as Error;//Event.error(error);
             }
-        
-        
         })
         .filter(isEvent);
 }
 
-
-function isEvent(t:any): t is Event{
+function isEvent(t: any): t is Event {
     return t instanceof Event;
 }

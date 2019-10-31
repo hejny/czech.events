@@ -2,18 +2,19 @@ import Head from 'next/head';
 import * as React from 'react';
 import { PAGE_TITLE } from '../config';
 
-interface ILayoutProps{
+interface ILayoutProps {
     title?: string;
 }
 
-export function Layout({ children, title }: React.PropsWithChildren<ILayoutProps>){ return(
-    <>
-        <Head>
-            <title>{title ? `${title} | ${PAGE_TITLE}` : PAGE_TITLE}</title>
-            <meta charSet="utf-8" />
-            <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+export function Layout({ children, title }: React.PropsWithChildren<ILayoutProps>) {
+    return (
+        <>
+            <Head>
+                <title>{title ? `${title} | ${PAGE_TITLE}` : PAGE_TITLE}</title>
+                <meta charSet="utf-8" />
+                <meta name="viewport" content="initial-scale=1.0, width=device-width" />
 
-            {/*
+                {/*
             TODO:
 
             <link
@@ -22,10 +23,9 @@ export function Layout({ children, title }: React.PropsWithChildren<ILayoutProps
             />
 
             */}
-            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald" />
-         
-     
-            {/*
+                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald" />
+
+                {/*
             TODO:
             <script
                 dangerouslySetInnerHTML={{
@@ -35,20 +35,19 @@ export function Layout({ children, title }: React.PropsWithChildren<ILayoutProps
                 }}
             />
             */}
+            </Head>
+            {children}
+            <style jsx global>
+                {`
+                    body {
+                        font-family: oswald;
+                    }
 
-        </Head>
-        {children}
-        <style jsx global>
-            {`
-                body {
-                    font-family: oswald;
-                }
-
-                * {
-                    transition: all 0.2s ease-out;
-                }
-            `}
-        </style>
-    </>
-);
-            }
+                    * {
+                        transition: all 0.2s ease-out;
+                    }
+                `}
+            </style>
+        </>
+    );
+}

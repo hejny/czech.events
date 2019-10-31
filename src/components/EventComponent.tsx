@@ -7,22 +7,18 @@ interface IEventComponentProps {
     event: Event;
 }
 
-export function EventComponent({ event }:IEventComponentProps){
-
-    return(
-    <>
-    <a href={(event.web||'').toString()} target="_blank" rel="nofolow noopener noreferrer">
-        <b>{event.name}</b>  – {event.topic}
-    </a>
-    <br/>
-    🌆&nbsp;{event.city}
-    📅&nbsp;Čtvrtek 3. Října
-    ⏱️&nbsp;{event.time}
-    💸&nbsp;{event.price}
-    <br/>
-    <br/>
-    </>
-);
-
-
+export function EventComponent({ event }: IEventComponentProps) {
+    return (
+        <>
+            <a href={(event.web || '').toString()} target="_blank" rel="nofolow noopener noreferrer">
+                <b>{event.name}</b> – {event.topic}
+            </a>
+            <br />
+            🌆&nbsp;{event.city}
+            📅&nbsp;Čtvrtek 3. Října ⏱️&nbsp;{event.time}
+            💸&nbsp;{event.price}
+            <br />
+            <br />
+        </>
+    );
 }
