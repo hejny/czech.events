@@ -5,8 +5,9 @@ import { NextPageContext } from 'next';
 import { EventComponent } from '../components/EventComponent';
 import { LoadingComponent } from '../components/LoadingComponent';
 import { ErrorComponent } from '../components/ErrorComponent';
-import { Event } from '../model/Event';
+import { Event, EventType } from '../model/Event';
 import { MailChimpForm } from '../components/MailChimpForm';
+import { enumToArray } from '../utils/enumToArray';
 
 interface TalksPageProps {
     error?: string;
@@ -41,19 +42,19 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
                         <pre>{this.props.error}</pre>
                     </ErrorComponent>
                 )}
-                <h2>Konference</h2>
-                {!this.props.events ? (
-                    <LoadingComponent />
-                ) : (
-                    this.props.events.map((event, key) => <EventComponent {...{ event, key }} />)
-                )}
-                {/*
-                <a href="https://www.barcampbrno.cz/2019/index.html"><b>DevOps Summit</b>  – Budoucnost je v udržitelnosti</a>
-                🌆&nbsp;Ostrava 📅&nbsp;Čtvrtek 3. Října ⏱️&nbsp;10:00 💸&nbsp;450 Kč
-                */}
-                <h2>Meetupy</h2>
-                <h2>Workshopy</h2>
-                <h2>Hackathony</h2>
+                {JSON.stringify(enumToArray(EventType))}
+                {enumToArray(EventType).map((type) => (
+                    <div key={type}>
+                        <h2>{type}</h2>
+                        {!this.props.events ? (
+                            <LoadingComponent />
+                        ) : (
+                            this.props.events
+                                .filter((type_: any) => type === type_)
+                                .map((event, key) => <EventComponent {...{ event, key }} />)
+                        )}
+                    </div>
+                ))}
                 Pavol & Tereza
             </Layout>
         );

@@ -1,5 +1,13 @@
 import { ConfigChecker, IConfigSource } from 'configchecker';
 import { Url } from 'url';
+import { enumToArray } from '../utils/enumToArray';
+
+export enum EventType {
+    MEETUP,
+    CONFERENCE,
+    WORKSHOP,
+    HACKATHON,
+}
 
 export class Event {
     //TODO: readonly id: number;
@@ -12,7 +20,7 @@ export class Event {
     public time?: string;
     public price?: string;
     public code?: string;
-    public type: string; //TODO: Enum
+    public type: EventType;
     public web?: Url;
     public inMail: boolean;
 
@@ -34,7 +42,14 @@ export class Event {
         this.time = c.get('time').value;
         this.price = c.get('price').value;
         this.code = c.get('code').value;
-        this.type = c.get('type').required().value;
+        this.type = c
+            .get('type')
+            .required()
+            .asType<EventType>().value;
+        // TODO: Configchecker native in asType
+        if (!enumToArray(EventType).includes((this.type as unknown) as string)) {
+            throw new Error(`Wrong type "${this.type}".`);
+        }
         this.web = c.get('web').url().value;
         this.inMail = c
             .get('inMail')

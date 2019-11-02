@@ -19,6 +19,10 @@ export function EventComponent({ event }: IEventComponentProps) {
             💸&nbsp;{event.price}
             <br />
             <br />
+            {/*
+                <a href="https://www.barcampbrno.cz/2019/index.html"><b>DevOps Summit</b>  – Budoucnost je v udržitelnosti</a>
+                🌆&nbsp;Ostrava 📅&nbsp;Čtvrtek 3. Října ⏱️&nbsp;10:00 💸&nbsp;450 Kč
+            */}
         </>
     );
 }
