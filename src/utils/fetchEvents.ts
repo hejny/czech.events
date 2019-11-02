@@ -7,7 +7,7 @@ import { EVENTS_CSV_URL } from '../config';
 import { Event } from '../model/Event';
 import { isNull } from 'util';
 
-export async function fetchEvents(): Promise<(Event)[]> {
+export async function fetchEvents(): Promise<(Event | string)[]> {
     const response = await fetch(EVENTS_CSV_URL, { cache: 'reload' });
     const dataString = await response.text();
     const { data } = papaparse.parse(dataString, {
@@ -30,11 +30,11 @@ export async function fetchEvents(): Promise<(Event)[]> {
             try {
                 return new Event(t);
             } catch (error) {
-                return null;
+                return error.message;
                 //return error as Error;//Event.error(error);
             }
-        })
-        .filter(isEvent);
+        });
+    //.filter(isEvent);
 }
 
 function isEvent(t: any): t is Event {

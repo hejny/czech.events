@@ -11,7 +11,7 @@ import { enumToArray } from '../utils/enumToArray';
 
 interface TalksPageProps {
     error?: string;
-    events?: (Event)[];
+    events?: (Event | string)[];
 }
 
 interface TalksPageState {}
@@ -42,7 +42,6 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
                         <pre>{this.props.error}</pre>
                     </ErrorComponent>
                 )}
-                {JSON.stringify(enumToArray(EventType))}
                 {enumToArray(EventType).map((type) => (
                     <div key={type}>
                         <h2>{type}</h2>
@@ -50,8 +49,14 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
                             <LoadingComponent />
                         ) : (
                             this.props.events
-                                .filter((type_: any) => type === type_)
-                                .map((event, key) => <EventComponent {...{ event, key }} />)
+                                //.filter((type_: any) => type === type_)
+                                .map((eventOrError, key) =>
+                                    eventOrError instanceof Event ? (
+                                        <EventComponent {...{ event: eventOrError, key }} />
+                                    ) : (
+                                        <ErrorComponent>{eventOrError}</ErrorComponent>
+                                    ),
+                                )
                         )}
                     </div>
                 ))}
