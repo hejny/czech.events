@@ -13,9 +13,9 @@ export function compareDates(date1 = new Date(), date2 = new Date()): CompareRes
         const delta = ((new Date(date2) as any) as number) - ((new Date(date1) as any) as number);
 
         if (delta > 0) {
-            return 1;
-        } else if (delta < 0) {
             return -1;
+        } else if (delta < 0) {
+            return 1;
         } else {
             return 0;
         }

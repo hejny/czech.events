@@ -3,8 +3,8 @@ import { Url, parse } from 'url';
 import { enumToArray } from '../utils/enumToArray';
 
 export enum EventType {
-    MEETUP,
     CONFERENCE,
+    MEETUP,
     WORKSHOP,
     HACKATHON,
 }
@@ -54,7 +54,7 @@ export class Event {
             throw new Error(`Day parsed from "${this.days}" is NaN.`);
         }
 
-        this.date = new Date(this.year, this.month);
+        this.date = new Date(this.year, this.month - 1, this.day);
 
         this.time = c.get('time').required().value;
         this.priceAmount = c.get('priceAmount').number().value!; //.required()
