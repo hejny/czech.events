@@ -6,6 +6,7 @@ import papaparse from 'papaparse';
 import { EVENTS_CSV_URL } from '../config';
 import { Event } from '../model/Event';
 import { isNull } from 'util';
+import { compareEventsbyDate } from './compareDates';
 
 export async function fetchEvents(): Promise<(Event | string)[]> {
     const response = await fetch(EVENTS_CSV_URL, { cache: 'reload' });
@@ -33,7 +34,8 @@ export async function fetchEvents(): Promise<(Event | string)[]> {
                 return error.message;
                 //return error as Error;//Event.error(error);
             }
-        });
+        })
+        .sort(compareEventsbyDate);
     //.filter(isEvent);
 }
 

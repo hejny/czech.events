@@ -49,8 +49,14 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
                             <LoadingComponent />
                         ) : (
                             this.props.events
-                                //.filter((type_: any) => type === type_)
-                                .map((eventOrError, key) =>
+                                .filter((eventOrError: string | Event) => {
+                                    if (eventOrError instanceof Event) {
+                                        return type === ((eventOrError.type as unknown) as string);
+                                    } else {
+                                        return true;
+                                    }
+                                })
+                                .map((eventOrError: string | Event, key: number) =>
                                     eventOrError instanceof Event ? (
                                         <EventComponent {...{ event: eventOrError, key }} />
                                     ) : (

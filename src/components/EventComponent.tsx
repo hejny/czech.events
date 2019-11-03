@@ -2,6 +2,8 @@ import Head from 'next/head';
 import * as React from 'react';
 import { PAGE_TITLE } from '../config';
 import { Event } from '../model/Event';
+import { translateCurrency } from '../utils/translate';
+import moment from 'moment';
 
 interface IEventComponentProps {
     event: Event;
@@ -10,13 +12,25 @@ interface IEventComponentProps {
 export function EventComponent({ event }: IEventComponentProps) {
     return (
         <>
-            <a href={(event.web || '').toString()} target="_blank" rel="nofolow noopener noreferrer">
-                <b>{event.name}</b> – {event.topic}
+            <a href={event.web.toString()} target="_blank" rel="nofolow noopener noreferrer">
+                <b>{event.name}</b>
+                {event.topic ? ` – ${event.topic}` : ''}
             </a>
             <br />
-            🌆&nbsp;{event.city}
-            📅&nbsp;Čtvrtek 3. Října ⏱️&nbsp;{event.time}
-            💸&nbsp;{event.price}
+            <>🌆&nbsp;{event.city}</>
+            &nbsp;
+            <>📅&nbsp;{showDate(event.date)}</>
+            &nbsp;
+            <>⏱️&nbsp;{event.time}</>
+            &nbsp;
+            <>
+                💸&nbsp;
+                {((price: number) => {
+                    if (price === 0) return 'Zdarma';
+                    return `${Math.ceil(price * 100) / 100} ${translateCurrency(event.priceCurrency!)}`;
+                })(event.priceAmount)}
+            </>
+            {/*TODO: Code*/}
             <br />
             <br />
             {/*
@@ -25,4 +39,15 @@ export function EventComponent({ event }: IEventComponentProps) {
             */}
         </>
     );
+}
+
+function showDate(date: Date): string {
+    // TODO: Better
+    moment.locale('cs');
+    let dateString = moment(date).format('LLLL');
+    dateString = dateString.split('0:00')[0];
+    dateString = dateString.replace('listopad', 'Listopadu');
+    dateString = dateString.replace('prosinec', 'Prosince');
+    dateString = dateString.substr(0, 1).toUpperCase() + dateString.substr(1);
+    return dateString;
 }
