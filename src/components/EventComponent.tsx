@@ -20,8 +20,12 @@ export function EventComponent({ event }: IEventComponentProps) {
             <>🌆&nbsp;{event.city}</>
             &nbsp;
             <>📅&nbsp;{showDate(event.date)}</>
-            &nbsp;
-            <>⏱️&nbsp;{event.time}</>
+            {event.time && (
+                <>
+                    &nbsp;
+                    <>⏱️&nbsp;{showTime(event.time)}</>
+                </>
+            )}
             &nbsp;
             <>
                 💸&nbsp;
@@ -50,4 +54,12 @@ function showDate(date: Date): string {
     dateString = dateString.replace('prosinec', 'Prosince');
     dateString = dateString.substr(0, 1).toUpperCase() + dateString.substr(1);
     return dateString;
+}
+
+function showTime(time: string): string {
+    // TODO: Better
+    // TODO: Works a bit fuzzy
+    moment.locale('cs');
+    let timeString = moment('2010-10-20 ' + time).format('LT');
+    return timeString;
 }
