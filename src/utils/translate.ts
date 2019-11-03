@@ -1,4 +1,4 @@
-import { EventPriceCurrency } from './../model/Event';
+import { EventPriceCurrency, EventType } from './../model/Event';
 
 export function translateCurrency(currency: EventPriceCurrency): string {
     switch (currency) {
@@ -10,5 +10,19 @@ export function translateCurrency(currency: EventPriceCurrency): string {
             return '‎€';
         default:
             return currency;
+    }
+}
+
+export function translateEventType(eventType: EventType): string {
+    // TODO: Plular
+    switch (eventType) {
+        case EventType.HACKATHON:
+            return 'Hackathony';
+        case EventType.CONFERENCE:
+            return '‎Konference';
+        case EventType.MEETUP:
+            return '‎Meetupy';
+        case EventType.WORKSHOP:
+            return '‎Workshopy';
     }
 }

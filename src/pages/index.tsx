@@ -8,6 +8,7 @@ import { ErrorComponent } from '../components/ErrorComponent';
 import { Event, EventType } from '../model/Event';
 import { MailChimpForm } from '../components/MailChimpForm';
 import { enumToArray } from '../utils/enumToArray';
+import { translateEventType } from '../utils/translate';
 
 interface TalksPageProps {
     error?: string;
@@ -44,7 +45,7 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
                 )}
                 {enumToArray(EventType).map((type) => (
                     <div key={type}>
-                        <h2>{type}</h2>
+                        <h2>{translateEventType(type as any)}</h2>
                         {!this.props.events ? (
                             <LoadingComponent />
                         ) : (

@@ -3,10 +3,10 @@ import { Url, parse } from 'url';
 import { enumToArray } from '../utils/enumToArray';
 
 export enum EventType {
-    CONFERENCE,
-    MEETUP,
-    WORKSHOP,
-    HACKATHON,
+    CONFERENCE = 'CONFERENCE',
+    MEETUP = 'MEETUP',
+    WORKSHOP = 'WORKSHOP',
+    HACKATHON = 'HACKATHON',
 }
 
 export enum EventPriceCurrency {
