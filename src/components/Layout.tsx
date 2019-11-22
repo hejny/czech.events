@@ -13,38 +13,176 @@ export function Layout({ children, title }: React.PropsWithChildren<ILayoutProps
                 <title>{title ? `${title} | ${PAGE_TITLE}` : PAGE_TITLE}</title>
                 <meta charSet="utf-8" />
                 <meta name="viewport" content="initial-scale=1.0, width=device-width" />
-
-                {/*
-            TODO:
-
-            <link
-                rel="shortcut icon"
-                href="https://1.gravatar.com/avatar/3d98c15957c5f5dd227e53dbc7cbb60d?s=64&r=pg&d=mm"
-            />
-
-            */}
-                <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Oswald" />
-
-                {/*
-            TODO:
-            <script
-                dangerouslySetInnerHTML={{
-                    __html: `
-                
-            `.replace(/\s+/gm, ' '),
-                }}
-            />
-            */}
             </Head>
             {children}
             <style jsx global>
                 {`
+                    @import url('https://fonts.googleapis.com/css?family=Montserrat:100,400,700,800,900&display=swap');
+
                     body {
-                        font-family: oswald;
+                        margin: 0;
+                        padding: 0;
+                        background-color: #1d1c21;
+                        font-family: Montserrat;
+                        display: grid;
+                        -webkit-text-size-adjust: 100%;
+                        -webkit-font-smoothing: antialiased;
                     }
 
+                    *:not(.event-wrapper) h1 {
+                        color: rgb(255, 255, 255);
+                        text-align: left;
+                        font-size: 35px;
+                    }
+                    .front {
+                        width: 70%;
+                        padding: 100px;
+                    }
+
+                    form .button {
+                        text-decoration: none;
+                        padding: 16px 20px;
+                        color: white;
+                        cursor: pointer;
+                        display: inline-block;
+                        background-color: transparent;
+                        border-radius: 6px;
+                    }
+
+                    form button:hover {
+                        background-color: white;
+                        color: black;
+                    }
+
+                    .front form {
+                        padding: 20px 0;
+                        width: 450px;
+                    }
+                    p {
+                        font-size: 16px;
+                    }
+
+                    .font-light {
+                        font-weight: 100;
+                    }
+
+                    *:not(.event-wrapper) h2 {
+                        color: rgb(255, 255, 255);
+                        text-align: left;
+                        font-size: 25px;
+                    }
                     * {
-                        transition: all 0.2s ease-out;
+                        box-sizing: border-box;
+                    }
+
+                    .footer {
+                        text-align: center;
+                        color: white;
+                        padding: 20px;
+                        margin-top: auto;
+                    }
+
+                    *:not(.event-wrapper) a:link {
+                        color: white;
+                    }
+                    /* visited link */
+                    *:not(.event-wrapper) a:visited {
+                        color: rgb(211, 211, 211);
+                    }
+
+                    /* mouse over link */
+                    a:hover {
+                        color: hotpink;
+                    }
+
+                    .group {
+                        width: 100%;
+                        height: 90px;
+                        overflow: hidden;
+                        position: relative;
+                    }
+
+                    form label {
+                        position: absolute;
+                        top: 20px;
+                        color: rgba(255, 255, 255, 0.5);
+                        font: 400 16px Montserrat;
+                        cursor: text;
+                        transition: 0.25s ease;
+                    }
+
+                    .center {
+                        text-align: center;
+                        margin: 0 auto;
+                    }
+
+                    form input {
+                        display: block;
+                        width: 100%;
+                        padding-top: 30px;
+                        border: none;
+                        border-radius: 0;
+                        color: white;
+                        background: transparent;
+                        font-size: 20px;
+                        transition: 0.3s ease;
+                    }
+                    form input:valid ~ label {
+                        top: 0;
+                        font: 700 16px;
+                        color: #01ccbf;
+                    }
+                    form input:focus {
+                        outline: none;
+                    }
+                    form input:focus ~ label {
+                        top: 0;
+                        font: 700 16px Montserrat;
+                        color: #01ccbf;
+                    }
+                    form input:focus ~ .bar:before {
+                        transform: translateX(0);
+                    }
+                    form input:-webkit-autofill {
+                        -webkit-box-shadow: 0 0 0px 1000px #333 inset;
+                        -webkit-text-fill-color: white !important;
+                    }
+
+                    .bar {
+                        background: rgba(255, 255, 255, 0.5);
+                        content: '';
+                        width: 500px;
+                        height: 2px;
+                        transition: 0.3s ease;
+                        position: relative;
+                    }
+                    .bar:before {
+                        content: '';
+                        position: absolute;
+                        width: 100%;
+                        height: 150%;
+                        background: #01ccbf;
+                        transform: translateX(-100%);
+                    }
+
+                    ::selection {
+                        background: rgba(33, 150, 243, 0.3);
+                    }
+                    .background img {
+                        position: absolute;
+                        z-index: -1;
+                        right: 0;
+                        padding: 0%;
+                        margin: 00px auto;
+                        height: 90%;
+                    }
+
+                    .event-wrapper {
+                        width: 80%;
+                        padding: 50px;
+                        margin: 20px auto;
+                        background-color: white;
+                        border-radius: 50px;
                     }
                 `}
             </style>

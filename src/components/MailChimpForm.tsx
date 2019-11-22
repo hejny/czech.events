@@ -9,9 +9,21 @@ export function MailChimpForm() {
                 method="post"
                 target="_blank"
             >
-                <input type="email" defaultValue="" name="EMAIL" />
-                {/*<input type="text" name="b_eb937c8f3515cec96347304a3_d230d6001c" value="" />*/}
-                <input type="submit" defaultValue="Subscribe" name="subscribe" />
+                <div className="group">
+                    <input type="email" id="name" value="@" name="NAME" required />
+                    <label htmlFor="name">Name</label>
+                    <div className="bar"></div>
+                </div>
+                <div className="group">
+                    <input type="text" id="email" placeholder="Jan Novák" name="EMAIL" required />
+                    <label htmlFor="email">E-mail</label>
+                    <div className="bar"></div>
+                </div>
+                {/* TODO: We need here some GDPR */}
+                <input type="hidden" name="SOURCE" value="WEB" />
+                <div className="center">
+                    <button className="button">Přihlásit se</button>
+                </div>
             </form>
         </>
     );

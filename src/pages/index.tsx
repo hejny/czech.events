@@ -33,41 +33,62 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
     render() {
         return (
             <Layout title="Události">
-                <h1>Události</h1>
-                Píšeme pravidelný měsíční email o IT / Startupových eventech v Čechách - meetupy, konference, hackathony
-                a workshopy. Pokud máš zájem:
-                <MailChimpForm />
-                Napadá tě událost, která nemá na seznamu chybět? Pošli nám ji.
-                {this.props.error && (
-                    <ErrorComponent>
-                        <pre>{this.props.error}</pre>
-                    </ErrorComponent>
-                )}
-                {enumToArray(EventType).map((type) => (
-                    <div key={type}>
-                        <h2>{translateEventType(type as any)}</h2>
-                        {!this.props.events ? (
-                            <LoadingComponent />
-                        ) : (
-                            this.props.events
-                                .filter((eventOrError: string | Event) => {
-                                    if (eventOrError instanceof Event) {
-                                        return type === ((eventOrError.type as unknown) as string);
-                                    } else {
-                                        return true;
-                                    }
-                                })
-                                .map((eventOrError: string | Event, key: number) =>
-                                    eventOrError instanceof Event ? (
-                                        <EventComponent {...{ event: eventOrError, key }} />
-                                    ) : (
-                                        <ErrorComponent>{eventOrError}</ErrorComponent>
-                                    ),
-                                )
+                <div className="background">
+                    <img src="img ntwrk.svg" alt="Test" />
+                </div>
+                <div className="front">
+                    <h1>
+                        Hey, wanna hear about upcoming tech <br /> events in the Czech Republic?
+                        {/*about me, etc. */}
+                    </h1>
+                    <h2 className="font-light">Join us and sign up for monthly overview here!</h2>
+                    <MailChimpForm />
+                </div>
+
+                <div className="event-wrapper">
+                    <p>
+                        Ahoj, opět jsme dali dohromady seznam událostí, na které se vyplatí zajít.
+                        <br />
+                        <br />
+                        <br />
+                        {this.props.error && (
+                            <ErrorComponent>
+                                <pre>{this.props.error}</pre>
+                            </ErrorComponent>
                         )}
-                    </div>
-                ))}
-                Pavol & Tereza
+                        {enumToArray(EventType).map((type) => (
+                            <div key={type}>
+                                <h2>{translateEventType(type as any)}</h2>
+                                {!this.props.events ? (
+                                    <LoadingComponent />
+                                ) : (
+                                    this.props.events
+                                        .filter((eventOrError: string | Event) => {
+                                            if (eventOrError instanceof Event) {
+                                                return type === ((eventOrError.type as unknown) as string);
+                                            } else {
+                                                return true;
+                                            }
+                                        })
+                                        .map((eventOrError: string | Event, key: number) =>
+                                            eventOrError instanceof Event ? (
+                                                <EventComponent {...{ event: eventOrError, key }} />
+                                            ) : (
+                                                <ErrorComponent>{eventOrError}</ErrorComponent>
+                                            ),
+                                        )
+                                )}
+                            </div>
+                        ))}
+                        PS: Budeme rádi za vaše návrhy a připomínky, můžete odpovědět rovnou na email. PPS: Pokud už
+                        nechceš dostat další email, hoď nám prostě rychlou odpověď.
+                    </p>
+                </div>
+
+                <footer className="footer">
+                    <a href="https://www.linkedin.com/in/hejny/">Pavol</a>&
+                    <a href="https://www.linkedin.com/in/tereza-texlova/">Tereza</a>
+                </footer>
             </Layout>
         );
     }
