@@ -34,9 +34,9 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
         return (
             <Layout title="Události">
                 <div className="background">
-                    <img src="img ntwrk.svg" alt="Test" />
+                    <img src="/static/network.svg" alt="Síť" />
                 </div>
-                <div className="front">
+                <div className="front black">
                     <h1>
                         Hey, wanna hear about upcoming tech <br /> events in the Czech Republic?
                         {/*about me, etc. */}
@@ -45,7 +45,7 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
                     <MailChimpForm />
                 </div>
 
-                <div className="event-wrapper">
+                <div className="event-wrapper white">
                     <p>
                         Ahoj, opět jsme dali dohromady seznam událostí, na které se vyplatí zajít.
                         <br />
@@ -85,7 +85,7 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
                     </p>
                 </div>
 
-                <footer className="footer">
+                <footer className="footer black">
                     <a href="https://www.linkedin.com/in/hejny/">Pavol</a>&
                     <a href="https://www.linkedin.com/in/tereza-texlova/">Tereza</a>
                 </footer>

@@ -29,17 +29,23 @@ export function Layout({ children, title }: React.PropsWithChildren<ILayoutProps
                         -webkit-font-smoothing: antialiased;
                     }
 
-                    *:not(.event-wrapper) h1 {
+                    .black h1 {
                         color: rgb(255, 255, 255);
                         text-align: left;
                         font-size: 35px;
                     }
+
                     .front {
                         width: 70%;
                         padding: 100px;
                     }
 
-                    form .button {
+                    form {
+                        padding: 20px 0;
+                        width: 450px;
+                    }
+
+                    .front form .button {
                         text-decoration: none;
                         padding: 16px 20px;
                         color: white;
@@ -49,60 +55,12 @@ export function Layout({ children, title }: React.PropsWithChildren<ILayoutProps
                         border-radius: 6px;
                     }
 
-                    form button:hover {
+                    .front form button:hover {
                         background-color: white;
                         color: black;
                     }
 
-                    .front form {
-                        padding: 20px 0;
-                        width: 450px;
-                    }
-                    p {
-                        font-size: 16px;
-                    }
-
-                    .font-light {
-                        font-weight: 100;
-                    }
-
-                    *:not(.event-wrapper) h2 {
-                        color: rgb(255, 255, 255);
-                        text-align: left;
-                        font-size: 25px;
-                    }
-                    * {
-                        box-sizing: border-box;
-                    }
-
-                    .footer {
-                        text-align: center;
-                        color: white;
-                        padding: 20px;
-                        margin-top: auto;
-                    }
-
-                    *:not(.event-wrapper) a:link {
-                        color: white;
-                    }
-                    /* visited link */
-                    *:not(.event-wrapper) a:visited {
-                        color: rgb(211, 211, 211);
-                    }
-
-                    /* mouse over link */
-                    a:hover {
-                        color: hotpink;
-                    }
-
-                    .group {
-                        width: 100%;
-                        height: 90px;
-                        overflow: hidden;
-                        position: relative;
-                    }
-
-                    form label {
+                    .front form label {
                         position: absolute;
                         top: 20px;
                         color: rgba(255, 255, 255, 0.5);
@@ -111,12 +69,7 @@ export function Layout({ children, title }: React.PropsWithChildren<ILayoutProps
                         transition: 0.25s ease;
                     }
 
-                    .center {
-                        text-align: center;
-                        margin: 0 auto;
-                    }
-
-                    form input {
+                    .front form input {
                         display: block;
                         width: 100%;
                         padding-top: 30px;
@@ -127,28 +80,77 @@ export function Layout({ children, title }: React.PropsWithChildren<ILayoutProps
                         font-size: 20px;
                         transition: 0.3s ease;
                     }
-                    form input:valid ~ label {
+                    .front form input:valid ~ label {
                         top: 0;
                         font: 700 16px;
                         color: #01ccbf;
                     }
-                    form input:focus {
+                    .front form input:focus {
                         outline: none;
                     }
-                    form input:focus ~ label {
+                    .front form input:focus ~ label {
                         top: 0;
                         font: 700 16px Montserrat;
                         color: #01ccbf;
                     }
-                    form input:focus ~ .bar:before {
+                    .front form input:focus ~ .bar:before {
                         transform: translateX(0);
                     }
-                    form input:-webkit-autofill {
+                    .front form input:-webkit-autofill {
                         -webkit-box-shadow: 0 0 0px 1000px #333 inset;
                         -webkit-text-fill-color: white !important;
                     }
 
-                    .bar {
+                    .black p {
+                        font-size: 16px;
+                    }
+
+                    .black .font-light {
+                        font-weight: 100;
+                    }
+
+                    .black h2 {
+                        color: rgb(255, 255, 255);
+                        text-align: left;
+                        font-size: 25px;
+                    }
+
+                    .black * {
+                        box-sizing: border-box;
+                    }
+
+                    .footer {
+                        text-align: center;
+                        color: white;
+                        padding: 20px;
+                        margin-top: auto;
+                    }
+
+                    .black a:link {
+                        color: white;
+                    }
+
+                    .black a:visited {
+                        color: rgb(211, 211, 211);
+                    }
+
+                    .black a:hover {
+                        color: hotpink;
+                    }
+
+                    .black .group {
+                        width: 100%;
+                        height: 90px;
+                        overflow: hidden;
+                        position: relative;
+                    }
+
+                    .center {
+                        text-align: center;
+                        margin: 0 auto;
+                    }
+
+                    .black .bar {
                         background: rgba(255, 255, 255, 0.5);
                         content: '';
                         width: 500px;
@@ -156,7 +158,7 @@ export function Layout({ children, title }: React.PropsWithChildren<ILayoutProps
                         transition: 0.3s ease;
                         position: relative;
                     }
-                    .bar:before {
+                    .black .bar:before {
                         content: '';
                         position: absolute;
                         width: 100%;
@@ -165,7 +167,7 @@ export function Layout({ children, title }: React.PropsWithChildren<ILayoutProps
                         transform: translateX(-100%);
                     }
 
-                    ::selection {
+                    .black ::selection {
                         background: rgba(33, 150, 243, 0.3);
                     }
                     .background img {
