@@ -10,12 +10,27 @@ export function MailChimpForm() {
                 target="_blank"
             >
                 <div className="group">
-                    <input type="email" id="name" value="@" name="NAME" required />
+                    <input type="email" id="name" name="NAME" required />
                     <label htmlFor="name">Name</label>
                     <div className="bar"></div>
                 </div>
                 <div className="group">
-                    <input type="text" id="email" placeholder="Jan Novák" name="EMAIL" required />
+                    <input
+                        type="text"
+                        id="email"
+                        name="EMAIL"
+                        required
+                        defaultValue="@"
+                        onFocus={(event) => {
+                            /*console.log(event);
+                            const inputElement: HTMLInputElement = event.target as any;
+                            console.log(inputElement);
+                            console.log(inputElement.value);
+                            if (!inputElement.value) {
+                                inputElement.value = '@';
+                            }*/
+                        }}
+                    />
                     <label htmlFor="email">E-mail</label>
                     <div className="bar"></div>
                 </div>

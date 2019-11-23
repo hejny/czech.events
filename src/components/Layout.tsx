@@ -17,16 +17,24 @@ export function Layout({ children, title }: React.PropsWithChildren<ILayoutProps
             {children}
             <style jsx global>
                 {`
-                    @import url('https://fonts.googleapis.com/css?family=Montserrat:100,400,700,800,900&display=swap');
+                    @import url('https://fonts.googleapis.com/css?family=Oswald|Montserrat:100,400,700,800,900&display=swap');
 
                     body {
                         margin: 0;
                         padding: 0;
                         background-color: #1d1c21;
-                        font-family: Montserrat;
                         display: grid;
                         -webkit-text-size-adjust: 100%;
                         -webkit-font-smoothing: antialiased;
+                    }
+
+                    .white {
+                        font-family: 'Montserrat', serif;
+                    }
+
+                    .black {
+                        font-family: 'Montserrat', serif;
+                        /*font-family: 'Oswald', serif;*/
                     }
 
                     .black h1 {
@@ -136,6 +144,10 @@ export function Layout({ children, title }: React.PropsWithChildren<ILayoutProps
 
                     .black a:hover {
                         color: hotpink;
+                    }
+
+                    .white a {
+                        color: black;
                     }
 
                     .black .group {

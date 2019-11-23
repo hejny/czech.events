@@ -47,7 +47,9 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
 
                 <div className="event-wrapper white">
                     <p>
-                        Ahoj, opět jsme dali dohromady seznam událostí, na které se vyplatí zajít.
+                        Ahoj,
+                        <br />
+                        opět jsme dali dohromady seznam událostí, na které se vyplatí zajít.
                         <br />
                         <br />
                         <br />
@@ -80,13 +82,17 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
                                 )}
                             </div>
                         ))}
-                        PS: Budeme rádi za vaše návrhy a připomínky, můžete odpovědět rovnou na email. PPS: Pokud už
-                        nechceš dostat další email, hoď nám prostě rychlou odpověď.
+                        <br />
+                        <br />
+                        PS: Budeme rádi za vaše návrhy a připomínky, můžete odpovědět rovnou na email.
+                        <br />
+                        PPS: Pokud už nechceš dostat další email, hoď nám prostě rychlou odpověď.
                     </p>
                 </div>
 
                 <footer className="footer black">
-                    <a href="https://www.linkedin.com/in/hejny/">Pavol</a>&
+                    <a href="https://www.pavolhejny/">Pavol</a>
+                    &nbsp;&amp;&nbsp;
                     <a href="https://www.linkedin.com/in/tereza-texlova/">Tereza</a>
                 </footer>
             </Layout>
