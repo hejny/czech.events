@@ -19,7 +19,8 @@
     "export": " next export -o ./dist/export ./src",
     "github-deploy": "gh-pages -d dist/export",
     "preversion": "npm run prettier-commit && npm run build && npm run export",
-    "postversion": "git push && git push --tags && npm run deploy"
+    "postversion": "git push && git push --tags && npm run deploy",
+    "now-build": "next build"
   },
   "repository": {
     "type": "git",
