@@ -1,0 +1,1 @@
+const app = next({ dev, dir: './src' });
