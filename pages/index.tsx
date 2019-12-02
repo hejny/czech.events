@@ -48,20 +48,23 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
                 </div>
 
                 <div className="event-wrapper white">
+                    <h2>📅 Konference / meetupy / hackathony – co se děje z IT / Startupové akce 🌆</h2>
+
                     <p>
-                        Ahoj,
-                        <br />
-                        opět jsme dali dohromady seznam událostí, na které se vyplatí zajít.
-                        <br />
-                        <br />
-                        <br />
+                        <p>
+                            Ahoj,
+                            <br />
+                            opět jsme dali dohromady seznam událostí, na které se vyplatí zajít.
+                        </p>
+                        <p>Ve čtvrtek 7.11 se bude konat ...</p>
+                        <p>Ve čtvrtek 7.11 se bude konat ...</p>
                         {this.props.error && (
                             <ErrorComponent>
                                 <pre>{this.props.error}</pre>
                             </ErrorComponent>
                         )}
                         {enumToArray(EventType).map((type) => (
-                            <div key={type}>
+                            <p key={type}>
                                 <h2>{translateEventType(type as any)}</h2>
                                 {!this.props.events ? (
                                     <LoadingComponent />
@@ -84,13 +87,13 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
                                             </span>
                                         ))
                                 )}
-                            </div>
+                            </p>
                         ))}
                         <br />
                         <br />
-                        PS: Budeme rádi za vaše návrhy a připomínky, můžete odpovědět rovnou na email.
+                        PS: <b>Budeme rádi za vaše návrhy a připomínky</b>, můžete <b>odpovědět rovnou na email</b>.
                         <br />
-                        PPS: Pokud už nechceš dostat další email, hoď nám prostě rychlou odpověď.
+                        PPS: Pokud už nechcete dostat další email, klikněte sem pro jejich odhlášení.
                     </p>
                 </div>
 

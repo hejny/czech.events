@@ -4,12 +4,19 @@ import { PAGE_TITLE } from '../config';
 import { Event } from '../model/Event';
 import { translateCurrency } from '../utils/translate';
 import moment from 'moment';
+import { isNullOrUndefined } from 'util';
 
 interface IEventComponentProps {
     event: Event;
 }
 
 export function EventComponent({ event }: IEventComponentProps) {
+    const renderPrice = (price?: number) => {
+        if (isNullOrUndefined(price)) return '';
+        if (price === 0) return <>💸&nbsp;Zdarma</>;
+        return <>💸&nbsp;{`${Math.ceil(price * 100) / 100} ${translateCurrency(event.priceCurrency!)}`}</>;
+    };
+
     return (
         <span>
             <a href={event.web.toString()} target="_blank" rel="nofolow noopener noreferrer">
@@ -27,26 +34,24 @@ export function EventComponent({ event }: IEventComponentProps) {
                 </>
             )}
             &nbsp;
+            <>{renderPrice(event.priceAmount)}</>
             <>
-                💸&nbsp;
-                {((price: number) => {
-                    if (price === 0) return 'Zdarma';
-                    return `${Math.ceil(price * 100) / 100} ${translateCurrency(event.priceCurrency!)}`;
-                })(event.priceAmount)}
+                {event.codeName && event.codePercent && event.priceAmount && event.priceCurrency && (
+                    <>
+                        <br />A s kódem <b>{event.codeName}</b> to budeš mít o {Math.floor(event.codePercent * 100)}%
+                        levnější tzn. za {renderPrice(event.priceAmount * (1 - event.codePercent))}.
+                    </>
+                )}
             </>
-            {/*TODO: Code*/}
+            {}
             <br />
             <br />
-            {/*
-                <a href="https://www.barcampbrno.cz/2019/index.html"><b>DevOps Summit</b>  – Budoucnost je v udržitelnosti</a>
-                🌆&nbsp;Ostrava 📅&nbsp;Čtvrtek 3. Října ⏱️&nbsp;10:00 💸&nbsp;450 Kč
-            */}
+            {}
         </span>
     );
 }
 
 function showDate(date: Date): string {
-    // TODO: Better
     try {
         moment.locale('cs');
         let dateString = moment(date).format('LLLL');
@@ -61,8 +66,6 @@ function showDate(date: Date): string {
 }
 
 function showTime(time: string): string {
-    // TODO: Better
-    // TODO: Works a bit fuzzy
     try {
         moment.locale('cs');
         let timeString = moment('2010-10-20 ' + time).format('LT');

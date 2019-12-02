@@ -25,7 +25,7 @@ export class Event {
     public days: string;
     public date: Date;
     public time?: string;
-    public priceAmount: number;
+    public priceAmount?: number;
     public priceCurrency?: EventPriceCurrency;
     public codeName?: string;
     public codePercent?: number;
@@ -62,12 +62,16 @@ export class Event {
         }
 
         this.time = c.get('time').required().value;
-        this.priceAmount = c.get('priceAmount').number().value!; //.required()
+        this.priceAmount = c.get('priceAmount').number().value; //.required()
         // TODO: Configchecker should take number 0 as defined
 
         this.priceCurrency = (c.get('priceCurrency').value as unknown) as EventPriceCurrency;
         this.codeName = c.get('codeName').value;
         this.codePercent = c.get('codePercent').number().value;
+
+        // TODO: Better
+        if (this.codePercent) this.codePercent = this.codePercent / 100;
+
         this.type = c
             .get('type')
             .required()
