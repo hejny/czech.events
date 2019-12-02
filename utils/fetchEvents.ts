@@ -15,7 +15,7 @@ export async function fetchEvents(): Promise<(Event | string)[]> {
         header: true,
     });
 
-    console.log('data', data);
+    //console.log('data', data);
 
     return (data as IConfigSource[])
         .map((object) =>

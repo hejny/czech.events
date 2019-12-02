@@ -21,11 +21,13 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
         try {
             //const { id } = query;
             const events = await fetchEvents();
-            console.log('events', events);
+            //console.log('events', events);
+
+            //const events: any = [];
 
             return { events };
         } catch (error) {
-            console.log('error', error);
+            //console.log('error', error);
             return { error: error.message };
         }
     };
@@ -72,13 +74,15 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
                                                 return true;
                                             }
                                         })
-                                        .map((eventOrError: string | Event, key: number) =>
-                                            eventOrError instanceof Event ? (
-                                                <EventComponent {...{ event: eventOrError, key }} />
-                                            ) : (
-                                                <ErrorComponent>{eventOrError}</ErrorComponent>
-                                            ),
-                                        )
+                                        .map((eventOrError: string | Event, key: number) => (
+                                            <span key={key}>
+                                                {eventOrError instanceof Event ? (
+                                                    <EventComponent {...{ event: eventOrError }} />
+                                                ) : (
+                                                    <ErrorComponent>{eventOrError}</ErrorComponent>
+                                                )}
+                                            </span>
+                                        ))
                                 )}
                             </div>
                         ))}
