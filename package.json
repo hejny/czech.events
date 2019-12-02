@@ -9,7 +9,7 @@
     "lib": "lib"
   },
   "scripts": {
-    "start": "npm run clear && open-cli http://localhost:4112/ && next -p 4112",
+    "develop": "npm run clear && open-cli http://localhost:4112/ && next -p 4112",
     "prettier": "prettier --config .prettierrc --write \"./**(!node_modules)/*.{ts,tsx,css,json,js}\"",
     "prettier-watch": "onchange \"./**(!node_modules)/*.(ts|tsx|css|json|js)\" -- prettier --config .prettierrc --write \"{{changed}}\"",
     "prettier-commit": "git diff --exit-code && npm run prettier && git add . && git commit --allow-empty -m \"Prettier\"",
