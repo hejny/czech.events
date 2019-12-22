@@ -1,6 +1,5 @@
-import Head from 'next/head';
 import * as React from 'react';
-import { PAGE_TITLE } from '../../config';
+
 import { Event } from '../model/Event';
 import { translateCurrency } from '../../../utils/translate';
 import moment from 'moment';

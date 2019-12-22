@@ -1,22 +1,32 @@
 import * as React from 'react';
-import { Layout } from '../czech-events/src/components/Layout';
+
 import { fetchEvents } from '../utils/fetchEvents';
-import { NextPageContext } from 'next';
-import { EventComponent } from '../czech-events/src/components/EventComponent';
-import { LoadingComponent } from '../czech-events/src/components/LoadingComponent';
-import { ErrorComponent } from '../czech-events/src/components/ErrorComponent';
+import { EventComponent } from './EventComponent';
+import { LoadingComponent } from './LoadingComponent';
+import { ErrorComponent } from './ErrorComponent';
 import { Event, EventType } from '../model/Event';
-import { Form } from '../czech-events/src/components/Form';
+import { Form } from './Form';
 import { enumToArray } from '../utils/enumToArray';
 import { translateEventType } from '../utils/translate';
 
 interface TalksPageProps {
+}
+
+interface TalksPageState {
     error?: string;
     events?: (Event | string)[];
 }
 
-interface TalksPageState {}
-export default class TalksPage extends React.Component<TalksPageProps, TalksPageState> {
+
+
+export class TalksPage extends React.Component<TalksPageProps, TalksPageState> {
+
+
+    constructor(){
+
+    }
+
+
     static getInitialProps = async ({ query }: NextPageContext) => {
         try {
             //const { id } = query;
@@ -34,7 +44,7 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
 
     render() {
         return (
-            <Layout title="Události">
+            <>
                 <div className="background">
                     <img src="/static/network.svg" alt="Síť" />
                 </div>
@@ -104,7 +114,7 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
                     &nbsp;&amp;&nbsp;
                     <a href="https://www.linkedin.com/in/tereza-texlova/">Tereza</a>
                 </footer>
-            </Layout>
+            </>
         );
     }
 }

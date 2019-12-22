@@ -1,11 +1,8 @@
-//import fetch from 'unfetch';
 import { IConfigSource } from 'configchecker';
 import { decapitalize, emptyKeysAsUndefined, isNotEmpty } from 'configchecker/lib/utils/object';
-import fetch from 'isomorphic-unfetch';
 import papaparse from 'papaparse';
 import { EVENTS_CSV_URL } from '../config';
 import { Event } from '../model/Event';
-import { isNull } from 'util';
 import { compareEventsbyDate } from './compareDates';
 
 export async function fetchEvents(): Promise<(Event | string)[]> {
