@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import { fetchEvents } from '../utils/fetchEvents';
 import { EventComponent } from './EventComponent';
 import { LoadingComponent } from './LoadingComponent';
@@ -9,25 +8,25 @@ import { Form } from './Form';
 import { enumToArray } from '../utils/enumToArray';
 import { translateEventType } from '../utils/translate';
 
-interface TalksPageProps {
+interface ITalksPageProps {}
+
+interface ITalksPageState {
+    error: null | string;
+    events: (Event | string)[];
 }
 
-interface TalksPageState {
-    error?: string;
-    events?: (Event | string)[];
-}
+export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState> {
+    state: ITalksPageState = {
+        error: null,
+        events: [],
+    };
 
-
-
-export class TalksPage extends React.Component<TalksPageProps, TalksPageState> {
-
-
-    constructor(){
-
+    constructor(props: ITalksPageProps) {
+        super(props);
+        this.loadEvents();
     }
 
-
-    static getInitialProps = async ({ query }: NextPageContext) => {
+    private async loadEvents() {
         try {
             //const { id } = query;
             const events = await fetchEvents();
@@ -35,12 +34,12 @@ export class TalksPage extends React.Component<TalksPageProps, TalksPageState> {
 
             //const events: any = [];
 
-            return { events };
+            this.setState({ events });
         } catch (error) {
             //console.log('error', error);
-            return { error: error.message };
+            this.setState({ error: error.message });
         }
-    };
+    }
 
     render() {
         return (
@@ -58,7 +57,7 @@ export class TalksPage extends React.Component<TalksPageProps, TalksPageState> {
                 </div>
 
                 <div className="event-wrapper white">
-                    <h2>📅 Konference / meetupy / hackathony – co se děje z IT / Startupové akce 🌆</h2>
+                    <h2>{`📅 Konference / meetupy / hackathony – co se děje z IT / Startupové akce 🌆`}</h2>
 
                     <p>
                         <p>
@@ -70,18 +69,18 @@ export class TalksPage extends React.Component<TalksPageProps, TalksPageState> {
                         <p>Ve čtvrtek 7.11 se bude konat ...</p>
                         <p>Ve čtvrtek 7.11 se bude konat ...</p>
                         */}
-                        {this.props.error && (
+                        {this.state.error && (
                             <ErrorComponent>
-                                <pre>{this.props.error}</pre>
+                                <pre>{this.state.error}</pre>
                             </ErrorComponent>
                         )}
                         {enumToArray(EventType).map((type) => (
                             <p key={type}>
                                 <h2>{translateEventType(type as any)}</h2>
-                                {!this.props.events ? (
+                                {!this.state.events ? (
                                     <LoadingComponent />
                                 ) : (
-                                    this.props.events
+                                    this.state.events
                                         .filter((eventOrError: string | Event) => {
                                             if (eventOrError instanceof Event) {
                                                 return type === ((eventOrError.type as unknown) as string);

@@ -1,5 +1,4 @@
 import { ConfigChecker, IConfigSource } from 'configchecker';
-import { Url, parse } from 'url';
 import { enumToArray } from '../utils/enumToArray';
 
 export enum EventType {
@@ -30,7 +29,7 @@ export class Event {
     public codeName?: string;
     public codePercent?: number;
     public type: EventType;
-    public web: Url;
+    public web: URL;
     public inMail: boolean;
 
     constructor(data: IConfigSource) {

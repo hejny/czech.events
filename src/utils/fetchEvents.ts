@@ -1,12 +1,12 @@
+import { EVENTS_CSV_URL } from './../config';
 import { IConfigSource } from 'configchecker';
 import { decapitalize, emptyKeysAsUndefined, isNotEmpty } from 'configchecker/lib/utils/object';
 import papaparse from 'papaparse';
-import { EVENTS_CSV_URL } from '../config';
 import { Event } from '../model/Event';
 import { compareEventsbyDate } from './compareDates';
 
 export async function fetchEvents(): Promise<(Event | string)[]> {
-    const response = await fetch(EVENTS_CSV_URL, { cache: 'reload' });
+    const response = await fetch(EVENTS_CSV_URL.toString(), { cache: 'reload' });
     const dataString = await response.text();
     const { data } = papaparse.parse(dataString, {
         header: true,
@@ -36,6 +36,9 @@ export async function fetchEvents(): Promise<(Event | string)[]> {
     //.filter(isEvent);
 }
 
+/*
+TODO: Remove or use
 function isEvent(t: any): t is Event {
     return t instanceof Event;
 }
+*/

@@ -179,3 +179,13 @@ form {
     background-color: white;
     border-radius: 50px;
 }
+
+.error {
+    background-color: #f00;
+    color: #fff;
+}
+
+.loading {
+    background-color: #ccc;
+    color: #fff;
+}

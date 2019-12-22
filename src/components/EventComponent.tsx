@@ -1,9 +1,8 @@
 import * as React from 'react';
-
 import { Event } from '../model/Event';
-import { translateCurrency } from '../../../utils/translate';
 import moment from 'moment';
 import { isNullOrUndefined } from 'util';
+import { translateCurrency } from '../utils/translate';
 
 interface IEventComponentProps {
     event: Event;
