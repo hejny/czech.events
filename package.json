@@ -10,8 +10,8 @@
     "prettier": "prettier --config .prettierrc --write \"src/**/*.{ts,tsx,css}\"",
     "prettier-watch": "onchange \"src/**/*.{ts,tsx,css}\" -- prettier --config .prettierrc --write \"{{changed}}\"",
     "prettier-commit": "git diff --exit-code && npm run prettier && git add . && git commit --allow-empty -m \"Prettier\"",
-    "deploy": "gh-pages -d dist",
-    "preversion": "npm run prettier-commit && npm run build && npm run export",
+    "deploy": "gh-pages -d build",
+    "preversion": "npm run prettier-commit && npm run build",
     "postversion": "git push && git push --tags && npm run deploy"
   },
   "repository": {
