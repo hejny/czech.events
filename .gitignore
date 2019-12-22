@@ -1,13 +1,28 @@
-# Add any directories, files, or patterns you don't want to be tracked by version control
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
-node_modules
+# dependencies
+/node_modules
+/.pnp
+.pnp.js
 
+# testing
+/coverage
+
+# production
+/build
+
+# misc
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
 
 .~lock*
-
-
-#build
-dist
 
 # IDEs
 .idea

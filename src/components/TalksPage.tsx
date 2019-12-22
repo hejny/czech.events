@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { Layout } from '../components/Layout';
+import { Layout } from '../czech-events/src/components/Layout';
 import { fetchEvents } from '../utils/fetchEvents';
 import { NextPageContext } from 'next';
-import { EventComponent } from '../components/EventComponent';
-import { LoadingComponent } from '../components/LoadingComponent';
-import { ErrorComponent } from '../components/ErrorComponent';
+import { EventComponent } from '../czech-events/src/components/EventComponent';
+import { LoadingComponent } from '../czech-events/src/components/LoadingComponent';
+import { ErrorComponent } from '../czech-events/src/components/ErrorComponent';
 import { Event, EventType } from '../model/Event';
-import { Form } from '../components/Form';
+import { Form } from '../czech-events/src/components/Form';
 import { enumToArray } from '../utils/enumToArray';
 import { translateEventType } from '../utils/translate';
 

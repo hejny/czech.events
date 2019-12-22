@@ -1,6 +1,6 @@
 import Head from 'next/head';
 import * as React from 'react';
-import { PAGE_TITLE } from '../config';
+import { PAGE_TITLE } from '../../config';
 
 interface ILayoutProps {
     title?: string;

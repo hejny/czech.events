@@ -1,8 +1,8 @@
 import Head from 'next/head';
 import * as React from 'react';
-import { PAGE_TITLE } from '../config';
+import { PAGE_TITLE } from '../../config';
 import { Event } from '../model/Event';
-import { translateCurrency } from '../utils/translate';
+import { translateCurrency } from '../../../utils/translate';
 import moment from 'moment';
 import { isNullOrUndefined } from 'util';
 
