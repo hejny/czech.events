@@ -7,11 +7,13 @@ export function Form() {
             <form action="https://www.pavolhejny.com/" method="post" target="_blank">
                 <input type="hidden" name="sp_list" value="472" />
                 <input type="hidden" name="sendpress" value="post" />
+                {/*
                 <div className="group">
                     <input type="text" id="name" name="sp_firstname" />
                     <label htmlFor="name">Name</label>
                     <div className="bar"></div>
                 </div>
+                */}
                 <div className="group">
                     <input
                         type="text"

@@ -7,6 +7,7 @@ import { Event, EventType } from '../model/Event';
 import { Form } from './Form';
 import { enumToArray } from '../utils/enumToArray';
 import { translateEventType } from '../utils/translate';
+import networkImage from '../network.svg';
 
 interface ITalksPageProps {}
 
@@ -45,7 +46,7 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
         return (
             <>
                 <div className="background">
-                    <img src="/static/network.svg" alt="Síť" />
+                    <img src={networkImage} alt="Síť" />
                 </div>
                 <div className="front black">
                     <h1>
