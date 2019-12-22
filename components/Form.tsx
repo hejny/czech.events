@@ -1,16 +1,14 @@
 import * as React from 'react';
 
-export function MailChimpForm() {
+export function Form() {
     // TODO: To Config
     return (
         <>
-            <form
-                action="https://pavolhejny.us5.list-manage.com/subscribe/post?u=eb937c8f3515cec96347304a3&amp;id=d230d6001c"
-                method="post"
-                target="_blank"
-            >
+            <form action="https://www.pavolhejny.com/" method="post" target="_blank">
+                <input type="hidden" name="sp_list" value="472" />
+                <input type="hidden" name="sendpress" value="post" />
                 <div className="group">
-                    <input type="email" id="name" name="NAME" required />
+                    <input type="text" id="name" name="sp_firstname" />
                     <label htmlFor="name">Name</label>
                     <div className="bar"></div>
                 </div>
@@ -18,7 +16,7 @@ export function MailChimpForm() {
                     <input
                         type="text"
                         id="email"
-                        name="EMAIL"
+                        name="sp_email"
                         required
                         defaultValue="@"
                         onFocus={(event) => {
@@ -35,9 +33,8 @@ export function MailChimpForm() {
                     <div className="bar"></div>
                 </div>
                 {/* TODO: We need here some GDPR */}
-                <input type="hidden" name="SOURCE" value="WEB" />
                 <div className="center">
-                    <button className="button">Přihlásit se</button>
+                    <input value="Přihlásit se" type="submit" id="submit" name="submit" />
                 </div>
             </form>
         </>

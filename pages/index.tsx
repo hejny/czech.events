@@ -6,7 +6,7 @@ import { EventComponent } from '../components/EventComponent';
 import { LoadingComponent } from '../components/LoadingComponent';
 import { ErrorComponent } from '../components/ErrorComponent';
 import { Event, EventType } from '../model/Event';
-import { MailChimpForm } from '../components/MailChimpForm';
+import { Form } from '../components/Form';
 import { enumToArray } from '../utils/enumToArray';
 import { translateEventType } from '../utils/translate';
 
@@ -44,7 +44,7 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
                         {/*about me, etc. */}
                     </h1>
                     <h2 className="font-light">Join us and sign up for monthly overview here!</h2>
-                    <MailChimpForm />
+                    <Form />
                 </div>
 
                 <div className="event-wrapper white">
@@ -56,8 +56,10 @@ export default class TalksPage extends React.Component<TalksPageProps, TalksPage
                             <br />
                             opět jsme dali dohromady seznam událostí, na které se vyplatí zajít.
                         </p>
+                        {/*
                         <p>Ve čtvrtek 7.11 se bude konat ...</p>
                         <p>Ve čtvrtek 7.11 se bude konat ...</p>
+                        */}
                         {this.props.error && (
                             <ErrorComponent>
                                 <pre>{this.props.error}</pre>
