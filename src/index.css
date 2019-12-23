@@ -1,12 +1,18 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald|Montserrat:100,400,700,800,900&display=swap');
 
 body {
-    margin: 0;
-    padding: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
     background-color: #1d1c21;
-    display: grid;
-    -webkit-text-size-adjust: 100%;
-    -webkit-font-smoothing: antialiased;
+    background-image: url(/network.svg);
+    background-repeat: no-repeat;
+    /*TODO fixed*/
+}
+
+.content {
+    max-width: 1200px;
 }
 
 .white {
@@ -25,9 +31,8 @@ body {
 }
 
 .front {
-    width: 70%;
-    padding: 100px;
-    padding-bottom: 0px;
+    width: 100%;
+    max-width: 500px;
 }
 
 .front .separator {
@@ -36,7 +41,7 @@ body {
 
 form {
     padding: 20px 0;
-    width: 450px;
+    max-width: 450px;
 }
 
 .front form label {
@@ -161,7 +166,7 @@ form {
 .black .bar {
     background: rgba(255, 255, 255, 0.5);
     content: '';
-    width: 500px;
+    max-width: 500px;
     height: 2px;
     transition: 0.3s ease;
     position: relative;
@@ -178,19 +183,9 @@ form {
 .black ::selection {
     background: rgba(33, 150, 243, 0.3);
 }
-.background img {
-    position: absolute;
-    z-index: -1;
-    right: 0;
-    padding: 0%;
-    margin: 00px auto;
-    height: 90%;
-}
 
 .event-wrapper {
-    width: 80%;
     padding: 50px;
-    margin: 20px auto;
     background-color: white;
     border-radius: 50px;
 }
