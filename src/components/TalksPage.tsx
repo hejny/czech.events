@@ -3,23 +3,23 @@ import { fetchEvents } from '../utils/fetchEvents';
 import { EventComponent } from './EventComponent';
 import { LoadingComponent } from './LoadingComponent';
 import { ErrorComponent } from './ErrorComponent';
-import { Event, EventType } from '../model/Event';
+import { Event } from '../model/Event';
 import { Form } from './Form';
-import { enumToArray } from '../utils/enumToArray';
 import { translateEventType } from '../utils/translate';
 import networkImage from '../network.svg';
+import { IEventsCategorized, categorizeEvents } from '../utils/categorizeEvents';
 
 interface ITalksPageProps {}
 
 interface ITalksPageState {
     error: null | string;
-    events: (Event | string)[];
+    categorizedEvents: null | IEventsCategorized;
 }
 
 export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState> {
     state: ITalksPageState = {
         error: null,
-        events: [],
+        categorizedEvents: null,
     };
 
     constructor(props: ITalksPageProps) {
@@ -33,9 +33,11 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
             const events = await fetchEvents();
             //console.log('events', events);
 
+            const categorizedEvents = categorizeEvents(events);
+
             //const events: any = [];
 
-            this.setState({ events });
+            this.setState({ categorizedEvents });
         } catch (error) {
             //console.log('error', error);
             this.setState({ error: error.message });
@@ -75,32 +77,24 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                                 <pre>{this.state.error}</pre>
                             </ErrorComponent>
                         )}
-                        {enumToArray(EventType).map((type) => (
-                            <p key={type}>
-                                <h2>{translateEventType(type as any)}</h2>
-                                {!this.state.events ? (
-                                    <LoadingComponent />
-                                ) : (
-                                    this.state.events
-                                        .filter((eventOrError: string | Event) => {
-                                            if (eventOrError instanceof Event) {
-                                                return type === ((eventOrError.type as unknown) as string);
-                                            } else {
-                                                return true;
-                                            }
-                                        })
-                                        .map((eventOrError: string | Event, key: number) => (
-                                            <span key={key}>
-                                                {eventOrError instanceof Event ? (
-                                                    <EventComponent {...{ event: eventOrError }} />
-                                                ) : (
-                                                    <ErrorComponent>{eventOrError}</ErrorComponent>
-                                                )}
-                                            </span>
-                                        ))
-                                )}
-                            </p>
-                        ))}
+                        {!this.state.categorizedEvents ? (
+                            <LoadingComponent />
+                        ) : (
+                            Object.keys(this.state.categorizedEvents).map((type) => (
+                                <p key={type}>
+                                    <h2>{translateEventType(type as any)}</h2>
+                                    <span>
+                                        {this.state.categorizedEvents![type].map((item, key) =>
+                                            item instanceof Event ? (
+                                                <EventComponent {...{ event: item, key }} />
+                                            ) : (
+                                                <ErrorComponent {...{ key }}>{item}</ErrorComponent>
+                                            ),
+                                        )}
+                                    </span>
+                                </p>
+                            ))
+                        )}
                         <br />
                         <br />
                         PS: <b>Budeme rádi za vaše návrhy a připomínky</b>, můžete <b>odpovědět rovnou na email</b>.

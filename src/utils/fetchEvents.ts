@@ -5,7 +5,9 @@ import papaparse from 'papaparse';
 import { Event } from '../model/Event';
 import { compareEventsbyDate } from './compareDates';
 
-export async function fetchEvents(): Promise<(Event | string)[]> {
+export type IEvents = (Event | string)[];
+
+export async function fetchEvents(): Promise<IEvents> {
     const response = await fetch(EVENTS_CSV_URL.toString(), { cache: 'reload' });
     const dataString = await response.text();
     const { data } = papaparse.parse(dataString, {
