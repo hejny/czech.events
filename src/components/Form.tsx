@@ -31,7 +31,7 @@ export function Form() {
                             }*/
                         }}
                     />
-                    <label htmlFor="email">E-mail</label>
+                    <label htmlFor="email">E-mail *</label>
                     <div className="bar"></div>
                 </div>
                 {/* TODO: We need here some GDPR */}

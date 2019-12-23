@@ -51,11 +51,10 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                     <img src={networkImage} alt="Síť" />
                 </div>
                 <div className="front black">
-                    <h1>
-                        Hey, wanna hear about upcoming tech <br /> events in the Czech Republic?
-                        {/*about me, etc. */}
-                    </h1>
-                    <h2 className="font-light">Join us and sign up for monthly overview here!</h2>
+                    <h1>Máme přehled o nejzajímavějších událostech z IT &amp; startupového světa.</h1>
+                    <h2 className="font-light">
+                        Dejte nám Vaší emailovou adresu a my Vám budeme pravidelně jednou za měsíc posílat co se děje:
+                    </h2>
                     <Form />
                 </div>
 
