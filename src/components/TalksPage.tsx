@@ -56,6 +56,10 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                         Dejte nám Vaší emailovou adresu a my Vám budeme pravidelně jednou za měsíc posílat co se děje:
                     </h2>
                     <Form />
+
+                    <h2 className="separator font-light">
+                        A jak takový mail vypadá? Tady máte živou ukázku z rozpracovaného mailu na další měsíc:
+                    </h2>
                 </div>
 
                 <div className="event-wrapper white">

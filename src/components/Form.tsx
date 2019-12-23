@@ -16,7 +16,7 @@ export function Form() {
                 */}
                 <div className="group">
                     <input
-                        type="text"
+                        type="email"
                         id="email"
                         name="sp_email"
                         required
@@ -36,7 +36,7 @@ export function Form() {
                 </div>
                 {/* TODO: We need here some GDPR */}
                 <div className="center">
-                    <input value="Přihlásit se" type="submit" id="submit" name="submit" />
+                    <input value="📧 Přihlásit se " type="submit" id="submit" name="submit" className="button" />
                 </div>
             </form>
         </>

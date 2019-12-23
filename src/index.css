@@ -27,26 +27,16 @@ body {
 .front {
     width: 70%;
     padding: 100px;
+    padding-bottom: 0px;
+}
+
+.front .separator {
+    margin-top: 10vh;
 }
 
 form {
     padding: 20px 0;
     width: 450px;
-}
-
-.front form .button {
-    text-decoration: none;
-    padding: 16px 20px;
-    color: white;
-    cursor: pointer;
-    display: inline-block;
-    background-color: transparent;
-    border-radius: 6px;
-}
-
-.front form button:hover {
-    background-color: white;
-    color: black;
 }
 
 .front form label {
@@ -89,6 +79,31 @@ form {
     -webkit-box-shadow: 0 0 0px 1000px #333 inset;
     -webkit-text-fill-color: white !important;
 }
+
+.front form .button {
+    text-decoration: none;
+    padding: 16px 20px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    background-color: transparent;
+    border-radius: 6px;
+    border: 2px solid #ffffff55;
+    background-color: #ffffff11;
+}
+
+.front form .button:hover {
+    background-color: white;
+    color: black;
+}
+/*
+.front form input[type='submit'] {
+    padding: 20px;
+    border: 2px solid #ffffff55;
+    cursor: pointer;
+    background-color: #ffffff11;
+}
+*/
 
 .black p {
     font-size: 16px;
