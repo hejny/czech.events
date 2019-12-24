@@ -7,6 +7,7 @@ import { Event } from '../model/Event';
 import { Form } from './Form';
 import { translateEventType } from '../utils/translate';
 import { IEventsCategorized, categorizeEvents } from '../utils/categorizeEvents';
+import { filterEvents } from '../utils/filterEvents';
 
 interface ITalksPageProps {}
 
@@ -32,6 +33,7 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
             const events = await fetchEvents();
             //console.log('events', events);
 
+            const filteredEvents = filterEvents(events);
             const categorizedEvents = categorizeEvents(events);
 
             //const events: any = [];
@@ -64,6 +66,14 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
 
                     <div className="letter white">
                         <div className="inner">
+                            {/*
+                            TODO: Here can be a selecotr of the months but firstly we need to add backend and better DB so it is not priority now.
+                            <select>
+                                <option>Prosinec</option>
+                                <option>Leden</option>
+                            </select>
+                            */}
+
                             <h2>{`📅 Konference / meetupy / hackathony – co se děje z IT / Startupové akce 🌆`}</h2>
 
                             <p>
