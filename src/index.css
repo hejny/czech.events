@@ -32,7 +32,11 @@ body {
 
 .front {
     width: 100%;
-    max-width: 500px;
+    max-width: 850px;
+}
+
+.front .inner {
+    padding: 10vh;
 }
 
 .front .separator {
@@ -110,6 +114,10 @@ form {
 }
 */
 
+.letter .inner {
+    /*padding: 2vh;*/
+}
+
 .black p {
     font-size: 16px;
 }
@@ -184,7 +192,7 @@ form {
     background: rgba(33, 150, 243, 0.3);
 }
 
-.event-wrapper {
+.letter {
     padding: 50px;
     background-color: white;
     border-radius: 50px;
