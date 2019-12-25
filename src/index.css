@@ -198,6 +198,10 @@ form {
     border-radius: 50px;
 }
 
+.past {
+    opacity: 0.5;
+}
+
 .error {
     background-color: #f00;
     color: #fff;

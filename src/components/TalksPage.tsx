@@ -22,7 +22,7 @@ interface ITalksPageState {
 export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState> {
     state: ITalksPageState = {
         error: null,
-        range: DateRange.ALL,
+        range: DateRange.FROM_CURRENT_MONTH,
         events: null,
     };
 
@@ -34,6 +34,7 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
     private async loadEvents() {
         try {
             const events = await fetchEvents();
+            //console.log('events', events);
             this.setState({ events });
         } catch (error) {
             this.setState({ error: error.message });
@@ -44,10 +45,11 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
         let categorizedEvents: null | IEventsCategorized;
 
         if (this.state.events) {
-            const monthRange = DateRange.forMonth();
             const filteredEvents = this.state.events.filter((event) =>
-                event instanceof Event ? monthRange.isIn(event.date) : true,
+                event instanceof Event ? this.state.range.isIn(event.date) : true,
             );
+
+            //console.log('filteredEvents', filteredEvents);
             categorizedEvents = categorizeEvents(filteredEvents);
         } else {
             categorizedEvents = null;
@@ -96,47 +98,44 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
 
                             */}
                             <h2>{`📅 Konference / meetupy / hackathony – co se děje z IT / Startupové akce 🌆`}</h2>
-
-                            <p>
-                                <p>
-                                    Ahoj,
-                                    <br />
-                                    opět jsme dali dohromady seznam událostí, na které se vyplatí zajít.
-                                </p>
-                                {/*
+                            <br />
+                            <br />
+                            Ahoj,
+                            <br />
+                            opět jsme dali dohromady seznam událostí, na které se vyplatí zajít.
+                            <br />
+                            {/*
                         <p>Ve čtvrtek 7.11 se bude konat ...</p>
                         <p>Ve čtvrtek 7.11 se bude konat ...</p>
                         */}
-                                {this.state.error && (
-                                    <ErrorComponent>
-                                        <pre>{this.state.error}</pre>
-                                    </ErrorComponent>
-                                )}
-                                {!categorizedEvents ? (
-                                    <LoadingComponent />
-                                ) : (
-                                    Object.keys(categorizedEvents).map((type) => (
-                                        <p key={type}>
-                                            <h2>{translateEventType(type as any)}</h2>
-                                            <span>
-                                                {categorizedEvents![type].map((item, key) =>
-                                                    item instanceof Event ? (
-                                                        <EventComponent {...{ event: item, key }} />
-                                                    ) : (
-                                                        <ErrorComponent {...{ key }}>{item}</ErrorComponent>
-                                                    ),
-                                                )}
-                                            </span>
-                                        </p>
-                                    ))
-                                )}
-                                <br />
-                                <br />
-                                PS: <b>Budeme rádi za vaše návrhy a připomínky</b>, můžete{' '}
-                                <b>odpovědět rovnou na email</b>.
-                                <br />
-                                PPS: Pokud už nechcete dostat další email, klikněte sem pro jejich odhlášení.
-                            </p>
+                            {this.state.error && (
+                                <ErrorComponent>
+                                    <pre>{this.state.error}</pre>
+                                </ErrorComponent>
+                            )}
+                            {!categorizedEvents ? (
+                                <LoadingComponent />
+                            ) : (
+                                Object.keys(categorizedEvents).map((type) => (
+                                    <p key={type}>
+                                        <h2>{translateEventType(type as any)}</h2>
+                                        <span>
+                                            {categorizedEvents![type].map((item, key) =>
+                                                item instanceof Event ? (
+                                                    <EventComponent {...{ event: item, key }} />
+                                                ) : (
+                                                    <ErrorComponent {...{ key }}>{item}</ErrorComponent>
+                                                ),
+                                            )}
+                                        </span>
+                                    </p>
+                                ))
+                            )}
+                            <br />
+                            <br />
+                            PS: <b>Budeme rádi za vaše návrhy a připomínky</b>, můžete <b>odpovědět rovnou na email</b>.
+                            <br />
+                            PPS: Pokud už nechcete dostat další email, klikněte sem pro jejich odhlášení.
                         </div>
                     </div>
 

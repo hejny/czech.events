@@ -16,7 +16,7 @@ export function EventComponent({ event }: IEventComponentProps) {
     };
 
     return (
-        <span>
+        <span className={event.date < new Date() ? 'past' : ''}>
             <a href={event.web.toString()} target="_blank" rel="nofolow noopener noreferrer">
                 <b>{event.name}</b>
                 {event.topic ? ` – ${event.topic}` : ''}

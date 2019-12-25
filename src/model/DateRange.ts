@@ -1,8 +1,9 @@
 export class DateRange {
-    constructor(private from?: Date, private to?: Date) {}
+    constructor(public from?: Date, public to?: Date) {}
 
     static ALL = new DateRange();
     static CURRENT_MONTH = DateRange.forMonth();
+    static FROM_CURRENT_MONTH = new DateRange(DateRange.CURRENT_MONTH.from);
 
     static forMonth(currentDate = new Date()): DateRange {
         const month = currentDate.getMonth();
