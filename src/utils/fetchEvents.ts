@@ -4,8 +4,7 @@ import { decapitalize, emptyKeysAsUndefined, isNotEmpty } from 'configchecker/li
 import papaparse from 'papaparse';
 import { Event } from '../model/Event';
 import { compareEventsbyDate } from './compareDates';
-
-export type IEvents = (Event | string)[];
+import { IEvents } from '../model/IEvents';
 
 export async function fetchEvents(): Promise<IEvents> {
     const response = await fetch(EVENTS_CSV_URL.toString(), { cache: 'reload' });

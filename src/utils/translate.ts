@@ -1,6 +1,7 @@
 import { EventPriceCurrency, EventType } from './../model/Event';
 
 export function translateCurrency(currency: EventPriceCurrency): string {
+    // TODO: Hardcoded
     switch (currency) {
         case 'CZK' as any:
         case EventPriceCurrency.CZK:
@@ -15,6 +16,7 @@ export function translateCurrency(currency: EventPriceCurrency): string {
 
 export function translateEventType(eventType: EventType): string {
     // TODO: Plular
+    // TODO: Hardcoded
     switch (eventType) {
         case EventType.HACKATHON:
             return 'Hackathony';

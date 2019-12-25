@@ -6,20 +6,24 @@ import { ErrorComponent } from './ErrorComponent';
 import { Event } from '../model/Event';
 import { Form } from './Form';
 import { translateEventType } from '../utils/translate';
-import { IEventsCategorized, categorizeEvents } from '../utils/categorizeEvents';
-import { filterEvents } from '../utils/filterEvents';
+import { categorizeEvents } from '../utils/categorizeEvents';
+import { IEventsCategorized } from '../model/IEventsCategorized';
+import { DateRange } from '../model/DateRange';
+import { IEvents } from '../model/IEvents';
 
 interface ITalksPageProps {}
 
 interface ITalksPageState {
     error: null | string;
-    categorizedEvents: null | IEventsCategorized;
+    range: DateRange;
+    events: null | IEvents;
 }
 
 export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState> {
     state: ITalksPageState = {
         error: null,
-        categorizedEvents: null,
+        range: DateRange.ALL,
+        events: null,
     };
 
     constructor(props: ITalksPageProps) {
@@ -29,23 +33,26 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
 
     private async loadEvents() {
         try {
-            //const { id } = query;
             const events = await fetchEvents();
-            //console.log('events', events);
-
-            const filteredEvents = filterEvents(events);
-            const categorizedEvents = categorizeEvents(events);
-
-            //const events: any = [];
-
-            this.setState({ categorizedEvents });
+            this.setState({ events });
         } catch (error) {
-            //console.log('error', error);
             this.setState({ error: error.message });
         }
     }
 
     render() {
+        let categorizedEvents: null | IEventsCategorized;
+
+        if (this.state.events) {
+            const monthRange = DateRange.forMonth();
+            const filteredEvents = this.state.events.filter((event) =>
+                event instanceof Event ? monthRange.isIn(event.date) : true,
+            );
+            categorizedEvents = categorizeEvents(filteredEvents);
+        } else {
+            categorizedEvents = null;
+        }
+
         return (
             <>
                 <div className="content">
@@ -65,15 +72,29 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                     </div>
 
                     <div className="letter white">
+                        {/*
+                        TODO: Or make tabs - see bellow
+                        <div className="tab" onClick={() => this.setState({ range: DateRange.CURRENT_MONTH })}>
+                            Aktuání měsíc
+                        </div>
+                        <div className="tab" onClick={() => this.setState({ range: DateRange.ALL })}>
+                            Vše
+                        </div>
+                         */}
+
                         <div className="inner">
                             {/*
                             TODO: Here can be a selecotr of the months but firstly we need to add backend and better DB so it is not priority now.
+                            
+                            TODO: Or maybe like this:
                             <select>
-                                <option>Prosinec</option>
-                                <option>Leden</option>
+                                <option>Aktuální měsíc</option>
+                                <option>Budoucí události</option>
+                                <option>Budoucí události tento měsíc</option>
+                                <option>Vše</option>
                             </select>
-                            */}
 
+                            */}
                             <h2>{`📅 Konference / meetupy / hackathony – co se děje z IT / Startupové akce 🌆`}</h2>
 
                             <p>
@@ -91,14 +112,14 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                                         <pre>{this.state.error}</pre>
                                     </ErrorComponent>
                                 )}
-                                {!this.state.categorizedEvents ? (
+                                {!categorizedEvents ? (
                                     <LoadingComponent />
                                 ) : (
-                                    Object.keys(this.state.categorizedEvents).map((type) => (
+                                    Object.keys(categorizedEvents).map((type) => (
                                         <p key={type}>
                                             <h2>{translateEventType(type as any)}</h2>
                                             <span>
-                                                {this.state.categorizedEvents![type].map((item, key) =>
+                                                {categorizedEvents![type].map((item, key) =>
                                                     item instanceof Event ? (
                                                         <EventComponent {...{ event: item, key }} />
                                                     ) : (

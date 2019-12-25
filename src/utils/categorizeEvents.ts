@@ -1,11 +1,8 @@
 import { EventType } from './../model/Event';
-import { IEvents } from './fetchEvents';
+import { IEvents } from "../model/IEvents";
 import { Event } from '../model/Event';
 import { enumToArray } from './enumToArray';
-
-export interface IEventsCategorized {
-    [eventType: string]: (string | Event)[];
-}
+import { IEventsCategorized } from '../model/IEventsCategorized';
 
 export function categorizeEvents(events: IEvents): IEventsCategorized {
     const eventsCategorized: IEventsCategorized = {};
