@@ -6,7 +6,7 @@ body {
     justify-content: center;
 
     background-color: #1d1c21;
-    background-image: url(/network.svg);
+    background-image: url('/network.svg');
     background-repeat: no-repeat;
     /*TODO fixed*/
 }
