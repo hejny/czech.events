@@ -1,15 +1,11 @@
 import * as React from 'react';
-import { fetchEvents } from '../utils/fetchEvents';
-import { EventComponent } from './EventComponent';
-import { LoadingComponent } from './LoadingComponent';
-import { ErrorComponent } from './ErrorComponent';
-import { Event } from '../model/Event';
-import { Form } from './Form';
-import { translateEventType } from '../utils/translate';
-import { categorizeEvents } from '../utils/categorizeEvents';
-import { IEventsCategorized } from '../model/IEventsCategorized';
 import { DateRange } from '../model/DateRange';
 import { IEvents } from '../model/IEvents';
+import { fetchEvents } from '../utils/fetchEvents';
+import { ErrorComponent } from './ErrorComponent';
+import { Form } from './Form';
+import { LoadingComponent } from './LoadingComponent';
+import { TalksPageEmail } from './TalksPageEmail';
 
 interface ITalksPageProps {}
 
@@ -42,19 +38,6 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
     }
 
     render() {
-        let categorizedEvents: null | IEventsCategorized;
-
-        if (this.state.events) {
-            const filteredEvents = this.state.events.filter((event) =>
-                event instanceof Event ? this.state.range.isIn(event.date) : true,
-            );
-
-            //console.log('filteredEvents', filteredEvents);
-            categorizedEvents = categorizeEvents(filteredEvents);
-        } else {
-            categorizedEvents = null;
-        }
-
         return (
             <>
                 <div className="content">
@@ -97,53 +80,20 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                             </select>
 
                             */}
-                            <h2>{`📅 Konference / meetupy / hackathony – co se děje z IT / Startupové akce 🌆`}</h2>
-                            <br />
-                            <br />
-                            Ahoj,
-                            <br />
-                            opět jsme dali dohromady seznam událostí, na které se vyplatí zajít.
-                            <br />
-                            {/*
-                        <p>Ve čtvrtek 7.11 se bude konat ...</p>
-                        <p>Ve čtvrtek 7.11 se bude konat ...</p>
-                        */}
-                            {this.state.error && (
+
+                            {this.state.error ? (
                                 <ErrorComponent>
                                     <pre>{this.state.error}</pre>
                                 </ErrorComponent>
-                            )}
-                            {!categorizedEvents ? (
+                            ) : !this.state.events ? (
                                 <LoadingComponent />
                             ) : (
-                                Object.keys(categorizedEvents).map((type) => (
-                                    <p key={type}>
-                                        <h2>{translateEventType(type as any)}</h2>
-                                        <span>
-                                            {categorizedEvents![type].map((item, key) =>
-                                                item instanceof Event ? (
-                                                    <EventComponent {...{ event: item, key }} />
-                                                ) : (
-                                                    <ErrorComponent {...{ key }}>{item}</ErrorComponent>
-                                                ),
-                                            )}
-                                        </span>
-                                    </p>
-                                ))
+                                <TalksPageEmail {...{ events: this.state.events, range: this.state.range }} />
                             )}
-                            <br />
-                            <br />
-                            PS: <b>Budeme rádi za vaše návrhy a připomínky</b>, můžete <b>odpovědět rovnou na email</b>.
-                            <br />
-                            PPS: Pokud už nechcete dostat další email, klikněte sem pro jejich odhlášení.
                         </div>
                     </div>
 
-                    <footer className="footer black">
-                        <a href="https://www.pavolhejny/">Pavol</a>
-                        &nbsp;&amp;&nbsp;
-                        <a href="https://www.linkedin.com/in/tereza-texlova/">Tereza</a>
-                    </footer>
+                    <footer className="footer black">{/*TODO:*/}</footer>
                 </div>
             </>
         );

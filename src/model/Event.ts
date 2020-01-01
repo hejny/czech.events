@@ -31,6 +31,8 @@ export class Event {
     public type: EventType;
     public web: URL;
     public inMail: boolean;
+    public topParagraph?: string;
+    public topParagraphOrder: number;
 
     constructor(data: IConfigSource) {
         const c = ConfigChecker.from(data);
@@ -88,6 +90,13 @@ export class Event {
             .get('inMail')
             .boolean()
             .required().value;
+
+        this.topParagraph = c.get('topParagraph').value;
+
+        this.topParagraphOrder = c
+            .get('topParagraphOrder')
+            .number()
+            .default(999).value!;
 
         //throw new Error(`Error test`);
     }
