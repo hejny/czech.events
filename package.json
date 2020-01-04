@@ -2,7 +2,7 @@
   "name": "czech-events",
   "version": "0.4.0",
   "author": "Pavol Hejný & Tereza Texlová",
-  "homepage": "https://hejny.github.io/events/",
+  "homepage": "https://czech.events",
   "private": true,
   "scripts": {
     "start": "react-scripts start",
