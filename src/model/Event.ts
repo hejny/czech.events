@@ -62,7 +62,7 @@ export class Event {
             throw new Error(`Cannot create a valie new Date(${this.year}, ${this.month} - 1, ${this.day});`);
         }
 
-        this.time = c.get('time').required().value;
+        this.time = c.get('time').value;
         this.priceAmount = c.get('priceAmount').number().value; //.required()
         // TODO: Configchecker should take number 0 as defined
 
