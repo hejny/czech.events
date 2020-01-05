@@ -61,7 +61,7 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
             */}
             <br />
             <br />
-            <a href="https://www.pavolhejny/">Pavol</a>
+            <a href="https://www.pavolhejny.com/">Pavol</a>
             &nbsp;&amp;&nbsp;
             <a href="https://www.linkedin.com/in/tereza-texlova/">Tereza</a>
         </>
