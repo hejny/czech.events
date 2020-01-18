@@ -7,6 +7,8 @@ body {
 
     background-color: #1d1c21;
     background-image: url('/network.svg');
+    background-position: 100% 0;
+    background-size: 50rem;
     background-repeat: no-repeat;
     /*TODO fixed*/
 }
@@ -60,7 +62,7 @@ form {
 .front form input {
     display: block;
     width: 100%;
-    padding-top: 30px;
+    padding-top: 42px;
     border: none;
     border-radius: 0;
     color: white;
@@ -91,13 +93,14 @@ form {
 
 .front form .button {
     text-decoration: none;
+    font: 100 18px Montserrat;
     padding: 16px 20px;
     color: white;
     cursor: pointer;
     display: inline-block;
     background-color: transparent;
     border-radius: 6px;
-    border: 2px solid #ffffff55;
+    border: 1px solid #ffffff55;
     background-color: #ffffff11;
 }
 
@@ -129,7 +132,7 @@ form {
 .black h2 {
     color: rgb(255, 255, 255);
     text-align: left;
-    font-size: 25px;
+    font-size: 20px;
 }
 
 .black * {
