@@ -100,7 +100,7 @@ form {
     display: inline-block;
     background-color: transparent;
     border-radius: 6px;
-    border: 1px solid #ffffff55;
+    /* border: 1px solid #ffffff55; */
     background-color: #ffffff11;
 }
 
