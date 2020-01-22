@@ -35,29 +35,22 @@ export function Form() {
                 <input type="hidden" name="source" value={window.location.toString()} />
 
                 <div className="group">
-                    <input type="text" name="fullname" placeholder="Jan Novák" />
+                    <input type="text" name="fullname" placeholder="Jan Novák" className="field" />
                     <label htmlFor="name">Vaše jméno:</label>
                     <div className="bar"></div>
                 </div>
 
                 <div className="group">
-                    <input
-                        type="email"
-                        name="email"
-                        required
-                        defaultValue="@"
-                        onFocus={(event) => {
-                            /*console.log(event);
-                            const inputElement: HTMLInputElement = event.target as any;
-                            console.log(inputElement);
-                            console.log(inputElement.value);
-                            if (!inputElement.value) {
-                                inputElement.value = '@';
-                            }*/
-                        }}
-                    />
+                    <input type="email" name="email" required defaultValue="@" className="field" />
                     <label htmlFor="email">E-mail: *</label>
                     <div className="bar"></div>
+                </div>
+
+                <div className="group">
+                    <label>
+                        <input type="checkbox" name="gdpr" />
+                        Souhlasím se zpracováním osobních údajů
+                    </label>
                 </div>
 
                 {/* TODO: We need here some GDPR */}

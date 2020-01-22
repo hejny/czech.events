@@ -59,7 +59,7 @@ form {
     transition: 0.25s ease;
 }
 
-.front form input {
+.front form .field {
     display: block;
     width: 100%;
     padding-top: 42px;
@@ -70,28 +70,38 @@ form {
     font-size: 20px;
     transition: 0.3s ease;
 }
-.front form input:valid ~ label {
+.front form .field:valid ~ label {
     top: 0;
     font: 700 16px;
     color: #01ccbf;
 }
-.front form input:focus {
+.front form .field:focus {
     outline: none;
 }
-.front form input:focus ~ label {
+.front form .field:focus ~ label {
     top: 0;
     font: 700 16px Montserrat;
     color: #01ccbf;
 }
-.front form input:focus ~ .bar:before {
+.front form .field:focus ~ .bar:before {
     transform: translateX(0);
 }
-.front form input:-webkit-autofill {
+.front form .field:-webkit-autofill {
     -webkit-box-shadow: 0 0 0px 1000px #333 inset;
     -webkit-text-fill-color: white !important;
 }
 
 .front form .button {
+    display: block;
+    width: 100%;
+    padding-top: 42px;
+    border: none;
+    border-radius: 0;
+    color: white;
+    background: transparent;
+    font-size: 20px;
+    transition: 0.3s ease;
+
     text-decoration: none;
     font: 100 18px Montserrat;
     padding: 16px 20px;
@@ -107,18 +117,6 @@ form {
 .front form .button:hover {
     background-color: white;
     color: black;
-}
-/*
-.front form input[type='submit'] {
-    padding: 20px;
-    border: 2px solid #ffffff55;
-    cursor: pointer;
-    background-color: #ffffff11;
-}
-*/
-
-.letter .inner {
-    /*padding: 2vh;*/
 }
 
 .black p {
