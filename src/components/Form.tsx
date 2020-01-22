@@ -32,7 +32,7 @@ export function Form() {
                     }
                 }}
             >
-                <input type="hidden" name="source" value="WEB" />
+                <input type="hidden" name="source" value={window.location.toString()} />
 
                 <div className="group">
                     <input type="text" name="fullname" placeholder="Jan Novák" />
