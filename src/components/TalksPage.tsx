@@ -43,7 +43,7 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                 <div className="content">
                     <div className="front black">
                         <div className="inner">
-                            <h1>Máme přehled o nejzajímavějších událostech z IT &amp; startupového světa.</h1>
+                            <h1>Mějte přehled o nejzajímavějších událostech z IT &amp; startupového světa.</h1>
                             <h2 className="font-light">
                                 Dejte nám Vaší emailovou adresu a my Vám budeme pravidelně jednou za měsíc posílat co se
                                 děje:
