@@ -35,7 +35,7 @@ export function Form() {
                 <input type="hidden" name="source" value={window.location.toString()} />
 
                 <div className="group">
-                    <input type="text" name="fullname" placeholder="Jan Novák" className="field" />
+                    <input type="text" name="fullname" className="field" />
                     <label htmlFor="name">Vaše jméno:</label>
                     <div className="bar"></div>
                 </div>
