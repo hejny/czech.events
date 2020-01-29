@@ -11,7 +11,7 @@ interface IEventComponentProps {
 
 export function EventComponent({ event }: IEventComponentProps) {
     return (
-        <span className={event.date < new Date() ? 'past' : ''}>
+        <span className={event.date && event.date < new Date() ? 'past' : ''}>
             {event.topParagraph ? '⭐' : ''}
             <a href={event.web.toString()} target="_blank" rel="nofolow noopener noreferrer">
                 <b>{event.name}</b>
@@ -20,8 +20,8 @@ export function EventComponent({ event }: IEventComponentProps) {
             <br />
             <>🌆&nbsp;{event.city}</>
             &nbsp;
-            <EventDateComponent date={event.date} />
-            <EventTimeComponent time={event.time} />
+            <EventDateComponent {...{ event }} />
+            <EventTimeComponent {...{ event }} />
             &nbsp;
             <EventPrice {...{ event }} />
             <EventCodeParagraph {...{ event, verbose: true }} />

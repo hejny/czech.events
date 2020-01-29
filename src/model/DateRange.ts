@@ -15,7 +15,11 @@ export class DateRange {
         return new DateRange(from, to);
     }
 
-    isIn(date: Date) {
+    isIn(date?: Date) {
+        if (!date) {
+            return true;
+        }
+
         if (this.from && this.from > date) {
             return false;
         }

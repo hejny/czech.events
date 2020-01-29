@@ -32,7 +32,7 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
                 .filter((e) => e.topParagraph)
                 .sort((a, b) => (a.topParagraphOrder > b.topParagraphOrder ? 1 : -1))
                 .map((event, i) => (
-                    <p key={i} className={event.date < new Date() ? 'past' : ''}>
+                    <p key={i} className={event.date && event.date < new Date() ? 'past' : ''}>
                         {event.topParagraph}
                         <EventCodeParagraph {...{ event, verbose: false }} />
                     </p>

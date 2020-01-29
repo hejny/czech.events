@@ -18,11 +18,11 @@ export class Event {
     public name: string;
     public topic?: string;
     public city?: string;
-    public year: number;
-    public month: number;
-    public day: number;
-    public days: string;
-    public date: Date;
+    public year?: number;
+    public month?: number;
+    public day?: number;
+    public days?: string;
+    public date?: Date;
     public time?: string;
     public priceAmount?: number;
     public priceCurrency?: EventPriceCurrency;
@@ -40,26 +40,24 @@ export class Event {
         this.name = c.get('name').required().value;
         this.topic = c.get('topic').value;
         this.city = c.get('city').value;
-        this.year = c
-            .get('year')
-            .number()
-            .required().value;
-        this.month = c
-            .get('month')
-            .number()
-            .required().value;
-        this.days = c.get('days').required().value;
-        this.day = parseInt(this.days.split('-')[0].trim());
+        this.year = c.get('year').number().value;
+        this.month = c.get('month').number().value;
+        this.days = c.get('days').value;
+        if (this.days) {
+            this.day = parseInt(this.days.split('-')[0].trim());
+        }
 
-        if (isNaN(this.day)) {
+        if (this.day && isNaN(this.day)) {
             throw new Error(`Day parsed from "${this.days}" is NaN.`);
         }
 
-        try {
-            this.date = new Date(this.year, this.month - 1, this.day);
-            if (isNaN(this.date.getDate())) throw new Error();
-        } catch {
-            throw new Error(`Cannot create a valie new Date(${this.year}, ${this.month} - 1, ${this.day});`);
+        if (this.year && this.month && this.day) {
+            try {
+                this.date = new Date(this.year, this.month - 1, this.day);
+                if (isNaN(this.date.getDate())) throw new Error();
+            } catch {
+                throw new Error(`Cannot create a valie new Date(${this.year}, ${this.month} - 1, ${this.day});`);
+            }
         }
 
         this.time = c.get('time').value;
