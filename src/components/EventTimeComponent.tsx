@@ -16,9 +16,14 @@ export function EventTimeComponent({ event }: EventTimeComponentProps) {
 
     try {
         moment.locale('cs');
-        let timeString = moment('2010-10-20 ' + time).format('LT');
+        let timeString = moment(time, 'hh A').format('LT');
+        if (timeString === 'Invalid date') {
+            throw new Error(`Time was parsed as "Invalid date".`);
+        }
         return <>⏱️&nbsp;{timeString}</>;
     } catch (error) {
-        throw new Error(`Problem when parsing moment('2010-10-20 ' + '${time}').format('LT');`);
+        console.error(`Problem when parsing moment('2010-10-20 ' + '${time}').format('LT'); See more below:`);
+        console.error(error);
+        return <></>;
     }
 }

@@ -32,7 +32,9 @@ export function EventDateComponent({ event }: EventDateComponentProps) {
             dateString = capitalizeFirstLetter(dateString);
             return <>📅&nbsp;{dateString}</>;
         } catch (error) {
-            throw new Error(`Problem when parsing moment('${date}').format('LLLL');`);
+            console.error(`Problem when parsing moment('${date}').format('LLLL'); See more below:`);
+            console.error(error);
+            return <></>;
         }
     } else if (year && month) {
         let monthString = moment(month, 'M').format('MMMM');
