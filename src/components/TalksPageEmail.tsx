@@ -38,7 +38,7 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
                     </p>
                 ))}
             {Object.keys(categorizedEvents).map((type) => (
-                <p key={type}>
+                <div key={type}>
                     <h2>{translateEventType(type as any)}</h2>
                     <span>
                         {categorizedEvents![type].map((item, key) =>
@@ -49,7 +49,7 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
                             ),
                         )}
                     </span>
-                </p>
+                </div>
             ))}
             <br />
             <i>
