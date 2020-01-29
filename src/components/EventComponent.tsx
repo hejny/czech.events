@@ -2,7 +2,8 @@ import * as React from 'react';
 import { Event } from '../model/Event';
 import { EventPrice } from './EventPrice';
 import { EventCodeParagraph } from './EventCodeParagraph';
-import { showDate, showTime } from '../utils/showDateAndTime';
+import { EventDateComponent } from './EventDateComponent';
+import { EventTimeComponent } from './EventTimeComponent';
 
 interface IEventComponentProps {
     event: Event;
@@ -19,13 +20,8 @@ export function EventComponent({ event }: IEventComponentProps) {
             <br />
             <>🌆&nbsp;{event.city}</>
             &nbsp;
-            <>📅&nbsp;{showDate(event.date)}</>
-            {event.time && (
-                <>
-                    &nbsp;
-                    <>⏱️&nbsp;{showTime(event.time)}</>
-                </>
-            )}
+            <EventDateComponent date={event.date} />
+            <EventTimeComponent time={event.time} />
             &nbsp;
             <EventPrice {...{ event }} />
             <EventCodeParagraph {...{ event, verbose: true }} />
