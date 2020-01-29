@@ -13,6 +13,7 @@ export enum EventPriceCurrency {
     EUR,
 }
 
+// TODO: Maybe better name because it colides with native browser Event class
 export class Event {
     //TODO: readonly id: number;
     public name: string;
@@ -97,6 +98,24 @@ export class Event {
             .default(999).value!;
 
         //throw new Error(`Error test`);
+    }
+
+    /**
+     * Purpose of this method is to provide date only for comparing functions - so it can be wrong (for example can be shifted by a day) but roughly OK and everytime defined
+     * compared to Event.date which is everytime precise but can be undefined
+     * This getter is usefull when we have only a month and year of an event but not a precise day.
+     */
+    get dateToCompare(): Date {
+        if (this.date) {
+            return this.date;
+        } else if (this.year && this.month) {
+            const date = new Date(this.year, this.month - 1, 25 /*Some late day in the month*/);
+            return date;
+        } else {
+            const date = new Date();
+            date.setDate(date.getDate() + 1000 /*TODO: Some big constant*/);
+            return date;
+        }
     }
 
     /*static error(error: Error):Event{

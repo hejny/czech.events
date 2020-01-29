@@ -11,7 +11,7 @@ interface IEventComponentProps {
 
 export function EventComponent({ event }: IEventComponentProps) {
     return (
-        <span className={event.date && event.date < new Date() ? 'past' : ''}>
+        <span className={event.dateToCompare < new Date() ? 'past' : ''}>
             {event.topParagraph ? '⭐' : ''}
             <a href={event.web.toString()} target="_blank" rel="nofolow noopener noreferrer">
                 <b>{event.name}</b>

@@ -16,7 +16,7 @@ interface ITalksPageEmailProps {
 export function TalksPageEmail(props: ITalksPageEmailProps) {
     const { events, range } = props;
 
-    const filteredEvents = events.filter((event) => (event instanceof Event ? range.isIn(event.date) : true));
+    const filteredEvents = events.filter((event) => (event instanceof Event ? range.isIn(event.dateToCompare) : true));
 
     //console.log('filteredEvents', filteredEvents);
     const categorizedEvents = categorizeEvents(filteredEvents);
@@ -32,7 +32,7 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
                 .filter((e) => e.topParagraph)
                 .sort((a, b) => (a.topParagraphOrder > b.topParagraphOrder ? 1 : -1))
                 .map((event, i) => (
-                    <p key={i} className={event.date && event.date < new Date() ? 'past' : ''}>
+                    <p key={i} className={event.dateToCompare < new Date() ? 'past' : ''}>
                         {event.topParagraph}
                         <EventCodeParagraph {...{ event, verbose: false }} />
                     </p>

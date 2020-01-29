@@ -9,7 +9,7 @@ interface EventDateComponentProps {
 }
 
 export function EventDateComponent({ event }: EventDateComponentProps) {
-    const { date, month } = event;
+    const { date, year, month } = event;
 
     if (date) {
         try {
@@ -34,10 +34,14 @@ export function EventDateComponent({ event }: EventDateComponentProps) {
         } catch (error) {
             throw new Error(`Problem when parsing moment('${date}').format('LLLL');`);
         }
-    } else if (month) {
+    } else if (year && month) {
         let monthString = moment(month, 'M').format('MMMM');
         monthString = capitalizeFirstLetter(monthString);
-        return <>📅&nbsp;{monthString}</>;
+        return (
+            <>
+                📅&nbsp;{monthString} {year}
+            </>
+        );
     } else {
         return <></>;
     }
