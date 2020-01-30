@@ -51,8 +51,9 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                             <Form />
 
                             <h2 className="separator font-light">
-                                A jak takový mail vypadá? Tady máte živou ukázku z rozpracovaného mailu na další měsíc:
+                                A jak takový mail vypadá? Tady máte živou ukázku z rozpracovaného mailu
                                 <select
+                                    className={'font-light option-in-text'}
                                     onChange={(event) => {
                                         const [beginConstant, endConstant] = event.target.value.split(
                                             '-',
@@ -70,13 +71,13 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                                     }}
                                 >
                                     <option value="CURRENT_MONTH-NEXT_MONTH">
-                                        na další měsíc + události tohoto měsíce.
+                                        na další měsíc + události tohoto měsíce:
                                     </option>
-                                    <option value="NEXT_MONTH-NEXT_NEXT_MONTH">na další měsíc</option>
+                                    <option value="NEXT_MONTH-NEXT_NEXT_MONTH">na další měsíc:</option>
                                     <option value="NOW-INFINITY">
-                                        se všemi událostmi, co právě evidujeme do budoucna.
+                                        se všemi událostmi, co právě evidujeme do budoucna:
                                     </option>
-                                    <option value="INFINITY-INFINITY">se všemi událostmi, co právě evidujeme.</option>
+                                    <option value="INFINITY-INFINITY">se všemi událostmi, co právě evidujeme:</option>
                                 </select>
                             </h2>
                         </div>
