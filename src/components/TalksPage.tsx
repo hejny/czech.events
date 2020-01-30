@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { DateRange } from '../model/DateRange';
+import { DateRange, RangeConstant } from '../model/DateRange';
 import { IEvents } from '../model/IEvents';
 import { fetchEvents } from '../utils/fetchEvents';
 import { ErrorComponent } from './ErrorComponent';
@@ -18,7 +18,7 @@ interface ITalksPageState {
 export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState> {
     state: ITalksPageState = {
         error: null,
-        range: DateRange.FROM_CURRENT_MONTH,
+        range: DateRange.fromConstants('CURRENT_MONTH', 'NEXT_MONTH'),
         events: null,
     };
 
@@ -52,6 +52,32 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
 
                             <h2 className="separator font-light">
                                 A jak takový mail vypadá? Tady máte živou ukázku z rozpracovaného mailu na další měsíc:
+                                <select
+                                    onChange={(event) => {
+                                        const [beginConstant, endConstant] = event.target.value.split(
+                                            '-',
+                                        ) as RangeConstant[];
+
+                                        const range = DateRange.fromConstants(beginConstant, endConstant);
+                                        /*console.log(
+                                            event.target.value,
+                                            DateRange.fromConstant(beginConstant),
+                                            DateRange.fromConstant(endConstant),
+                                            range,
+                                        );*/
+
+                                        this.setState({ range });
+                                    }}
+                                >
+                                    <option value="CURRENT_MONTH-NEXT_MONTH">
+                                        na další měsíc + události tohoto měsíce.
+                                    </option>
+                                    <option value="NEXT_MONTH-NEXT_NEXT_MONTH">na další měsíc</option>
+                                    <option value="NOW-INFINITY">
+                                        se všemi událostmi, co právě evidujeme do budoucna.
+                                    </option>
+                                    <option value="INFINITY-INFINITY">se všemi událostmi, co právě evidujeme.</option>
+                                </select>
                             </h2>
                         </div>
                     </div>
