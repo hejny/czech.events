@@ -28,7 +28,7 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
             <br />
             opět jsme dali dohromady seznam událostí, na které se vyplatí zajít:
             <br />
-            {(events.filter((e) => e instanceof Event) as Event[])
+            {(filteredEvents.filter((e) => e instanceof Event) as Event[])
                 .filter((e) => e.topParagraph)
                 .sort((a, b) => (a.topParagraphOrder > b.topParagraphOrder ? 1 : -1))
                 .map((event, i) => (
