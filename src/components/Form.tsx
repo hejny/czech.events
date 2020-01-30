@@ -12,12 +12,18 @@ export function Form() {
                 onSubmit={async (event) => {
                     event.preventDefault();
                     const form = event.target as HTMLFormElement;
+                    const formData = new FormData(form);
+
+                    if (!formData.get('gdpr')) {
+                        alert(`Potřebujeme od Vás zaškrtnout souhlas se zpracováním osobních údajů.`);
+                        return;
+                    }
 
                     try {
                         const result = (await (
                             await fetch(form.action, {
                                 method: 'POST',
-                                body: new FormData(form),
+                                body: formData,
                             })
                         ).json()) as IWPFromResponse;
 
