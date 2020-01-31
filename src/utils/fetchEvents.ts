@@ -15,25 +15,27 @@ export async function fetchEvents(): Promise<IEvents> {
 
     //console.log('data', data);
 
-    return (data as IConfigSource[])
-        .map((object) =>
-            emptyKeysAsUndefined<string | undefined>(
-                object,
-                (value) => !['', 'write', 'NULL'].includes((value || '').trim()),
-            ),
-        )
-        .map(decapitalize)
-        .filter(isNotEmpty)
-        .filter((t) => t['inMail'])
-        .map((t) => {
-            try {
-                return new Event(t);
-            } catch (error) {
-                return error.message;
-                //return error as Error;//Event.error(error);
-            }
-        })
-        .sort(compareEventsbyDate);
+    return (
+        (data as IConfigSource[])
+            .map((object) =>
+                emptyKeysAsUndefined<string | undefined>(
+                    object,
+                    (value) => !['', 'write', 'NULL'].includes((value || '').trim()),
+                ),
+            )
+            .map(decapitalize)
+            .filter(isNotEmpty)
+            //.filter((t) => t['inMail'])
+            .map((t) => {
+                try {
+                    return new Event(t);
+                } catch (error) {
+                    return error.message;
+                    //return error as Error;//Event.error(error);
+                }
+            })
+            .sort(compareEventsbyDate)
+    );
     //.filter(isEvent);
 }
 

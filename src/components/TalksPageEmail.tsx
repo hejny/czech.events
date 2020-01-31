@@ -16,7 +16,9 @@ interface ITalksPageEmailProps {
 export function TalksPageEmail(props: ITalksPageEmailProps) {
     const { events, range } = props;
 
-    const filteredEvents = events.filter((event) => (event instanceof Event ? range.isIn(event.dateToCompare) : true));
+    const filteredEvents = events
+        .filter((event) => (event instanceof Event ? event.inMail : true))
+        .filter((event) => (event instanceof Event ? range.isIn(event.dateToCompare) : true));
 
     //console.log('filteredEvents', filteredEvents);
     const categorizedEvents = categorizeEvents(filteredEvents);
