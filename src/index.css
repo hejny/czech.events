@@ -1,9 +1,8 @@
 @import url('https://fonts.googleapis.com/css?family=Oswald|Montserrat:100,400,700,800,900&display=swap');
 
 body {
-    /*display: flex;
-    align-items: center;
-    justify-content: center;*/
+    display: block;
+    text-align: center;
 
     background-color: #1d1c21;
     background-image: url('/network.svg');
@@ -15,6 +14,9 @@ body {
 
 .content {
     max-width: 1200px;
+    display: inline-block;
+    text-align: left;
+    overflow: visible;
 }
 
 .white {
