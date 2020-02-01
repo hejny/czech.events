@@ -17,18 +17,19 @@ export function EventDateComponent({ event }: EventDateComponentProps) {
             let dateString = moment(date).format('LLLL');
             dateString = dateString.split('0:00')[0];
             //TODO: More elegant way
-            dateString = dateString.replace('leden', 'Ledna');
-            dateString = dateString.replace('únor', 'Února');
-            dateString = dateString.replace('březen', 'Března');
-            dateString = dateString.replace('duben', 'Dubna');
-            dateString = dateString.replace('květen', 'Května');
-            dateString = dateString.replace('červen', 'Června');
-            dateString = dateString.replace('červenec', 'Července');
-            dateString = dateString.replace('srpen', 'Srpna');
-            dateString = dateString.replace('září', 'Září');
-            dateString = dateString.replace('říjen', 'Října');
-            dateString = dateString.replace('listopad', 'Listopadu');
-            dateString = dateString.replace('prosinec', 'Prosince');
+            dateString = dateString.replace('leden', 'ledna');
+            dateString = dateString.replace('únor', 'února');
+            dateString = dateString.replace('březen', 'března');
+            dateString = dateString.replace('duben', 'dubna');
+            dateString = dateString.replace('květen', 'května');
+            dateString = dateString.replace('červen', 'června');
+            dateString = dateString.replace('červnaec', 'červenec'); // This is typo in moment/locale/cs library. We can make an pull request to it but this is the quick local hotfix.
+            dateString = dateString.replace('červenec', 'července');
+            dateString = dateString.replace('srpen', 'srpna');
+            dateString = dateString.replace('září', 'září');
+            dateString = dateString.replace('říjen', 'října');
+            dateString = dateString.replace('listopad', 'listopadu');
+            dateString = dateString.replace('prosinec', 'prosince');
             dateString = capitalizeFirstLetter(dateString);
             return <>📅&nbsp;{dateString}</>;
         } catch (error) {
@@ -39,6 +40,7 @@ export function EventDateComponent({ event }: EventDateComponentProps) {
     } else if (year && month) {
         let monthString = moment(month, 'M').format('MMMM');
         monthString = capitalizeFirstLetter(monthString);
+        monthString = monthString.replace('Červnaec', 'Červenec'); // This is typo in moment/locale/cs library. We can make an pull request to it but this is the quick local hotfix.
         return (
             <>
                 📅&nbsp;{monthString} {year}
