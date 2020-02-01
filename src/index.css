@@ -20,7 +20,8 @@ body {
 }
 
 .white {
-    font-family: 'Montserrat', serif;
+    /*We are using here standart Gmail font*/
+    font-family: Arial, Helvetica, sans-serif, 'Montserrat', serif;
 }
 
 .black {
