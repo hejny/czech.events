@@ -64,9 +64,11 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
             */}
             <br />
             <br />
-            <a href="https://www.pavolhejny.com/">Pavol</a>
+            <a href="https://www.pavolhejny.com/?utm_source=czech.events-mail&amp;utm_medium=referral&amp;utm_campaign=signature">
+                Pavol Hejný
+            </a>
             &nbsp;&amp;&nbsp;
-            <a href="https://www.linkedin.com/in/tereza-texlova/">Tereza</a>
+            <a href="https://www.linkedin.com/in/tereza-texlova/">Tereza Texlová</a>
         </>
     );
 }
