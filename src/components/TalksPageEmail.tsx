@@ -56,7 +56,12 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
             ))}
             <br /> <br />
             <i>
-                PS: <b>Budeme rádi za vaše návrhy a připomínky</b>, můžete <b>odpovědět rovnou na email</b>.
+                PS: <b>Budeme rádi za vaše návrhy a připomínky</b>, můžete <b>odpovědět rovnou na email</b>.<br />
+                PPS: E-mail posíláme na základě Vaší registrace na stránce{' '}
+                <a href="https://czech.events/?utm_source=mail&amp;utm_medium=referral&amp;utm_campaign=2020-02_unsubscribe">
+                    czech.events
+                </a>
+                . Pokud už další email nechcete dostat, napište nám rychlou odpověď.
             </i>
             {/*
             <br />
