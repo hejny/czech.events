@@ -16,7 +16,7 @@ export function EventCodeParagraph({ event, verbose }: IEventCodeParagraphProps)
                     levnější
                     {verbose && (
                         <>
-                            tzn. za <EventPrice {...{ event, price: event.priceAmount * (1 - event.codePercent) }} />
+                            , tzn. za <EventPrice {...{ event, price: event.priceAmount * (1 - event.codePercent) }} />
                         </>
                     )}
                     .
