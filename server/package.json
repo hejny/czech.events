@@ -1,0 +1,46 @@
+{
+    "name": "pdf-maker",
+    "version": "0.4.1",
+    "homepage": "https://github.com/hejny/pdf-maker/",
+    "private": false,
+    "scripts": {
+        "start": "npm run server",
+        "develop": "npm run server-watch",
+        "prettier": "prettier --config .prettierrc --write \"{src,public}/**/*.{ts,tsx,js,css}\" webpack.config.js",
+        "prettier-watch": "onchange \"**/*.{js,ts,tsx,json,css}\" -- prettier --config .prettierrc --write \"{{changed}}\"",
+        "server": "ts-node -P ./tsconfig.json -r dotenv/config src/index.ts",
+        "server-watch": "onchange -i \"./src/**/*.{ts,tsx,js,json}\" -- npm run server",
+        "TODO:Remove deprecated: preconvert": "ts-node -P ./tsconfig.json -r dotenv/config src/preconvert.ts",
+        "TODO:Remove deprecated: test-storage": "ts-node -P ./tsconfig.json -r dotenv/config src/storage.ts",
+        "TODO: test": "jest --runInBand --detectOpenHandles --forceExit --setupFiles dotenv/config",
+        "TODO: test-once": "ts-node -r dotenv/config src/testOnce.ts",
+        "deploy": "ts-node -r dotenv/config ./scripts/deploy.js",
+        "preversion": "npm test",
+        "postversion": "git push && git push --tags && npm run deploy"
+    },
+    "dependencies": {
+        "@types/body-parser": "^1.17.1",
+        "@types/cors": "^2.8.6",
+        "@types/express": "^4.17.2",
+        "@types/jest": "^25.1.1",
+        "@types/node": "^10.17.14",
+        "@types/supertest": "^2.0.8",
+        "@types/uuid": "^3.4.7",
+        "aws-sdk": "^2.610.0",
+        "body-parse": "^0.1.0",
+        "configchecker": "^1.0.6",
+        "cors": "^2.8.4",
+        "dotenv": "^6.1.0",
+        "express": "^4.17.1",
+        "slimerjs": "^1.0.0",
+        "supertest": "^4.0.2",
+        "ts-node": "^7.0.1",
+        "typescript": "^3.7.5",
+        "uuid": "^3.4.0"
+    },
+    "devDependencies": {
+        "gh-pages": "^1.1.0",
+        "onchange": "^5.2.0",
+        "prettier": "^1.19.1"
+    }
+}
