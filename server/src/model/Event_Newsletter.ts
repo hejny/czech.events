@@ -7,16 +7,13 @@ export class Season extends AbstractModel {
         Object.assign(this, data);
     }
 
-    static tableName = 'xxxxxxx';
+    static tableName = 'Event_Newsletter';
     static idColumn = 'id';
 
-    readonly id: number;
-
-
-    id	int(11) Auto Increment	
-    event_id	int(11)	
-    newsletter_id	int(11)	
-    status	enum('VISIBLE','HIDDEN')	
-    note
+    public readonly id: number;
+    public event_id: number;
+    public newsletter_id: number;
+    public status: 'VISIBLE'|'HIDDEN';
+    public note: string|null;
     
 }

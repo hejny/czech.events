@@ -10,14 +10,11 @@ export class Season extends AbstractModel {
     static tableName = 'xxxxxxx';
     static idColumn = 'id';
 
-    readonly id: number;
-
-
-    id	int(11) Auto Increment	
-    event_id	int(11)	
-    type	enum('DISCOUNT_PERCENT')	
-    code	varchar(200)	
-    value	float(10,2)	Here are the percents. Please write them in 0-1 interval, for example, 25% has value 0.25 here.
-    note	text NULL
+    public readonly id: number;
+    public event_id: number;
+    public type: 'DISCOUNT_PERCENT';
+    public code: string;
+    public value: number;
+    public note: string|null;
     
 }

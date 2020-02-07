@@ -10,23 +10,20 @@ export class Season extends AbstractModel {
     static tableName = 'xxxxxxx';
     static idColumn = 'id';
 
-    readonly id: number;
-
-
-    id	int(11) Auto Increment	
-    serializeId	varchar(1000)	
-    name	varchar(300)	
-    topic	varchar(500) NULL	
-    type	enum('CONFERENCE','MEETUP','WORKSHOP','HACKATHON')	
-    web	varchar(1000) NULL	
-    city	varchar(200) NULL	
-    year	year(4) NULL	
-    month	int(11) NULL	
-    days	varchar(5) NULL	
-    time	varchar(8) NULL	TODO: Maybe this should be type time
-    price	int(11) NULL	
-    priceCurrency	enum('CZK','EUR') NULL	
-    visibility	enum('PENDING','VISIBLE','HIDDEN','FEATURED') [PENDING]	
-    note	text NULL
+    public readonly id: number;
+    public serializeId: string;
+    public name: string;
+    public topic: string|null;
+    public type: 'CONFERENCE'|'MEETUP','WORKSHOP','HACKATHON';
+    public web: string|null;
+    public city: string|null;	
+    public year: number|null;
+    public month: number|null;
+    public days: string|null;
+    public time: string|null;
+    public price: number|null;
+    public priceCurrency: 'CZK'|'EUR'|null;//TODO: DRY	
+    public visibility	enum('PENDING','VISIBLE','HIDDEN','FEATURED') [PENDING]	
+    public note: string|null;
 
 }

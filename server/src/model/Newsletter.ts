@@ -10,12 +10,9 @@ export class Season extends AbstractModel {
     static tableName = 'xxxxxxx';
     static idColumn = 'id';
 
-    readonly id: number;
-
-
-    id	int(11) Auto Increment	
-    year	year(4)	
-    month	int(11)	
-    note	text NULL
+    public readonly id: number;
+    public year: number;
+    public month: number;
+    public note: string|null;
     
 }

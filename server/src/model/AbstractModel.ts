@@ -1,5 +1,5 @@
 import { format } from 'date-fns';
-import { Model as ObjectionModel, Pojo } from 'objection';
+import { Model as ObjectionModel } from 'objection';
 
 export class AbstractModel extends ObjectionModel {
     public static modelPaths = [__dirname];

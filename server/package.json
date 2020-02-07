@@ -2,13 +2,12 @@
     "scripts": {
         "start": "npm run server",
         "develop": "npm run server-watch",
-        "prettier": "cd ..; npm run prettier;",
-        "prettier-watch": "cd ..; npm run watch;",
+        "TODO: Should it be here?? prettier": "cd ..; npm run prettier;",
+        "TODO: Should it be here?? prettier-watch": "cd ..; npm run watch;",
         "server": "ts-node -P ./tsconfig.json -r dotenv/config src/index.ts",
         "server-watch": "onchange -i \"./src/**/*.{ts,tsx,js,json}\" -- npm run server",
         "deploy": "ts-node -r dotenv/config ./scripts/deploy.js",
-        "preversion": "npm test",
-        "postversion": "git push && git push --tags && npm run deploy"
+        "TODO: test": ""
     },
     "dependencies": {
         "@types/body-parser": "^1.17.1",
