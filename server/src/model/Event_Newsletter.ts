@@ -1,4 +1,3 @@
-
 import { AbstractModel } from './AbstractModel';
 
 export class Season extends AbstractModel {
@@ -13,7 +12,6 @@ export class Season extends AbstractModel {
     public readonly id: number;
     public event_id: number;
     public newsletter_id: number;
-    public status: 'VISIBLE'|'HIDDEN';
-    public note: string|null;
-    
+    public status: 'VISIBLE' | 'HIDDEN';
+    public note: string | null;
 }

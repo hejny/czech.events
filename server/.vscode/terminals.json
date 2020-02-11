@@ -1,0 +1,13 @@
+{
+    "autokill": true,
+    "terminals": [
+        {
+            "name": "prettier-watch",
+            "command": "cd ../ ; npm run prettier-watch"
+        },
+        {
+            "name":"start",
+            "command":"npm start"
+         }
+    ]
+}

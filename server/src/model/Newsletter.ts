@@ -1,4 +1,3 @@
-
 import { AbstractModel } from './AbstractModel';
 
 export class Season extends AbstractModel {
@@ -7,12 +6,11 @@ export class Season extends AbstractModel {
         Object.assign(this, data);
     }
 
-    static tableName = 'xxxxxxx';
+    static tableName = 'Newsletter';
     static idColumn = 'id';
 
     public readonly id: number;
     public year: number;
     public month: number;
-    public note: string|null;
-    
+    public note: string | null;
 }

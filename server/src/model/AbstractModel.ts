@@ -4,7 +4,6 @@ import { Model as ObjectionModel } from 'objection';
 export class AbstractModel extends ObjectionModel {
     public static modelPaths = [__dirname];
     protected static dateFields = new Array<string>();
-    
 
     $beforeInsert() {
         const thisAny = this as any;
@@ -20,8 +19,6 @@ export class AbstractModel extends ObjectionModel {
                     thisAny[dateField] = format(date, 'yyyy-MM-dd HH:mm:ss');
                 }
             }
-
-            
         });
     }
 }
