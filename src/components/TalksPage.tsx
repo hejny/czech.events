@@ -44,12 +44,14 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                     <div className="front black">
                         <div className="inner">
                             <h1>Mějte přehled o nejzajímavějších událostech z IT &amp; startupového světa.</h1>
+                            {/*TODO: Semantically h2 is not very ideal here*/}
                             <h2 className="font-light">
                                 Dejte nám Vaší emailovou adresu a my Vám budeme pravidelně jednou za měsíc posílat co se
                                 děje:
                             </h2>
                             <Form />
 
+                            {/*TODO: Semantically h2 is not very ideal here at all*/}
                             <h2 className="separator font-light">
                                 A jak takový mail vypadá? Tady máte živou ukázku z rozpracovaného mailu
                                 <select
@@ -119,8 +121,6 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                             )}
                         </div>
                     </div>
-
-                    <footer className="footer black">{/*TODO:*/}</footer>
                 </div>
             </>
         );
