@@ -1,8 +1,8 @@
-import { htmlToPdfRouteHandler } from './htmlToPdfRouteHandler';
-import * as express from 'express';
-import * as cors from 'cors';
-import * as http from 'http';
+import express from 'express';
+import cors from 'cors';
+import http from 'http';
 import { json } from 'body-parser';
+import { subscriberPostRouteHandler } from './routes/resultsMapRouteHandler';
 const packageJson = require('../package.json');
 
 export function createApp(): { app: express.Application; server: http.Server } {
@@ -23,11 +23,9 @@ export function createApp(): { app: express.Application; server: http.Server } {
         });
     });
 
-    app.get('/html/pdf', htmlToPdfRouteHandler);
+    app.get('/events');
 
-    app.get('/kill', () => {
-        process.exit();
-    });
+    app.post('/subscribers', subscriberPostRouteHandler);
 
     return {
         app,

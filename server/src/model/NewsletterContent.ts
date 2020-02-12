@@ -1,7 +1,7 @@
 import { AbstractModel } from './AbstractModel';
 
-export class Season extends AbstractModel {
-    constructor(data: Partial<Season>) {
+export class NewsletterContent extends AbstractModel {
+    constructor(data: Partial<NewsletterContent>) {
         super();
         Object.assign(this, data);
     }
