@@ -1,0 +1,46 @@
+import * as React from 'react';
+
+export function AboutPage() {
+    return (
+        <>
+            <div className="content about">
+                <div className="front black">
+                    <div className="inner">
+                        {/* <h1>Czech.events</h1> */}
+
+                        {[
+                            {
+                                name: 'Tmavá verze',
+                                src: 'czech.events.black-logo.png',
+                            },
+
+                            {
+                                name: 'Světlá verze',
+                                src: 'czech.events.white-logo.png',
+                            },
+                        ].map(({ name, src }) => {
+                            const url = `${process.env.PUBLIC_URL}/design/logos/${src}`;
+                            return (
+                                <div key={src} className="logo">
+                                    <a href={url}>
+                                        <img src={url} alt="Czech.events logo" />
+                                    </a>
+                                    {`${name} `}
+                                    <a href={url} download>
+                                        (Stáhnout)
+                                    </a>
+                                    <pre>
+                                        {`                                     
+<a href="${url}">
+    <img src="${url}" alt="Czech.events logo" width="200" />
+</a>`.trim()}
+                                    </pre>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            </div>
+        </>
+    );
+}

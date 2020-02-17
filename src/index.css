@@ -236,3 +236,21 @@ form {
     background-color: #ccc;
     color: #fff;
 }
+
+.about .logo {
+    margin: 20px;
+    display: inline-block;
+    width: 200px;
+    color: white;
+}
+
+.about .logo img {
+    display: block;
+    width: 200px;
+}
+
+.about .logo pre {
+    display: block;
+    width: 200px;
+    overflow-x: scroll;
+}
