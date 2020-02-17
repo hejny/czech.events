@@ -31,7 +31,7 @@ export function AboutPage() {
                                     </a>
                                     <pre>
                                         {`                                     
-<a href="${url}">
+<a href="https://czech.events/">
     <img src="${url}" alt="Czech.events logo" width="200" />
 </a>`.trim()}
                                     </pre>
