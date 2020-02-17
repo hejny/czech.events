@@ -20,7 +20,7 @@ ReactDOM.render(
                 <AboutPage />
             </Route>
         </Switch>
-        <Footer />
+        {/* <Footer /> */}
     </Router>,
     document.getElementById('root'),
 );

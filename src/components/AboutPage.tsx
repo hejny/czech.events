@@ -1,18 +1,43 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
-import { DateRange, RangeConstant } from '../model/DateRange';
-import { ErrorComponent } from './ErrorComponent';
-import { Form } from './Form';
-import { LoadingComponent } from './LoadingComponent';
-import { TalksPageEmail } from './TalksPageEmail';
 
 export function AboutPage() {
     return (
         <>
-            <div className="content">
+            <div className="content about">
                 <div className="front black">
                     <div className="inner">
-                        <h1>Mějte přehled o nejzajímavějších událostech z IT &amp; startupového světa.</h1>
+                        {/* <h1>Czech.events</h1> */}
+
+                        {[
+                            {
+                                name: 'Tmavá verze',
+                                src: 'czech.events.black-logo.png',
+                            },
+
+                            {
+                                name: 'Světlá verze',
+                                src: 'czech.events.white-logo.png',
+                            },
+                        ].map(({ name, src }) => {
+                            const url = `${process.env.PUBLIC_URL}/design/logos/${src}`;
+                            return (
+                                <div key={src} className="logo">
+                                    <a href={url}>
+                                        <img src={url} alt="Czech.events logo" />
+                                    </a>
+                                    {`${name} `}
+                                    <a href={url} download>
+                                        (Stáhnout)
+                                    </a>
+                                    <pre>
+                                        {`                                     
+<a href="${url}">
+    <img src="${url}" alt="Czech.events logo" width="200" />
+</a>`.trim()}
+                                    </pre>
+                                </div>
+                            );
+                        })}
                     </div>
                 </div>
             </div>
