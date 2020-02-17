@@ -19,7 +19,7 @@ export function AboutPage() {
                                 src: 'czech.events.white-logo.png',
                             },
                         ].map(({ name, src }) => {
-                            const url = `${process.env.PUBLIC_URL}/design/logos/${src}`;
+                            const url = `https://czech.events/design/logos/${src}`;
                             return (
                                 <div key={src} className="logo">
                                     <a href={url}>
