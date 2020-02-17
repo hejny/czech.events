@@ -4,11 +4,11 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { TalksPage } from './components/TalksPage';
 import { Router, Switch, Route } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
+import { createHashHistory } from 'history';
 import { Footer } from './components/Footer';
 import { AboutPage } from './components/AboutPage';
 
-const history = createBrowserHistory();
+const history = createHashHistory();
 
 ReactDOM.render(
     <Router {...{ history }}>
