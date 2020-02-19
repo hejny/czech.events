@@ -5,7 +5,7 @@ import * as serviceWorker from './serviceWorker';
 import { TalksPage } from './components/TalksPage';
 import { Router, Switch, Route } from 'react-router-dom';
 import { createHashHistory } from 'history';
-import { Footer } from './components/Footer';
+//import { Footer } from './components/Footer';
 import { AboutPage } from './components/AboutPage';
 
 const history = createHashHistory();

@@ -2,9 +2,10 @@ import { ConfigChecker, IConfigSource } from 'configchecker';
 import { enumToArray } from '../utils/enumToArray';
 import { EventType } from './EventType';
 import { EventPriceCurrency } from './EventPriceCurrency';
+import { AbstractModel } from './AbstractModel';
 
 // TODO: Maybe better name because it colides with native browser Event class
-export class Event {
+export class Event extends AbstractModel {
     //TODO: readonly id: number;
     public name: string;
     public topic?: string;
@@ -26,6 +27,7 @@ export class Event {
     public topParagraphOrder: number;
 
     constructor(data: IConfigSource) {
+        super();
         const c = ConfigChecker.from(data);
 
         this.name = c.get('name').required().value;

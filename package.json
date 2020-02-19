@@ -10,7 +10,7 @@
     "prettier": "prettier --config .prettierrc --write \"{src,server}/**/*.{ts,tsx,css}\"",
     "prettier-watch": "onchange \"{src,server}/**/*.{ts,tsx,css}\" -- prettier --config .prettierrc --write \"{{changed}}\"",
     "prettier-commit": "git diff --exit-code && npm run prettier && git add . && git commit --allow-empty -m \"Prettier\"",
-    "frontend-start": "react-scripts start",
+    "frontend-develop": "react-scripts start",
     "frontend-build": "react-scripts build",
     "frontend-test": "react-scripts test",
     "frontend-deploy": "echo czech.events >>build/CNAME && gh-pages -d build",

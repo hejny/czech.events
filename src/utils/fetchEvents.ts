@@ -1,6 +1,7 @@
+import { objectEmptyKeysAsUndefined, objectDecapitalize, objectIsNotEmpty } from 'configchecker/lib/utils/object';
 import { EVENTS_CSV_URL } from './../config';
 import { IConfigSource } from 'configchecker';
-import { decapitalize, emptyKeysAsUndefined, isNotEmpty } from 'configchecker/lib/utils/object';
+//import { decapitalize, emptyKeysAsUndefined, isNotEmpty } from 'configchecker';
 import papaparse from 'papaparse';
 import { Event } from '../model/Event';
 import { compareEventsbyDate } from './compareDates';
@@ -18,13 +19,13 @@ export async function fetchEvents(): Promise<IEvents> {
     return (
         (data as IConfigSource[])
             .map((object) =>
-                emptyKeysAsUndefined<string | undefined>(
+                objectEmptyKeysAsUndefined<string | undefined>(
                     object,
                     (value) => !['', 'write', 'NULL'].includes((value || '').trim()),
                 ),
             )
-            .map(decapitalize)
-            .filter(isNotEmpty)
+            .map(objectDecapitalize)
+            .filter(objectIsNotEmpty)
             //.filter((t) => t['inMail'])
             .map((t) => {
                 try {
