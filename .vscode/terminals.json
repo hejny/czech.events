@@ -8,6 +8,11 @@
         {
             "name":"start",
             "command":"npm start"
-         }
+        }
+        ,
+        {
+            "name":"server-watch",
+            "command":"npm run server-watch"
+        }
     ]
 }
