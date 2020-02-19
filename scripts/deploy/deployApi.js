@@ -12,13 +12,10 @@ export async function deployApi(remote) {
 
     /**/
     await uploadFilesToSsh(remote.credentials, path.join(__dirname, '..', '..'), remoteDir, [
-        'src',
-        'test',
-        'pdfMaker.sh',
-        'jest.config.js',
+        'server',
+        'czech-events.sh',
         'package.json',
         'package-lock.json',
-        'tsconfig.json',
     ]);
     /**/
 

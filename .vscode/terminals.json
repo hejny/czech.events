@@ -6,12 +6,12 @@
             "command": "npm run prettier-watch"
         },
         {
-            "name":"start",
+            "name":"frontend-start",
             "command":"npm start"
         }
         ,
         {
-            "name":"server-watch",
+            "name":"server-start",
             "command":"npm run server-watch"
         }
     ]

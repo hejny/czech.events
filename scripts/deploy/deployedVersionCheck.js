@@ -1,5 +1,5 @@
 import * as packageInfo from '../../package.json';
-import { fetchJsonRetry } from './fetchJsonRetry.js';
+import { fetchJsonRetry } from './fetchJsonRetry.js.js';
 const version = packageInfo.version;
 
 export async function deployedVersionCheck(remote) {
