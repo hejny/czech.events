@@ -1,17 +1,7 @@
 import { ConfigChecker, IConfigSource } from 'configchecker';
 import { enumToArray } from '../utils/enumToArray';
-
-export enum EventType {
-    CONFERENCE = 'CONFERENCE',
-    MEETUP = 'MEETUP',
-    WORKSHOP = 'WORKSHOP',
-    HACKATHON = 'HACKATHON',
-}
-
-export enum EventPriceCurrency {
-    CZK,
-    EUR,
-}
+import { EventType } from './EventType';
+import { EventPriceCurrency } from './EventPriceCurrency';
 
 // TODO: Maybe better name because it colides with native browser Event class
 export class Event {

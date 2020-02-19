@@ -1,4 +1,5 @@
-import { EventPriceCurrency, EventType } from './../model/Event';
+import { EventPriceCurrency } from './../model/EventPriceCurrency';
+import { EventType } from './../model/EventType';
 
 export function translateCurrency(currency: EventPriceCurrency): string {
     // TODO: Hardcoded

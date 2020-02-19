@@ -1,4 +1,4 @@
-import { EventType } from './../model/Event';
+import { EventType } from "./../model/EventType";
 import { IEvents } from '../model/IEvents';
 import { Event } from '../model/Event';
 import { enumToArray } from './enumToArray';
