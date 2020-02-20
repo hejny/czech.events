@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Event } from '../model/Event';
+import { Event } from '../model/database/Event';
 import moment from 'moment';
 import 'moment/locale/cs';
 

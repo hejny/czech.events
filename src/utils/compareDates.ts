@@ -1,4 +1,4 @@
-import { Event } from '../model/Event';
+import { Event } from '../model/database/Event';
 
 type CompareResult = 1 | -1 | 0;
 

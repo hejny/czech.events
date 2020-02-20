@@ -3,7 +3,7 @@ import { EVENTS_CSV_URL } from './../config';
 import { IConfigSource } from 'configchecker';
 //import { decapitalize, emptyKeysAsUndefined, isNotEmpty } from 'configchecker';
 import papaparse from 'papaparse';
-import { Event } from '../model/Event';
+import { Event } from '../model/database/Event';
 import { compareEventsbyDate } from './compareDates';
 import { IEvents } from '../model/IEvents';
 

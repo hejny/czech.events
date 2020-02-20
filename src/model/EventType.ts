@@ -1,6 +1,0 @@
-export enum EventType {
-    CONFERENCE = 'CONFERENCE',
-    MEETUP = 'MEETUP',
-    WORKSHOP = 'WORKSHOP',
-    HACKATHON = 'HACKATHON'
-}
