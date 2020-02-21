@@ -3,8 +3,9 @@ import { Model as ObjectionModel } from 'objection';
 
 export class AbstractModel extends ObjectionModel {
     //public static modelPaths = [__dirname];
-    protected static dateFields = new Array<string>();
-
+    //protected static dateFields: string[] = [];
+    /*
+    TODO:
     $beforeInsert() {
         const thisAny = this as any;
         const constructor = this.constructor as any;
@@ -20,5 +21,5 @@ export class AbstractModel extends ObjectionModel {
                 }
             }
         });
-    }
+    }*/
 }
