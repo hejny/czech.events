@@ -75,10 +75,10 @@ export class Event {
     @Column({ nullable: true, type: 'text', comment: 'Only a hidden note not visible for visitors of the web' })
     public note?: string;
 
-    /*constructor(data: Partial<Event>) {
-        super();
+    constructor(data: Partial<Event>) {
+        //super();
         Object.assign(this, data);
-    }*/
+    }
 
     get day(): number | null {
         if (this.days) {

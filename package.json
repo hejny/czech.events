@@ -46,7 +46,7 @@
     "express": "^4.17.1",
     "gh-pages": "^2.1.1",
     "moment": "^2.24.0",
-    "objection": "^2.1.2",
+    "mysql2": "^2.1.0",
     "onchange": "^3.3.0",
     "papaparse": "^5.1.0",
     "prettier": "^1.18.2",

@@ -9,7 +9,7 @@ export class ApiClient {
         const response = await fetch(`${this.apiUrl}/events`);
         const data = await response.json();
 
-        return data;
+        return data.map((data) => new Event(data));
     }
 }
 
