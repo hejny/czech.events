@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { DateRange } from '../model/DateRange';
-import { Event } from '../model/database/Event';
+import { Event } from '../../server/database/Event';
 import { IEvents } from '../model/IEvents';
 import { categorizeEvents } from '../utils/categorizeEvents';
 import { translateEventType } from '../utils/translate';

@@ -1,30 +1,30 @@
-import { AbstractModel } from './AbstractModel';
+import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 // TODO: Maybe better name because it colides with native browser Event class
-export class Event extends AbstractModel {
-    static tableName = 'Event';
-    static idColumn = 'id';
-
+@Entity()
+export class Event {
+    @PrimaryGeneratedColumn()
     public readonly id: number;
-    public serializeId: string;
-    public name: string;
-    public topic: string | null;
-    public type: 'CONFERENCE' | 'MEETUP' | 'WORKSHOP' | 'HACKATHON'; //TODO: DRY
-    public web: string | null; // TODO: like Date values URL values
-    public city: string | null;
-    public year: number | null;
-    public month: number | null;
-    public days: string | null;
-    public time: string | null;
-    public price: number | null;
-    public priceCurrency: 'CZK' | 'EUR' | null; //TODO: DRY
-    public visibility: 'PENDING' | 'VISIBLE' | 'HIDDEN' | 'FEATURED'; //TODO: DRY
-    public note: string | null;
 
-    constructor(data: Partial<Event>) {
+    @Column() public serializeId: string;
+    @Column() public name: string;
+    @Column() public topic: string | null;
+    @Column() public type: 'CONFERENCE' | 'MEETUP' | 'WORKSHOP' | 'HACKATHON'; //TODO: DRY
+    @Column() public web: string | null; // TODO: like Date values URL values
+    @Column() public city: string | null;
+    @Column() public year: number | null;
+    @Column() public month: number | null;
+    @Column() public days: string | null;
+    @Column() public time: string | null;
+    @Column() public price: number | null;
+    @Column() public priceCurrency: 'CZK' | 'EUR' | null; //TODO: DRY
+    @Column() public visibility: 'PENDING' | 'VISIBLE' | 'HIDDEN' | 'FEATURED'; //TODO: DRY
+    @Column() public note: string | null;
+
+    /*constructor(data: Partial<Event>) {
         super();
         Object.assign(this, data);
-    }
+    }*/
 
     get day(): number | null {
         if (this.days) {

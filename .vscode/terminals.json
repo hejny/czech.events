@@ -8,8 +8,7 @@
         {
             "name":"frontend-develop",
             "command":"npm run frontend-develop"
-        }
-        ,
+        },
         {
             "name":"server-develop",
             "command":"npm run server-develop"

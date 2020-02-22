@@ -1,6 +1,6 @@
 import { EventType } from "./../model/EventType";
 import { IEvents } from '../model/IEvents';
-import { Event } from '../model/database/Event';
+import { Event } from '../../server/database/Event';
 import { enumToArray } from './enumToArray';
 import { IEventsCategorized } from '../model/IEventsCategorized';
 

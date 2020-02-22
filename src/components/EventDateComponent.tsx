@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Event } from '../model/database/Event';
+import { Event } from '../../server/database/Event';
 import moment from 'moment';
 import 'moment/locale/cs';
 import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter';
