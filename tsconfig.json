@@ -18,7 +18,6 @@
     "isolatedModules": true,
     "strictPropertyInitialization": false,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "jsx": "react",
     "noEmit": true
   },
