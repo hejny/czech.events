@@ -1,25 +1,79 @@
-import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
+import { Entity, PrimaryGeneratedColumn, Column, Index, Unique } from 'typeorm';
+
+export enum EventType {
+    CONFERENCE = 'CONFERENCE',
+    MEETUP = 'MEETUP',
+    WORKSHOP = 'WORKSHOP',
+    HACKATHON = 'HACKATHON',
+}
+
+export enum EventPriceCurrency {
+    CZK = 'CZK',
+    EUR = 'EUR',
+}
+
+export enum EventVisibility {
+    PENDING = 'PENDING',
+    VISIBLE = 'VISIBLE',
+    HIDDEN = 'HIDDEN',
+    FEATURED = 'FEATURED',
+}
 
 // TODO: Maybe better name because it colides with native browser Event class
-@Entity()
+@Entity({ name: 'Event' /*TODO: DRY*/ })
+@Index(['name', 'topic'], { unique: true })
 export class Event {
     @PrimaryGeneratedColumn()
     public readonly id: number;
 
-    @Column() public serializeId: string;
-    @Column() public name: string;
-    @Column() public topic: string | null;
-    @Column() public type: 'CONFERENCE' | 'MEETUP' | 'WORKSHOP' | 'HACKATHON'; //TODO: DRY
-    @Column() public web: string | null; // TODO: like Date values URL values
-    @Column() public city: string | null;
-    @Column() public year: number | null;
-    @Column() public month: number | null;
-    @Column() public days: string | null;
-    @Column() public time: string | null;
-    @Column() public price: number | null;
-    @Column() public priceCurrency: 'CZK' | 'EUR' | null; //TODO: DRY
-    @Column() public visibility: 'PENDING' | 'VISIBLE' | 'HIDDEN' | 'FEATURED'; //TODO: DRY
-    @Column() public note: string | null;
+    @Column({ nullable: false, length: 1000 })
+    @Index({ unique: true })
+    public serializeId: string;
+
+    @Column({ nullable: false, length: 300 })
+    public name: string;
+
+    @Column({ nullable: true, length: 500 })
+    public topic?: string;
+
+    @Column({ nullable: false, type: 'enum', enum: EventType })
+    @Index()
+    public type: EventType;
+
+    @Column({ nullable: true, length: 1000 })
+    public web?: string;
+
+    @Column({ nullable: true })
+    @Index()
+    public city?: string;
+
+    @Column({ nullable: true, type: 'year' }) @Index() public year?: number;
+    @Column({ nullable: true })
+    @Index()
+    public month?: number;
+
+    @Column({ nullable: true, length: 5 })
+    @Index()
+    public days?: string;
+
+    @Column({ nullable: true, length: 8, comment: 'TODO: Maybe this should be type time' })
+    @Index()
+    public time?: string;
+
+    @Column({ nullable: true })
+    @Index()
+    public price?: number;
+
+    @Column({ nullable: true, type: 'enum', enum: EventPriceCurrency })
+    @Index()
+    public priceCurrency?: EventPriceCurrency;
+
+    @Column({ nullable: false, type: 'enum', enum: EventVisibility })
+    @Index()
+    public visibility: EventVisibility;
+
+    @Column({ nullable: true, type: 'text', comment: 'Only a hidden note not visible for visitors of the web' })
+    public note?: string;
 
     /*constructor(data: Partial<Event>) {
         super();

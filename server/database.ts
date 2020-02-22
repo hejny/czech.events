@@ -12,7 +12,7 @@ export const connectionPromise = createConnection({
     password: DB_PASSWORD,
     database: DB_NAME,
     synchronize: true, // TODO: what is that
-    logging: false, // TODO: what is that
+    logging: true, // TODO: what is that
     entities: [Event],
     // TODO: migrations: [],
     // TODO: subscribers: [],

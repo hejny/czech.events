@@ -4,6 +4,7 @@ import http from 'http';
 import { json } from 'body-parser';
 import { subscriberPostRouteHandler } from './routes/resultsMapRouteHandler';
 import { connectionPromise } from './database';
+import { getEventsRouteHandler } from './routes/getEventsRouteHandler';
 const packageJson = require('../package.json');
 
 export async function createApp(): Promise<{ app: express.Application; server: http.Server }> {
@@ -26,7 +27,7 @@ export async function createApp(): Promise<{ app: express.Application; server: h
         });
     });
 
-    app.get('/events');
+    app.get('/events', getEventsRouteHandler);
 
     app.post('/subscribers', subscriberPostRouteHandler);
 
