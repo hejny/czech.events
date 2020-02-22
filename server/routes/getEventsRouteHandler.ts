@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import { Event } from '../database/Event';
+import { Event } from '../../src/model/database/Event';
 import { connectionPromise } from '../database';
 
 // TODO: In future here can be option to put there an filters

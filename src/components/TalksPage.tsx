@@ -1,18 +1,18 @@
 import * as React from 'react';
 import { DateRange, RangeConstant } from '../model/DateRange';
-import { IEvents } from '../model/IEvents';
-import { fetchEvents } from '../utils/fetchEvents';
 import { ErrorComponent } from './ErrorComponent';
 import { Form } from './Form';
 import { LoadingComponent } from './LoadingComponent';
 import { TalksPageEmail } from './TalksPageEmail';
+import { Event } from '../model/database/Event';
+import { apiClient } from '../api/ApiClient';
 
 interface ITalksPageProps {}
 
 interface ITalksPageState {
     error: null | string;
     range: DateRange;
-    events: null | IEvents;
+    events: null | Event[];
 }
 
 export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState> {
@@ -29,8 +29,8 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
 
     private async loadEvents() {
         try {
-            const events = await fetchEvents();
-            //console.log('events', events);
+            const events = await apiClient.getEvents();
+            console.log('events', events);
             this.setState({ events });
         } catch (error) {
             this.setState({ error: error.message });

@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
@@ -14,6 +15,7 @@ ReactDOM.render(
     <Router {...{ history }}>
         <Switch>
             <Route exact path="/">
+                aa
                 <TalksPage />
             </Route>
             <Route exact path="/about">

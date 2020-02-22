@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Event } from '../../server/database/Event';
+import { Event } from '../model/database/Event';
 import { EventPrice } from './EventPrice';
 
 interface IEventCodeParagraphProps {
@@ -10,7 +10,7 @@ interface IEventCodeParagraphProps {
 export function EventCodeParagraph({ event, verbose }: IEventCodeParagraphProps) {
     return (
         <>
-            {event.codeName && event.codePercent && event.priceAmount && event.priceCurrency && (
+            {/*event.codeName && event.codePercent && event.priceAmount && event.priceCurrency && (
                 <>
                     <br />A s kódem <b>{event.codeName}</b> to budete mít o {Math.floor(event.codePercent * 100)}%
                     levnější
@@ -21,7 +21,7 @@ export function EventCodeParagraph({ event, verbose }: IEventCodeParagraphProps)
                     )}
                     .
                 </>
-            )}
+                    )*/}
         </>
     );
 }

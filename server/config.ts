@@ -5,7 +5,7 @@ const config = ConfigChecker.from(process.env);
 export const PORT = config
     .get('PORT')
     .number()
-    .default(3000).value!;
+    .default(3001).value!;
 
 //Database
 export const DB_HOST = config.get('DB_HOST').required().value;

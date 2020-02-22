@@ -1,7 +1,6 @@
-import 'reflect-metadata';
 import { createConnection } from 'typeorm';
 import { DB_HOST, DB_NAME, DB_PASSWORD, DB_USER } from './config';
-import { Event } from './database/Event';
+import { Event } from '../src/model/database/Event';
 
 // TODO: remove knex and objection
 // TODO: In future use top level await

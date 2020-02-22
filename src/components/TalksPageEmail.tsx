@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { DateRange } from '../model/DateRange';
-import { Event } from '../../server/database/Event';
-import { IEvents } from '../model/IEvents';
+import { Event } from '../model/database/Event';
 import { categorizeEvents } from '../utils/categorizeEvents';
 import { translateEventType } from '../utils/translate';
 import { ErrorComponent } from './ErrorComponent';
@@ -10,14 +9,14 @@ import { EventCodeParagraph } from './EventCodeParagraph';
 
 interface ITalksPageEmailProps {
     range: DateRange;
-    events: IEvents;
+    events: Event[];
 }
 
 export function TalksPageEmail(props: ITalksPageEmailProps) {
     const { events, range } = props;
 
     const filteredEvents = events
-        .filter((event) => (event instanceof Event ? event.inMail : true))
+        //.filter((event) => (event instanceof Event ? event.inMail : true))
         .filter((event) => (event instanceof Event ? range.isIn(event.dateToCompare) : true));
 
     //console.log('filteredEvents', filteredEvents);
@@ -30,7 +29,7 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
             <br />
             opět jsme dali dohromady seznam událostí, na které se vyplatí zajít:
             <br />
-            {(filteredEvents.filter((e) => e instanceof Event) as Event[])
+            {/*(filteredEvents.filter((e) => e instanceof Event) as Event[])
                 .filter((e) => e.topParagraph)
                 .sort((a, b) => (a.topParagraphOrder > b.topParagraphOrder ? 1 : -1))
                 .map((event, i) => (
@@ -38,7 +37,7 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
                         {event.topParagraph}
                         <EventCodeParagraph {...{ event, verbose: false }} />
                     </p>
-                ))}
+                ))*/}
             {Object.keys(categorizedEvents).map((type) => (
                 <div key={type}>
                     <br />

@@ -1,10 +1,9 @@
-import { EventType } from "./../model/EventType";
-import { IEvents } from '../model/IEvents';
-import { Event } from '../../server/database/Event';
+import { EventType } from './../model/database/Event';
+import { Event } from '../model/database/Event';
 import { enumToArray } from './enumToArray';
 import { IEventsCategorized } from '../model/IEventsCategorized';
 
-export function categorizeEvents(events: IEvents): IEventsCategorized {
+export function categorizeEvents(events: Event[]): IEventsCategorized {
     const eventsCategorized: IEventsCategorized = {};
 
     for (const eventType of enumToArray(EventType)) {

@@ -1,4 +1,4 @@
-import { Subscriber } from '../database/Subscriber';
+//import { Subscriber } from '../../src/model/database/Subscriber';
 import { RequestHandler } from 'express';
 
 export const subscriberPostRouteHandler: RequestHandler = async (request, response, next) => {

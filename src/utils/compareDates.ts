@@ -1,14 +1,12 @@
-import { Event } from '../../server/database/Event';
+import { Event } from '../model/database/Event';
 
 type CompareResult = 1 | -1 | 0;
 
-export function compareEventsbyDate(event1?: Event | string, event2?: Event | string): CompareResult {
-    if (typeof event1 === 'string') event1 = undefined;
-    if (typeof event2 === 'string') event2 = undefined;
-    return compareDates(event1 ? event1.dateToCompare : undefined, event2 ? event2.dateToCompare : undefined);
+export function compareEventsbyDate(event1?: Event, event2?: Event): CompareResult {
+    return compareDates(event1.dateToCompare, event2.dateToCompare);
 }
 
-export function compareDates(date1 = new Date(), date2 = new Date()): CompareResult {
+export function compareDates(date1: Date, date2: Date): CompareResult {
     try {
         const delta = ((new Date(date2) as any) as number) - ((new Date(date1) as any) as number);
 

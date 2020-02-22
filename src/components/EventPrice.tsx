@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { Event } from '../../server/database/Event';
+import { Event } from '../model/database/Event';
 import { isNullOrUndefined } from 'util';
 import { translateCurrency } from '../utils/translate';
 
@@ -9,7 +9,7 @@ interface IEventPriceProps {
 }
 
 export function EventPrice({ event, price }: IEventPriceProps) {
-    if (!price) price = event.priceAmount;
+    if (!price) price = event.price;
     if (isNullOrUndefined(price)) return <></>;
     if (price === 0) return <>💸&nbsp;Zdarma</>;
     return <>💸&nbsp;{`${Math.ceil(price * 100) / 100} ${translateCurrency(event.priceCurrency!)}`}</>;
