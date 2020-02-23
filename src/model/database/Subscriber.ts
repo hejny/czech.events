@@ -3,7 +3,7 @@ import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
 @Index('email', ['email'], {})
 @Index('created', ['created'], {})
 @Index('active', ['active'], {})
-@Entity('Subscriber', { schema: 'czechevents' })
+@Entity('Subscriber')
 export class Subscriber {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;

@@ -3,7 +3,7 @@ import { Newsletter } from './Newsletter';
 
 @Index('newsletter_id', ['newsletterId'], {})
 @Index('position', ['position'], {})
-@Entity('NewsletterContent', { schema: 'czechevents' })
+@Entity('NewsletterContent')
 export class NewsletterContent {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;

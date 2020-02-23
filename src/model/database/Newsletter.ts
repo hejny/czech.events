@@ -4,7 +4,7 @@ import { NewsletterContent } from './NewsletterContent';
 
 @Index('year', ['year'], {})
 @Index('month', ['month'], {})
-@Entity('Newsletter', { schema: 'czechevents' })
+@Entity('Newsletter')
 export class Newsletter {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;

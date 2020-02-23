@@ -31,7 +31,7 @@ export enum EventVisibility {
 @Index('price', ['price'], {})
 @Index('priceCurrency', ['priceCurrency'], {})
 @Index('visibility', ['visibility'], {})
-@Entity('Event', { schema: 'czechevents' })
+@Entity('Event')
 export class Event {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;

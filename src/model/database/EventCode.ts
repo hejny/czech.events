@@ -4,7 +4,7 @@ import { Event } from './Event';
 @Index('event_id', ['eventId'], {})
 @Index('type', ['type'], {})
 @Index('value', ['value'], {})
-@Entity('EventCode', { schema: 'czechevents' })
+@Entity('EventCode')
 export class EventCode {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;
