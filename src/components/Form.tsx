@@ -1,7 +1,7 @@
 import * as React from 'react';
-import { IWPFromResponse } from '../model/IWPFromResponse';
 import { constructObjectFromJSON } from '../utils/constructObjectFromJSON';
 import { Subscriber } from '../model/database/Subscriber';
+import { apiClient } from '../api/ApiClient';
 
 export function Form() {
     // TODO: To Config
@@ -21,19 +21,13 @@ export function Form() {
                     const subscriber = constructObjectFromJSON(Subscriber, {
                         email: formData.get('email') as string,
                         fullname: formData.get('fullname') as string,
+                        source: window.location.toString(),
                     });
 
                     try {
-                        const result = (await (
-                            await fetch(form.action, {
-                                method: 'POST',
-                                body: subscriber,
-                            })
-                        ).json()) as IWPFromResponse;
+                        const result = await apiClient.postSubscriber(subscriber);
 
-                        if (result.status !== 'mail_sent') {
-                            throw new Error(result.message);
-                        }
+                        console.log('result', result);
 
                         form.reset();
                         alert(`Děkujeme, můžete se těšit na další email!`);
@@ -42,23 +36,21 @@ export function Form() {
                     }
                 }}
             >
-                <input type="hidden" name="source" value={window.location.toString()} />
-
                 <div className="group">
-                    <input type="text" name="fullname" className="field" />
+                    <input type="text" name="fullname" className="field" defaultValue="test" />
                     <label htmlFor="name">Vaše jméno:</label>
                     <div className="bar"></div>
                 </div>
 
                 <div className="group">
-                    <input type="email" name="email" required defaultValue="@" className="field" />
+                    <input type="email" name="email" required defaultValue="a@a.cz" className="field" />
                     <label htmlFor="email">E-mail: *</label>
                     <div className="bar"></div>
                 </div>
 
                 <div className="group">
                     <label>
-                        <input type="checkbox" name="gdpr" />
+                        <input type="checkbox" name="gdpr" defaultChecked={true} />
                         Souhlasím se zpracováním osobních údajů
                     </label>
                 </div>
