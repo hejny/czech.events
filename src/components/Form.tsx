@@ -37,20 +37,20 @@ export function Form() {
                 }}
             >
                 <div className="group">
-                    <input type="text" name="fullname" className="field" defaultValue="test" />
+                    <input type="text" name="fullname" className="field" defaultValue="" />
                     <label htmlFor="name">Vaše jméno:</label>
                     <div className="bar"></div>
                 </div>
 
                 <div className="group">
-                    <input type="email" name="email" required defaultValue="a@a.cz" className="field" />
+                    <input type="email" name="email" required defaultValue="@" className="field" />
                     <label htmlFor="email">E-mail: *</label>
                     <div className="bar"></div>
                 </div>
 
                 <div className="group">
                     <label>
-                        <input type="checkbox" name="gdpr" defaultChecked={true} />
+                        <input type="checkbox" name="gdpr" defaultChecked={false} />
                         Souhlasím se zpracováním osobních údajů
                     </label>
                 </div>
