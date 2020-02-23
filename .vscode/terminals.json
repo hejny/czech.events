@@ -14,8 +14,8 @@
             "command":"npm run frontend-develop"
         },
         {
-            "name":"frontend-develop-emit",
-            "command":"npm run frontend-develop-emit"
+            "name":"frontend-develop-emit-decorator-metadata",
+            "command":"npm run frontend-develop-emit-decorator-metadata"
         }
     ]
 }

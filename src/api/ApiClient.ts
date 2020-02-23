@@ -1,4 +1,5 @@
 import { Event } from '../model/database/Event';
+import { constructObjectFromJSON } from '../utils/constructObjectFromJSON';
 
 export class ApiClient {
     constructor(private apiUrl: string) {}
@@ -9,7 +10,7 @@ export class ApiClient {
         const response = await fetch(`${this.apiUrl}/events`);
         const data = await response.json();
 
-        return data.map((data) => new Event(data));
+        return data.map((data) => constructObjectFromJSON(Event, data));
     }
 }
 

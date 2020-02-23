@@ -11,7 +11,7 @@
     "prettier-watch": "onchange \"{src,server}/**/*.{ts,tsx,css}\" -- prettier --config .prettierrc --write \"{{changed}}\"",
     "prettier-commit": "git diff --exit-code && npm run prettier && git add . && git commit --allow-empty -m \"Prettier\"",
     "frontend-develop": "react-scripts start",
-    "frontend-develop-emit": "tsc --project src/model/database/emitDecoratorMetadata.tsconfig.json",
+    "frontend-develop-emit-decorator-metadata": "tsc --project src/model/database/_emitDecoratorMetadata.tsconfig.json",
     "frontend-build": "react-scripts build",
     "frontend-test": "react-scripts test",
     "frontend-deploy": "echo czech.events >>build/CNAME && gh-pages -d build",
