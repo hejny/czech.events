@@ -2,7 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import http from 'http';
 import { json } from 'body-parser';
-import { subscriberPostRouteHandler } from './routes/resultsMapRouteHandler';
+import { subscriberPostRouteHandler } from './routes/subscriberPostRouteHandler';
 import { connectionPromise } from './database';
 import { getEventsRouteHandler } from './routes/getEventsRouteHandler';
 const packageJson = require('../package.json');

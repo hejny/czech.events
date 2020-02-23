@@ -1,14 +1,13 @@
 import * as React from 'react';
 import { IWPFromResponse } from '../model/IWPFromResponse';
+import { constructObjectFromJSON } from '../utils/constructObjectFromJSON';
+import { Subscriber } from '../model/database/Subscriber';
 
 export function Form() {
     // TODO: To Config
     return (
         <>
             <form
-                action="https://www.pavolhejny.com/wp-json/contact-form-7/v1/contact-forms/2466/feedback"
-                method="post"
-                target="_blank"
                 onSubmit={async (event) => {
                     event.preventDefault();
                     const form = event.target as HTMLFormElement;
@@ -19,11 +18,16 @@ export function Form() {
                         return;
                     }
 
+                    const subscriber = constructObjectFromJSON(Subscriber, {
+                        email: formData.get('email') as string,
+                        fullname: formData.get('fullname') as string,
+                    });
+
                     try {
                         const result = (await (
                             await fetch(form.action, {
                                 method: 'POST',
-                                body: formData,
+                                body: subscriber,
                             })
                         ).json()) as IWPFromResponse;
 
