@@ -1,4 +1,6 @@
-import { Entity, PrimaryGeneratedColumn, Column, Index, Unique } from 'typeorm';
+import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { EventCode } from './EventCode';
+import { EventNewsletter } from './EventNewsletter';
 
 export enum EventType {
     CONFERENCE = 'CONFERENCE',
@@ -19,68 +21,85 @@ export enum EventVisibility {
     FEATURED = 'FEATURED',
 }
 
-// TODO: Maybe better name because it colides with native browser Event class
-@Entity({ name: 'Event' /*TODO: DRY*/ })
-@Index(['name', 'topic'], { unique: true })
+@Index('serializeId', ['serializeId'], { unique: true })
+@Index('name_topic', ['name', 'topic'], { unique: true })
+@Index('type', ['type'], {})
+@Index('city', ['city'], {})
+@Index('year', ['year'], {})
+@Index('month', ['month'], {})
+@Index('time', ['time'], {})
+@Index('price', ['price'], {})
+@Index('priceCurrency', ['priceCurrency'], {})
+@Index('visibility', ['visibility'], {})
+@Entity('Event', { schema: 'czechevents' })
 export class Event {
-    @PrimaryGeneratedColumn()
-    public readonly id: number;
+    @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
+    id: number;
 
-    @Column({ nullable: false, length: 1000 })
-    @Index({ unique: true })
-    public serializeId: string;
+    @Column('varchar', { name: 'serializeId', unique: true, length: 1000 })
+    serializeId: string;
 
-    @Column({ nullable: false, length: 300 })
-    public name: string;
+    @Column('varchar', { name: 'name', length: 300 })
+    name: string;
 
-    @Column({ nullable: true, length: 500 })
-    public topic?: string;
+    @Column('varchar', { name: 'topic', nullable: true, length: 500 })
+    topic: string | null;
 
-    @Column({ nullable: false, type: 'enum', enum: EventType })
-    @Index()
-    public type: EventType;
+    @Column('enum', {
+        name: 'type',
+        enum: EventType,
+    })
+    type: EventType;
 
-    @Column({ nullable: true, length: 1000 })
-    public web?: string;
+    @Column('varchar', { name: 'web', nullable: true, length: 1000 })
+    web: string | null;
 
-    @Column({ nullable: true })
-    @Index()
-    public city?: string;
+    @Column('varchar', { name: 'city', nullable: true, length: 200 })
+    city: string | null;
 
-    @Column({ nullable: true, type: 'year' }) @Index() public year?: number;
-    @Column({ nullable: true })
-    @Index()
-    public month?: number;
+    @Column('year', { name: 'year', nullable: true })
+    year: number | null;
 
-    @Column({ nullable: true, length: 5 })
-    @Index()
-    public days?: string;
+    @Column('int', { name: 'month', nullable: true })
+    month: number | null;
 
-    @Column({ nullable: true, length: 8, comment: 'TODO: Maybe this should be type time' })
-    @Index()
-    public time?: string;
+    @Column('varchar', { name: 'days', nullable: true, length: 5 })
+    days: string | null;
 
-    @Column({ nullable: true })
-    @Index()
-    public price?: number;
+    @Column('varchar', { name: 'time', nullable: true, length: 8 })
+    time: string | null;
 
-    @Column({ nullable: true, type: 'enum', enum: EventPriceCurrency })
-    @Index()
-    public priceCurrency?: EventPriceCurrency;
+    @Column('int', { name: 'price', nullable: true })
+    price: number | null;
 
-    @Column({ nullable: false, type: 'enum', enum: EventVisibility })
-    @Index()
-    public visibility: EventVisibility;
+    @Column('enum', {
+        name: 'priceCurrency',
+        nullable: true,
+        enum: EventPriceCurrency,
+    })
+    priceCurrency: EventPriceCurrency | null;
 
-    @Column({ nullable: true, type: 'text', comment: 'Only a hidden note not visible for visitors of the web' })
-    public note?: string;
+    @Column('enum', {
+        name: 'visibility',
+        enum: EventVisibility,
+        default: () => "'PENDING'",
+    })
+    visibility: EventVisibility;
 
-    /*
-    constructor(data: Partial<Event>) {
-        //super();
-        Object.assign(this, data);
-    }
-    */
+    @Column('text', { name: 'note', nullable: true })
+    note: string | null;
+
+    @OneToMany(
+        () => EventCode,
+        (eventCode) => eventCode.event,
+    )
+    eventCodes: EventCode[];
+
+    @OneToMany(
+        () => EventNewsletter,
+        (eventNewsletter) => eventNewsletter.event,
+    )
+    eventNewsletters: EventNewsletter[];
 
     get day(): number | null {
         if (this.days) {
@@ -123,6 +142,6 @@ export class Event {
     }
 
     /*static error(error: Error):Event{
-        return new Event();
+    return new Event();
     }*/
 }
