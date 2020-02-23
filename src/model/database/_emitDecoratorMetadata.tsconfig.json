@@ -19,7 +19,6 @@
         "esModuleInterop":true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata":true,
-        "watch": true
     },
     "exclude": [
         "node_modules"
