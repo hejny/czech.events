@@ -10,7 +10,7 @@ export const connectionPromise = createConnection({
     username: DB_USER,
     password: DB_PASSWORD,
     database: DB_NAME,
-    synchronize: true, // TODO: what is that
+    synchronize: false,
     logging: true, // TODO: what is that
     entities: [Event],
     // TODO: migrations: [],

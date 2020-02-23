@@ -30,7 +30,7 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
     private async loadEvents() {
         try {
             const events = await apiClient.getEvents();
-            console.log('events', events);
+            //console.log('events', events);
             this.setState({ events });
         } catch (error) {
             this.setState({ error: error.message });
