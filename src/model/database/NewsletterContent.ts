@@ -1,5 +1,16 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Newsletter } from './Newsletter';
+import { Event } from './Event';
+
+export enum NewsletterContentPosition {
+    SUBJECT = 'SUBJECT',
+    HEAD = 'HEAD',
+    HEAD_CONFERENCES = 'HEAD_CONFERENCES',
+    HEAD_MEETUPS = 'HEAD_MEETUPS',
+    HEAD_WORKSHOPS = 'HEAD_WORKSHOPS',
+    HEAD_HACKATHONS = 'HEAD_HACKATHONS',
+    BOTTOM = 'BOTTOM',
+}
 
 @Index('newsletter_id', ['newsletterId'], {})
 @Index('position', ['position'], {})
@@ -8,21 +19,17 @@ export class NewsletterContent {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;
 
-    @Column('int', { name: 'newsletter_id' })
+    @Column('int', { name: 'newsletter_id', nullable: true })
     newsletterId: number;
+
+    @Column('int', { name: 'event_id', nullable: true, comment: 'Is the paragraph connected to some one event?' })
+    eventId: number;
 
     @Column('enum', {
         name: 'position',
-        enum: ['SUBJECT', 'HEAD', 'HEAD_CONFERENCES', 'HEAD_MEETUPS', 'HEAD_WORKSHOPS', 'HEAD_HACKATHONS', 'BOTTOM'],
+        enum: NewsletterContentPosition,
     })
-    position:
-        | 'SUBJECT'
-        | 'HEAD'
-        | 'HEAD_CONFERENCES'
-        | 'HEAD_MEETUPS'
-        | 'HEAD_WORKSHOPS'
-        | 'HEAD_HACKATHONS'
-        | 'BOTTOM';
+    position: NewsletterContentPosition;
 
     @Column('int', { name: 'order', nullable: true })
     order: number | null;
@@ -40,4 +47,12 @@ export class NewsletterContent {
     )
     @JoinColumn([{ name: 'newsletter_id', referencedColumnName: 'id' }])
     newsletter: Newsletter;
+
+    @ManyToOne(
+        () => Event,
+        (event) => event.newsletterContents,
+        { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' },
+    )
+    @JoinColumn([{ name: 'event_id', referencedColumnName: 'id' }])
+    event: Event;
 }

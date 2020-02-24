@@ -1,3 +1,4 @@
+import { NewsletterContent } from './NewsletterContent';
 import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { EventCode } from './EventCode';
 import { EventNewsletter } from './EventNewsletter';
@@ -92,6 +93,7 @@ export class Event {
     @OneToMany(
         () => EventCode,
         (eventCode) => eventCode.event,
+        { eager: true },
     )
     eventCodes: EventCode[];
 
@@ -100,6 +102,13 @@ export class Event {
         (eventNewsletter) => eventNewsletter.event,
     )
     eventNewsletters: EventNewsletter[];
+
+    @OneToMany(
+        () => NewsletterContent,
+        (newsletterContent) => newsletterContent.event,
+        { eager: true },
+    )
+    newsletterContents: NewsletterContent[];
 
     get day(): number | null {
         if (this.days) {

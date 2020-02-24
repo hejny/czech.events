@@ -2,6 +2,7 @@ import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } 
 import { Event } from './Event';
 import { Newsletter } from './Newsletter';
 
+// TODO: All enums to real TS enums
 @Index('event_id', ['eventId'], {})
 @Index('newsletter_id', ['newsletterId'], {})
 @Index('status', ['status'], {})

@@ -24,7 +24,7 @@ export function EventComponent({ event }: IEventComponentProps) {
             <EventTimeComponent {...{ event }} />
             &nbsp;
             <EventPrice {...{ event }} />
-            <EventCodeParagraph {...{ event, verbose: true }} />
+            <EventCodeParagraph {...{ event, verbose: true, showCode: false }} />
             {}
             <br />
             <br />

@@ -5,6 +5,7 @@ import { connectionPromise } from '../database';
 
 export const subscriberPostRouteHandler: RequestHandler = async (request, response, next) => {
     const connection = await connectionPromise;
+    // TODO: Purge internal IDs
     const subscriber = constructObjectFromJSON(Subscriber, request.body);
     subscriber.created = new Date();
     const insertResult = await connection.manager.insert(Subscriber, subscriber);
@@ -12,6 +13,7 @@ export const subscriberPostRouteHandler: RequestHandler = async (request, respon
     if (insertResult.identifiers.length === 1) {
         const subscriber = await connection.manager.findOne(Subscriber, insertResult.identifiers[0].id);
         //console.log('subscriber', subscriber);
+        // TODO: Purge internal IDs
         return response.send(subscriber);
     } else {
         return null;

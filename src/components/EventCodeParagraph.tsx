@@ -4,24 +4,36 @@ import { EventPrice } from './EventPrice';
 
 interface IEventCodeParagraphProps {
     event: Event;
+    showCode: boolean;
     verbose: boolean;
 }
 
-export function EventCodeParagraph({ event, verbose }: IEventCodeParagraphProps) {
+export function EventCodeParagraph({ event, showCode, verbose }: IEventCodeParagraphProps) {
     return (
         <>
-            {/*event.codeName && event.codePercent && event.priceAmount && event.priceCurrency && (
-                <>
-                    <br />A s kódem <b>{event.codeName}</b> to budete mít o {Math.floor(event.codePercent * 100)}%
-                    levnější
-                    {verbose && (
+            {event.eventCodes.map((eventCode, key) => (
+                <span {...{ key }}>
+                    <br />
+
+                    {showCode ? (
                         <>
-                            , tzn. za <EventPrice {...{ event, price: event.priceAmount * (1 - event.codePercent) }} />
+                            A s kódem <b>{eventCode.code}</b> to budete mít o {Math.floor(eventCode.value * 100)}%
+                            levnější
+                        </>
+                    ) : (
+                        <>
+                            S naším kódem, který budeme posílat v dalším emalu, to budete mít o{' '}
+                            {Math.floor(eventCode.value * 100)}% levnější
                         </>
                     )}
-                    .
-                </>
-                    )*/}
+
+                    {verbose && (
+                        <>
+                            , tzn. za <EventPrice {...{ event, price: event.price * (1 - eventCode.value) }} />
+                        </>
+                    )}
+                </span>
+            ))}
         </>
     );
 }

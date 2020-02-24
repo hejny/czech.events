@@ -1,11 +1,13 @@
 import * as React from 'react';
 import { DateRange } from '../model/DateRange';
-import { Event } from '../model/database/Event';
+import { Event, EventType } from '../model/database/Event';
 import { categorizeEvents } from '../utils/categorizeEvents';
 import { translateEventType } from '../utils/translate';
-import { ErrorComponent } from './ErrorComponent';
 import { EventComponent } from './EventComponent';
-import { EventCodeParagraph } from './EventCodeParagraph';
+import { NewsletterContent, NewsletterContentPosition } from '../model/database/NewsletterContent';
+import { NewsletterContentsComponent } from './NewsletterContentsComponent';
+import { eventTypeToNewsletterContentPosition } from '../utils/eventTypeToNewsletterContentPosition';
+import { compareEventsbyDate } from '../utils/compareDates';
 
 interface ITalksPageEmailProps {
     range: DateRange;
@@ -17,51 +19,52 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
 
     const filteredEvents = events
         //.filter((event) => (event instanceof Event ? event.inMail : true))
-        .filter((event) => (event instanceof Event ? range.isIn(event.dateToCompare) : true));
+        .filter((event) => (event instanceof Event ? range.isIn(event.dateToCompare) : true))
+        .sort((a, b) => compareEventsbyDate(a, b));
 
     //console.log('filteredEvents', filteredEvents);
     const categorizedEvents = categorizeEvents(filteredEvents);
 
+    const newsletterContents: NewsletterContent[] = [];
+    for (const event of filteredEvents) {
+        newsletterContents.push(...event.newsletterContents);
+    }
+
     return (
         <>
-            <h2>{`📅 Konference / meetupy / hackathony – co se děje z IT / Startupové akce 🌆`}</h2>
-            Ahoj,
+            <h2>
+                {/*`📅 Konference / meetupy / hackathony – co se děje z IT / Startupové akce 🌆`*/}
+                <NewsletterContentsComponent {...{ newsletterContents, position: NewsletterContentPosition.SUBJECT }} />
+            </h2>
+            {/* Ahoj,
             <br />
             opět jsme dali dohromady seznam událostí, na které se vyplatí zajít:
-            <br />
-            {/*(filteredEvents.filter((e) => e instanceof Event) as Event[])
-                .filter((e) => e.topParagraph)
-                .sort((a, b) => (a.topParagraphOrder > b.topParagraphOrder ? 1 : -1))
-                .map((event, i) => (
-                    <p key={i} className={event.dateToCompare < new Date() ? 'past' : ''}>
-                        {event.topParagraph}
-                        <EventCodeParagraph {...{ event, verbose: false }} />
-                    </p>
-                ))*/}
+            <br /> */}
+            <NewsletterContentsComponent {...{ newsletterContents, position: NewsletterContentPosition.HEAD }} />
             {Object.keys(categorizedEvents).map((type) => (
                 <div key={type}>
                     <br />
                     <h2>{translateEventType(type as any)}</h2>
+                    <NewsletterContentsComponent
+                        {...{ newsletterContents, position: eventTypeToNewsletterContentPosition(type as EventType) }}
+                    />
                     <span>
-                        {categorizedEvents![type].map((item, key) =>
-                            item instanceof Event ? (
-                                <EventComponent {...{ event: item, key }} />
-                            ) : (
-                                <ErrorComponent {...{ key }}>{item}</ErrorComponent>
-                            ),
-                        )}
+                        {categorizedEvents![type].map((event) => (
+                            <EventComponent {...{ event, key: event.serializeId }} />
+                        ))}
                     </span>
                 </div>
             ))}
             <br /> <br />
-            <i>
+            <NewsletterContentsComponent {...{ newsletterContents, position: NewsletterContentPosition.BOTTOM }} />
+            {/* <i>
                 PS: <b>Budeme rádi za vaše návrhy a připomínky</b>, můžete <b>odpovědět rovnou na email</b>.<br />
                 PPS: E-mail posíláme na základě Vaší registrace na stránce{' '}
                 <a href="https://czech.events/?utm_source=mail&amp;utm_medium=referral&amp;utm_campaign=2020-02_unsubscribe">
                     czech.events
                 </a>
                 . Pokud už další email nechcete dostat, napište nám rychlou odpověď.
-            </i>
+            </i> */}
             {/*
             <br />
             PPS: Pokud už nechcete dostat další email, klikněte sem pro jejich odhlášení.

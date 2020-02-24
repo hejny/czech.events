@@ -8,6 +8,7 @@ interface IEventPriceProps {
     price?: number;
 }
 
+// TODO: Component name suffix to all components
 export function EventPrice({ event, price }: IEventPriceProps) {
     if (!price) price = event.price;
     if (isNullOrUndefined(price)) return <></>;
