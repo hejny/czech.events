@@ -27,6 +27,7 @@ export class Newsletter {
     @OneToMany(
         () => NewsletterContent,
         (newsletterContent) => newsletterContent.newsletter,
+        { eager: true },
     )
     newsletterContents: NewsletterContent[];
 }

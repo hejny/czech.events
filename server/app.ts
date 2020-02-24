@@ -29,7 +29,7 @@ export async function createApp(): Promise<{ app: express.Application; server: h
     });
 
     app.get('/events', getEventsRouteHandler);
-    app.get('/newsletters/:newsletterYear/:newsletterMonth', getNewsletterRouteHandler);
+    app.get('/newsletters/:year/:month', getNewsletterRouteHandler);
     app.post('/subscribers', subscriberPostRouteHandler);
 
     return {

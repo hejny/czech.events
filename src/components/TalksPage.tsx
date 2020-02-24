@@ -6,6 +6,7 @@ import { LoadingComponent } from './LoadingComponent';
 import { TalksPageEmail } from './TalksPageEmail';
 import { Event } from '../model/database/Event';
 import { apiClient } from '../api/ApiClient';
+import { Newsletter } from '../model/database/Newsletter';
 
 interface ITalksPageProps {}
 
@@ -13,6 +14,7 @@ interface ITalksPageState {
     error: null | string;
     range: DateRange;
     events: null | Event[];
+    newsletter: null | Newsletter;
 }
 
 export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState> {
@@ -20,18 +22,23 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
         error: null,
         range: DateRange.fromConstants('CURRENT_MONTH', 'NEXT_MONTH'),
         events: null,
+        newsletter: null,
     };
 
     constructor(props: ITalksPageProps) {
         super(props);
-        this.loadEvents();
+        this.load();
     }
 
-    private async loadEvents() {
+    private async load() {
         try {
             const events = await apiClient.getEvents();
             //console.log('events', events);
             this.setState({ events });
+
+            const newsletter = await apiClient.getNewsletter(2020, 2 /* TODO: Unhardcode */);
+            //console.log('newsletter', newsletter);
+            this.setState({ newsletter });
         } catch (error) {
             this.setState({ error: error.message });
         }
@@ -117,7 +124,13 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                             ) : !this.state.events ? (
                                 <LoadingComponent />
                             ) : (
-                                <TalksPageEmail {...{ events: this.state.events, range: this.state.range }} />
+                                <TalksPageEmail
+                                    {...{
+                                        events: this.state.events,
+                                        newsletter: this.state.newsletter,
+                                        range: this.state.range,
+                                    }}
+                                />
                             )}
                         </div>
                     </div>
