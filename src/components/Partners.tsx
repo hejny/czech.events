@@ -8,7 +8,7 @@ export function Partners(props: IPartnersProps) {
     return (
         <>
             <div className="partners">
-                <h1>Mediální partneři</h1>
+                <h2>Mediální partneři</h2>
 
                 {[
                     // TODO: To some other file or even to DB
@@ -28,6 +28,8 @@ export function Partners(props: IPartnersProps) {
                         logoUrl: `${props.selfUrl}/design/logos/partners/undout.png`,
                         link: 'https://undout.com/',
                     },
+                    /*
+                    TODO:
                     {
                         name: 'CEEHACKS',
                         logoUrl: `${props.selfUrl}/design/logos/partners/ceehacks.png`,
@@ -37,13 +39,14 @@ export function Partners(props: IPartnersProps) {
                         name: 'TechHeaven',
                         logoUrl: `${props.selfUrl}/design/logos/partners/techheaven.svg`,
                         link: 'https://techheaven.org/',
-                    },
+                    },*/
                     // TODO: CzechFuture tech
+                    // TODO: Random shuffle
                 ].map(({ name, logoUrl, link }) => {
                     return (
                         <div key={name} className="logo">
                             <a href={link} target="_blank" rel="noopener noreferrer">
-                                <img src={logoUrl} alt={`${name} logo`} />
+                                <img src={logoUrl} title={name} alt={`${name} logo`} />
                             </a>
                             {/*`${name} `*/}
                         </div>

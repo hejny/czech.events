@@ -76,6 +76,7 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
             */}
             <br />
             <br />
+            {/* TODO: Random shuffle */}
             <a href="https://www.pavolhejny.com/?utm_source=czech.events-mail&amp;utm_medium=referral&amp;utm_campaign=signature">
                 Pavol Hejný
             </a>
