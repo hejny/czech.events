@@ -1,6 +1,10 @@
 import * as React from 'react';
 
-export function AboutPage() {
+interface IAboutPageProps {
+    selfUrl: string;
+}
+
+export function AboutPage(props: IAboutPageProps) {
     return (
         <>
             <div className="content about">
@@ -19,7 +23,7 @@ export function AboutPage() {
                                 src: 'czech.events.white-logo.png',
                             },
                         ].map(({ name, src }) => {
-                            const url = `https://czech.events/design/logos/${src}`;
+                            const url = `${props.selfUrl}/design/logos/${src}`;
                             return (
                                 <div key={src} className="logo">
                                     <a href={url}>

@@ -7,8 +7,10 @@ import { TalksPageEmail } from './TalksPageEmail';
 import { Event } from '../model/database/Event';
 import { ApiClient } from '../api/ApiClient';
 import { Newsletter } from '../model/database/Newsletter';
+import { Partners } from './Partners';
 
 interface ITalksPageProps {
+    selfUrl: string;
     apiClient: ApiClient;
 }
 
@@ -136,6 +138,8 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                             )}
                         </div>
                     </div>
+
+                    <Partners {...{ selfUrl: this.props.selfUrl }} />
                 </div>
             </>
         );

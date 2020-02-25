@@ -7,14 +7,18 @@ import { AboutPage } from './components/AboutPage';
 import { TalksPage } from './components/TalksPage';
 import './index.css';
 import * as serviceWorker from './serviceWorker';
+import { Partners } from './components/Partners';
 
 // TODO: Join app and createApp
 export class EventsApp {
     private apiClient: ApiClient;
     private history: History;
 
-    constructor(private rootElement: HTMLDivElement, private apiUrl: string) {
-        console.log(`Starting EventsApp with apiUrl = "${apiUrl}".`);
+    constructor(private rootElement: HTMLDivElement, private apiUrl: string, private selfUrl: string) {
+        console.log(`Starting EventsApp.`);
+        console.log('rootElement', rootElement);
+        console.log('apiUrl', apiUrl);
+        console.log('selfUrl', selfUrl);
         this.run();
     }
 
@@ -26,10 +30,13 @@ export class EventsApp {
             <Router {...{ history: this.history }}>
                 <Switch>
                     <Route exact path="/">
-                        <TalksPage {...{ apiClient: this.apiClient }} />
+                        <TalksPage {...{ apiClient: this.apiClient, selfUrl: this.selfUrl }} />
                     </Route>
                     <Route exact path="/about">
-                        <AboutPage />
+                        <AboutPage {...{ selfUrl: this.selfUrl }} />
+                    </Route>
+                    <Route exact path="/partners">
+                        <Partners {...{ selfUrl: this.selfUrl }} />
                     </Route>
                 </Switch>
             </Router>,

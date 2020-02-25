@@ -255,3 +255,22 @@ form {
     width: 200px;
     overflow-x: scroll;
 }
+
+.partners {
+    font-family: Arial, Helvetica, sans-serif, 'Montserrat', serif;
+    color: rgb(212, 212, 212);
+    padding: 10vh;
+    padding-top: 0;
+}
+
+.partners .logo {
+    margin: 20px;
+    display: inline-block;
+    width: 200px;
+    color: white;
+}
+
+.partners .logo img {
+    display: block;
+    width: 200px;
+}
