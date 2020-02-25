@@ -1,18 +1,22 @@
 import * as React from 'react';
 import { DateRange, RangeConstant } from '../model/DateRange';
-import { IEvents } from '../model/IEvents';
-import { fetchEvents } from '../utils/fetchEvents';
 import { ErrorComponent } from './ErrorComponent';
 import { Form } from './Form';
 import { LoadingComponent } from './LoadingComponent';
 import { TalksPageEmail } from './TalksPageEmail';
+import { Event } from '../model/database/Event';
+import { ApiClient } from '../api/ApiClient';
+import { Newsletter } from '../model/database/Newsletter';
 
-interface ITalksPageProps {}
+interface ITalksPageProps {
+    apiClient: ApiClient;
+}
 
 interface ITalksPageState {
     error: null | string;
     range: DateRange;
-    events: null | IEvents;
+    events: null | Event[];
+    newsletter: null | Newsletter;
 }
 
 export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState> {
@@ -20,18 +24,23 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
         error: null,
         range: DateRange.fromConstants('CURRENT_MONTH', 'NEXT_MONTH'),
         events: null,
+        newsletter: null,
     };
 
     constructor(props: ITalksPageProps) {
         super(props);
-        this.loadEvents();
+        this.load();
     }
 
-    private async loadEvents() {
+    private async load() {
         try {
-            const events = await fetchEvents();
+            const events = await this.props.apiClient.getEvents();
             //console.log('events', events);
             this.setState({ events });
+
+            const newsletter = await this.props.apiClient.getNewsletter(2020, 2 /* TODO: Unhardcode */);
+            //console.log('newsletter', newsletter);
+            this.setState({ newsletter });
         } catch (error) {
             this.setState({ error: error.message });
         }
@@ -49,7 +58,7 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                                 Dejte nám Vaší emailovou adresu a my Vám budeme pravidelně jednou za měsíc posílat co se
                                 děje:
                             </h2>
-                            <Form />
+                            <Form {...{apiClient: this.props.apiClient}} />
 
                             {/*TODO: Semantically h2 is not very ideal here at all*/}
                             <h2 className="separator font-light">
@@ -117,7 +126,13 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                             ) : !this.state.events ? (
                                 <LoadingComponent />
                             ) : (
-                                <TalksPageEmail {...{ events: this.state.events, range: this.state.range }} />
+                                <TalksPageEmail
+                                    {...{
+                                        events: this.state.events,
+                                        newsletter: this.state.newsletter,
+                                        range: this.state.range,
+                                    }}
+                                />
                             )}
                         </div>
                     </div>

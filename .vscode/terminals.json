@@ -6,8 +6,16 @@
             "command": "npm run prettier-watch"
         },
         {
-            "name":"start",
-            "command":"npm start"
-         }
+            "name":"server-develop",
+            "command":"npm run server-develop"
+        },
+        {
+            "name":"frontend-develop-emit-decorator-metadata",
+            "command":"npm run frontend-develop-emit-decorator-metadata"
+        },
+        {
+            "name":"frontend-develop",
+            "command":"npm run frontend-develop"
+        }
     ]
 }
