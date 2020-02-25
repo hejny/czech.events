@@ -58,7 +58,7 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                                 Dejte nám Vaší emailovou adresu a my Vám budeme pravidelně jednou za měsíc posílat co se
                                 děje:
                             </h2>
-                            <Form {...{apiClient: this.props.apiClient}} />
+                            <Form {...{ apiClient: this.props.apiClient }} />
 
                             {/*TODO: Semantically h2 is not very ideal here at all*/}
                             <h2 className="separator font-light">
