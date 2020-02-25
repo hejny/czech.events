@@ -23,6 +23,6 @@
   },
   "include": [
     "src",
-    "server"
+    "server", "scripts/tsconfig.json"
   ]
 }

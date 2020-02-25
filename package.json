@@ -18,7 +18,7 @@
     "frontend-deploy": "echo czech.events >>build/CNAME && gh-pages -d build",
     "server-start": "ts-node --project ./server/tsconfig.json -r dotenv/config ./server/index.ts",
     "server-develop": "onchange -i \"./{src,server}/**/*.{ts,tsx,js,json}\" -- npm run server-start",
-    "server-deploy": "ts-node -r dotenv/config ./scripts/deploy.js"
+    "server-deploy": "cd ./scripts && npm start"
   },
   "repository": {
     "type": "git",
@@ -58,9 +58,9 @@
     "react-scripts": "3.3.0",
     "reflect-metadata": "^0.1.13",
     "supertest": "^4.0.2",
-    "ts-node": "^7.0.1",
+    "ts-node": "^8.6.2",
     "typeorm": "^0.2.22",
-    "typescript": "^3.7.5",
+    "typescript": "^3.8.2",
     "uuid": "^3.4.0"
   },
   "eslintConfig": {

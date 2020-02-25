@@ -1,5 +1,5 @@
 import * as packageInfo from '../../package.json';
-import { fetchJsonRetry } from './fetchJsonRetry.js.js';
+import { fetchJsonRetry } from './fetchJsonRetry';
 const version = packageInfo.version;
 
 export async function deployedVersionCheck(remote) {
@@ -11,13 +11,16 @@ export async function deployedVersionCheck(remote) {
     try {
         const about = await fetchJsonRetry(remote.versionUrl);
 
-        const deployedVersion = about.version || about.data.version;
+        const deployedVersion = about.version;
 
         if (deployedVersion !== version) {
             throw new Error(`Versions are not matching deployed=${deployedVersion}, expected=${version}.`);
         }
+
+        console.info(`"${remote.name}" was successfully deployed and checked in version "${deployedVersion}".`);
+
     } catch (error) {
         throw new Error(`There is some problem with deploy, please check ${remote.versionUrl} . ${error.message}`);
     }
-    console.info(`"${remote.name}" was successfully deployed and checked in version "${deployedVersion}".`);
+   
 }
