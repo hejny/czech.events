@@ -5,7 +5,7 @@ import { EventCode } from './../src/model/database/EventCode';
 import { EventNewsletter } from './../src/model/database/EventNewsletter';
 import { NewsletterContent } from './../src/model/database/NewsletterContent';
 import { Subscriber } from './../src/model/database/Subscriber';
-import { DB_HOST, DB_NAME, DB_PASSWORD, DB_USER } from './config';
+import { DB_HOST, DB_NAME, DB_PASSWORD, DB_USER, DB_LOGGING, DB_SYNCHRONIZE } from './config';
 
 // TODO: remove knex and objection
 // TODO: In future use top level await
@@ -15,8 +15,8 @@ export const connectionPromise = createConnection({
     username: DB_USER,
     password: DB_PASSWORD,
     database: DB_NAME,
-    synchronize: false,
-    logging: true, // TODO: what is that
+    synchronize: DB_SYNCHRONIZE,
+    logging: DB_LOGGING,
     entities: [Event, EventCode, EventNewsletter, NewsletterContent, Newsletter, Subscriber],
     // TODO: migrations: [],
     // TODO: subscribers: [],

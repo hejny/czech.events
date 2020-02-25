@@ -1,32 +1,3 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import './index.css';
-import * as serviceWorker from './serviceWorker';
-import { TalksPage } from './components/TalksPage';
-import { Router, Switch, Route } from 'react-router-dom';
-import { createHashHistory } from 'history';
-//import { Footer } from './components/Footer';
-import { AboutPage } from './components/AboutPage';
+import { EventsApp } from './EventsApp';
 
-const history = createHashHistory();
-
-ReactDOM.render(
-    <Router {...{ history }}>
-        <Switch>
-            <Route exact path="/">
-                aa
-                <TalksPage />
-            </Route>
-            <Route exact path="/about">
-                <AboutPage />
-            </Route>
-        </Switch>
-        {/* <Footer /> */}
-    </Router>,
-    document.getElementById('root'),
-);
-
-// If you want your app to work offline and load faster, you can change
-// unregister() to register() below. Note this comes with some pitfalls.
-// Learn more about service workers: https://bit.ly/CRA-PWA
-serviceWorker.unregister();
+(window as any).EventsApp = EventsApp;

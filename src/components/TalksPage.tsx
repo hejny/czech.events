@@ -5,10 +5,12 @@ import { Form } from './Form';
 import { LoadingComponent } from './LoadingComponent';
 import { TalksPageEmail } from './TalksPageEmail';
 import { Event } from '../model/database/Event';
-import { apiClient } from '../api/ApiClient';
+import { ApiClient } from '../api/ApiClient';
 import { Newsletter } from '../model/database/Newsletter';
 
-interface ITalksPageProps {}
+interface ITalksPageProps {
+    apiClient: ApiClient;
+}
 
 interface ITalksPageState {
     error: null | string;
@@ -32,11 +34,11 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
 
     private async load() {
         try {
-            const events = await apiClient.getEvents();
+            const events = await this.props.apiClient.getEvents();
             //console.log('events', events);
             this.setState({ events });
 
-            const newsletter = await apiClient.getNewsletter(2020, 2 /* TODO: Unhardcode */);
+            const newsletter = await this.props.apiClient.getNewsletter(2020, 2 /* TODO: Unhardcode */);
             //console.log('newsletter', newsletter);
             this.setState({ newsletter });
         } catch (error) {
@@ -56,7 +58,7 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                                 Dejte nám Vaší emailovou adresu a my Vám budeme pravidelně jednou za měsíc posílat co se
                                 děje:
                             </h2>
-                            <Form />
+                            <Form {...{apiClient: this.props.apiClient}} />
 
                             {/*TODO: Semantically h2 is not very ideal here at all*/}
                             <h2 className="separator font-light">

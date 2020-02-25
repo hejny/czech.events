@@ -10,12 +10,12 @@
             "command":"npm run server-develop"
         },
         {
-            "name":"frontend-develop",
-            "command":"npm run frontend-develop"
-        },
-        {
             "name":"frontend-develop-emit-decorator-metadata",
             "command":"npm run frontend-develop-emit-decorator-metadata"
+        },
+        {
+            "name":"frontend-develop",
+            "command":"npm run frontend-develop"
         }
     ]
 }

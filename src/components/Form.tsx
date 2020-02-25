@@ -1,9 +1,13 @@
 import * as React from 'react';
 import { constructObjectFromJSON } from '../utils/constructObjectFromJSON';
 import { Subscriber } from '../model/database/Subscriber';
-import { apiClient } from '../api/ApiClient';
+import { ApiClient } from '../api/ApiClient';
 
-export function Form() {
+interface IFormProps {
+    apiClient: ApiClient;
+}
+
+export function Form(props: IFormProps) {
     // TODO: To Config
     return (
         <>
@@ -25,7 +29,7 @@ export function Form() {
                     });
 
                     try {
-                        const result = await apiClient.postSubscriber(subscriber);
+                        const result = await props.apiClient.postSubscriber(subscriber);
 
                         console.log('result', result);
 
