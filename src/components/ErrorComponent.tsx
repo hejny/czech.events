@@ -1,5 +1,6 @@
 import * as React from 'react';
 
+// TODO: Deprecated remove
 export function ErrorComponent({ children }: React.PropsWithChildren<{}>) {
     return (
         <>

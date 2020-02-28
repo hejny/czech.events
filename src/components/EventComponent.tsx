@@ -18,7 +18,7 @@ export function EventComponent({ event }: IEventComponentProps) {
                 {event.topic ? ` – ${event.topic}` : ''}
             </a>
             <br />
-            <>🌆&nbsp;{event.city}</>
+            <>🌆&nbsp;{event.city} {/* TODO: Plzeň 🐪 */}</>
             &nbsp;
             <EventDateComponent {...{ event }} />
             <EventTimeComponent {...{ event }} />
