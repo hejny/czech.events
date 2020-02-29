@@ -3,16 +3,12 @@ import cors from 'cors';
 import http from 'http';
 import { json } from 'body-parser';
 import { subscriberPostRouteHandler } from './routes/subscriberPostRouteHandler';
-import { connectionPromise } from './database';
 import { getEventsRouteHandler } from './routes/getEventsRouteHandler';
 import { getNewsletterRouteHandler } from './routes/getNewsletterRouteHandler';
 const packageJson = require('../package.json');
 
 export async function createApp(): Promise<{ app: express.Application; server: http.Server }> {
     const app = express();
-
-    const connection = await connectionPromise;
-
     app.use(json());
     app.use(cors());
 

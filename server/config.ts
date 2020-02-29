@@ -24,3 +24,13 @@ export const DB_SYNCHRONIZE = config
     .get('DB_SYNCHRONIZE')
     .boolean()
     .default(false).value!;
+
+//Email SMTP config
+export const EMAIL_HOST = config.get('EMAIL_HOST', 'Smtp server').required().value;
+export const EMAIL_USER = config.get('EMAIL_USER').required().value;
+export const EMAIL_PASSWORD = config.get('EMAIL_PASSWORD').required().value;
+export const EMAIL_ADDITIONAL_CONFIG = config
+    .get('EMAIL_ADDITIONAL_CONFIG')
+    .json()
+    .default({}).value;
+//export const EMAIL_PORT = config.get('EMAIL_PORT').number().default(25 /*TODO: or 465, 587*/);
