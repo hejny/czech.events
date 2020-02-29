@@ -2,9 +2,9 @@ import { EMAIL_ADDITIONAL_CONFIG, EMAIL_HOST, EMAIL_USER, EMAIL_PASSWORD } from 
 import { EmailService } from './EmailService';
 
 export const emailService = new EmailService({
-    connection: {
-        user: EMAIL_USER || undefined,
-        password: EMAIL_PASSWORD || undefined,
+    smtpConnection: {
+        user: EMAIL_USER,
+        password: EMAIL_PASSWORD,
         host: EMAIL_HOST,
         ...EMAIL_ADDITIONAL_CONFIG,
     },
