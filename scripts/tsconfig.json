@@ -3,7 +3,7 @@
         "target": "es6",
         "module": "commonjs",
         "lib": ["es2017"],
-        "rootDir": "./",
+        "rootDir": "../",
         "downlevelIteration": true,
         "baseUrl": ".",
         "outDir": "build/dist",

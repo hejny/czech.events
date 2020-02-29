@@ -5,7 +5,8 @@
   "main": "deploy.js",
   "scripts": {
     "start": "ts-node deploy.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "generate-database-models": "ts-node ./generate-database-models.ts"
   },
   "author": "Pavol Hejný",
   "license": "ISC",

@@ -7,8 +7,8 @@
   "scripts": {
     "preversion": "npm run prettier-commit && npm run frontend-build",
     "postversion": "git push && git push --tags && npm run frontend-deploy && npm run server-deploy",
-    "prettier": "prettier --config .prettierrc --write \"{src,server}/**/*.{ts,tsx,css}\"",
-    "prettier-watch": "onchange \"{src,server}/**/*.{ts,tsx,css}\" -- prettier --config .prettierrc --write \"{{changed}}\"",
+    "prettier": "prettier --config .prettierrc --write \"{src,server,public,scripts}/**/*.{ts,tsx,js,jsx,html,css}\"",
+    "prettier-watch": "onchange \"{src,server,public,scripts}/**/*.{ts,tsx,js,jsx,html,css}\" -- prettier --config .prettierrc --write \"{{changed}}\"",
     "prettier-commit": "git diff --exit-code && npm run prettier && git add . && git commit --allow-empty -m \"Prettier\"",
     "frontend-develop": "cross-env PORT=3000 react-scripts start",
     "frontend-develop-emit-decorator-metadata": "tsc --project src/model/database/_emitDecoratorMetadata.tsconfig.json && tsc --watch --project src/model/database/_emitDecoratorMetadata.tsconfig.json",
@@ -16,9 +16,10 @@
     "frontend-build": "npm run frontend-develop-delete-decorator-metadata && react-scripts build",
     "TODO: frontend-test": "react-scripts test",
     "frontend-deploy": "echo czech.events >>build/CNAME && gh-pages -d build",
-    "server-start": "ts-node --project ./server/tsconfig.json -r dotenv/config ./server/index.ts",
+    "server-start": "ts-node --project ./server/tsconfig.json ./server/index.ts",
     "server-develop": "onchange -i \"./{src,server}/**/*.{ts,tsx,js,json}\" -- npm run server-start",
-    "server-deploy": "cd ./scripts && npm start"
+    "server-deploy": "cd ./scripts && npm start",
+    "generate-database-models": "cd ./scripts && npm run generate-database-models"
   },
   "repository": {
     "type": "git",
@@ -30,6 +31,7 @@
     "@testing-library/user-event": "^7.2.1",
     "@types/body-parser": "^1.17.1",
     "@types/cors": "^2.8.6",
+    "@types/dotenv": "^8.2.0",
     "@types/express": "^4.17.2",
     "@types/jest": "^25.1.1",
     "@types/node": "^12.12.21",
@@ -44,7 +46,7 @@
     "cors": "^2.8.4",
     "cross-env": "^7.0.0",
     "date-fns": "^2.9.0",
-    "dotenv": "^6.1.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
     "gh-pages": "^2.1.1",
     "moment": "^2.24.0",
