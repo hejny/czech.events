@@ -46,7 +46,7 @@ async function main() {
         }
 
         console.info('Database models successfully created, please purge them before commit by:');
-        console.warn('\x1b[43m', '\x1b[37m', `rm -rf ${baseFolder}`, '\x1b[0m');
+        console.warn('\x1b[43m', '\x1b[30m', `rm -rf ${baseFolder}`, '\x1b[0m');
 
         // TODO: Automatically push to specific branch and create merge to current branch
         //await execAsyncFull(`cp ${baseFolder}/entities`);
