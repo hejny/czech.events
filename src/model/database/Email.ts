@@ -6,30 +6,30 @@ import { EmailAttempt } from './EmailAttempt';
 @Index('To', ['to'], {})
 @Index('From', ['from'], {})
 @Index('Subject', ['subject'], {})
-@Entity('Email', { schema: 'czechevents' })
+@Entity('Email')
 export class Email {
-    @PrimaryGeneratedColumn({ type: 'int', name: 'Id' })
+    @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;
 
-    @Column('varchar', { name: 'To', length: 255 })
+    @Column('varchar', { name: 'to', length: 255 })
     to: string;
 
-    @Column('varchar', { name: 'From', length: 255 })
+    @Column('varchar', { name: 'from', length: 255 })
     from: string;
 
-    @Column('varchar', { name: 'Subject', length: 255 })
+    @Column('varchar', { name: 'subject', length: 255 })
     subject: string;
 
-    @Column('longtext', { name: 'Body' })
+    @Column('longtext', { name: 'body' })
     body: string;
 
-    @Column('datetime', { name: 'Created' })
+    @Column('datetime', { name: 'created' })
     created: Date;
 
-    @Column('varchar', { name: 'Flag', nullable: true, length: 200 })
+    @Column('varchar', { name: 'flag', nullable: true, length: 200 })
     flag: string | null;
 
-    @Column('text', { name: 'Note', nullable: true })
+    @Column('text', { name: 'note', nullable: true })
     note: string | null;
 
     @OneToMany(

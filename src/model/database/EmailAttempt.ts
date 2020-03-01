@@ -4,21 +4,21 @@ import { Email } from './Email';
 @Index('EmailId', ['emailId'], {})
 @Index('Success', ['success'], {})
 @Index('Created', ['created'], {})
-@Entity('EmailAttempt', { schema: 'czechevents' })
+@Entity('EmailAttempt')
 export class EmailAttempt {
-    @PrimaryGeneratedColumn({ type: 'int', name: 'Id', unsigned: true })
+    @PrimaryGeneratedColumn({ type: 'int', name: 'id', unsigned: true })
     id: number;
 
-    @Column('int', { name: 'EmailId' })
+    @Column('int', { name: 'emailId' })
     emailId: number;
 
-    @Column('tinyint', { name: 'Success' })
-    success: boolean;
+    @Column('tinyint', { name: 'success' })
+    success: number;
 
-    @Column('text', { name: 'Message' })
+    @Column('text', { name: 'message' })
     message: string;
 
-    @Column('datetime', { name: 'Created', default: () => 'CURRENT_TIMESTAMP' })
+    @Column('datetime', { name: 'created', default: () => 'CURRENT_TIMESTAMP' })
     created: Date;
 
     @ManyToOne(
@@ -26,6 +26,6 @@ export class EmailAttempt {
         (email) => email.emailAttempts,
         { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' },
     )
-    @JoinColumn([{ name: 'EmailId', referencedColumnName: 'id' }])
+    @JoinColumn([{ name: 'emailId', referencedColumnName: 'id' }])
     email: Email;
 }
