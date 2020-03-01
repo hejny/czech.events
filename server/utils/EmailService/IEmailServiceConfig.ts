@@ -1,3 +1,5 @@
+import { ISmtpConnectionConfig } from './ISmtpConnectionConfig';
+
 export interface IEmailServiceConfig {
     /*
     TODO: Maybe?
@@ -13,11 +15,7 @@ export interface IEmailServiceConfig {
         email: string;
         emailAttempt: string;
     }*/
-    smtpConnection: {
-        user?: string;
-        password?: string;
-        host?: string;
-    };
+    smtpConnection: ISmtpConnectionConfig;
     limits: IEmailServiceConfigLimits;
 }
 

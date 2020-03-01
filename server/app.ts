@@ -57,6 +57,16 @@ export async function createApp(): Promise<{ app: express.Application; server: h
         response.send({ message: `Send testing email to ${to}.` });
     });
 
+    if (true) {
+        await emailService.send({
+            from: EMAIL_USER,
+            to: 'me@pavolhejny.com',
+            subject: 'Test',
+            body: 'inline',
+        });
+        await emailService.sendingTick();
+    }
+
     return {
         app,
         server,

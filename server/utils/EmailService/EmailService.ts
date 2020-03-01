@@ -3,17 +3,18 @@ import { IEmailServiceConfig } from './IEmailServiceConfig';
 import { Email } from '../../../src/model/database/Email';
 import { EmailAttempt } from '../../../src/model/database/EmailAttempt';
 import { forTime } from 'waitasecond';
-import { Connection } from 'typeorm';
 import SqlString from 'sqlstring';
 import { constructObjectFromJSON } from '../../../src/utils/constructObjectFromJSON';
 import { databaseConnectionPromise } from '../../database';
-const email = require('emailjs'); // TODO: Is there some better library?
+import { stripHTMLTags } from './stripHTMLTags';
+import { IEmailServiceSender } from './methods/IEmailServiceSender';
+import { EmailjsSender } from './methods/EmailjsSender';
 
 export class EmailService {
-    private smtpClient: any;
+    private sender: IEmailServiceSender;
 
     constructor(private config: IEmailServiceConfig) {
-        this.connectToSmtp();
+        this.sender = new EmailjsSender(config.smtpConnection);
         this.initSendingLoop();
     }
 
@@ -76,9 +77,7 @@ export class EmailService {
         };
     }
 
-    private async connectToSmtp() {
-        this.smtpClient = email.server.connect(this.config.smtpConnection);
-    }
+    private async connectToSmtp() {}
 
     private async initSendingLoop() {
         while (true) {
@@ -118,52 +117,9 @@ export class EmailService {
 
     private async sendingTickOneEmail(email: Email): Promise<void> {
         const databaseConnection = await databaseConnectionPromise;
-        //TODO: ? From DB
-        try {
-            await new Promise((resolve, reject) => {
-                const messageWithAttachment = {
-                    from: email.from,
-                    to: email.to,
-                    subject: email.subject,
-                    text: stripHTMLTags(email.body),
-                    attachment: [
-                        {
-                            data: email.body.split('\n').join('<br/>'),
-                            alternative: true,
-                        },
-                    ],
-                };
-
-                this.smtpClient.send(messageWithAttachment, (error: any, result: any) =>
-                    error ? reject(error) : resolve(result),
-                );
-            });
-
-            databaseConnection.manager.insert(
-                EmailAttempt,
-                constructObjectFromJSON(EmailAttempt, {
-                    emailId: email.id,
-                    success: true,
-                    message: '',
-                }),
-            );
-        } catch (error) {
-            databaseConnection.manager.insert(
-                EmailAttempt,
-                constructObjectFromJSON(EmailAttempt, {
-                    emailId: email.id,
-                    success: false,
-                    message: error.message,
-                }),
-            );
-        }
+        const emailAttemptData = await this.sender.send(email);
+        databaseConnection.manager.insert(EmailAttempt, constructObjectFromJSON(EmailAttempt, emailAttemptData));
     }
-}
-
-// TODO: Better name
-function stripHTMLTags(input: string) {
-    // TODO: is it complete?
-    return input.replace(/<\/?[^>]+(>|$)/g, '');
 }
 
 async function sqlQueryNumber(sql: string, params: any = {}): Promise<number | null> {
