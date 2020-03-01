@@ -5,16 +5,14 @@ import { json } from 'body-parser';
 import { subscriberPostRouteHandler } from './routes/subscriberPostRouteHandler';
 import { getEventsRouteHandler } from './routes/getEventsRouteHandler';
 import { getNewsletterRouteHandler } from './routes/getNewsletterRouteHandler';
-import { emailServicePromise } from './utils/EmailService/emailService.instance';
 import { EMAIL_USER } from './config';
+import { emailService } from './utils/EmailService/emailService.instance';
 const packageJson = require('../package.json');
 
 export async function createApp(): Promise<{ app: express.Application; server: http.Server }> {
     const app = express();
     app.use(json());
     app.use(cors());
-
-    const emailService = await emailServicePromise;
 
     const server = http.createServer(app);
 
@@ -40,9 +38,9 @@ export async function createApp(): Promise<{ app: express.Application; server: h
         response.json(await emailService.sendingTick());
     });
 
-    app.get('/debug/mail/test/:to', (request, response) => {
+    app.get('/debug/mail/test/:to', async (request, response) => {
         const to = request.params.to;
-        emailService.send({
+        await emailService.send({
             from: EMAIL_USER,
             to,
             subject: 'Test',

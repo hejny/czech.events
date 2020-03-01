@@ -23,7 +23,7 @@ export class Email {
     @Column('longtext', { name: 'body' })
     body: string;
 
-    @Column('datetime', { name: 'created' })
+    @Column('datetime', { name: 'created', default: () => 'CURRENT_TIMESTAMP' })
     created: Date;
 
     @Column('varchar', { name: 'flag', nullable: true, length: 200 })

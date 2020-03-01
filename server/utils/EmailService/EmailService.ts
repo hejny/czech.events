@@ -6,20 +6,23 @@ import { forTime } from 'waitasecond';
 import { Connection } from 'typeorm';
 import SqlString from 'sqlstring';
 import { constructObjectFromJSON } from '../../../src/utils/constructObjectFromJSON';
+import { databaseConnectionPromise } from '../../database';
 const email = require('emailjs'); // TODO: Is there some better library?
 
 export class EmailService {
     private smtpClient: any;
 
-    constructor(private config: IEmailServiceConfig, private databaseConnection: Connection) {
+    constructor(private config: IEmailServiceConfig) {
         this.connectToSmtp();
         this.initSendingLoop();
     }
 
     public async send(email: Partial<Email>): Promise<void> {
         // TODO: Maybe purge email
-        const insertResult = await this.databaseConnection.manager.insert(Email, constructObjectFromJSON(Email, email));
-        console.log('insertResult', insertResult);
+
+        const databaseConnection = await databaseConnectionPromise;
+        // TODO: insert vs. save
+        await databaseConnection.manager.insert(Email, constructObjectFromJSON(Email, email));
         return;
     }
 
@@ -85,6 +88,7 @@ export class EmailService {
     }
 
     public async sendingTick(): Promise<void> {
+        const databaseConnection = await databaseConnectionPromise;
         try {
             const { emailsInOneTick, retryAfter } = this.config.limits;
 
@@ -98,9 +102,9 @@ export class EmailService {
             `;
             // TODO: Maybe random shuffle
 
-            const emailsData = await this.databaseConnection.manager.query(sql);
+            const emailsData = await databaseConnection.manager.query(sql);
 
-            console.log('emailsData', emailsData);
+            //console.log('emailsData', emailsData);
 
             const emails = emailsData.map((emailData: Partial<Email>) =>
                 constructObjectFromJSON(Email, emailData),
@@ -113,7 +117,8 @@ export class EmailService {
     }
 
     private async sendingTickOneEmail(email: Email): Promise<void> {
-        //TODO: From DB
+        const databaseConnection = await databaseConnectionPromise;
+        //TODO: ? From DB
         try {
             await new Promise((resolve, reject) => {
                 const messageWithAttachment = {
@@ -134,7 +139,7 @@ export class EmailService {
                 );
             });
 
-            this.databaseConnection.manager.insert(
+            databaseConnection.manager.insert(
                 EmailAttempt,
                 constructObjectFromJSON(EmailAttempt, {
                     emailId: email.id,
@@ -143,7 +148,7 @@ export class EmailService {
                 }),
             );
         } catch (error) {
-            this.databaseConnection.manager.insert(
+            databaseConnection.manager.insert(
                 EmailAttempt,
                 constructObjectFromJSON(EmailAttempt, {
                     emailId: email.id,
