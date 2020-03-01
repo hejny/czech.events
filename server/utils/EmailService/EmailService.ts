@@ -39,6 +39,7 @@ export class EmailService {
         const lastAttemptTime = `(SELECT Created FROM EmailAttempt WHERE EmailAttempt.EmailId=Email.Id UNION ALL SELECT NOW() - INTERVAL 1 YEAR AS Created ORDER BY Created DESC LIMIT 1)`;
         const emailInQueueCondition = `
         TRUE
+        AND send >= NOW()
         AND ${success} = 0
         AND ${attepmtsCount} < ${SqlString.escape(retries)}
         `;

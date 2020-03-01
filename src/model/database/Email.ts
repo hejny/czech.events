@@ -26,6 +26,9 @@ export class Email {
     @Column('datetime', { name: 'created', default: () => 'CURRENT_TIMESTAMP' })
     created: Date;
 
+    @Column('datetime', { name: 'send', default: () => 'CURRENT_TIMESTAMP' })
+    send: Date;
+
     @Column('varchar', { name: 'flag', nullable: true, length: 200 })
     flag: string | null;
 
