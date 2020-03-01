@@ -1,9 +1,11 @@
-import { IEmailServiceStatusTick, IEmailServiceStatus } from './IEmailServiceStatus';
+import { IEmailServiceStatus } from './IEmailServiceStatus';
 import { IEmailServiceConfig } from './IEmailServiceConfig';
-import { IEmailMessage } from './IEmailMessage';
 import { Email } from '../../../src/model/database/Email';
 import { EmailAttempt } from '../../../src/model/database/EmailAttempt';
 import { forTime } from 'waitasecond';
+import { Connection } from 'typeorm';
+import SqlString from 'sqlstring';
+import { constructObjectFromJSON } from 'src/utils/constructObjectFromJSON';
 
 const email = require('emailjs');
 
@@ -18,26 +20,17 @@ AND ${attepmtsCountSubSql} < :retries
 `;
 
 export class EmailService {
-    private server: any;
-    private sendingTicks: IEmailServiceStatusTick[] = []; // TODO: Maybe remove
+    private smtpClient: any;
 
-    constructor(private config: IEmailServiceConfig) {
-        this.connect();
+    constructor(private config: IEmailServiceConfig, private databaseConnection: Connection) {
+        this.connectToSmtp();
         this.initSendingLoop();
     }
 
-    public async send(message: IEmailMessage): Promise<number> {
-        const { from: From, subject: Subject, body: Body, to: To } = message;
-        const email = await Email.query().insert(
-            new Email({
-                From,
-                To,
-                Subject,
-                Body,
-            }),
-        );
-        const { Id } = email;
-        return Id;
+    public async send(email: Partial<Email>): Promise<void> {
+        // TODO: Maybe purge email
+        await this.databaseConnection.manager.insert(Email, constructObjectFromJSON(Email, email));
+        return;
     }
 
     public async getStatus(): Promise<IEmailServiceStatus> {
@@ -66,8 +59,8 @@ export class EmailService {
         };
     }
 
-    private connect() {
-        this.server = email.server.connect(this.config.smtpConnection);
+    private async connectToSmtp() {
+        this.smtpClient = email.server.connect(this.config.smtpConnection);
     }
 
     private async initSendingLoop() {
@@ -77,7 +70,7 @@ export class EmailService {
         }
     }
 
-    public async sendingTick(): Promise<EmailAttempt[]> {
+    public async sendingTick(): Promise<void> {
         try {
             const { emailsInOneTick, retryAfter, emailLivetime, retries } = this.config.limits;
 
@@ -86,68 +79,74 @@ export class EmailService {
             ,${attepmtsCountSubSql} as attepmtsCount
             ,${lastAttemptTimeSubSql} as lastAttemptTime
             */
-            const sql = `
+            const sqlStructure = `
                 SELECT 
                     *
-                    FROM ${Email.tableName}
+                    FROM Email
                     WHERE ${emailInQueueCondition}
                     AND TIMESTAMPDIFF(SECOND,${lastAttemptTimeSubSql},NOW())>:retryAfter
                     LIMIT :emailsInOneTick
             `;
             // TODO: Maybe random shuffle
 
-            const [emailsData] = await Email.raw(sql, { emailsInOneTick, retryAfter, emailLivetime, retries });
-            const emails = emailsData.map((emailData: Partial<Email>) => new Email(emailData)) as Email[];
-
-            const attempts = await Promise.all(emails.map((email) => this.sendingTickOneEmail(email)));
-
-            this.sendingTicks.push({
-                date: new Date(),
-                attempts,
+            const sql = SqlString.format(sqlStructure, {
+                emailsInOneTick,
+                retryAfter,
+                emailLivetime,
+                retries,
             });
 
-            return attempts;
+            const [emailsData] = await this.databaseConnection.manager.query(sql);
+
+            console.log('emailsData', emailsData);
+
+            const emails = emailsData.map((emailData: Partial<Email>) =>
+                constructObjectFromJSON(Email, emailData),
+            ) as Email[];
+
+            await Promise.all(emails.map((email) => this.sendingTickOneEmail(email)));
         } catch (error) {
             console.error(error);
-            return [];
         }
     }
 
-    private async sendingTickOneEmail(email: Email): Promise<EmailAttempt> {
+    private async sendingTickOneEmail(email: Email): Promise<void> {
         //TODO: From DB
         try {
-            const result = await new Promise((resolve, reject) => {
+            await new Promise((resolve, reject) => {
                 const messageWithAttachment = {
-                    from: email.From,
-                    to: email.To,
-                    subject: email.Subject,
-                    text: stripHTMLTags(email.Body),
+                    from: email.from,
+                    to: email.to,
+                    subject: email.subject,
+                    text: stripHTMLTags(email.body),
                     attachment: [
                         {
-                            data: email.Body.split('\n').join('<br/>'),
+                            data: email.body.split('\n').join('<br/>'),
                             alternative: true,
                         },
                     ],
                 };
 
-                this.server.send(messageWithAttachment, (error: any, result: any) =>
+                this.smtpClient.send(messageWithAttachment, (error: any, result: any) =>
                     error ? reject(error) : resolve(result),
                 );
             });
 
-            return EmailAttempt.query().insert(
-                new EmailAttempt({
-                    EmailId: email.Id,
-                    Success: true,
-                    Message: '',
+            this.databaseConnection.manager.insert(
+                EmailAttempt,
+                constructObjectFromJSON(EmailAttempt, {
+                    emailId: email.id,
+                    success: true,
+                    message: '',
                 }),
             );
         } catch (error) {
-            return EmailAttempt.query().insert(
-                new EmailAttempt({
-                    EmailId: email.Id,
-                    Success: false,
-                    Message: error.message,
+            this.databaseConnection.manager.insert(
+                EmailAttempt,
+                constructObjectFromJSON(EmailAttempt, {
+                    emailId: email.id,
+                    success: false,
+                    message: error.message,
                 }),
             );
         }
@@ -161,6 +160,8 @@ function stripHTMLTags(input: string) {
 }
 
 async function sqlQueryNumber(sql: string, params: any = {}): Promise<number | null> {
+    return null;
+    /* TODO: implement
     try {
         const result = await knex.raw(sql, params);
         const row = result[0][0];
@@ -170,4 +171,5 @@ async function sqlQueryNumber(sql: string, params: any = {}): Promise<number | n
         console.error(error);
         return null;
     }
+    */
 }

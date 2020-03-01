@@ -13,7 +13,7 @@ export class EmailAttempt {
     emailId: number;
 
     @Column('tinyint', { name: 'Success' })
-    success: number;
+    success: boolean;
 
     @Column('text', { name: 'Message' })
     message: string;

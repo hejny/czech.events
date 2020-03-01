@@ -33,4 +33,25 @@ export const EMAIL_ADDITIONAL_CONFIG = config
     .get('EMAIL_ADDITIONAL_CONFIG')
     .json()
     .default({}).value;
-//export const EMAIL_PORT = config.get('EMAIL_PORT').number().default(25 /*TODO: or 465, 587*/);
+// TODO: remove or use export const EMAIL_PORT = config.get('EMAIL_PORT').number().default(25 /*TODO: or 465, 587*/);
+
+export const EMAIL_LIMIT_SEND_FREQUENCY = config
+    .get('EMAIL_LIMIT_SEND_FREQUENCY')
+    .number()
+    .default(60).value!;
+export const EMAIL_LIMIT_IN_ONE_TICK = config
+    .get('EMAIL_LIMIT_IN_ONE_TICK')
+    .number()
+    .default(2).value!;
+export const EMAIL_LIMIT_RETRY_AFTER = config
+    .get('EMAIL_LIMIT_RETRY_AFTER')
+    .number()
+    .default(3600).value!;
+export const EMAIL_LIMIT_LIVETIME = config
+    .get('EMAIL_LIMIT_LIVETIME')
+    .number()
+    .default(60 * 60 * 24 * 3).value!;
+export const EMAIL_LIMIT_RETRIES = config
+    .get('EMAIL_LIMIT_RETRIES')
+    .number()
+    .default(3).value!;

@@ -14,12 +14,4 @@ export interface IEmailServiceStatus {
         error: number | null;
     };
     limits: IEmailServiceConfigLimits;
-
-    //sendingTicks: IEmailServiceStatusTick[];
-}
-
-// TODO: Maybe remove
-export interface IEmailServiceStatusTick {
-    date: Date;
-    attempts: EmailAttempt[];
 }

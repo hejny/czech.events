@@ -1,4 +1,4 @@
-import { createConnection } from 'typeorm';
+import { createConnection, Connection } from 'typeorm';
 import { Newsletter } from '../src/model/database/Newsletter';
 import { Event } from '../src/model/database/Event';
 import { EventCode } from './../src/model/database/EventCode';
@@ -9,7 +9,7 @@ import { DB_HOST, DB_NAME, DB_PASSWORD, DB_USER, DB_LOGGING, DB_SYNCHRONIZE } fr
 
 // TODO: remove knex and objection
 // TODO: In future use top level await
-export const connectionPromise = createConnection({
+export const databaseConnectionPromise: Promise<Connection> = createConnection({
     type: 'mysql',
     host: DB_HOST,
     username: DB_USER,

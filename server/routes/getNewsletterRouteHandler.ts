@@ -1,13 +1,13 @@
 import { Newsletter } from './../../src/model/database/Newsletter';
 import { RequestHandler } from 'express';
-import { connectionPromise } from '../database';
+import { databaseConnectionPromise } from '../database';
 
 // TODO: In future here can be option to put there an filters
 export const getNewsletterRouteHandler: RequestHandler = async (request, response, next) => {
-    const connection = await connectionPromise;
+    const databaseConnection = await databaseConnectionPromise;
     const { year, month } = request.params;
 
-    const newsletters = await connection.manager.find(Newsletter, { where: { year, month } });
+    const newsletters = await databaseConnection.manager.find(Newsletter, { where: { year, month } });
 
     if (newsletters.length === 1) {
         // TODO: Purge internal IDs
