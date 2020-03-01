@@ -5,19 +5,8 @@ import { EmailAttempt } from '../../../src/model/database/EmailAttempt';
 import { forTime } from 'waitasecond';
 import { Connection } from 'typeorm';
 import SqlString from 'sqlstring';
-import { constructObjectFromJSON } from 'src/utils/constructObjectFromJSON';
-
-const email = require('emailjs');
-
-const successSubSqlNull = `(SELECT MAX(Success) FROM EmailAttempt WHERE EmailAttempt.EmailId=Email.Id)`;
-const successSubSql = `IFNULL(${successSubSqlNull},0)`;
-const attepmtsCountSubSql = `(SELECT COUNT(*) FROM EmailAttempt WHERE EmailAttempt.EmailId=Email.Id)`;
-const lastAttemptTimeSubSql = `(SELECT Created FROM EmailAttempt WHEREEmailAttempt.EmailId=Email.Id UNION ALL SELECT NOW() - INTERVAL 1 YEAR AS Created ORDER BY Created DESC LIMIT 1)`;
-const emailInQueueCondition = `
-TRUE
-AND ${successSubSql} = 0
-AND ${attepmtsCountSubSql} < :retries
-`;
+import { constructObjectFromJSON } from '../../../src/utils/constructObjectFromJSON';
+const email = require('emailjs'); // TODO: Is there some better library?
 
 export class EmailService {
     private smtpClient: any;
@@ -29,8 +18,33 @@ export class EmailService {
 
     public async send(email: Partial<Email>): Promise<void> {
         // TODO: Maybe purge email
-        await this.databaseConnection.manager.insert(Email, constructObjectFromJSON(Email, email));
+        const insertResult = await this.databaseConnection.manager.insert(Email, constructObjectFromJSON(Email, email));
+        console.log('insertResult', insertResult);
         return;
+    }
+
+    private get subSqls() {
+        const { retries, emailLivetime } = this.config.limits;
+
+        // TODO: emailLivetime not implemented
+        // TODO: move to feeders
+
+        const successNull = `(SELECT MAX(Success) FROM EmailAttempt WHERE EmailAttempt.EmailId=Email.Id)`;
+        const success = `IFNULL(${successNull},0)`;
+        const attepmtsCount = `(SELECT COUNT(*) FROM EmailAttempt WHERE EmailAttempt.EmailId=Email.Id)`;
+        const lastAttemptTime = `(SELECT Created FROM EmailAttempt WHERE EmailAttempt.EmailId=Email.Id UNION ALL SELECT NOW() - INTERVAL 1 YEAR AS Created ORDER BY Created DESC LIMIT 1)`;
+        const emailInQueueCondition = `
+        TRUE
+        AND ${success} = 0
+        AND ${attepmtsCount} < ${SqlString.escape(retries)}
+        `;
+        return {
+            successNull,
+            success,
+            attepmtsCount,
+            lastAttemptTime,
+            emailInQueueCondition,
+        };
     }
 
     public async getStatus(): Promise<IEmailServiceStatus> {
@@ -38,15 +52,15 @@ export class EmailService {
             emailCounts: {
                 total: await sqlQueryNumber(`SELECT COUNT(*) FROM Email`),
                 queue: await sqlQueryNumber(
-                    `SELECT COUNT(*) FROM Email WHERE ${emailInQueueCondition}`,
+                    `SELECT COUNT(*) FROM Email WHERE ${this.subSqls.emailInQueueCondition}`,
                     this.config.limits,
                 ),
                 success: await sqlQueryNumber(
-                    `SELECT COUNT(*) FROM Email WHERE ${successSubSql} = 1`,
+                    `SELECT COUNT(*) FROM Email WHERE ${this.subSqls.success} = 1`,
                     this.config.limits,
                 ),
                 error: await sqlQueryNumber(
-                    `SELECT COUNT(*) FROM Email WHERE ${successSubSqlNull} = 0`,
+                    `SELECT COUNT(*) FROM Email WHERE ${this.subSqls.successNull} = 0`,
                     this.config.limits,
                 ),
             },
@@ -72,31 +86,19 @@ export class EmailService {
 
     public async sendingTick(): Promise<void> {
         try {
-            const { emailsInOneTick, retryAfter, emailLivetime, retries } = this.config.limits;
+            const { emailsInOneTick, retryAfter } = this.config.limits;
 
-            /**
-            ,${sendSubSql} as send
-            ,${attepmtsCountSubSql} as attepmtsCount
-            ,${lastAttemptTimeSubSql} as lastAttemptTime
-            */
-            const sqlStructure = `
+            const sql = `
                 SELECT 
                     *
                     FROM Email
-                    WHERE ${emailInQueueCondition}
-                    AND TIMESTAMPDIFF(SECOND,${lastAttemptTimeSubSql},NOW())>:retryAfter
-                    LIMIT :emailsInOneTick
+                    WHERE ${this.subSqls.emailInQueueCondition}
+                    AND TIMESTAMPDIFF(SECOND,${this.subSqls.lastAttemptTime},NOW()) > ${SqlString.escape(retryAfter)}
+                    LIMIT ${SqlString.escape(emailsInOneTick)}
             `;
             // TODO: Maybe random shuffle
 
-            const sql = SqlString.format(sqlStructure, {
-                emailsInOneTick,
-                retryAfter,
-                emailLivetime,
-                retries,
-            });
-
-            const [emailsData] = await this.databaseConnection.manager.query(sql);
+            const emailsData = await this.databaseConnection.manager.query(sql);
 
             console.log('emailsData', emailsData);
 

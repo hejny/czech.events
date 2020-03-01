@@ -10,7 +10,7 @@ import {
     EMAIL_LIMIT_RETRIES,
 } from '../../config';
 import { EmailService } from './EmailService';
-import { databaseConnectionPromise } from 'server/database';
+import { databaseConnectionPromise } from '../../database';
 
 export const emailServicePromise = (async () =>
     new EmailService(
