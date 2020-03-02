@@ -5,7 +5,7 @@ import { stripHTMLTags } from '../stripHTMLTags';
 const email = require('emailjs'); // TODO: Is there some better library?
 
 // TODO: Casing in the name
-export class EmailjsSender implements IEmailServiceSender {
+export class SmtpSender implements IEmailServiceSender {
     private smtpClient: any;
 
     constructor(config: ISmtpConnectionConfig) {
@@ -34,13 +34,13 @@ export class EmailjsSender implements IEmailServiceSender {
             });
 
             return {
-                emailId: email.id,
+                email_id: email.id,
                 success: true,
                 message: '',
             };
         } catch (error) {
             return {
-                emailId: email.id,
+                email_id: email.id,
                 success: false,
                 message: error.message,
             };

@@ -4,10 +4,10 @@ import { databaseConnectionPromise } from '../database';
 
 // TODO: In future here can be option to put there an filters
 export const getNewsletterRouteHandler: RequestHandler = async (request, response, next) => {
-    const connection = await databaseConnectionPromise;
+    const databaseConnection = await databaseConnectionPromise;
     const { uuid } = request.params;
 
-    const newsletters = await connection.manager.find(Newsletter, { where: { uuid } });
+    const newsletters = await databaseConnection.manager.find(Newsletter, { where: { uuid } });
 
     if (newsletters.length === 1) {
         // TODO: Purge internal IDs

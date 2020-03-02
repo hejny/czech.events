@@ -8,6 +8,7 @@ import { getNewslettersRouteHandler } from './routes/getNewsletterRouteHandler';
 import { getNewsletterRouteHandler } from './routes/getNewsletterRouteHandler';
 import { EMAIL_USER } from './config';
 import { emailService } from './utils/EmailService/emailService.instance';
+import { newsletterService } from './utils/NewsletterService/NewsletterService.instance';
 const packageJson = require('../package.json');
 
 export async function createApp(): Promise<{ app: express.Application; server: http.Server }> {
@@ -33,6 +34,10 @@ export async function createApp(): Promise<{ app: express.Application; server: h
     app.get('/newsletters', getNewslettersRouteHandler);
     app.get('/newsletters/:uuid', getNewsletterRouteHandler);
     app.post('/subscribers', subscriberPostRouteHandler);
+
+    app.get('/debug/newsletter/status', async (request, response) => {
+        response.json(await newsletterService.getStatus());
+    });
 
     app.get('/debug/mail/status', async (request, response) => {
         response.json(await emailService.getStatus());

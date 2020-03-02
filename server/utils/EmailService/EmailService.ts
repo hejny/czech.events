@@ -6,15 +6,14 @@ import { forTime } from 'waitasecond';
 import SqlString from 'sqlstring';
 import { constructObjectFromJSON } from '../../../src/utils/constructObjectFromJSON';
 import { databaseConnectionPromise } from '../../database';
-import { stripHTMLTags } from './stripHTMLTags';
 import { IEmailServiceSender } from './methods/IEmailServiceSender';
-import { EmailjsSender } from './methods/EmailjsSender';
+import { SmtpSender } from './methods/SmtpSender';
 
 export class EmailService {
     private sender: IEmailServiceSender;
 
-    constructor(private config: IEmailServiceConfig) {
-        this.sender = new EmailjsSender(config.smtpConnection);
+    constructor(readonly config: IEmailServiceConfig) {
+        this.sender = new SmtpSender(config.smtpConnection);
         this.initSendingLoop();
     }
 
@@ -78,10 +77,9 @@ export class EmailService {
         };
     }
 
-    private async connectToSmtp() {}
-
     private async initSendingLoop() {
         while (true) {
+            // TODO: forTimePersistent in waitasecond library
             await forTime(this.config.limits.sendFrequency * 1000);
             this.sendingTick();
         }
