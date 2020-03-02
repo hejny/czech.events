@@ -13,8 +13,13 @@ export class ApiClient {
         return data.map((data) => constructObjectFromJSON(Event, data));
     }
 
-    async getNewsletter(year: number, month: number): Promise<Newsletter> {
-        const data = await this.get(`/newsletters/${year}/${month}`);
+    async getNewsletters(): Promise<Newsletter[]> {
+        const data = await this.get(`/newsletters`);
+        return data.map((data) => constructObjectFromJSON(Newsletter, data));
+    }
+
+    async getNewsletter(id): Promise<Newsletter> {
+        const data = await this.get(`/newsletters/${id}`);
         return constructObjectFromJSON(Newsletter, data);
     }
 
