@@ -1,12 +1,16 @@
 import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
 
+@Index('uuid', ['uuid'], { unique: true })
 @Index('email', ['email'], {})
 @Index('created', ['created'], {})
 @Index('active', ['active'], {})
-@Entity('Subscriber')
+@Entity('Subscriber', { schema: 'czechevents' })
 export class Subscriber {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;
+
+    @Column('char', { name: 'uuid', nullable: true, unique: true, length: 36 })
+    uuid: string | null;
 
     @Column('varchar', { name: 'email', length: 1000 })
     email: string;

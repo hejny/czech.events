@@ -6,7 +6,7 @@ import { Newsletter } from './Newsletter';
 @Index('event_id', ['eventId'], {})
 @Index('newsletter_id', ['newsletterId'], {})
 @Index('status', ['status'], {})
-@Entity('Event_Newsletter')
+@Entity('Event_Newsletter', {})
 export class EventNewsletter {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;

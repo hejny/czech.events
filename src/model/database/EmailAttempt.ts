@@ -4,16 +4,16 @@ import { Email } from './Email';
 @Index('EmailId', ['emailId'], {})
 @Index('Success', ['success'], {})
 @Index('Created', ['created'], {})
-@Entity('EmailAttempt')
+@Entity('EmailAttempt', {})
 export class EmailAttempt {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id', unsigned: true })
     id: number;
 
-    @Column('int', { name: 'emailId' })
+    @Column('int', { name: 'email_id' })
     emailId: number;
 
     @Column('tinyint', { name: 'success' })
-    success: boolean;
+    success: number;
 
     @Column('text', { name: 'message' })
     message: string;
@@ -26,6 +26,6 @@ export class EmailAttempt {
         (email) => email.emailAttempts,
         { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' },
     )
-    @JoinColumn([{ name: 'emailId', referencedColumnName: 'id' }])
+    @JoinColumn([{ name: 'email_id', referencedColumnName: 'id' }])
     email: Email;
 }

@@ -1,4 +1,5 @@
-import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Column, Entity, Index, JoinColumn, ManyToOne, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
+import { Newsletter } from './Newsletter';
 import { EmailAttempt } from './EmailAttempt';
 
 @Index('Flag', ['flag'], {})
@@ -6,10 +7,17 @@ import { EmailAttempt } from './EmailAttempt';
 @Index('To', ['to'], {})
 @Index('From', ['from'], {})
 @Index('Subject', ['subject'], {})
-@Entity('Email')
+@Index('newsletter_id', ['newsletterId'], {})
+@Entity('Email', {})
 export class Email {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;
+
+    @Column('char', { name: 'uuid', nullable: true, length: 36 })
+    uuid: string | null;
+
+    @Column('int', { name: 'newsletter_id', nullable: true })
+    newsletterId: number | null;
 
     @Column('varchar', { name: 'to', length: 255 })
     to: string;
@@ -34,6 +42,14 @@ export class Email {
 
     @Column('text', { name: 'note', nullable: true })
     note: string | null;
+
+    @ManyToOne(
+        () => Newsletter,
+        (newsletter) => newsletter.emails,
+        { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' },
+    )
+    @JoinColumn([{ name: 'newsletter_id', referencedColumnName: 'id' }])
+    newsletter: Newsletter;
 
     @OneToMany(
         () => EmailAttempt,

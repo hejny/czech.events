@@ -1,7 +1,7 @@
-import { NewsletterContent } from './NewsletterContent';
 import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { EventCode } from './EventCode';
 import { EventNewsletter } from './EventNewsletter';
+import { NewsletterContent } from './NewsletterContent';
 
 export enum EventType {
     CONFERENCE = 'CONFERENCE',
@@ -24,6 +24,7 @@ export enum EventVisibility {
 
 @Index('serializeId', ['serializeId'], { unique: true })
 @Index('name_topic', ['name', 'topic'], { unique: true })
+@Index('uuid', ['uuid'], { unique: true })
 @Index('type', ['type'], {})
 @Index('city', ['city'], {})
 @Index('year', ['year'], {})
@@ -36,6 +37,9 @@ export enum EventVisibility {
 export class Event {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;
+
+    @Column('char', { name: 'uuid', nullable: true, unique: true, length: 36 })
+    uuid: string | null;
 
     @Column('varchar', { name: 'serializeId', unique: true, length: 1000 })
     serializeId: string;
@@ -151,6 +155,6 @@ export class Event {
     }
 
     /*static error(error: Error):Event{
-    return new Event();
-    }*/
+  return new Event();
+  }*/
 }
