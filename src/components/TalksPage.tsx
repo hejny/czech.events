@@ -63,6 +63,7 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
             //console.log('newsletter', newsletter);
             //this.setState({ newsletter });
         } catch (error) {
+            // TODO: Better error then "Failed to fetch"
             this.setState({ error: error.message });
         }
     }

@@ -4,7 +4,6 @@ import http from 'http';
 import { json } from 'body-parser';
 import { subscriberPostRouteHandler } from './routes/subscriberPostRouteHandler';
 import { getEventsRouteHandler } from './routes/getEventsRouteHandler';
-import { EMAIL_USER } from './config';
 import { emailService } from './utils/EmailService/emailService.instance';
 import { newsletterService } from './utils/NewsletterService/newsletterService.instance';
 import { getNewslettersRouteHandler } from './routes/getNewslettersRouteHandler';
@@ -50,7 +49,7 @@ export async function createApp(): Promise<{ app: express.Application; server: h
     app.get('/debug/mail/test/:to', async (request, response) => {
         const to = request.params.to;
         await emailService.send({
-            from: EMAIL_USER,
+            from: 'me+czech.events@pavolhejny.com',
             to,
             subject: 'Test',
             body: `
@@ -68,7 +67,7 @@ export async function createApp(): Promise<{ app: express.Application; server: h
 
     if (true) {
         await emailService.send({
-            from: EMAIL_USER,
+            from: 'me+czech.events@pavolhejny.com',
             to: 'me@pavolhejny.com',
             subject: 'Czech.events server started',
             body: `version: ${packageJson.version}`,

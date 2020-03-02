@@ -7,13 +7,13 @@ import SqlString from 'sqlstring';
 import { constructObjectFromJSON } from '../../../src/utils/constructObjectFromJSON';
 import { databaseConnectionPromise } from '../../database';
 import { IEmailServiceSender } from './methods/IEmailServiceSender';
-import { SmtpSender } from './methods/SmtpSender';
+import { LocalSender } from './methods/LocalSender';
 
 export class EmailService {
     private sender: IEmailServiceSender;
 
     constructor(readonly config: IEmailServiceConfig) {
-        this.sender = new SmtpSender(config.smtpConnection);
+        this.sender = new LocalSender();
         this.initSendingLoop();
     }
 

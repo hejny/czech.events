@@ -3,7 +3,7 @@ import { IEmailServiceSender } from './IEmailServiceSender';
 import { ISmtpConnectionConfig } from '../ISmtpConnectionConfig';
 import { stripHTMLTags } from '../stripHTMLTags';
 import { EmailAttempt } from '../../../../src/model/database/EmailAttempt';
-const email = require('emailjs'); // TODO: Is there some better library?
+const email = require('emailjs'); // TODO: Is there some better library? - nodemailer?
 
 // TODO: Casing in the name
 export class SmtpSender implements IEmailServiceSender {

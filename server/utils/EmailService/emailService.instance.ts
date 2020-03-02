@@ -1,8 +1,4 @@
 import {
-    EMAIL_ADDITIONAL_CONFIG,
-    EMAIL_HOST,
-    EMAIL_USER,
-    EMAIL_PASSWORD,
     EMAIL_LIMIT_SEND_FREQUENCY,
     EMAIL_LIMIT_IN_ONE_TICK,
     EMAIL_LIMIT_RETRY_AFTER,
@@ -12,12 +8,12 @@ import {
 import { EmailService } from './EmailService';
 
 export const emailService = new EmailService({
-    smtpConnection: {
+    /*smtpConnection: {
         user: EMAIL_USER,
         password: EMAIL_PASSWORD,
         host: EMAIL_HOST,
         ...EMAIL_ADDITIONAL_CONFIG,
-    },
+    },*/
     limits: {
         // TODO: To config
         sendFrequency: EMAIL_LIMIT_SEND_FREQUENCY,
