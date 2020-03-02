@@ -6,7 +6,7 @@ import { subscriberPostRouteHandler } from './routes/subscriberPostRouteHandler'
 import { getEventsRouteHandler } from './routes/getEventsRouteHandler';
 import { EMAIL_USER } from './config';
 import { emailService } from './utils/EmailService/emailService.instance';
-import { newsletterService } from './utils/NewsletterService/NewsletterService.instance';
+import { newsletterService } from './utils/NewsletterService/newsletterService.instance';
 import { getNewslettersRouteHandler } from './routes/getNewslettersRouteHandler';
 import { getNewsletterRouteHandler } from './routes/getNewsletterRouteHandler';
 const packageJson = require('../package.json');

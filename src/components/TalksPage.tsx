@@ -59,9 +59,9 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
             //console.log('events', events);
             this.setState({ events });
 
-            const newsletter = await this.props.apiClient.getNewsletter(2020, 2 /* TODO: Unhardcode */);
+            //const newsletter = await this.props.apiClient.getNewsletter(2020, 2 /* TODO: Unhardcode */);
             //console.log('newsletter', newsletter);
-            this.setState({ newsletter });
+            //this.setState({ newsletter });
         } catch (error) {
             this.setState({ error: error.message });
         }

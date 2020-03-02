@@ -22,7 +22,7 @@ export enum EventVisibility {
     FEATURED = 'FEATURED',
 }
 
-@Index('serialize_id', ['serialize_id'], { unique: true })
+@Index('serializeId', ['serializeId'], { unique: true })
 @Index('name_topic', ['name', 'topic'], { unique: true })
 @Index('uuid', ['uuid'], { unique: true })
 @Index('type', ['type'], {})
@@ -41,8 +41,8 @@ export class Event {
     @Column('char', { name: 'uuid', nullable: true, unique: true, length: 36 })
     uuid: string | null;
 
-    @Column('varchar', { name: 'serialize_id', unique: true, length: 1000 })
-    serialize_id: string;
+    @Column('varchar', { name: 'serializeId', unique: true, length: 1000 })
+    serializeId: string;
 
     @Column('varchar', { name: 'name', length: 300 })
     name: string;
