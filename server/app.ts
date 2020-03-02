@@ -4,6 +4,7 @@ import http from 'http';
 import { json } from 'body-parser';
 import { subscriberPostRouteHandler } from './routes/subscriberPostRouteHandler';
 import { getEventsRouteHandler } from './routes/getEventsRouteHandler';
+import { getNewslettersRouteHandler } from './routes/getNewsletterRouteHandler';
 import { getNewsletterRouteHandler } from './routes/getNewsletterRouteHandler';
 import { EMAIL_USER } from './config';
 import { emailService } from './utils/EmailService/emailService.instance';
@@ -11,6 +12,7 @@ const packageJson = require('../package.json');
 
 export async function createApp(): Promise<{ app: express.Application; server: http.Server }> {
     const app = express();
+
     app.use(json());
     app.use(cors());
 
@@ -26,8 +28,10 @@ export async function createApp(): Promise<{ app: express.Application; server: h
         });
     });
 
+    // TODO: In future go only through newsletter route
     app.get('/events', getEventsRouteHandler);
-    app.get('/newsletters/:year/:month', getNewsletterRouteHandler);
+    app.get('/newsletters', getNewslettersRouteHandler);
+    app.get('/newsletters/:uuid', getNewsletterRouteHandler);
     app.post('/subscribers', subscriberPostRouteHandler);
 
     app.get('/debug/mail/status', async (request, response) => {

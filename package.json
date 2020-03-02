@@ -5,7 +5,7 @@
   "homepage": "https://czech.events",
   "private": true,
   "scripts": {
-    "preversion": "npm run prettier-commit && npm run frontend-build",
+    "preversion": "npm run prettier-commit",
     "postversion": "git push && git push --tags && npm run frontend-deploy && npm run server-deploy",
     "prettier": "prettier --config .prettierrc --write \"{src,server,public,scripts}/**/*.{ts,tsx,js,jsx,html,css}\"",
     "prettier-watch": "onchange \"{src,server,public,scripts}/**/*.{ts,tsx,js,jsx,html,css}\" -- prettier --config .prettierrc --write \"{{changed}}\"",
@@ -15,7 +15,7 @@
     "frontend-develop-delete-decorator-metadata": "find ./src/model/database/ -name '*.js' -delete",
     "frontend-build": "npm run frontend-develop-delete-decorator-metadata && react-scripts build",
     "TODO: frontend-test": "react-scripts test",
-    "frontend-deploy": "echo czech.events >>build/CNAME && gh-pages -d build",
+    "frontend-deploy": "npm run frontend-build && echo czech.events >>build/CNAME && gh-pages -d build",
     "server-start": "ts-node --project ./server/tsconfig.json ./server/index.ts",
     "server-develop": "onchange -i \"./{src,server}/**/*.{ts,tsx,js,json}\" -- npm run server-start",
     "server-deploy": "cd ./scripts && npm start",
