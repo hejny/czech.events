@@ -1,5 +1,5 @@
-import { Newsletter } from 'src/model/database/Newsletter';
-import { Subscriber } from 'src/model/database/Subscriber';
+import { Newsletter } from '../../../src/model/database/Newsletter';
+import { Subscriber } from '../../../src/model/database/Subscriber';
 import { forTime } from 'waitasecond';
 import { constructObjectFromJSON } from '../../../src/utils/constructObjectFromJSON';
 import { databaseConnectionPromise } from '../../database';

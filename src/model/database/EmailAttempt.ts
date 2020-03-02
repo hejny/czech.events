@@ -1,7 +1,7 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Email } from './Email';
 
-@Index('EmailId', ['emailId'], {})
+@Index('Email_id', ['email_id'], {})
 @Index('Success', ['success'], {})
 @Index('Created', ['created'], {})
 @Entity('EmailAttempt', {})
@@ -10,10 +10,10 @@ export class EmailAttempt {
     id: number;
 
     @Column('int', { name: 'email_id' })
-    emailId: number;
+    email_id: number;
 
     @Column('tinyint', { name: 'success' })
-    success: number;
+    success: boolean;
 
     @Column('text', { name: 'message' })
     message: string;

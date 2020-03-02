@@ -2,6 +2,7 @@ import { Email } from '../../../../src/model/database/Email';
 import { IEmailServiceSender } from './IEmailServiceSender';
 import { ISmtpConnectionConfig } from '../ISmtpConnectionConfig';
 import { stripHTMLTags } from '../stripHTMLTags';
+import { EmailAttempt } from '../../../../src/model/database/EmailAttempt';
 const email = require('emailjs'); // TODO: Is there some better library?
 
 // TODO: Casing in the name
@@ -12,7 +13,7 @@ export class SmtpSender implements IEmailServiceSender {
         this.smtpClient = email.server.connect(config);
     }
 
-    async send(email: Email) {
+    async send(email: Email): Promise<Partial<EmailAttempt>> {
         try {
             await new Promise((resolve, reject) => {
                 const messageWithAttachment = {

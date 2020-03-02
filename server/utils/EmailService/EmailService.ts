@@ -32,10 +32,10 @@ export class EmailService {
         // TODO: emailLivetime not implemented
         // TODO: move to feeders
 
-        const successNull = `(SELECT MAX(Success) FROM EmailAttempt WHERE EmailAttempt.EmailId=Email.Id)`;
+        const successNull = `(SELECT MAX(Success) FROM EmailAttempt WHERE EmailAttempt.email_id=Email.Id)`;
         const success = `IFNULL(${successNull},0)`;
-        const attepmtsCount = `(SELECT COUNT(*) FROM EmailAttempt WHERE EmailAttempt.EmailId=Email.Id)`;
-        const lastAttemptTime = `(SELECT Created FROM EmailAttempt WHERE EmailAttempt.EmailId=Email.Id UNION ALL SELECT NOW() - INTERVAL 1 YEAR AS Created ORDER BY Created DESC LIMIT 1)`;
+        const attepmtsCount = `(SELECT COUNT(*) FROM EmailAttempt WHERE EmailAttempt.email_id=Email.Id)`;
+        const lastAttemptTime = `(SELECT Created FROM EmailAttempt WHERE EmailAttempt.email_id=Email.Id UNION ALL SELECT NOW() - INTERVAL 1 YEAR AS Created ORDER BY Created DESC LIMIT 1)`;
         const emailInQueueCondition = `
         TRUE
         AND send >= NOW()

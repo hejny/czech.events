@@ -2,7 +2,7 @@ import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } 
 import { Event } from './Event';
 
 @Index('uuid', ['uuid'], { unique: true })
-@Index('event_id', ['eventId'], {})
+@Index('event_id', ['event_id'], {})
 @Index('type', ['type'], {})
 @Index('value', ['value'], {})
 @Entity('EventCode', {})
@@ -14,7 +14,7 @@ export class EventCode {
     uuid: string | null;
 
     @Column('int', { name: 'event_id' })
-    eventId: number;
+    event_id: number;
 
     @Column('enum', { name: 'type', enum: ['DISCOUNT_PERCENT'] })
     type: 'DISCOUNT_PERCENT';

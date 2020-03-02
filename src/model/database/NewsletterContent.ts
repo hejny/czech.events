@@ -13,9 +13,9 @@ export enum NewsletterContentPosition {
 }
 
 @Index('uuid', ['uuid'], { unique: true })
-@Index('newsletter_id', ['newsletterId'], {})
+@Index('newsletter_id', ['newsletter_id'], {})
 @Index('position', ['position'], {})
-@Index('event_id', ['eventId'], {})
+@Index('event_id', ['event_id'], {})
 @Entity('NewsletterContent', {})
 export class NewsletterContent {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
@@ -25,10 +25,10 @@ export class NewsletterContent {
     uuid: string | null;
 
     @Column('int', { name: 'newsletter_id', nullable: true })
-    newsletterId: number | null;
+    newsletter_id: number | null;
 
     @Column('int', { name: 'event_id', nullable: true })
-    eventId: number | null;
+    event_id: number | null;
 
     @Column('enum', {
         name: 'position',

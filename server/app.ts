@@ -4,11 +4,11 @@ import http from 'http';
 import { json } from 'body-parser';
 import { subscriberPostRouteHandler } from './routes/subscriberPostRouteHandler';
 import { getEventsRouteHandler } from './routes/getEventsRouteHandler';
-import { getNewslettersRouteHandler } from './routes/getNewsletterRouteHandler';
-import { getNewsletterRouteHandler } from './routes/getNewsletterRouteHandler';
 import { EMAIL_USER } from './config';
 import { emailService } from './utils/EmailService/emailService.instance';
 import { newsletterService } from './utils/NewsletterService/NewsletterService.instance';
+import { getNewslettersRouteHandler } from './routes/getNewslettersRouteHandler';
+import { getNewsletterRouteHandler } from './routes/getNewsletterRouteHandler';
 const packageJson = require('../package.json');
 
 export async function createApp(): Promise<{ app: express.Application; server: http.Server }> {
@@ -70,8 +70,8 @@ export async function createApp(): Promise<{ app: express.Application; server: h
         await emailService.send({
             from: EMAIL_USER,
             to: 'me@pavolhejny.com',
-            subject: 'Test',
-            body: 'inline',
+            subject: 'Czech.events server started',
+            body: `version: ${packageJson.version}`,
         });
         await emailService.sendingTick();
     }

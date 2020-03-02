@@ -7,7 +7,7 @@ import { EmailAttempt } from './EmailAttempt';
 @Index('To', ['to'], {})
 @Index('From', ['from'], {})
 @Index('Subject', ['subject'], {})
-@Index('newsletter_id', ['newsletterId'], {})
+@Index('newsletter_id', ['newsletter_id'], {})
 @Entity('Email', {})
 export class Email {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
@@ -17,7 +17,7 @@ export class Email {
     uuid: string | null;
 
     @Column('int', { name: 'newsletter_id', nullable: true })
-    newsletterId: number | null;
+    newsletter_id: number | null;
 
     @Column('varchar', { name: 'to', length: 255 })
     to: string;

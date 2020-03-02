@@ -21,8 +21,8 @@ export class Subscriber {
     @Column('varchar', { name: 'source', nullable: true, length: 2000 })
     source: string | null;
 
-    @Column('timestamp', { name: 'created', nullable: true })
-    created: Date | null;
+    @Column('datetime', { name: 'created', default: () => 'CURRENT_TIMESTAMP' })
+    created: Date;
 
     @Column('smallint', { name: 'active', nullable: true, default: () => "'1'" })
     active: number | null;
