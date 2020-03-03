@@ -8,6 +8,7 @@ import { constructObjectFromJSON } from '../../../src/utils/constructObjectFromJ
 import { databaseConnectionPromise } from '../../database';
 import { IEmailServiceSender } from './methods/IEmailServiceSender';
 import { SmtpSender } from './methods/SmtpSender';
+import { forTimeSynced } from '../NewsletterService/NewsletterService';
 
 export class EmailService {
     private sender: IEmailServiceSender;
@@ -79,8 +80,7 @@ export class EmailService {
 
     private async initSendingLoop() {
         while (true) {
-            // TODO: forTimePersistent in waitasecond library
-            await forTime(this.config.limits.sendFrequency * 1000);
+            await forTimeSynced(this.config.limits.sendFrequency * 1000);
             this.sendingTick();
         }
     }

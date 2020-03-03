@@ -6,6 +6,21 @@ import { databaseConnectionPromise } from '../../database';
 import { EmailService } from '../EmailService/EmailService';
 import { INewsletterServiceStatus } from './INewsletterServiceStatus';
 
+export async function forTimeSynced(period: number, shift: number = 0): Promise<void> {
+    const currentTime = new Date().getTime();
+    const wait = period - ((currentTime - shift) % period);
+    await forTime(wait);
+}
+
+/*
+(async () => {
+    while (true) {
+        await forTimeSynced(10 * 1000, 1 * 1000);
+        console.log('Tick', new Date());
+    }
+})();
+/**/
+
 export class NewsletterService {
     constructor(private emailService: EmailService) {
         this.initSendingLoop(true);
@@ -18,14 +33,12 @@ export class NewsletterService {
     private async initSendingLoop(test: boolean) {
         if (test) {
             while (true) {
+                await forTimeSynced(60 * 60 * 1000, 7 * 60 * 1000);
                 this.sendingTick(test);
-                // TODO: forTimePersistent in waitasecond library
-                await forTime(60 * 60 * 1000);
             }
         } else {
             while (true) {
-                // TODO: forTimePersistent in waitasecond library
-                await forTime(this.emailService.config.limits.sendFrequency * 1000);
+                await forTimeSynced(this.emailService.config.limits.sendFrequency * 1000);
                 this.sendingTick(test);
             }
         }
@@ -60,7 +73,8 @@ export class NewsletterService {
 
     private async sendingTickOneNewsletter(newsletter: Newsletter, test: boolean): Promise<void> {
         const databaseConnection = await databaseConnectionPromise;
-        const subscribers = await databaseConnection.manager.find(Subscriber, { where: test ? { test: 1 } : {} });
+        let subscribers = await databaseConnection.manager.find(Subscriber, { where: test ? { test: 1 } : {} });
+        subscribers = [subscribers[0]]; // TODO: Remove after testing
 
         for (const subscriber of subscribers) {
             await this.emailService.send({
