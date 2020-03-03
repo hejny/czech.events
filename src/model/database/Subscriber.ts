@@ -4,7 +4,7 @@ import { Column, Entity, Index, PrimaryGeneratedColumn } from 'typeorm';
 @Index('email', ['email'], {})
 @Index('created', ['created'], {})
 @Index('active', ['active'], {})
-@Entity('Subscriber', { schema: 'czechevents' })
+@Entity('Subscriber', {})
 export class Subscriber {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;
@@ -24,6 +24,9 @@ export class Subscriber {
     @Column('datetime', { name: 'created', default: () => 'CURRENT_TIMESTAMP' })
     created: Date;
 
-    @Column('smallint', { name: 'active', nullable: true, default: () => "'1'" })
+    @Column('tinyint', { name: 'test', default: () => "'0'" })
+    test: boolean;
+
+    @Column('tinyint', { name: 'active', nullable: true, default: () => "'1'" })
     active: number | null;
 }
