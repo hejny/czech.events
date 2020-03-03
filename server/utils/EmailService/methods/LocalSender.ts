@@ -4,11 +4,17 @@ import nodemailer from 'nodemailer';
 import { stripHTMLTags } from '../stripHTMLTags';
 
 // TODO: Maybe delete
-// TODO: Casing in the name
+// TODO: Code to SmtpSender
 export class LocalSender implements IEmailServiceSender {
     async send(email: Email) {
         try {
-            const transporter = nodemailer.createTransport({ sendmail: true });
+            const transporter = nodemailer.createTransport({
+                port: 25,
+                host: 'localhost',
+                tls: {
+                    rejectUnauthorized: false,
+                },
+            });
             const result = await transporter.sendMail({
                 from: email.from,
                 to: email.to,
@@ -22,7 +28,7 @@ export class LocalSender implements IEmailServiceSender {
             return {
                 email_id: email.id,
                 success: true,
-                message: '',
+                message: result.response,
             };
         } catch (error) {
             return {

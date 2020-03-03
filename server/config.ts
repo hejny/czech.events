@@ -28,15 +28,14 @@ export const DB_SYNCHRONIZE = config
 // TODO: Do not run mailService and newsletterService on local PC
 
 //Email SMTP config
-/*export const EMAIL_HOST = config.get('EMAIL_HOST', 'Smtp server').required().value;
+export const EMAIL_HOST = config.get('EMAIL_HOST', 'Smtp server').required().value;
 export const EMAIL_USER = config.get('EMAIL_USER').required().value;
 export const EMAIL_PASSWORD = config.get('EMAIL_PASSWORD').required().value;
 export const EMAIL_ADDITIONAL_CONFIG = config
     .get('EMAIL_ADDITIONAL_CONFIG')
     .json()
     .default({}).value;
-// TODO: remove or use export const EMAIL_PORT = config.get('EMAIL_PORT').number().default(25 /*TODO: or 465, 587* /);
-*/
+// TODO: remove or use export const EMAIL_PORT = config.get('EMAIL_PORT').number().default(25 /*TODO: or 465, 587*/);
 
 export const EMAIL_LIMIT_SEND_FREQUENCY = config
     .get('EMAIL_LIMIT_SEND_FREQUENCY')

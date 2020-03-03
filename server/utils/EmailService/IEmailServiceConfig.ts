@@ -15,7 +15,7 @@ export interface IEmailServiceConfig {
         email: string;
         emailAttempt: string;
     }*/
-    //smtpConnection: ISmtpConnectionConfig;
+    smtpConnection: ISmtpConnectionConfig;
     limits: IEmailServiceConfigLimits;
 }
 

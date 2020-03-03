@@ -1,43 +1,40 @@
 import { Email } from '../../../../src/model/database/Email';
 import { IEmailServiceSender } from './IEmailServiceSender';
-import { ISmtpConnectionConfig } from '../ISmtpConnectionConfig';
+import nodemailer from 'nodemailer';
 import { stripHTMLTags } from '../stripHTMLTags';
-import { EmailAttempt } from '../../../../src/model/database/EmailAttempt';
-const email = require('emailjs'); // TODO: Is there some better library? - nodemailer?
+import { ISmtpConnectionConfig } from '../ISmtpConnectionConfig';
 
-// TODO: Casing in the name
+// TODO: Maybe delete emailjs
 export class SmtpSender implements IEmailServiceSender {
-    private smtpClient: any;
+    constructor(private config: ISmtpConnectionConfig) {}
 
-    constructor(config: ISmtpConnectionConfig) {
-        this.smtpClient = email.server.connect(config);
-    }
-
-    async send(email: Email): Promise<Partial<EmailAttempt>> {
+    async send(email: Email) {
         try {
-            await new Promise((resolve, reject) => {
-                const messageWithAttachment = {
-                    from: email.from,
-                    to: email.to,
-                    subject: email.subject,
-                    text: stripHTMLTags(email.body),
-                    attachment: [
-                        {
-                            data: email.body.split('\n').join('<br/>'),
-                            alternative: true,
-                        },
-                    ],
-                };
-
-                this.smtpClient.send(messageWithAttachment, (error: any, result: any) =>
-                    error ? reject(error) : resolve(result),
-                );
+            const transporter = nodemailer.createTransport({
+                host: this.config.host,
+                //secure: true,
+                auth: {
+                    user: this.config.user,
+                    pass: this.config.password,
+                },
+                //tls: {
+                //    rejectUnauthorized: false,
+                //},
             });
+            const result = await transporter.sendMail({
+                from: email.from,
+                to: email.to,
+                subject: email.subject,
+                text: stripHTMLTags(email.body),
+                html: email.body.split('\n').join('<br/>'),
+            });
+
+            //console.log('result', result);
 
             return {
                 email_id: email.id,
                 success: true,
-                message: '',
+                message: result.response,
             };
         } catch (error) {
             return {
