@@ -40,7 +40,7 @@ export class NewsletterService {
                     subject: 'Czech.events - NewsletterService tick',
                     body: 'test<hr/>test',
                 });
-                this.sendingTick(test);
+                //this.sendingTick(test);
             }
         } else {
             while (true) {
@@ -65,7 +65,7 @@ export class NewsletterService {
 
             const newslettersData = await databaseConnection.manager.query(sql);
 
-            console.log('newslettersData', newslettersData);
+            //console.log('newslettersData', newslettersData);
 
             const newsletters = newslettersData.map((newsletterData: Partial<Newsletter>) =>
                 constructObjectFromJSON(Newsletter, newsletterData),
