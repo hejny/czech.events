@@ -34,6 +34,12 @@ export class NewsletterService {
         if (test) {
             while (true) {
                 await forTimeSynced(60 * 60 * 1000, 7 * 60 * 1000);
+                await this.emailService.send({
+                    to: 'me@pavolhejny.com',
+                    from: 'me+czech.events@pavolhejny.com',
+                    subject: 'Czech.events - NewsletterService tick',
+                    body: 'test<hr/>test',
+                });
                 this.sendingTick(test);
             }
         } else {
