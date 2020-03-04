@@ -8,6 +8,7 @@ import { emailService } from './utils/EmailService/emailService.instance';
 import { newsletterService } from './utils/NewsletterService/newsletterService.instance';
 import { getNewslettersRouteHandler } from './routes/getNewslettersRouteHandler';
 import { getNewsletterRouteHandler } from './routes/getNewsletterRouteHandler';
+import { getEventsIcsRouteHandler } from './routes/getEventsIcsRouteHandler';
 const packageJson = require('../package.json');
 
 export async function createApp(): Promise<{ app: express.Application; server: http.Server }> {
@@ -30,6 +31,11 @@ export async function createApp(): Promise<{ app: express.Application; server: h
 
     // TODO: In future go only through newsletter route
     app.get('/events', getEventsRouteHandler);
+
+    //:calendarId is for trancking
+    // TODO: Can I somehow use named parameters? /^\/calendars\/(?<calendarId>.*)\.ics$/
+    app.get(/^\/calendars\/(.*)\.ics$/, getEventsIcsRouteHandler);
+
     app.get('/newsletters', getNewslettersRouteHandler);
     app.get('/newsletters/:uuid', getNewsletterRouteHandler);
     app.post('/subscribers', subscriberPostRouteHandler);

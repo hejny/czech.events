@@ -154,7 +154,36 @@ export class Event {
         }
     }
 
+    get ics(): string | null {
+        const { name, topic, date } = this;
+        if (!date) {
+            return null;
+        }
+        //TODO: escape
+        const ics = `BEGIN:VEVENT
+UID:${this.uuid}@czech.events
+DTSTAMP:${icsDate(date)}
+DTSTART:${icsDate(date)}
+DTEND:${icsDate(date)}
+SUMMARY:${name}${topic ? ` – ${topic}` : ''}
+CLASS:PUBLIC
+END:VEVENT`;
+        return ics;
+    }
+
     /*static error(error: Error):Event{
   return new Event();
   }*/
+}
+
+function icsDate(date: Date) {
+    const pre =
+        date.getFullYear().toString() +
+        (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) +
+        (date.getDate() + 1 < 10 ? '0' + date.getDate().toString() : date.getDate().toString());
+
+    // TODO: const post = (date.getHours() % 12).toString() + date.getMinutes().toString() + '00';
+    const post = '000000';
+
+    return pre + 'T' + post + 'Z';
 }
