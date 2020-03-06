@@ -33,7 +33,8 @@ export class NewsletterService {
     private async initSendingLoop(test: boolean) {
         if (test) {
             while (true) {
-                await forTimeSynced(10 * 60 * 1000, 7 * 60 * 1000);
+                //await forTimeSynced(10 * 60 * 1000, 7 * 60 * 1000);
+                await forTime(60 * 60 * 1000);
                 await this.emailService.send({
                     to: 'me@pavolhejny.com',
                     from: 'me+czech.events@pavolhejny.com',
