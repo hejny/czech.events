@@ -2,6 +2,9 @@ import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from 'typeor
 import { EventCode } from './EventCode';
 import { EventNewsletter } from './EventNewsletter';
 import { NewsletterContent } from './NewsletterContent';
+import moment from 'moment';
+import 'moment/locale/cs';
+import { icsDate } from '../../utils/icsDate';
 
 export enum EventType {
     CONFERENCE = 'CONFERENCE',
@@ -125,6 +128,11 @@ export class Event {
     get date(): Date | null {
         if (this.year && this.month && this.day) {
             const date = new Date(this.year, this.month - 1, this.day);
+            // TODO: Maybe better?
+            const time = moment(this.time || '00:00 AM', 'hh A').toDate();
+            date.setHours(time.getHours());
+            date.setMinutes(time.getMinutes());
+            // TODO: Maybe seconds?
 
             if (!isNaN(date.getDate())) {
                 return date;
@@ -165,7 +173,7 @@ UID:${this.uuid}@czech.events
 DTSTAMP:${icsDate(date)}
 DTSTART:${icsDate(date)}
 DTEND:${icsDate(date)}
-SUMMARY:${name}${topic ? ` – ${topic}` : ''}
+SUMMARY:${`${name.trim()}${topic ? ` – ${topic.trim()}` : ''}`}
 CLASS:PUBLIC
 END:VEVENT`;
         return ics;
@@ -174,16 +182,4 @@ END:VEVENT`;
     /*static error(error: Error):Event{
   return new Event();
   }*/
-}
-
-function icsDate(date: Date) {
-    const pre =
-        date.getFullYear().toString() +
-        (date.getMonth() + 1 < 10 ? '0' + (date.getMonth() + 1).toString() : (date.getMonth() + 1).toString()) +
-        (date.getDate() + 1 < 10 ? '0' + date.getDate().toString() : date.getDate().toString());
-
-    // TODO: const post = (date.getHours() % 12).toString() + date.getMinutes().toString() + '00';
-    const post = '000000';
-
-    return pre + 'T' + post + 'Z';
 }

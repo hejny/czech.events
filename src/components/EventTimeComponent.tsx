@@ -16,6 +16,7 @@ export function EventTimeComponent({ event }: EventTimeComponentProps) {
 
     try {
         moment.locale('cs');
+        // TODO: From date parsed in event object
         let timeString = moment(time, 'hh A').format('LT');
         if (timeString === 'Invalid date') {
             throw new Error(`Time was parsed as "Invalid date".`);
