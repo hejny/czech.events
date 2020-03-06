@@ -21,7 +21,7 @@ export const getEventsIcsRouteHandler: RequestHandler = async (request, response
         where: { visibility: In([EventVisibility.FEATURED, EventVisibility.VISIBLE]) /* TODO: Is this working? */ },
     });
 
-    const ics = `BEGIN:VCALENDAR
+    let ics = `BEGIN:VCALENDAR
 VERSION:2.0
 PRODID:-//czech.events//calendar//${calendarId}//CS
 ${events
@@ -29,6 +29,8 @@ ${events
     .filter((ics) => ics)
     .join('\n')}
 END:VCALENDAR`;
+
+    ics = ics.split('\n').join('\r\n');
 
     switch (extension) {
         case '.ics':
