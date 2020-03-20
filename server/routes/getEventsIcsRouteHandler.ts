@@ -23,7 +23,7 @@ export const getEventsIcsRouteHandler: RequestHandler = async (request, response
 
     let ics = `BEGIN:VCALENDAR
 VERSION:2.0
-PRODID:-//czech.events//calendar//${calendarId}//CS
+PRODID:-//collboard//calendar//${calendarId}//CS
 ${events
     .map((event) => event.ics)
     .filter((ics) => ics)

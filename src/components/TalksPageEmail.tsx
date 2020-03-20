@@ -65,8 +65,8 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
             {/* <i>
                 PS: <b>Budeme rádi za vaše návrhy a připomínky</b>, můžete <b>odpovědět rovnou na email</b>.<br />
                 PPS: E-mail posíláme na základě Vaší registrace na stránce{' '}
-                <a href="https://czech.events/?utm_source=mail&amp;utm_medium=referral&amp;utm_campaign=2020-02_unsubscribe">
-                    czech.events
+                <a href="https://collboard/?utm_source=mail&amp;utm_medium=referral&amp;utm_campaign=2020-02_unsubscribe">
+                    collboard
                 </a>
                 . Pokud už další email nechcete dostat, napište nám rychlou odpověď.
             </i> */}
@@ -77,7 +77,7 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
             <br />
             <br />
             {/* TODO: Random shuffle */}
-            <a href="https://www.pavolhejny.com/?utm_source=czech.events-mail&amp;utm_medium=referral&amp;utm_campaign=signature">
+            <a href="https://www.pavolhejny.com/?utm_source=collboard-mail&amp;utm_medium=referral&amp;utm_campaign=signature">
                 Pavol Hejný
             </a>
             &nbsp;&amp;&nbsp;

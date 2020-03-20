@@ -1,8 +1,8 @@
 {
-  "name": "czech-events",
+  "name": "collboard",
   "version": "1.2.0",
   "author": "Pavol Hejný & Tereza Texlová",
-  "homepage": "https://czech.events",
+  "homepage": "https://collboard",
   "private": true,
   "scripts": {
     "preversion": "npm run prettier-commit",
@@ -15,7 +15,7 @@
     "frontend-develop-delete-decorator-metadata": "find ./src/model/database/ -name '*.js' -delete",
     "frontend-build": "npm run frontend-develop-delete-decorator-metadata && react-scripts build",
     "TODO: frontend-test": "react-scripts test",
-    "frontend-deploy": "npm run frontend-build && echo czech.events >>build/CNAME && gh-pages -d build",
+    "frontend-deploy": "npm run frontend-build && echo collboard >>build/CNAME && gh-pages -d build",
     "server-start": "ts-node --project ./server/tsconfig.json ./server/index.ts",
     "server-develop": "onchange -i \"./{src,server}/**/*.{ts,tsx,js,json}\" -- npm run server-start",
     "server-deploy": "cd ./scripts && npm start",

@@ -53,7 +53,7 @@ export async function createApp(): Promise<{ app: express.Application; server: h
     app.get('/debug/mail/test/:to', async (request, response) => {
         const to = request.params.to;
         await emailService.send({
-            from: 'me+czech.events@pavolhejny.com',
+            from: 'me+collboard@pavolhejny.com',
             to,
             subject: 'Test',
             body: `
@@ -71,9 +71,9 @@ export async function createApp(): Promise<{ app: express.Application; server: h
 
     if (false) {
         await emailService.send({
-            from: 'me+czech.events@pavolhejny.com',
+            from: 'me+collboard@pavolhejny.com',
             to: 'me@pavolhejny.com',
-            subject: 'Czech.events server started',
+            subject: 'Collboard server started',
             body: `version: ${packageJson.version}`,
         });
         await emailService.sendingTick();

@@ -169,7 +169,7 @@ export class Event {
         }
         //TODO: escape
         const ics = `BEGIN:VEVENT
-UID:${this.uuid}@czech.events
+UID:${this.uuid}@collboard
 DTSTAMP:${icsDate(date)}
 DTSTART:${icsDate(date)}
 DTEND:${icsDate(date)}

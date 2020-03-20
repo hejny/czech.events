@@ -14,7 +14,7 @@ export async function deployApi(remote) {
     await uploadFilesToSsh(remote.credentials, path.join(__dirname, '..', '..'), remoteDir, [
         'server',
         'src',
-        'czech-events.sh',
+        'collboard.sh',
         'package.json',
         'package-lock.json',
     ]);
@@ -33,11 +33,11 @@ export async function deployApi(remote) {
     await client.exec(`/bin/cp -R ${remote.configDir}/. ${remoteDir}`);
     await client.exec(`npm install --production`, false);
 
-    await client.exec(`pm2 stop czech-events`, false);
+    await client.exec(`pm2 stop collboard`, false);
     await client.exec(`npm test`);
 
-    await client.exec(`pm2 delete czech-events`, false);
-    await client.exec(`pm2 start czech-events.sh`);
+    await client.exec(`pm2 delete collboard`, false);
+    await client.exec(`pm2 start collboard.sh`);
     /**/
 
     /**/

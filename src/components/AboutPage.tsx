@@ -10,24 +10,24 @@ export function AboutPage(props: IAboutPageProps) {
             <div className="content about">
                 <div className="front black">
                     <div className="inner">
-                        {/* <h1>Czech.events</h1> */}
+                        {/* <h1>Collboard</h1> */}
 
                         {[
                             {
                                 name: 'Tmavá verze',
-                                src: 'czech.events.black-logo.png',
+                                src: 'collboard.black-logo.png',
                             },
 
                             {
                                 name: 'Světlá verze',
-                                src: 'czech.events.white-logo.png',
+                                src: 'collboard.white-logo.png',
                             },
                         ].map(({ name, src }) => {
                             const url = `${props.selfUrl}/design/logos/${src}`;
                             return (
                                 <div key={src} className="logo">
                                     <a href={url}>
-                                        <img src={url} alt="Czech.events logo" />
+                                        <img src={url} alt="Collboard logo" />
                                     </a>
                                     {`${name} `}
                                     <a href={url} download>
@@ -35,8 +35,8 @@ export function AboutPage(props: IAboutPageProps) {
                                     </a>
                                     <pre>
                                         {`                                     
-<a href="https://czech.events/">
-    <img src="${url}" alt="Czech.events logo" width="200" />
+<a href="https://collboard/">
+    <img src="${url}" alt="Collboard logo" width="200" />
 </a>`.trim()}
                                     </pre>
                                 </div>

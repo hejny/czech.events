@@ -38,8 +38,8 @@ export class NewsletterService {
                 await forTime(60 * 60 * 1000);
                 await this.emailService.send({
                     to: 'me@pavolhejny.com',
-                    from: 'me+czech.events@pavolhejny.com',
-                    subject: 'Czech.events - NewsletterService tick',
+                    from: 'me+collboard@pavolhejny.com',
+                    subject: 'Collboard - NewsletterService tick',
                     body: 'test<hr/>test',
                 });
                 }catch(error){
