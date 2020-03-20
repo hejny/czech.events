@@ -19,6 +19,7 @@
     "TODO: server-start": "ts-node --project ./server/tsconfig.json ./server/index.ts",
     "TODO: server-develop": "onchange -i \"./{src,server}/**/*.{ts,tsx,js,json}\" -- npm run server-start",
     "TODO: server-deploy": "cd ./scripts && npm start",
+    "server-deploy": "",
     "generate-database-models": "cd ./scripts && npm run generate-database-models"
   },
   "repository": {
