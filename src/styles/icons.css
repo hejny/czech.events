@@ -1,71 +1,71 @@
 .icon-cursor:after {
-    background-image: url('./icons/icon-cursor@2x.png');
+    background-image: url('/assets/icons/icon-cursor@2x.png');
 }
 
 .icon-hand:after {
-    background-image: url('./icons/icon-hand@2x.png');
+    background-image: url('/assets/icons/icon-hand@2x.png');
 }
 
 .icon-undo:after {
-    background-image: url('./icons/icon-undo@2x.png');
+    background-image: url('/assets/icons/icon-undo@2x.png');
 }
 
 .icon-redo:after {
-    background-image: url('./icons/icon-redo@2x.png');
+    background-image: url('/assets/icons/icon-redo@2x.png');
 }
 
 .icon-bold:after {
-    background-image: url('./icons/icon-bold@2x.png');
+    background-image: url('/assets/icons/icon-bold@2x.png');
 }
 
 .icon-italic:after {
-    background-image: url('./icons/icon-italic@2x.png');
+    background-image: url('/assets/icons/icon-italic@2x.png');
 }
 
 .icon-underline:after {
-    background-image: url('./icons/icon-underline@2x.png');
+    background-image: url('/assets/icons/icon-underline@2x.png');
 }
 
 .icon-numbers:after {
-    background-image: url('./icons/icon-numbers@2x.png');
+    background-image: url('/assets/icons/icon-numbers@2x.png');
 }
 
 .icon-erase:after {
-    background-image: url('./icons/icon-erase@2x.png');
+    background-image: url('/assets/icons/icon-erase@2x.png');
 }
 
 .icon-pen:after {
-    background-image: url('./icons/icon-pen@2x.png');
+    background-image: url('/assets/icons/icon-pen@2x.png');
 }
 
 .icon-stroke-1:after {
-    background-image: url('./icons/icon-stroke-1@2x.png');
+    background-image: url('/assets/icons/icon-stroke-1@2x.png');
 }
 
 .icon-stroke-2:after {
-    background-image: url('./icons/icon-stroke-2@2x.png');
+    background-image: url('/assets/icons/icon-stroke-2@2x.png');
 }
 
 .icon-stroke-3:after {
-    background-image: url('./icons/icon-stroke-3@2x.png');
+    background-image: url('/assets/icons/icon-stroke-3@2x.png');
 }
 
 .icon-zoom-in:after {
-    background-image: url('./icons/icon-zoom-in@2x.png');
+    background-image: url('/assets/icons/icon-zoom-in@2x.png');
 }
 
 .icon-zoom-out:after {
-    background-image: url('./icons/icon-zoom-out@2x.png');
+    background-image: url('/assets/icons/icon-zoom-out@2x.png');
 }
 
 .icon-add:after {
-    background-image: url('./icons/icon-add@2x.png');
+    background-image: url('/assets/icons/icon-add@2x.png');
 }
 
 .icon-shapes:after {
-    background-image: url('./icons/icon-shapes@2x.png');
+    background-image: url('/assets/icons/icon-shapes@2x.png');
 }
 
 .icon-link:after {
-    background-image: url('./icons/icon-link@2x.png');
+    background-image: url('/assets/icons/icon-link@2x.png');
 }

@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ApiClient } from '../api/ApiClient';
+import { PUBLIC_URL } from '../config';
 
 interface ICollBoardComponentProps {
     apiClient: ApiClient;
@@ -129,9 +130,9 @@ export class CollBoardComponent extends React.Component<ICollBoardComponentProps
                     </div>
                 </div>
                 <div className="menu-wrapper top-ltr">
-                    <img src="./assets/logo-dark.png" className="brand" />
+                    <img src={`${PUBLIC_URL}/assets/logo-dark.png`} alt="CollBoard.com" className="brand" />
                     <div className="menu menu-h d-none d-sm-block">
-                        <input type="text" className="stealth board-name" value="SmashMouthHasBestMusic" />
+                        <input type="text" className="stealth board-name" defaultValue="SmashMouthHasBestMusic" />
                         <button type="button" className="btn btn-primary">
                             Sdílet
                         </button>

@@ -4,5 +4,4 @@ import './styles/board.css';
 import './styles/icons.css';
 import './styles/common.css';
 
-
 (window as any).CollBoardApp = CollBoardApp;
