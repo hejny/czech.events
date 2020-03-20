@@ -15,7 +15,7 @@
     "frontend-develop-delete-decorator-metadata": "find ./src/model/database/ -name '*.js' -delete",
     "frontend-build": "npm run frontend-develop-delete-decorator-metadata && react-scripts build",
     "TODO: frontend-test": "react-scripts test",
-    "frontend-deploy": "npm run frontend-build && echo collboard >>build/CNAME && gh-pages -d build",
+    "frontend-deploy": "npm run frontend-build && echo app.collboard.com >>build/CNAME && gh-pages -d build",
     "TODO: server-start": "ts-node --project ./server/tsconfig.json ./server/index.ts",
     "TODO: server-develop": "onchange -i \"./{src,server}/**/*.{ts,tsx,js,json}\" -- npm run server-start",
     "TODO: server-deploy": "cd ./scripts && npm start",
