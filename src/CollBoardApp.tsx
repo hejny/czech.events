@@ -3,19 +3,16 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Router, Switch } from 'react-router-dom';
 import { ApiClient } from './api/ApiClient';
-import { AboutPage } from './components/AboutPage';
-import { TalksPage } from './components/TalksPage';
-import './index.css';
 import * as serviceWorker from './serviceWorker';
-import { Partners } from './components/Partners';
+import { CollBoardComponent } from './components/CollBoardComponent';
 
 // TODO: Join app and createApp
-export class EventsApp {
+export class CollBoardApp {
     private apiClient: ApiClient;
     private history: History;
 
     constructor(private rootElement: HTMLDivElement, private apiUrl: string, private selfUrl: string) {
-        console.log(`Starting EventsApp.`);
+        console.log(`Starting CollBoardApp.`);
         console.log('rootElement', rootElement);
         console.log('apiUrl', apiUrl);
         console.log('selfUrl', selfUrl);
@@ -29,14 +26,8 @@ export class EventsApp {
         ReactDOM.render(
             <Router {...{ history: this.history }}>
                 <Switch>
-                    <Route exact path="/">
-                        <TalksPage {...{ apiClient: this.apiClient, selfUrl: this.selfUrl }} />
-                    </Route>
-                    <Route exact path="/about">
-                        <AboutPage {...{ selfUrl: this.selfUrl }} />
-                    </Route>
-                    <Route exact path="/partners">
-                        <Partners {...{ selfUrl: this.selfUrl }} />
+                    <Route exact path="/:boardId">
+                        <CollBoardComponent {...{ apiClient: this.apiClient }} />
                     </Route>
                 </Switch>
             </Router>,
