@@ -1,6 +1,6 @@
 {
   "name": "collboard",
-  "version": "1.2.0",
+  "version": "0.1.0",
   "author": "Pavol Hejný & Tereza Texlová",
   "homepage": "https://collboard",
   "private": true,
@@ -16,9 +16,9 @@
     "frontend-build": "npm run frontend-develop-delete-decorator-metadata && react-scripts build",
     "TODO: frontend-test": "react-scripts test",
     "frontend-deploy": "npm run frontend-build && echo collboard >>build/CNAME && gh-pages -d build",
-    "server-start": "ts-node --project ./server/tsconfig.json ./server/index.ts",
-    "server-develop": "onchange -i \"./{src,server}/**/*.{ts,tsx,js,json}\" -- npm run server-start",
-    "server-deploy": "cd ./scripts && npm start",
+    "TODO: server-start": "ts-node --project ./server/tsconfig.json ./server/index.ts",
+    "TODO: server-develop": "onchange -i \"./{src,server}/**/*.{ts,tsx,js,json}\" -- npm run server-start",
+    "TODO: server-deploy": "cd ./scripts && npm start",
     "generate-database-models": "cd ./scripts && npm run generate-database-models"
   },
   "repository": {
