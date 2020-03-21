@@ -3,6 +3,7 @@ import { MultiTouchController, BoundingBox } from 'touchcontroller';
 
 export class MoveTool extends AbstractTool {
     setListeners() {
+        // TODO: Maybe there should be only one instance of MultiTouchController as it is with TouchController
         const multiTouchController = new MultiTouchController(this.touchController, (frame) => frame.element);
 
         multiTouchController.multiTouches.subscribe((multitouch) => {
