@@ -15,10 +15,10 @@ export class CollBoardApp {
     private touchController: TouchController;
 
     constructor(private rootElement: HTMLDivElement, private apiUrl: string, private selfUrl: string) {
-        console.log(`Starting CollBoardApp.`);
-        console.log('rootElement', rootElement);
-        console.log('apiUrl', apiUrl);
-        console.log('selfUrl', selfUrl);
+        console.info(`Starting CollBoardApp.`);
+        console.info('rootElement', rootElement);
+        console.info('apiUrl', apiUrl);
+        console.info('selfUrl', selfUrl);
         this.run();
     }
 

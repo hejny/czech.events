@@ -27,14 +27,14 @@ export class CollBoardComponent extends React.Component<ICollBoardComponentProps
     constructor(props: ICollBoardComponentProps) {
         super(props);
 
-        // TODO: Maybe somewhere should be unsubscribe
+        // TODO: optimization: Maybe somewhere should be unsubscribe
         this.props.touchController.touches.subscribe((touch) => {
             //console.log('touch', touch);
 
             let points: Vector2[] = [];
             points.push(touch.firstFrame.position);
 
-            // TODO: Maybe somewhere should be unsubscribe
+            // TODO: optimization: Maybe somewhere should be unsubscribe
             touch.frames.subscribe(
                 (frame) => {
                     //console.log('frame', frame);
@@ -60,7 +60,7 @@ export class CollBoardComponent extends React.Component<ICollBoardComponentProps
     /**/
 
     render() {
-        // TODO: Break to multiple components
+        // TODO: refactoring: Break to multiple components
         return (
             <>
                 <div className="board-container">
