@@ -9,9 +9,11 @@ import uuid from 'uuid';
 import { TouchController } from 'touchcontroller';
 import { observe } from 'mobx';
 import { BoardState } from './model/BoardState';
+import { AppState } from './model/AppState';
 
 // TODO: Join app and createApp
 export class CollBoardApp {
+    private appState: AppState;
     private boardState: BoardState;
     private apiClient: ApiClient;
     private history: History;
@@ -27,6 +29,7 @@ export class CollBoardApp {
 
     private async run() {
         this.history = createHashHistory();
+        this.appState = new AppState();
         this.boardState = new BoardState();
         this.apiClient = new ApiClient(this.apiUrl);
         this.touchController = new TouchController([], window.document.body);
@@ -43,6 +46,7 @@ export class CollBoardApp {
                     <Route exact path="/:boardId">
                         <RootComponent
                             {...{
+                                appState: this.appState,
                                 boardState: this.boardState,
                                 apiClient: this.apiClient,
                                 touchController: this.touchController,
