@@ -33,9 +33,7 @@ export class CollBoardApp {
                     <Route exact path="/:boardId">
                         <CollBoardComponent {...{ apiClient: this.apiClient }} />
                     </Route>
-                    <Route path="*">
-                        Not found
-                    </Route>
+                    <Route path="*">Not found</Route>
                 </Switch>
             </Router>,
             this.rootElement,
