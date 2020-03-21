@@ -65,9 +65,6 @@ body {
 .menu-v {
     flex-direction: column;
 }
-.object:not(.selected) .menu-popup {
-    display: none;
-}
 .menu-popup {
     position: absolute;
     top: -65px;
@@ -141,8 +138,9 @@ body {
     display: block;
     border-radius: 3px;
 }
-.icon.inactive {
+.inactive {
     opacity: 0.3;
+    cursor: not-allowed;
 }
 .icon:not(.inactive) {
     cursor: pointer;
@@ -213,6 +211,13 @@ body {
     font-size: 0.8rem;
     text-align: center;
     color: #4e4e4e;
+}
+.click-detector {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
 /* Responsive */
