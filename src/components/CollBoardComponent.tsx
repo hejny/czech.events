@@ -103,6 +103,8 @@ export class CollBoardComponent extends React.Component<ICollBoardComponentProps
                     >
                         {this.state.items.map((item) => item.render())}
 
+                        {/*
+
                         <div className="object selected" style={{ position: 'absolute', top: 200, left: 300 }}>
                             <svg width="100" height="120" xmlns="http://www.w3.org/2000/svg">
                                 <g>
@@ -146,6 +148,7 @@ export class CollBoardComponent extends React.Component<ICollBoardComponentProps
                                 <div className="icon icon-add"></div>
                             </div>
                         </div>
+                        */}
                     </div>
                 </div>
                 <MenuWrapper position="right">

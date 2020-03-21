@@ -61,6 +61,7 @@ export class Freehand extends CollBoardObject {
                             fillOpacity="null"
                             strokeOpacity="null"
                             strokeWidth="3"
+                            stroke-linecap="round"
                             stroke="#000"
                             fill="none"
                         />
