@@ -26,7 +26,6 @@ interface IIconProps {
     className?: string;
     active?: boolean;
     inactive?: boolean;
-    children?: JSX.Element[] | JSX.Element;
 }
 
 interface IIconState {
@@ -61,11 +60,10 @@ export class Icon extends React.Component<IIconProps, IIconState> {
     }
 
     render() {
-        const { icon, className, active, inactive, children } = this.props;
+        const { icon, className, active, inactive } = this.props;
         return (
             <div className={classNames('icon', 'icon-' + icon, active && 'active', inactive && 'inactive', className)}>
                 <div className="click-detector" onClick={() => this.clickHandler()}></div>
-                {children && this.state.submenuOpen && <PopupMenu orientation="right">{children}</PopupMenu>}
             </div>
         );
     }
