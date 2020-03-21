@@ -1,10 +1,10 @@
 import SocketIO from 'socket.io-client';
-import { AbstractObject } from '../model/objects/AbstractObject';
 //import { Observable } from 'rxjs';
 import { forTime } from 'waitasecond';
 import { Freehand } from '../model/objects/Freehand';
 import { Vector2 } from 'touchcontroller';
 import { BoardState } from '../model/BoardState';
+import { observe } from 'mobx';
 
 // TODO: Maybe this should be named driver
 export class BoardApiClient {
@@ -20,8 +20,28 @@ export class BoardApiClient {
     }
 
     private async syncObjects() {
+        /*observe(this.boardState.objects, (change: any) => {
+            if (change.type === 'splice') {
+                console.log('change', change.added);
+
+                const object = change.added[0];
+
+                observe(object, (change: any) => {
+                    console.log('change', change);
+                });
+            }
+        });*/
+
+        observe(this.boardState, (change) => {
+            console.log('change', change);
+        });
+
+        /*this.socket.on('object', (data: Message) => {
+            this.boardState.objects.push(object);
+        });*/
+
         while (true) {
-            await forTime(2000);
+            await forTime(60 * 1000); // TODO: forTimeSynced
 
             const object = new Freehand(
                 // TODO: Function for creation mocking objects

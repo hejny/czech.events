@@ -6,9 +6,6 @@ import { Transformation, Vector2 } from 'touchcontroller';
  * AppState represents data of the current user session
  */
 export class AppState {
-    //This is hack for force updating, maybe only one version for AppState and BoardState
-    @observable version: number = 0;
-
     @observable tool: ToolName = ToolName.Draw;
 
     // This represents observer view on the current board, Every user can have different. For example every user can have different position on the board.

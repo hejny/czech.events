@@ -32,7 +32,8 @@ export class DrawTool extends AbstractTool {
                                 .translate /* TODO: There should be some apply function in touchcontroller*/,
                         ),
                     );
-                    this.boardState.version++;
+                    this.boardState.updateTick();
+                    objectInProcess.updateTick();
                 },
                 () => {},
                 () => {
