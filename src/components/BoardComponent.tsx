@@ -19,7 +19,13 @@ export class BoardComponent extends React.Component<IBoardComponentProps, IBoard
             <div className="board-container">
                 <div
                     className="board"
-                    style={{ width: '1000%', height: '1000%', top: 0, left: 0, cursor: 'crosshair' }}
+                    style={{
+                        width: '1000%',
+                        height: '1000%',
+                        top: 0,
+                        left: 0,
+                        cursor: 'crosshair' /*TODO: Cursor shuld behave according to current tool*/,
+                    }}
                     ref={(element) => {
                         if (!element) return;
                         try {

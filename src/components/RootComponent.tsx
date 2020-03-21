@@ -36,6 +36,7 @@ export class RootComponent extends React.Component<IRootComponentProps, IRootCom
 
         // TODO: optimization: Maybe somewhere should be unsubscribe
         this.props.touchController.touches.subscribe((touch) => {
+            if (this.state.tool !== Tool.Draw) return;
             //console.log('touch', touch);
 
             const objectInProcess = new Freehand([touch.firstFrame.position], 'red', 2);
