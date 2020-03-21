@@ -18,13 +18,11 @@ interface IRootComponentProps {
 }
 
 interface IRootComponentState {
-    // TODO: As MobXobject
-    items: CollBoardObject[];
-    tempItem: CollBoardObject | null;
+    objectInProcess: CollBoardObject | null;
 }
 @observer
 export class RootComponent extends React.Component<IRootComponentProps, IRootComponentState> {
-    state: IRootComponentState = { items: [], tempItem: null };
+    state: IRootComponentState = { objectInProcess: null };
 
     /**/
     constructor(props: IRootComponentProps) {
@@ -46,15 +44,15 @@ export class RootComponent extends React.Component<IRootComponentProps, IRootCom
 
                     points.push(frame.position);
 
-                    this.setState({ tempItem: new Freehand(points, 'red', 2) });
+                    this.setState({ objectInProcess: new Freehand(points, 'red', 2) });
                 },
                 () => {},
                 () => {
                     //console.log('item', item);
 
+                    this.props.boardState.objects.push(this.state.objectInProcess);
                     this.setState({
-                        items: [...this.state.items, new Freehand(points, 'red', 2)],
-                        tempItem: null,
+                        objectInProcess: null,
                     });
                 },
             );
@@ -82,8 +80,8 @@ export class RootComponent extends React.Component<IRootComponentProps, IRootCom
                             }
                         }}
                     >
-                        {this.state.items.map((item) => item.render())}
-                        {this.state.tempItem && this.state.tempItem.render()}
+                        {this.props.boardState.objects.map((item) => item.render())}
+                        {this.state.objectInProcess && this.state.objectInProcess.render()}
 
                         {/*
 

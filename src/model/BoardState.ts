@@ -5,5 +5,5 @@ export class BoardState {
     @observable
     name: string = 'Nástěnka 1.A';
     @observable
-    objects: CollBoardObject[];
+    objects: CollBoardObject[] = [];
 }
