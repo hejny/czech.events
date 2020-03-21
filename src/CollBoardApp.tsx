@@ -1,10 +1,11 @@
 import { createHashHistory, History } from 'history';
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Route, Router, Switch } from 'react-router-dom';
+import { Route, Router, Switch, Redirect } from 'react-router-dom';
 import { ApiClient } from './api/ApiClient';
 import * as serviceWorker from './serviceWorker';
 import { CollBoardComponent } from './components/CollBoardComponent';
+import uuid from 'uuid';
 
 // TODO: Join app and createApp
 export class CollBoardApp {
@@ -26,8 +27,14 @@ export class CollBoardApp {
         ReactDOM.render(
             <Router {...{ history: this.history }}>
                 <Switch>
+                    <Route exact path="/">
+                        <Redirect to={`/${uuid.v4()}`} />
+                    </Route>
                     <Route exact path="/:boardId">
                         <CollBoardComponent {...{ apiClient: this.apiClient }} />
+                    </Route>
+                    <Route path="*">
+                        Not found
                     </Route>
                 </Switch>
             </Router>,
