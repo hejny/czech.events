@@ -11,23 +11,23 @@ import { Freehand } from '../model/objects/Freehand';
 import { BoardState } from '../model/BoardState';
 import { observer } from 'mobx-react';
 
-interface ICollBoardComponentProps {
+interface IRootComponentProps {
     boardState: BoardState;
     apiClient: ApiClient;
     touchController: TouchController;
 }
 
-interface ICollBoardComponentState {
+interface IRootComponentState {
     // TODO: As MobXobject
     items: CollBoardObject[];
     tempItem: CollBoardObject | null;
 }
 @observer
-export class CollBoardComponent extends React.Component<ICollBoardComponentProps, ICollBoardComponentState> {
-    state: ICollBoardComponentState = { items: [], tempItem: null };
+export class RootComponent extends React.Component<IRootComponentProps, IRootComponentState> {
+    state: IRootComponentState = { items: [], tempItem: null };
 
     /**/
-    constructor(props: ICollBoardComponentProps) {
+    constructor(props: IRootComponentProps) {
         super(props);
 
         // TODO: optimization: Maybe somewhere should be unsubscribe

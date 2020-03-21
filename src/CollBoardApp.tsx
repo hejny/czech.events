@@ -4,7 +4,7 @@ import ReactDOM from 'react-dom';
 import { Route, Router, Switch, Redirect } from 'react-router-dom';
 import { ApiClient } from './api/ApiClient';
 import * as serviceWorker from './serviceWorker';
-import { CollBoardComponent } from './components/CollBoardComponent';
+import { RootComponent } from './components/RootComponent';
 import uuid from 'uuid';
 import { TouchController } from 'touchcontroller';
 import { observe } from 'mobx';
@@ -41,7 +41,7 @@ export class CollBoardApp {
                         <Redirect to={`/${uuid.v4()}`} />
                     </Route>
                     <Route exact path="/:boardId">
-                        <CollBoardComponent
+                        <RootComponent
                             {...{
                                 boardState: this.boardState,
                                 apiClient: this.apiClient,
