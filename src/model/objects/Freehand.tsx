@@ -42,7 +42,7 @@ export class Freehand extends AbstractObject {
         this.maxY = Math.max.apply(null, yVals);
     }
 
-    render(transformation: Transformation) {
+    render() {
         this.recountBoundingBox();
         return (
             <div

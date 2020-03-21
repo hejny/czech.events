@@ -41,7 +41,19 @@ export class BoardComponent extends React.Component<IBoardComponentProps, IBoard
                     }}
                 >
                     <div style={{ display: 'none' }}>{this.props.boardState.version}</div>
-                    {this.props.boardState.objects.map((item) => item.render(this.props.appState.transformation))}
+                    {this.props.boardState.objects.map((item) => (
+                        <div
+                            key={item.uuid}
+                            className="object-transform-wrapper"
+                            style={{
+                                position: 'absolute',
+                                left: this.props.appState.transformation.translate.x,
+                                top: this.props.appState.transformation.translate.y,
+                            }}
+                        >
+                            {item.render()}
+                        </div>
+                    ))}
 
                     {/*
     

@@ -9,5 +9,5 @@ export abstract class AbstractObject {
         this.uuid = uuid.v4();
     }
 
-    abstract render(transformation: Transformation): JSX.Element;
+    abstract render(): JSX.Element;
 }

@@ -3,22 +3,23 @@ import { MultiTouchController, BoundingBox } from 'touchcontroller';
 
 export class MoveTool extends AbstractTool {
     setListeners() {
-        if (this.appState.tool !== ToolName.Move) return;
-
-        const multiTouchController = new MultiTouchController(this.touchController, (frame) => {
-            console.log('frame', frame);
-        });
+        const multiTouchController = new MultiTouchController(this.touchController, (frame) => frame.element);
 
         multiTouchController.multiTouches.subscribe((multitouch) => {
             //if (typeof multitouch.element === 'undefined') return;
             //let draggingElement = multitouch.element;
+
+            if (this.appState.tool !== ToolName.Move) return;
+
+            console.log('multitouch', multitouch);
 
             multitouch.transformations(BoundingBox.One()).subscribe(
                 (transformation) => {
                     console.log('transformation', transformation);
 
                     // TODO: Sanitize transformation - remove scale and rotation
-                    this.appState.transformation.add(transformation);
+                    this.appState.transformation = this.appState.transformation.add(transformation);
+                    //TODO: maybe use addInPlace in tranformation and use this version hack: this.appState.version++;
 
                     //transformation.applyOnElement(draggingElement);
                 },
