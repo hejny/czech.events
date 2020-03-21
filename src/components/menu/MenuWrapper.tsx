@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { classNames } from '../tools/classNames';
+import { classNames } from '../../utils/classNames';
 
 interface IMenuWrapperProps {
     position: 'left' | 'right' | 'top-ltr' | 'top-rtl' | 'bottom-ltr' | 'bottom-rtl';
