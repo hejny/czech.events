@@ -64,10 +64,7 @@ export class Icon extends React.Component<IIconProps, IIconState> {
         const { icon, className, active, inactive, children } = this.props;
         return (
             <div className={classNames('icon', 'icon-' + icon, active && 'active', inactive && 'inactive', className)}>
-                <div
-                    className="click-detector"
-                    onClick={() => this.clickHandler()}
-                ></div>
+                <div className="click-detector" onClick={() => this.clickHandler()}></div>
                 {children && this.state.submenuOpen && <PopupMenu orientation="right">{children}</PopupMenu>}
             </div>
         );

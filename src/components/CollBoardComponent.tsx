@@ -2,11 +2,12 @@ import * as React from 'react';
 import { ApiClient } from '../api/ApiClient';
 import { PUBLIC_URL } from '../config';
 import { TouchController, Vector2 } from 'touchcontroller';
-import uuid from 'uuid';
 import { MenuWrapper } from './menu/MenuWrapper';
 import { Icon } from './menu/Icon';
 import { Separator } from './menu/Separator';
 import { Menu } from './menu/Menu';
+import { CollBoardObject } from './objects/CollBoardObject';
+import { Freehand } from './objects/Freehand';
 
 interface ICollBoardComponentProps {
     apiClient: ApiClient;
@@ -14,13 +15,7 @@ interface ICollBoardComponentProps {
 
 interface ICollBoardComponentState {
     // TODO: As MobXobject
-    items: IBoardItem[];
-}
-
-interface IBoardItem {
-    // TODO: should be also different things - text, image, ...
-    uuid: string;
-    points: Vector2[];
+    items: CollBoardObject[];
 }
 
 export class CollBoardComponent extends React.Component<ICollBoardComponentProps, ICollBoardComponentState> {
@@ -36,10 +31,8 @@ export class CollBoardComponent extends React.Component<ICollBoardComponentProps
         touchController.touches.subscribe((touch) => {
             //console.log('touch', touch);
 
-            const item: IBoardItem = {
-                uuid: uuid.v4(),
-                points: [touch.firstFrame.position],
-            };
+            let points: Vector2[] = [];
+            points.push(touch.firstFrame.position);
 
             touch.frames.subscribe(
                 (frame) => {
@@ -47,14 +40,14 @@ export class CollBoardComponent extends React.Component<ICollBoardComponentProps
                     //console.log('frame.position', frame.position);
                     //console.log('frame.positionRelative', frame.positionRelative);
 
-                    item.points.push(frame.position);
+                    points.push(frame.position);
                 },
                 () => {},
                 () => {
                     //console.log('item', item);
 
                     this.setState({
-                        items: [...this.state.items, item],
+                        items: [...this.state.items, new Freehand(points, 'red', 2)],
                     });
                 },
             );
@@ -108,57 +101,9 @@ export class CollBoardComponent extends React.Component<ICollBoardComponentProps
                             */
                         }}
                     >
-                        {this.state.items.map((item) => {
-                            const padding = 10;
+                        {this.state.items.map((item) => item.render())}
 
-                            const xVals = item.points.map((point) => point.x);
-                            const yVals = item.points.map((point) => point.y);
-
-                            const minX = Math.min.apply(null, xVals);
-                            const maxX = Math.max.apply(null, xVals);
-                            const minY = Math.min.apply(null, yVals);
-                            const maxY = Math.max.apply(null, yVals);
-
-                            return (
-                                <div
-                                    key={item.uuid}
-                                    className="object"
-                                    style={{
-                                        position: 'absolute',
-                                        left: minX - padding,
-                                        top: minY - padding,
-                                        border: '2px dotted red',
-                                    }}
-                                >
-                                    <svg
-                                        width={maxX - minX + 2 * padding}
-                                        height={maxY - minY + 2 * padding}
-                                        xmlns="http://www.w3.org/2000/svg"
-                                    >
-                                        <g>
-                                            <path
-                                                d={item.points
-                                                    .map((point, i) => {
-                                                        const pointRelative = point.subtract(
-                                                            new Vector2(minX - padding, minY - padding),
-                                                        );
-                                                        return `${i === 0 ? 'M' : 'L'}${pointRelative.x} ${
-                                                            pointRelative.y
-                                                        }`;
-                                                    })
-                                                    .join(' ')}
-                                                id={item.uuid}
-                                                fillOpacity="null"
-                                                strokeOpacity="null"
-                                                strokeWidth="3"
-                                                stroke="#000"
-                                                fill="none"
-                                            />
-                                        </g>
-                                    </svg>
-                                </div>
-                            );
-                        })}
+                        {/*
 
                         <div className="object selected" style={{ position: 'absolute', top: 200, left: 300 }}>
                             <svg width="100" height="120" xmlns="http://www.w3.org/2000/svg">
@@ -203,6 +148,7 @@ export class CollBoardComponent extends React.Component<ICollBoardComponentProps
                                 <div className="icon icon-add"></div>
                             </div>
                         </div>
+                        */}
                     </div>
                 </div>
                 <MenuWrapper position="right">
