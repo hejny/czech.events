@@ -10,3 +10,5 @@ export function ___Component(props: I___ComponentProps) {
         </>
     );
 }
+
+// TODO: Maybe not use functional component in this project

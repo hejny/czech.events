@@ -5,27 +5,19 @@ import { Vector2 } from 'touchcontroller';
 const SVG_PADDING = 10;
 
 export class Freehand extends CollBoardObject {
-    points: Vector2[];
-    color: string;
-    weight: number;
-    minX: number;
-    maxX: number;
-    minY: number;
-    maxY: number;
+    public points: Vector2[];
+    public color: string;
+    public weight: number;
+    private minX: number;
+    private maxX: number;
+    private minY: number;
+    private maxY: number;
 
     constructor(points: Vector2[], color: string, weight: number) {
         super();
         this.points = points;
         this.color = color;
         this.weight = weight;
-
-        const xVals = points.map((point) => point.x);
-        const yVals = points.map((point) => point.y);
-
-        this.minX = Math.min.apply(null, xVals);
-        this.maxX = Math.max.apply(null, xVals);
-        this.minY = Math.min.apply(null, yVals);
-        this.maxY = Math.max.apply(null, yVals);
     }
 
     get path(): string {
@@ -37,7 +29,20 @@ export class Freehand extends CollBoardObject {
             .join(' ');
     }
 
+    private recountBoundingBox() {
+        // TODO: Maybe use BoundingBox from TouchController
+
+        const xVals = this.points.map((point) => point.x);
+        const yVals = this.points.map((point) => point.y);
+
+        this.minX = Math.min.apply(null, xVals);
+        this.maxX = Math.max.apply(null, xVals);
+        this.minY = Math.min.apply(null, yVals);
+        this.maxY = Math.max.apply(null, yVals);
+    }
+
     render() {
+        this.recountBoundingBox();
         return (
             <div
                 key={this.uuid}
