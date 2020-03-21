@@ -17,11 +17,18 @@ interface IRootComponentProps {
     touchController: TouchController;
 }
 
-interface IRootComponentState {}
+interface IRootComponentState {
+    tool: Tool;
+}
+
+enum Tool {
+    Move,
+    Draw,
+}
 
 @observer
 export class RootComponent extends React.Component<IRootComponentProps, IRootComponentState> {
-    state: IRootComponentState = { objectInProcess: null };
+    state: IRootComponentState = { tool: Tool.Draw };
 
     /**/
     constructor(props: IRootComponentProps) {
@@ -86,8 +93,16 @@ export class RootComponent extends React.Component<IRootComponentProps, IRootCom
                 <MenuWrapper position="bottom-ltr">
                     <Menu orientation="horizontal">
                         <Icon icon="cursor" inactive />
-                        <Icon icon="hand" inactive />
-                        <Icon icon="pen" active>
+                        <Icon
+                            icon="hand"
+                            active={this.state.tool === Tool.Move}
+                            onClick={() => this.setState({ tool: Tool.Move })}
+                        />
+                        <Icon
+                            icon="pen"
+                            active={this.state.tool === Tool.Draw}
+                            onClick={() => this.setState({ tool: Tool.Draw })}
+                        >
                             {/*
                             <div className="icon icon-stroke-1"></div>
                             <div className="icon icon-stroke-2"></div>
