@@ -1,10 +1,10 @@
 import * as React from 'react';
-import { CollBoardObject } from './CollBoardObject';
+import { AbstractObject } from './AbstractObject';
 import { Vector2 } from 'touchcontroller';
 
 const SVG_PADDING = 10;
 
-export class Freehand extends CollBoardObject {
+export class Freehand extends AbstractObject {
     public points: Vector2[];
     public color: string;
     public weight: number;

@@ -11,7 +11,7 @@ import { BoardState } from '../model/BoardState';
 import { observer } from 'mobx-react';
 import { BoardComponent } from './BoardComponent';
 import { AppState } from '../model/AppState';
-import { Tool } from '../tools/Tool';
+import { ToolName } from '../tools/AbstractTool';
 
 interface IRootComponentProps {
     appState: AppState;
@@ -26,34 +26,9 @@ interface IRootComponentState {}
 export class RootComponent extends React.Component<IRootComponentProps, IRootComponentState> {
     state: IRootComponentState = {};
 
-    /**/
+    /*/
     constructor(props: IRootComponentProps) {
         super(props);
-
-        // TODO: optimization: Maybe somewhere should be unsubscribe
-        this.props.touchController.touches.subscribe((touch) => {
-            if (this.props.appState.tool !== Tool.Draw) return;
-            //console.log('touch', touch);
-
-            const objectInProcess = new Freehand([touch.firstFrame.position], 'red', 2);
-            this.props.boardState.objects.push(objectInProcess);
-
-            // TODO: optimization: Maybe somewhere should be unsubscribe
-            touch.frames.subscribe(
-                (frame) => {
-                    //console.log('frame', frame);
-                    //console.log('frame.position', frame.position);
-                    //console.log('frame.positionRelative', frame.positionRelative);
-
-                    objectInProcess.points.push(frame.position);
-                    this.props.boardState.version++;
-                },
-                () => {},
-                () => {
-                    // Finished
-                },
-            );
-        });
     }
     /**/
 
@@ -92,13 +67,13 @@ export class RootComponent extends React.Component<IRootComponentProps, IRootCom
                         <Icon icon="cursor" inactive />
                         <Icon
                             icon="hand"
-                            active={this.props.appState.tool === Tool.Move}
-                            onClick={() => (this.props.appState.tool = Tool.Move)}
+                            active={this.props.appState.tool === ToolName.Move}
+                            onClick={() => (this.props.appState.tool = ToolName.Move)}
                         />
                         <Icon
                             icon="pen"
-                            active={this.props.appState.tool === Tool.Draw}
-                            onClick={() => (this.props.appState.tool = Tool.Draw)}
+                            active={this.props.appState.tool === ToolName.Draw}
+                            onClick={() => (this.props.appState.tool = ToolName.Draw)}
                         >
                             {/*
                             <div className="icon icon-stroke-1"></div>

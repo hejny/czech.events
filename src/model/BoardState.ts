@@ -1,5 +1,5 @@
 import { observable } from 'mobx';
-import { CollBoardObject } from './objects/CollBoardObject';
+import { AbstractObject } from './objects/AbstractObject';
 
 /**
  * BoardState represents data of the board which will be synced and saved
@@ -10,5 +10,5 @@ export class BoardState {
     @observable
     name: string = 'Nástěnka 1.A';
     @observable
-    objects: CollBoardObject[] = [];
+    objects: AbstractObject[] = [];
 }

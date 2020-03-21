@@ -1,7 +1,7 @@
 import uuid from 'uuid';
 
 // TODO: refactoring: maybe better naming
-export abstract class CollBoardObject {
+export abstract class AbstractObject {
     uuid: string;
 
     constructor() {

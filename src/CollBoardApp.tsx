@@ -10,6 +10,7 @@ import { TouchController } from 'touchcontroller';
 import { observe } from 'mobx';
 import { BoardState } from './model/BoardState';
 import { AppState } from './model/AppState';
+import { MoveTool } from './tools/MoveTool';
 
 // TODO: Join app and createApp
 export class CollBoardApp {
@@ -37,6 +38,8 @@ export class CollBoardApp {
         this.setAppTitle();
         observe(this.boardState, this.setAppTitle.bind(this));
 
+        this.initTools();
+
         ReactDOM.render(
             <Router {...{ history: this.history }}>
                 <Switch>
@@ -62,6 +65,13 @@ export class CollBoardApp {
         // unregister() to register() below. Note this comes with some pitfalls.
         // Learn more about service workers: https://bit.ly/CRA-PWA
         serviceWorker.unregister();
+    }
+
+    private initTools() {
+        // TODO: refactor
+
+        const moveTool = new MoveTool(this.appState, this.boardState, this.touchController);
+        moveTool.setListeners();
     }
 
     private setAppTitle() {
