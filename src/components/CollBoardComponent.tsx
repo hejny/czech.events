@@ -43,7 +43,7 @@ export class CollBoardComponent extends React.Component<ICollBoardComponentProps
 
                     points.push(frame.position);
 
-                    this.setState({tempItem: new Freehand(points, 'red', 2)})
+                    this.setState({ tempItem: new Freehand(points, 'red', 2) });
                 },
                 () => {},
                 () => {
@@ -51,7 +51,7 @@ export class CollBoardComponent extends React.Component<ICollBoardComponentProps
 
                     this.setState({
                         items: [...this.state.items, new Freehand(points, 'red', 2)],
-                        tempItem: null
+                        tempItem: null,
                     });
                 },
             );
