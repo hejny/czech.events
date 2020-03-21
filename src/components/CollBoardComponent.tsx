@@ -6,10 +6,13 @@ import { MenuWrapper } from './menu/MenuWrapper';
 import { Icon } from './menu/Icon';
 import { Separator } from './menu/Separator';
 import { Menu } from './menu/Menu';
-import { CollBoardObject } from './objects/CollBoardObject';
-import { Freehand } from './objects/Freehand';
+import { CollBoardObject } from '../model/objects/CollBoardObject';
+import { Freehand } from '../model/objects/Freehand';
+import { AppState } from '../model/AppState';
+import { observer } from 'mobx-react';
 
 interface ICollBoardComponentProps {
+    appState: AppState;
     apiClient: ApiClient;
     touchController: TouchController;
 }
@@ -19,7 +22,7 @@ interface ICollBoardComponentState {
     items: CollBoardObject[];
     tempItem: CollBoardObject | null;
 }
-
+@observer
 export class CollBoardComponent extends React.Component<ICollBoardComponentProps, ICollBoardComponentState> {
     state: ICollBoardComponentState = { items: [], tempItem: null };
 

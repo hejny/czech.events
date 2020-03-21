@@ -1,5 +1,6 @@
 import uuid from 'uuid';
 
+// TODO: refactoring: maybe better naming
 export abstract class CollBoardObject {
     uuid: string;
 
