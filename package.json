@@ -65,6 +65,7 @@
     "reflect-metadata": "^0.1.13",
     "sqlstring": "^2.3.1",
     "supertest": "^4.0.2",
+    "touchcontroller": "^1.6.0",
     "ts-node": "^8.6.2",
     "typeorm": "^0.2.22",
     "typescript": "^3.8.2",
