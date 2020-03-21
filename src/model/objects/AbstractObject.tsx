@@ -1,5 +1,6 @@
 import uuid from 'uuid';
 import { Transformation } from 'touchcontroller';
+import { Vector2 } from 'touchcontroller';
 
 // TODO: refactoring: maybe better naming
 export abstract class AbstractObject {

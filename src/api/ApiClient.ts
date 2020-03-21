@@ -1,7 +1,15 @@
+import { BoardApiClient } from './BoardApiClient';
+
 export class ApiClient {
     constructor(private apiUrl: string) {}
 
-    async getAbout() {}
+    public async getAbout(): Promise<{ version: string }> {
+        return this.get('/about');
+    }
+
+    public boardApiClient(boardUuid: string): BoardApiClient {
+        return new BoardApiClient(this.apiUrl, boardUuid);
+    }
 
     // TODO: Create AbscractApiClient library
     // TODO: Generically typed
