@@ -16,10 +16,11 @@ interface ICollBoardComponentProps {
 interface ICollBoardComponentState {
     // TODO: As MobXobject
     items: CollBoardObject[];
+    tempItem: CollBoardObject | null;
 }
 
 export class CollBoardComponent extends React.Component<ICollBoardComponentProps, ICollBoardComponentState> {
-    state: ICollBoardComponentState = { items: [] };
+    state: ICollBoardComponentState = { items: [], tempItem: null };
 
     /**/
     constructor(props: ICollBoardComponentProps) {
@@ -41,6 +42,8 @@ export class CollBoardComponent extends React.Component<ICollBoardComponentProps
                     //console.log('frame.positionRelative', frame.positionRelative);
 
                     points.push(frame.position);
+
+                    this.setState({tempItem: new Freehand(points, 'red', 2)})
                 },
                 () => {},
                 () => {
@@ -48,6 +51,7 @@ export class CollBoardComponent extends React.Component<ICollBoardComponentProps
 
                     this.setState({
                         items: [...this.state.items, new Freehand(points, 'red', 2)],
+                        tempItem: null
                     });
                 },
             );
@@ -102,6 +106,7 @@ export class CollBoardComponent extends React.Component<ICollBoardComponentProps
                         }}
                     >
                         {this.state.items.map((item) => item.render())}
+                        {this.state.tempItem && this.state.tempItem.render()}
 
                         {/*
 

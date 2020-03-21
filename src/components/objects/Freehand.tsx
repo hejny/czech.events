@@ -46,7 +46,7 @@ export class Freehand extends CollBoardObject {
                     position: 'absolute',
                     left: this.minX - SVG_PADDING,
                     top: this.minY - SVG_PADDING,
-                    border: '2px dotted red',
+                    /*border: '2px dotted red',*/
                 }}
             >
                 <svg
