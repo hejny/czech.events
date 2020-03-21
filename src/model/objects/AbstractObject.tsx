@@ -1,4 +1,5 @@
 import uuid from 'uuid';
+import { Transformation } from 'touchcontroller';
 
 // TODO: refactoring: maybe better naming
 export abstract class AbstractObject {
@@ -8,5 +9,5 @@ export abstract class AbstractObject {
         this.uuid = uuid.v4();
     }
 
-    abstract render(): JSX.Element;
+    abstract render(transformation: Transformation): JSX.Element;
 }

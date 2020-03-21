@@ -11,6 +11,7 @@ import { observe } from 'mobx';
 import { BoardState } from './model/BoardState';
 import { AppState } from './model/AppState';
 import { MoveTool } from './tools/MoveTool';
+import { DrawTool } from './tools/DrawTool';
 
 // TODO: Join app and createApp
 export class CollBoardApp {
@@ -72,6 +73,9 @@ export class CollBoardApp {
 
         const moveTool = new MoveTool(this.appState, this.boardState, this.touchController);
         moveTool.setListeners();
+
+        const drawTool = new DrawTool(this.appState, this.boardState, this.touchController);
+        drawTool.setListeners();
     }
 
     private setAppTitle() {

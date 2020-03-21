@@ -1,28 +1,35 @@
-import { Freehand } from '../model/objects/Freehand';
 import { AbstractTool, ToolName } from './AbstractTool';
+import { MultiTouchController, BoundingBox } from 'touchcontroller';
 
 export class MoveTool extends AbstractTool {
     setListeners() {
-        this.touchController.touches.subscribe((touch) => {
-            if (this.appState.tool !== ToolName.Draw) return;
-            //console.log('touch', touch);
+        if (this.appState.tool !== ToolName.Move) return;
 
-            const objectInProcess = new Freehand([touch.firstFrame.position], 'red', 2);
-            this.boardState.objects.push(objectInProcess);
+        const multiTouchController = new MultiTouchController(this.touchController, (frame) => {
+            console.log('frame', frame);
+        });
 
-            // TODO: optimization: Maybe somewhere should be unsubscribe
-            touch.frames.subscribe(
-                (frame) => {
-                    //console.log('frame', frame);
-                    //console.log('frame.position', frame.position);
-                    //console.log('frame.positionRelative', frame.positionRelative);
+        multiTouchController.multiTouches.subscribe((multitouch) => {
+            //if (typeof multitouch.element === 'undefined') return;
+            //let draggingElement = multitouch.element;
 
-                    objectInProcess.points.push(frame.position);
-                    this.boardState.version++;
+            multitouch.transformations(BoundingBox.One()).subscribe(
+                (transformation) => {
+                    console.log('transformation', transformation);
+
+                    // TODO: Sanitize transformation - remove scale and rotation
+                    this.appState.transformation.add(transformation);
+
+                    //transformation.applyOnElement(draggingElement);
                 },
                 () => {},
                 () => {
-                    // Finished
+                    /* if (multitouch.empty) {
+                        TC.Transformation.rotate(
+                            (Math.PI * 2) / 36,
+                        ).applyOnElement(draggingElement);
+                        console.log(`You have selected element.`);
+                    }*/
                 },
             );
         });

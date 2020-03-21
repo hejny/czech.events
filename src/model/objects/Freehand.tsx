@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { AbstractObject } from './AbstractObject';
 import { Vector2 } from 'touchcontroller';
+import { Transformation } from 'touchcontroller';
 
 const SVG_PADDING = 10;
 
@@ -41,7 +42,7 @@ export class Freehand extends AbstractObject {
         this.maxY = Math.max.apply(null, yVals);
     }
 
-    render() {
+    render(transformation: Transformation) {
         this.recountBoundingBox();
         return (
             <div

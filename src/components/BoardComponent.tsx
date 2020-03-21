@@ -2,8 +2,10 @@ import * as React from 'react';
 import { BoardState } from '../model/BoardState';
 import { TouchController } from 'touchcontroller';
 import { observer } from 'mobx-react';
+import { AppState } from '../model/AppState';
 
 interface IBoardComponentProps {
+    appState: AppState;
     boardState: BoardState;
     touchController: TouchController;
 }
@@ -39,7 +41,7 @@ export class BoardComponent extends React.Component<IBoardComponentProps, IBoard
                     }}
                 >
                     <div style={{ display: 'none' }}>{this.props.boardState.version}</div>
-                    {this.props.boardState.objects.map((item) => item.render())}
+                    {this.props.boardState.objects.map((item) => item.render(this.props.appState.transformation))}
 
                     {/*
     

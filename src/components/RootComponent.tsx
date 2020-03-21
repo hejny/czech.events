@@ -6,7 +6,6 @@ import { MenuWrapper } from './menu/MenuWrapper';
 import { Icon } from './menu/Icon';
 import { Separator } from './menu/Separator';
 import { Menu } from './menu/Menu';
-import { Freehand } from '../model/objects/Freehand';
 import { BoardState } from '../model/BoardState';
 import { observer } from 'mobx-react';
 import { BoardComponent } from './BoardComponent';
