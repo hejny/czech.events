@@ -6,11 +6,13 @@ import { ApiClient } from './api/ApiClient';
 import * as serviceWorker from './serviceWorker';
 import { CollBoardComponent } from './components/CollBoardComponent';
 import uuid from 'uuid';
+import { TouchController } from 'touchcontroller';
 
 // TODO: Join app and createApp
 export class CollBoardApp {
     private apiClient: ApiClient;
     private history: History;
+    private touchController: TouchController;
 
     constructor(private rootElement: HTMLDivElement, private apiUrl: string, private selfUrl: string) {
         console.log(`Starting CollBoardApp.`);
@@ -23,6 +25,7 @@ export class CollBoardApp {
     private async run() {
         this.history = createHashHistory();
         this.apiClient = new ApiClient(this.apiUrl);
+        this.touchController = new TouchController([], window.document.body);
 
         ReactDOM.render(
             <Router {...{ history: this.history }}>
@@ -31,7 +34,7 @@ export class CollBoardApp {
                         <Redirect to={`/${uuid.v4()}`} />
                     </Route>
                     <Route exact path="/:boardId">
-                        <CollBoardComponent {...{ apiClient: this.apiClient }} />
+                        <CollBoardComponent {...{ apiClient: this.apiClient, touchController: this.touchController }} />
                     </Route>
                     <Route path="*">Not found</Route>
                 </Switch>

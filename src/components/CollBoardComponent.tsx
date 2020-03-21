@@ -11,6 +11,7 @@ import { Freehand } from './objects/Freehand';
 
 interface ICollBoardComponentProps {
     apiClient: ApiClient;
+    touchController: TouchController;
 }
 
 interface ICollBoardComponentState {
@@ -25,15 +26,14 @@ export class CollBoardComponent extends React.Component<ICollBoardComponentProps
     constructor(props: ICollBoardComponentProps) {
         super(props);
 
-        // TODO: Maybe TC instance should be created same way as API driver
-        const touchController = new TouchController([window.document.body], window.document.body);
-
-        touchController.touches.subscribe((touch) => {
+        // TODO: Maybe somewhere should be unsubscribe
+        this.props.touchController.touches.subscribe((touch) => {
             //console.log('touch', touch);
 
             let points: Vector2[] = [];
             points.push(touch.firstFrame.position);
 
+            // TODO: Maybe somewhere should be unsubscribe
             touch.frames.subscribe(
                 (frame) => {
                     //console.log('frame', frame);
@@ -64,41 +64,15 @@ export class CollBoardComponent extends React.Component<ICollBoardComponentProps
                         className="board"
                         style={{ width: '1000%', height: '1000%', top: 0, left: 0, cursor: 'crosshair' }}
                         ref={(element) => {
-                            /*
                             if (!element) return;
-
-                            console.log(`TC init`);
-
-                            const touchController = new TouchController([element], element);
-
-                            touchController.touches.subscribe((touch) => {
-                                //console.log('touch', touch);
-
-                                const item: IBoardItem = {
-                                    uuid: uuid.v4(),
-                                    points: [touch.firstFrame.position],
-                                };
-
-                                touch.frames.subscribe(
-                                    (frame) => {
-                                        //console.log('frame', frame);
-                                        //console.log('frame.position', frame.position);
-                                        //console.log('frame.positionRelative', frame.positionRelative);
-
-                                        item.points.push(frame.position);
-                                    },
-                                    () => {},
-                                    () => {
-                                        //console.log('item', item);
-
-                                        this.setState({
-                                            items: [item],
-                                        });
-                                    },
-                                );
-                            });
-                            
-                            */
+                            try {
+                                console.info(`Init board as touchController element.`);
+                                // TODO: uninit somewhen and somewhere
+                                this.props.touchController.addElement(element);
+                            } catch (error) {
+                                // This is because of multiple calling this ref with same element
+                                console.info(`Failed: Init board as touchController element.`);
+                            }
                         }}
                     >
                         {this.state.items.map((item) => item.render())}
