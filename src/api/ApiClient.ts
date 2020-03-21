@@ -1,5 +1,6 @@
 import { BoardApiClient } from './BoardApiClient';
 import { BoardState } from '../model/BoardState';
+import { idstring } from '../utils/idstring';
 
 export class ApiClient {
     constructor(private apiUrl: string) {}
@@ -8,7 +9,7 @@ export class ApiClient {
         return this.get('/about');
     }
 
-    public boardApiClient(boardUuid: string, boardState: BoardState): BoardApiClient {
+    public boardApiClient(boardUuid: idstring, boardState: BoardState): BoardApiClient {
         // TODO: Cache
         return new BoardApiClient(this.apiUrl, boardUuid, boardState);
     }

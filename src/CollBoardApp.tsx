@@ -5,13 +5,14 @@ import { Route, Router, Switch, Redirect } from 'react-router-dom';
 import { ApiClient } from './api/ApiClient';
 import * as serviceWorker from './serviceWorker';
 import { RootComponent } from './components/RootComponent';
-import uuid from 'uuid';
 import { TouchController } from 'touchcontroller';
 import { observe } from 'mobx';
 import { BoardState } from './model/BoardState';
 import { AppState } from './model/AppState';
 import { MoveTool } from './tools/MoveTool';
 import { DrawTool } from './tools/DrawTool';
+import uuid from 'uuid';
+import { idstring } from './utils/idstring';
 
 // TODO: Join app and createApp
 export class CollBoardApp {
@@ -69,7 +70,7 @@ export class CollBoardApp {
         serviceWorker.unregister();
     }
 
-    private connectToBoard(boardId: string): BoardState {
+    private connectToBoard(boardId: idstring): BoardState {
         const boardState = new BoardState();
         this.apiClient.boardApiClient(boardId, boardState);
         this.initTools(boardState);

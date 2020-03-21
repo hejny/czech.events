@@ -5,12 +5,14 @@ import { Freehand } from '../model/objects/Freehand';
 import { Vector2 } from 'touchcontroller';
 import { BoardState } from '../model/BoardState';
 import { observe } from 'mobx';
+import { ObjectPool } from '../model/ObjectPool';
+import { idstring } from '../utils/idstring';
 
 // TODO: Maybe this should be named driver
 export class BoardApiClient {
     private socket;
 
-    constructor(private apiUrl: string, private boardUuid: string, private boardState: BoardState) {
+    constructor(private apiUrl: string, private boardUuid: idstring, private boardState: BoardState) {
         this.establishConnection();
         this.syncObjects();
     }
@@ -32,8 +34,12 @@ export class BoardApiClient {
             }
         });*/
 
+        const objectPool = new ObjectPool();
+
         observe(this.boardState, (change) => {
-            console.log('change', change);
+            const changed = objectPool.registerNewVersions(this.boardState.objects);
+
+            console.log('changed', changed);
         });
 
         /*this.socket.on('object', (data: Message) => {

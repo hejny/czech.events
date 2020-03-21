@@ -31,12 +31,12 @@ export class BoardComponent extends React.Component<IBoardComponentProps, IBoard
                     ref={(element) => {
                         if (!element) return;
                         try {
-                            console.info(`Init board as touchController element.`);
+                            //console.info(`Init board as touchController element.`);
                             // TODO: uninit somewhen and somewhere
                             this.props.touchController.addElement(element);
                         } catch (error) {
                             // This is because of multiple calling this ref with same element
-                            console.info(`Failed: Init board as touchController element.`);
+                            //console.info(`Failed: Init board as touchController element.`);
                         }
                     }}
                 >
