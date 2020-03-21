@@ -1,4 +1,5 @@
 import { BoardApiClient } from './BoardApiClient';
+import { BoardState } from '../model/BoardState';
 
 export class ApiClient {
     constructor(private apiUrl: string) {}
@@ -7,8 +8,9 @@ export class ApiClient {
         return this.get('/about');
     }
 
-    public boardApiClient(boardUuid: string): BoardApiClient {
-        return new BoardApiClient(this.apiUrl, boardUuid);
+    public boardApiClient(boardUuid: string, boardState: BoardState): BoardApiClient {
+        // TODO: Cache
+        return new BoardApiClient(this.apiUrl, boardUuid, boardState);
     }
 
     // TODO: Create AbscractApiClient library

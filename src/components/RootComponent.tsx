@@ -15,7 +15,7 @@ import { ToolName } from '../tools/AbstractTool';
 interface IRootComponentProps {
     appState: AppState;
     boardState: BoardState;
-    apiClient: ApiClient;
+    //apiClient: ApiClient;
     touchController: TouchController;
 }
 

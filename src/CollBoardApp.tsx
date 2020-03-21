@@ -16,7 +16,6 @@ import { DrawTool } from './tools/DrawTool';
 // TODO: Join app and createApp
 export class CollBoardApp {
     private appState: AppState;
-    private boardState: BoardState;
     private apiClient: ApiClient;
     private history: History;
     private touchController: TouchController;
@@ -32,14 +31,8 @@ export class CollBoardApp {
     private async run() {
         this.history = createHashHistory();
         this.appState = new AppState();
-        this.boardState = new BoardState();
         this.apiClient = new ApiClient(this.apiUrl);
         this.touchController = new TouchController([], window.document.body);
-
-        this.setAppTitle();
-        observe(this.boardState, this.setAppTitle.bind(this));
-
-        this.initTools();
 
         ReactDOM.render(
             <Router {...{ history: this.history }}>
@@ -47,16 +40,24 @@ export class CollBoardApp {
                     <Route exact path="/">
                         <Redirect to={`/${uuid.v4()}`} />
                     </Route>
-                    <Route exact path="/:boardId">
-                        <RootComponent
-                            {...{
-                                appState: this.appState,
-                                boardState: this.boardState,
-                                apiClient: this.apiClient,
-                                touchController: this.touchController,
-                            }}
-                        />
-                    </Route>
+                    <Route
+                        exact
+                        path="/:boardId"
+                        render={({ match }) => {
+                            const boardState = this.connectToBoard(match.params.boardId);
+                            return (
+                                <RootComponent
+                                    {...{
+                                        appState: this.appState,
+                                        boardState,
+                                        //apiClient: this.apiClient, // TODO: Is it nessesery to put here apiClient?
+                                        touchController: this.touchController, // TODO: Is it nessesery to put here whole touchController not just function to propagate board element?
+                                    }}
+                                />
+                            );
+                        }}
+                    />
+
                     <Route path="*">Not found</Route>
                 </Switch>
             </Router>,
@@ -68,18 +69,28 @@ export class CollBoardApp {
         serviceWorker.unregister();
     }
 
-    private initTools() {
-        // TODO: refactor
+    private connectToBoard(boardId: string): BoardState {
+        const boardState = new BoardState();
+        this.apiClient.boardApiClient(boardId, boardState);
+        this.initTools(boardState);
 
-        const moveTool = new MoveTool(this.appState, this.boardState, this.touchController);
-        moveTool.setListeners();
+        const setAppTitle = () => {
+            // TODO: Some language/translate functions
+            window.document.title = `${boardState.name} | CollBoard.com - Sdílená tabule ihned k použití.`;
+        };
+        setAppTitle();
+        observe(boardState, setAppTitle);
 
-        const drawTool = new DrawTool(this.appState, this.boardState, this.touchController);
-        drawTool.setListeners();
+        return boardState;
     }
 
-    private setAppTitle() {
-        // TODO: Some language/translate functions
-        window.document.title = `${this.boardState.name} | CollBoard.com - Sdílená tabule ihned k použití.`;
+    private initTools(boardState: BoardState) {
+        // TODO: refactor
+
+        const moveTool = new MoveTool(this.appState, boardState, this.touchController);
+        moveTool.setListeners();
+
+        const drawTool = new DrawTool(this.appState, boardState, this.touchController);
+        drawTool.setListeners();
     }
 }
