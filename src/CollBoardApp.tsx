@@ -7,11 +7,12 @@ import * as serviceWorker from './serviceWorker';
 import { CollBoardComponent } from './components/CollBoardComponent';
 import uuid from 'uuid';
 import { TouchController } from 'touchcontroller';
-import { AppState } from './model/AppState';
+import { observe } from 'mobx';
+import { BoardState } from './model/BoardState';
 
 // TODO: Join app and createApp
 export class CollBoardApp {
-    private appState: AppState;
+    private boardState: BoardState;
     private apiClient: ApiClient;
     private history: History;
     private touchController: TouchController;
@@ -26,9 +27,12 @@ export class CollBoardApp {
 
     private async run() {
         this.history = createHashHistory();
-        this.appState = new AppState();
+        this.boardState = new BoardState();
         this.apiClient = new ApiClient(this.apiUrl);
         this.touchController = new TouchController([], window.document.body);
+
+        this.setAppTitle();
+        observe(this.boardState, this.setAppTitle.bind(this));
 
         ReactDOM.render(
             <Router {...{ history: this.history }}>
@@ -39,7 +43,7 @@ export class CollBoardApp {
                     <Route exact path="/:boardId">
                         <CollBoardComponent
                             {...{
-                                appState: this.appState,
+                                boardState: this.boardState,
                                 apiClient: this.apiClient,
                                 touchController: this.touchController,
                             }}
@@ -54,5 +58,10 @@ export class CollBoardApp {
         // unregister() to register() below. Note this comes with some pitfalls.
         // Learn more about service workers: https://bit.ly/CRA-PWA
         serviceWorker.unregister();
+    }
+
+    private setAppTitle() {
+        // TODO: Some language/translate functions
+        window.document.title = `${this.boardState.name} | CollBoard.com - Sdílená tabule ihned k použití.`;
     }
 }

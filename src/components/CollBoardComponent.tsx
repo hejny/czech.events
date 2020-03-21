@@ -8,11 +8,11 @@ import { Separator } from './menu/Separator';
 import { Menu } from './menu/Menu';
 import { CollBoardObject } from '../model/objects/CollBoardObject';
 import { Freehand } from '../model/objects/Freehand';
-import { AppState } from '../model/AppState';
+import { BoardState } from '../model/BoardState';
 import { observer } from 'mobx-react';
 
 interface ICollBoardComponentProps {
-    appState: AppState;
+    boardState: BoardState;
     apiClient: ApiClient;
     touchController: TouchController;
 }
@@ -145,7 +145,14 @@ export class CollBoardComponent extends React.Component<ICollBoardComponentProps
                 <MenuWrapper position="top-ltr">
                     <img src={`${PUBLIC_URL}/assets/logo-dark.png`} alt="CollBoard.com" className="brand" />
                     <Menu orientation="horizontal" className="d-none d-sm-block">
-                        <input type="text" className="stealth board-name" defaultValue="Nástěnka 1.A" />
+                        <input
+                            type="text"
+                            className="stealth board-name"
+                            defaultValue={this.props.boardState.name}
+                            onChange={(event) => {
+                                this.props.boardState.name = event.target.value;
+                            }}
+                        />
                         <button type="button" className="btn btn-primary">
                             Sdílet
                         </button>
