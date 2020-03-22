@@ -43,6 +43,14 @@ export class RootComponent extends React.Component<IRootComponentProps, IRootCom
         // TODO: refactoring: Break to multiple components
         return (
             <>
+                <div className="debug">
+                    aaa
+                    {this.props.boardState.objects[0] && 'aaa'}
+                    <pre>
+                        {this.props.boardState.objects[0] &&
+                            JSON.stringify(this.props.boardState.objects[0].serialize(), null, 4)}
+                    </pre>
+                </div>
                 <BoardComponent {...this.props} />
                 <MenuWrapper position="right">
                     <Menu orientation="vertical">

@@ -1,11 +1,11 @@
 import SocketIO from 'socket.io-client';
 //import { Observable } from 'rxjs';
-import { forTime } from 'waitasecond';
+//import { forTime } from 'waitasecond';
 import { Freehand } from '../model/objects/Freehand';
 import { Vector2 } from 'touchcontroller';
 import { BoardState } from '../model/BoardState';
 import { observe } from 'mobx';
-import { ObjectPool } from '../utils/ObjectPool';
+import { ObjectPool } from './ObjectPool';
 import { idstring } from '../utils/idstring';
 
 // TODO: Maybe this should be named driver
@@ -47,18 +47,27 @@ export class BoardApiClient {
             //console.log('data', data);
             //this.boardState.objects.push(object);
 
+            // TODO: To some better function to propperly hydrate / dehydrate
             const newObjects = newObjectsData.map((objectData) => {
-                return new Freehand(
+                const object = new Freehand(
                     objectData.points.map((pointData) => new Vector2(pointData.x, pointData.y)),
                     objectData.color,
                     objectData.weight,
                 );
+
+                object.uuid = objectData.uuid;
+                object.updateTick();
+
+                return object;
             });
 
             for (const newObject of newObjects) {
                 const oldObjectIndex = this.boardState.objects.findIndex(
                     (oldObject) => oldObject.uuid === newObject.uuid,
                 );
+
+                //console.log(oldObjectIndex);
+
                 if (oldObjectIndex === -1) {
                     this.boardState.objects.push(newObject);
                 } else {

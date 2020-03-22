@@ -1,7 +1,8 @@
 import { AbstractObject } from '../model/objects/AbstractObject';
-import { idstring } from './idstring';
+import { idstring } from '../utils/idstring';
 
 /**
+ * TODO: Better name
  * Stores and compares objects for recognition which objects have changed and which not.
  */
 export class ObjectPool {
