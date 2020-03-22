@@ -1,5 +1,5 @@
 import { BoardState } from '../model/BoardState';
-import { TouchController } from 'touchcontroller';
+import { TouchController, Vector2 } from 'touchcontroller';
 import { AppState } from '../model/AppState';
 
 export enum ToolName {
@@ -29,4 +29,8 @@ export abstract class AbstractTool {
     abstract unsetListeners(){
     }
     */
+
+    protected calculateMouseCoordinates(point: Vector2) {
+        return point.subtract(this.appState.transformation.translate);
+    }
 }

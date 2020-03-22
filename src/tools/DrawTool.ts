@@ -8,12 +8,7 @@ export class DrawTool extends AbstractTool {
             //console.log('touch', touch);
 
             const objectInProcess = new Freehand(
-                [
-                    touch.firstFrame.position.subtract(
-                        this.appState.transformation
-                            .translate /* TODO: There should be some apply function in touchcontroller*/,
-                    ),
-                ],
+                [this.calculateMouseCoordinates(touch.firstFrame.position)],
                 this.appState.color,
                 this.appState.weight,
             );
@@ -26,12 +21,7 @@ export class DrawTool extends AbstractTool {
                     //console.log('frame.position', frame.position);
                     //console.log('frame.positionRelative', frame.positionRelative);
 
-                    objectInProcess.points.push(
-                        frame.position.subtract(
-                            this.appState.transformation
-                                .translate /* TODO: There should be some apply function in touchcontroller*/,
-                        ),
-                    );
+                    objectInProcess.points.push(this.calculateMouseCoordinates(frame.position));
                     objectInProcess.updateTick();
                     this.boardState.updateTick();
                 },

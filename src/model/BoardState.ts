@@ -1,5 +1,6 @@
 import { observable } from 'mobx';
 import { AbstractObject } from './objects/AbstractObject';
+import { Vector2 } from 'touchcontroller';
 
 /**
  * BoardState represents data of the board which will be synced and saved

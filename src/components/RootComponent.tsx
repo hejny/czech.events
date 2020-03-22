@@ -1,16 +1,17 @@
 import * as React from 'react';
-import { ApiClient } from '../api/ApiClient';
 import { PUBLIC_URL } from '../config';
 import { TouchController } from 'touchcontroller';
 import { MenuWrapper } from './menu/MenuWrapper';
-import { Icon, IconColor } from './menu/Icon';
+import { Icon } from './menu/Icon';
 import { Separator } from './menu/Separator';
 import { Menu } from './menu/Menu';
 import { BoardState } from '../model/BoardState';
 import { observer } from 'mobx-react';
 import { BoardComponent } from './BoardComponent';
 import { AppState } from '../model/AppState';
-import { ToolName, drawingColors } from '../tools/AbstractTool';
+import { ToolName } from '../tools/AbstractTool';
+import { ColorSelector } from './menu/attributes/ColorSelector';
+import { WeightSelector } from './menu/attributes/WeightSelector';
 
 interface IRootComponentProps {
     appState: AppState;
@@ -31,11 +32,17 @@ export class RootComponent extends React.Component<IRootComponentProps, IRootCom
     }
     /**/
 
+    switchTool(tool: ToolName) {
+        this.props.appState.tool = tool;
+        if (this.props.appState.tool !== ToolName.Drag && this.props.appState.tool !== ToolName.Move) {
+            this.props.appState.selected = [];
+        }
+    }
+
     render() {
         // TODO: refactoring: Break to multiple components
         return (
             <>
-                {this.props.boardState.objects.length}
                 <BoardComponent {...this.props} />
                 <MenuWrapper position="right">
                     <Menu orientation="vertical">
@@ -67,56 +74,38 @@ export class RootComponent extends React.Component<IRootComponentProps, IRootCom
                         <Icon
                             icon="cursor"
                             active={this.props.appState.tool === ToolName.Drag}
-                            onClick={() => (this.props.appState.tool = ToolName.Drag)}
+                            onClick={() => this.switchTool(ToolName.Drag)}
                         />
                         <Icon
                             icon="hand"
                             active={this.props.appState.tool === ToolName.Move}
-                            onClick={() => (this.props.appState.tool = ToolName.Move)}
+                            onClick={() => this.switchTool(ToolName.Move)}
                         />
                         <Icon
                             icon="pen"
                             active={this.props.appState.tool === ToolName.Draw}
-                            onClick={() => (this.props.appState.tool = ToolName.Draw)}
+                            onClick={() => this.switchTool(ToolName.Draw)}
                         />
                         <Icon
                             icon="erase"
                             active={this.props.appState.tool === ToolName.Erase}
-                            onClick={() => (this.props.appState.tool = ToolName.Erase)}
+                            onClick={() => this.switchTool(ToolName.Erase)}
                         />
                     </Menu>
-                </MenuWrapper>
-                {this.props.appState.tool === ToolName.Draw && (
-                    <MenuWrapper position="bottom-rtl">
+                    {this.props.appState.tool === ToolName.Draw && (
                         <Menu orientation="horizontal">
-                            <Icon
-                                icon="stroke-1"
-                                active={this.props.appState.weight === 2}
-                                onClick={() => (this.props.appState.weight = 2)}
-                            />
-                            <Icon
-                                icon="stroke-2"
-                                active={this.props.appState.weight === 5}
-                                onClick={() => (this.props.appState.weight = 5)}
-                            />
-                            <Icon
-                                icon="stroke-3"
-                                active={this.props.appState.weight === 15}
-                                onClick={() => (this.props.appState.weight = 15)}
+                            <WeightSelector
+                                value={this.props.appState.weight}
+                                onChange={(value) => (this.props.appState.weight = value as number)}
                             />
                             <Separator />
-                            <>
-                                {Object.keys(drawingColors).map((key) => (
-                                    <IconColor
-                                        color={drawingColors[key]}
-                                        active={this.props.appState.color === drawingColors[key]}
-                                        onClick={() => (this.props.appState.color = drawingColors[key])}
-                                    />
-                                ))}
-                            </>
+                            <ColorSelector
+                                value={this.props.appState.color}
+                                onChange={(value) => (this.props.appState.color = value as string)}
+                            />
                         </Menu>
-                    </MenuWrapper>
-                )}
+                    )}
+                </MenuWrapper>
             </>
         );
     }

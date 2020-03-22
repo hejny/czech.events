@@ -3,6 +3,12 @@ import { BoardState } from '../model/BoardState';
 import { TouchController } from 'touchcontroller';
 import { observer } from 'mobx-react';
 import { AppState } from '../model/AppState';
+import { FloatingMenu } from './menu/Menu';
+import { Icon } from './menu/Icon';
+import { AttributeType } from '../model/objects/AbstractObject';
+import { Separator } from './menu/Separator';
+import { WeightSelector } from './menu/attributes/WeightSelector';
+import { ColorSelector } from './menu/attributes/ColorSelector';
 
 interface IBoardComponentProps {
     appState: AppState;
@@ -17,6 +23,16 @@ export class BoardComponent extends React.Component<IBoardComponentProps, IBoard
     state: IBoardComponentState = {};
 
     render() {
+        const selection = this.props.appState.getSelection();
+        const translate = this.props.appState.transformation.translate;
+        const commonAttributes = this.props.appState.getCommonAttributes();
+
+        // TODO: any
+        const changeAttributeValue = (value: string | number, key: string) => {
+            this.props.appState.selected.forEach((o) => ((o as any)[key] = value));
+            this.props.boardState.version++;
+        };
+
         return (
             <div className="board-container">
                 <div
@@ -40,8 +56,8 @@ export class BoardComponent extends React.Component<IBoardComponentProps, IBoard
                         className="board-bg"
                         style={{
                             cursor: 'crosshair' /*TODO: Cursor shuld behave according to current tool*/,
-                            backgroundPositionX: this.props.appState.transformation.translate.x,
-                            backgroundPositionY: this.props.appState.transformation.translate.y,
+                            backgroundPositionX: translate.x,
+                            backgroundPositionY: translate.y,
                         }}
                     ></div>
                     <div style={{ display: 'none' }}>{this.props.boardState.version}</div>
@@ -51,14 +67,24 @@ export class BoardComponent extends React.Component<IBoardComponentProps, IBoard
                             className="object-transform-wrapper"
                             style={{
                                 position: 'absolute',
-                                left: this.props.appState.transformation.translate.x,
-                                top: this.props.appState.transformation.translate.y,
+                                left: translate.x,
+                                top: translate.y,
                             }}
                         >
-                            {item.render()}
+                            {item.render(this.props.appState.selected.includes(item))}
                         </div>
                     ))}
-
+                    {this.props.appState.selection && (
+                        <div
+                            className="selection"
+                            style={{
+                                left: translate.x + selection.topLeftCorner.x,
+                                top: translate.y + selection.topLeftCorner.y,
+                                width: selection.bottomRightCorner.x - selection.topLeftCorner.x,
+                                height: selection.bottomRightCorner.y - selection.topLeftCorner.y,
+                            }}
+                        ></div>
+                    )}
                     {/*
                     <div className="object selected" style={{ position: 'absolute', top: 200, left: 300 }}>
                         <!-- ... content ... -->
@@ -84,6 +110,42 @@ export class BoardComponent extends React.Component<IBoardComponentProps, IBoard
                     </div>
                     */}
                 </div>
+                {this.props.appState.selected.length > 0 && !this.props.appState.selection && (
+                    <FloatingMenu
+                        point={this.props.appState
+                            .getSelectedBoundingBox()
+                            .topLeftCorner.add(this.props.appState.transformation.translate)}
+                    >
+                        <Icon
+                            icon="bin"
+                            onClick={() => {
+                                this.props.boardState.objects = this.props.boardState.objects.filter(
+                                    (object) => !this.props.appState.selected.includes(object),
+                                );
+                                this.props.appState.selected = [];
+                                this.props.boardState.version++;
+                            }}
+                        />
+                        {commonAttributes.includes(AttributeType.Weight) && (
+                            <>
+                                <Separator />
+                                <WeightSelector
+                                    value={this.props.appState.getCommonAttributeValue('weight')}
+                                    onChange={(value) => changeAttributeValue(value, 'weight')}
+                                />
+                            </>
+                        )}
+                        {commonAttributes.includes(AttributeType.Color) && (
+                            <>
+                                <Separator />
+                                <ColorSelector
+                                    value={this.props.appState.getCommonAttributeValue('color')}
+                                    onChange={(value) => changeAttributeValue(value, 'color')}
+                                />
+                            </>
+                        )}
+                    </FloatingMenu>
+                )}
             </div>
         );
     }

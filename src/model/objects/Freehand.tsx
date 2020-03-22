@@ -1,6 +1,7 @@
 import * as React from 'react';
-import { AbstractObject, IS_NEAR_DISTANCE } from './AbstractObject';
+import { AbstractObject, IS_NEAR_DISTANCE, AttributeType } from './AbstractObject';
 import { Vector2 } from 'touchcontroller';
+import { classNames } from '../../utils/classNames';
 
 const SVG_PADDING = 10;
 
@@ -20,7 +21,7 @@ export class Freehand extends AbstractObject {
         this.weight = weight;
     }
 
-    get path(): string {
+    private get path(): string {
         return this.points
             .map((point, i) => {
                 const pointRelative = point.subtract(new Vector2(this.minX - SVG_PADDING, this.minY - SVG_PADDING));
@@ -30,15 +31,19 @@ export class Freehand extends AbstractObject {
     }
 
     get topLeftCorner() {
-        return new Vector2(this.minX, this.minY);
+        return new Vector2(this.minX, this.minY).add(this.shift);
     }
     get bottomRightCorner() {
-        return new Vector2(this.maxX, this.maxY);
+        return new Vector2(this.maxX, this.maxY).add(this.shift);
     }
 
     isNear(point2: Vector2) {
         // Should detect even near lines, but this is good enough
         return this.points.filter((point1) => point1.add(this.shift).length(point2) <= IS_NEAR_DISTANCE).length > 0;
+    }
+
+    get acceptedAttributes() {
+        return [AttributeType.Color, AttributeType.Weight];
     }
 
     private calculateBoundingBox() {
@@ -53,12 +58,12 @@ export class Freehand extends AbstractObject {
         this.maxY = Math.max.apply(null, yVals);
     }
 
-    render() {
+    render(selected: boolean) {
         this.calculateBoundingBox();
         return (
             <div
                 key={this.uuid}
-                className="object"
+                className={classNames('object', selected && 'selected')}
                 style={{
                     position: 'absolute',
                     left: this.minX - SVG_PADDING + this.shift.x,

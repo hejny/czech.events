@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { classNames } from '../../utils/classNames';
-//import { PopupMenu } from './Menu';
 
 interface IIconProps {
     icon:
@@ -21,7 +20,11 @@ interface IIconProps {
         | 'zoom-out'
         | 'add'
         | 'shapes'
-        | 'link';
+        | 'link'
+        | 'list'
+        | 'bin'
+        | 'group'
+        | 'copy';
     onClick?: () => void;
     className?: string;
     active?: boolean;
@@ -62,7 +65,10 @@ export class Icon extends React.Component<IIconProps, IIconState> {
     render() {
         const { icon, className, active, inactive } = this.props;
         return (
-            <div className={classNames('icon', 'icon-' + icon, active && 'active', inactive && 'inactive', className)}>
+            <div
+                className={classNames('icon', 'icon-' + icon, active && 'active', inactive && 'inactive', className)}
+                title={inactive && 'Usilovně na tom pracujeme...'}
+            >
                 <div className="click-detector" onClick={() => this.clickHandler()}></div>
             </div>
         );
@@ -107,7 +113,10 @@ export class IconColor extends React.Component<IIconColorProps, IIconState> {
     render() {
         const { className, color, active, inactive } = this.props;
         return (
-            <div className={classNames('icon', 'icon-color', active && 'active', inactive && 'inactive', className)}>
+            <div
+                className={classNames('icon', 'icon-color', active && 'active', inactive && 'inactive', className)}
+                title={inactive && 'Usilovně na tom pracujeme...'}
+            >
                 <span style={{ backgroundColor: color }}></span>
                 <div className="click-detector" onClick={() => this.clickHandler()}></div>
             </div>
