@@ -18,8 +18,7 @@
     "frontend-deploy": "npm run frontend-build && echo app.collboard.com >>build/CNAME && gh-pages -d build",
     "server-start": "ts-node --project ./server/tsconfig.json ./server/index.ts",
     "server-develop": "onchange -i \"./{src,server}/**/*.{ts,tsx,js,json}\" -- npm run server-start",
-    "TODO: server-deploy": "cd ./scripts && npm start",
-    "server-deploy": "",
+    "server-deploy": "cd ./scripts && npm start",
     "generate-database-models": "cd ./scripts && npm run generate-database-models"
   },
   "repository": {
