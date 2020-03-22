@@ -5,7 +5,7 @@ import { Freehand } from '../model/objects/Freehand';
 import { Vector2 } from 'touchcontroller';
 import { BoardState } from '../model/BoardState';
 import { observe } from 'mobx';
-import { ObjectPool } from '../model/ObjectPool';
+import { ObjectPool } from '../utils/ObjectPool';
 import { idstring } from '../utils/idstring';
 
 // TODO: Maybe this should be named driver
@@ -36,10 +36,9 @@ export class BoardApiClient {
 
         const objectPool = new ObjectPool();
 
-        observe(this.boardState, (change) => {
+        observe(this.boardState, () => {
             const changed = objectPool.registerNewVersions(this.boardState.objects);
-
-            console.log('changed', changed);
+            this.socket.emit('objects', changed);
         });
 
         /*this.socket.on('object', (data: Message) => {

@@ -5,7 +5,7 @@ import http from 'http';
 import SocketIO from 'socket.io';
 const packageJson = require('../package.json');
 
-export async function createApp(): Promise<{ app: express.Application; server: http.Server; socket: SocketIO.Server }> {
+export async function createServer(): Promise<http.Server> {
     const app = express();
 
     app.use(json());
@@ -15,7 +15,10 @@ export async function createApp(): Promise<{ app: express.Application; server: h
     const socket = SocketIO(server);
 
     socket.on('connection', (connection) => {
-        connection.emit('test', {});
+        //connection.emit('test', {});
+        connection.on('objects', (objects) => {
+            console.log('objects', objects);
+        });
     });
 
     app.use((err: any, req: any, res: any, next: any) => {
@@ -28,9 +31,5 @@ export async function createApp(): Promise<{ app: express.Application; server: h
         });
     });
 
-    return {
-        app,
-        server,
-        socket,
-    };
+    return server;
 }
