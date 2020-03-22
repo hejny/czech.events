@@ -35,6 +35,7 @@ export class RootComponent extends React.Component<IRootComponentProps, IRootCom
         // TODO: refactoring: Break to multiple components
         return (
             <>
+                {this.props.boardState.objects.length}
                 <BoardComponent {...this.props} />
                 <MenuWrapper position="right">
                     <Menu orientation="vertical">

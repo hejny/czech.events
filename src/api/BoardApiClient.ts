@@ -42,7 +42,7 @@ export class BoardApiClient {
         });
 
         this.socket.on('objects', (newObjectsData) => {
-            console.log('new objects from server');
+            //console.log('new objects from server');
 
             //console.log('data', data);
             //this.boardState.objects.push(object);
