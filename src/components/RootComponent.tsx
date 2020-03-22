@@ -63,7 +63,11 @@ export class RootComponent extends React.Component<IRootComponentProps, IRootCom
                 </MenuWrapper>
                 <MenuWrapper position="bottom-ltr">
                     <Menu orientation="horizontal">
-                        <Icon icon="cursor" inactive />
+                        <Icon
+                            icon="cursor"
+                            active={this.props.appState.tool === ToolName.Drag}
+                            onClick={() => (this.props.appState.tool = ToolName.Drag)}
+                        />
                         <Icon
                             icon="hand"
                             active={this.props.appState.tool === ToolName.Move}
@@ -94,7 +98,11 @@ export class RootComponent extends React.Component<IRootComponentProps, IRootCom
                             <div className="icon icon-add"></div>
                             */}
                         </Icon>
-                        <Icon icon="erase" inactive />
+                        <Icon
+                            icon="erase"
+                            active={this.props.appState.tool === ToolName.Erase}
+                            onClick={() => (this.props.appState.tool = ToolName.Erase)}
+                        />
                     </Menu>
                 </MenuWrapper>
             </>

@@ -5,6 +5,8 @@ import { AppState } from '../model/AppState';
 export enum ToolName {
     Move,
     Draw,
+    Erase,
+    Drag,
 }
 
 export class AbstractTool {

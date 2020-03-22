@@ -12,6 +12,8 @@ import { BoardState } from './model/BoardState';
 import { AppState } from './model/AppState';
 import { MoveTool } from './tools/MoveTool';
 import { DrawTool } from './tools/DrawTool';
+import { EraseTool } from './tools/EraseTool';
+import { DragTool } from './tools/DragTool';
 
 // TODO: Join app and createApp
 export class CollBoardApp {
@@ -76,6 +78,12 @@ export class CollBoardApp {
 
         const drawTool = new DrawTool(this.appState, this.boardState, this.touchController);
         drawTool.setListeners();
+
+        const eraseTool = new EraseTool(this.appState, this.boardState, this.touchController);
+        eraseTool.setListeners();
+
+        const dragTool = new DragTool(this.appState, this.boardState, this.touchController);
+        dragTool.setListeners();
     }
 
     private setAppTitle() {

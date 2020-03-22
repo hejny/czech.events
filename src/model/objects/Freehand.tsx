@@ -1,7 +1,6 @@
 import * as React from 'react';
-import { AbstractObject } from './AbstractObject';
+import { AbstractObject, IS_NEAR_DISTANCE } from './AbstractObject';
 import { Vector2 } from 'touchcontroller';
-import { Transformation } from 'touchcontroller';
 
 const SVG_PADDING = 10;
 
@@ -30,7 +29,19 @@ export class Freehand extends AbstractObject {
             .join(' ');
     }
 
-    private recountBoundingBox() {
+    get topLeftCorner() {
+        return new Vector2(this.minX, this.minY);
+    }
+    get bottomRightCorner() {
+        return new Vector2(this.maxX, this.maxY);
+    }
+
+    isNear(point2: Vector2) {
+        // Should detect even near lines, but this is good enough
+        return this.points.filter((point1) => point1.add(this.shift).length(point2) <= IS_NEAR_DISTANCE).length > 0;
+    }
+
+    private calculateBoundingBox() {
         // TODO: Maybe use BoundingBox from TouchController
 
         const xVals = this.points.map((point) => point.x);
@@ -43,16 +54,15 @@ export class Freehand extends AbstractObject {
     }
 
     render() {
-        this.recountBoundingBox();
+        this.calculateBoundingBox();
         return (
             <div
                 key={this.uuid}
                 className="object"
                 style={{
                     position: 'absolute',
-                    left: this.minX - SVG_PADDING,
-                    top: this.minY - SVG_PADDING,
-                    /*border: '2px dotted red',*/
+                    left: this.minX - SVG_PADDING + this.shift.x,
+                    top: this.minY - SVG_PADDING + this.shift.y,
                 }}
             >
                 <svg
@@ -70,6 +80,7 @@ export class Freehand extends AbstractObject {
                             stroke-linecap="round"
                             stroke="#000"
                             fill="none"
+                            className="collisions"
                         />
                     </g>
                 </svg>

@@ -178,9 +178,13 @@ body {
 .board {
     display: block;
     position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
 }
 
-.board:before {
+.board .board-bg {
     /* Background */
     display: block;
     position: absolute;
@@ -199,6 +203,15 @@ body {
     outline: 2px solid #009edd;
     outline-style: dashed;
     position: relative;
+}
+
+.board .object,
+.board .object * {
+    pointer-events: none;
+}
+
+.board .object .collisions {
+    pointer-events: painted;
 }
 
 /* ===== CUSTOM ====== */
