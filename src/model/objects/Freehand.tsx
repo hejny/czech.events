@@ -5,6 +5,7 @@ import { Vector2 } from 'touchcontroller';
 const SVG_PADDING = 10;
 
 export class Freehand extends AbstractObject {
+    private __test = { a: 1, b: 2 };
     public points: Vector2[];
     public color: string;
     public weight: number;

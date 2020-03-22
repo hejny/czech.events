@@ -1,6 +1,8 @@
 import uuid from 'uuid';
 import { Vector2 } from 'touchcontroller';
 import { idstring } from '../../utils/idstring';
+import { Freehand } from './Freehand';
+import { Serializer, ISerialized } from '../../api/Serializer';
 
 export const IS_NEAR_DISTANCE = 20;
 
@@ -28,5 +30,14 @@ export abstract class AbstractObject {
     public updateTick() {
         // TODO: optimize
         this.version = uuid.v4();
+    }
+
+    serialize(): ISerialized {
+        // TODO: Cache
+        const objectSerializer = new Serializer([
+            { name: 'Vector2', class: Vector2 },
+            { name: 'Freehand', class: Freehand },
+        ]);
+        return objectSerializer.serialize(this);
     }
 }
