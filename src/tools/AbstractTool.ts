@@ -9,15 +9,15 @@ export enum ToolName {
     Drag,
 }
 
-export class AbstractTool {
+export abstract class AbstractTool {
     constructor(public appState: AppState, public boardState: BoardState, public touchController: TouchController) {}
 
     // TODO: refactor: Is setListeners / unsetListeners good naming? Would not it be bette something like init / uninit?
-    setListeners() {}
+    public abstract setListeners(): void;
 
     /*
     TODO: optimization:
-    unsetListeners(){
+    abstract unsetListeners(){
     }
     */
 }

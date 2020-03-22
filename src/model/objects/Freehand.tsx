@@ -77,7 +77,7 @@ export class Freehand extends AbstractObject {
                             fillOpacity="null"
                             strokeOpacity="null"
                             strokeWidth="3"
-                            stroke-linecap="round"
+                            strokeLinecap="round"
                             stroke="#000"
                             fill="none"
                             className="collisions"

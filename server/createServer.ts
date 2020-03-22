@@ -2,15 +2,25 @@ import { json } from 'body-parser';
 import cors from 'cors';
 import express from 'express';
 import http from 'http';
+import SocketIO from 'socket.io';
 const packageJson = require('../package.json');
 
-export async function createApp(): Promise<{ app: express.Application; server: http.Server }> {
+export async function createServer(): Promise<http.Server> {
     const app = express();
 
     app.use(json());
     app.use(cors());
 
     const server = http.createServer(app);
+    const socket = SocketIO(server);
+
+    socket.on('connection', (connection) => {
+        //connection.emit('test', {});
+        connection.on('objects', (objects) => {
+            //console.log('objects', objects);
+            connection.broadcast.emit('objects', objects);
+        });
+    });
 
     app.use((err: any, req: any, res: any, next: any) => {
         console.error(err);
@@ -22,8 +32,5 @@ export async function createApp(): Promise<{ app: express.Application; server: h
         });
     });
 
-    return {
-        app,
-        server,
-    };
+    return server;
 }

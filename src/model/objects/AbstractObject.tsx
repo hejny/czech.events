@@ -1,5 +1,6 @@
 import uuid from 'uuid';
 import { Vector2 } from 'touchcontroller';
+import { idstring } from '../../utils/idstring';
 
 export const IS_NEAR_DISTANCE = 20;
 
@@ -7,6 +8,7 @@ export const IS_NEAR_DISTANCE = 20;
 export abstract class AbstractObject {
     uuid: string;
     shift: Vector2;
+    version: idstring;
 
     constructor() {
         this.uuid = uuid.v4();
@@ -22,5 +24,9 @@ export abstract class AbstractObject {
 
     move(shift: Vector2) {
         this.shift = this.shift.add(shift);
+    }
+    public updateTick() {
+        // TODO: optimize
+        this.version = uuid.v4();
     }
 }

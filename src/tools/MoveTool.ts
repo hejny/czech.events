@@ -20,7 +20,6 @@ export class MoveTool extends AbstractTool {
 
                     // TODO: Sanitize transformation - remove scale and rotation
                     this.appState.transformation = this.appState.transformation.add(transformation);
-                    //TODO: maybe use addInPlace in tranformation and use this version hack: this.appState.version++;
 
                     //transformation.applyOnElement(draggingElement);
                 },

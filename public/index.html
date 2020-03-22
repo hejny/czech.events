@@ -29,10 +29,10 @@
             document.addEventListener('DOMContentLoaded', function() {
                 var apiUrl, selfUrl;
                 if (window.location.hostname === 'localhost') {
-                    apiUrl = 'http://localhost:9976';
+                    apiUrl = 'http://localhost:9977';
                     selfUrl = 'http://localhost:3000';
                 } else {
-                    apiUrl = 'TODO:';
+                    apiUrl = 'https://api.collboard.com';
                     selfUrl = 'https://app.collboard.com';
                 }
                 new CollBoardApp(document.getElementById('root'), apiUrl, selfUrl);
