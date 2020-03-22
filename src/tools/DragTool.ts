@@ -3,23 +3,66 @@ import { AbstractTool, ToolName } from './AbstractTool';
 export class DragTool extends AbstractTool {
     setListeners() {
         this.touchController.touches.subscribe((touch) => {
-            if (this.appState.tool !== ToolName.Drag) return;
+            if (this.appState.tool !== ToolName.Drag) {
+                return;
+            }
 
             const closeObjects = this.boardState.objects.filter((object) =>
-                object.isNear(touch.firstFrame.position.subtract(this.appState.transformation.translate)),
+                object.isNear(this.calculateMouseCoordinates(touch.firstFrame.position)),
             );
 
             if (closeObjects.length === 0) {
-                return; // TODO: selection
+                this.appState.selected = [];
+                this.appState.selection = {
+                    point1: this.calculateMouseCoordinates(touch.firstFrame.position),
+                    point2: this.calculateMouseCoordinates(touch.firstFrame.position),
+                };
+
+                touch.frames.subscribe(
+                    (frame) => {
+                        this.appState.selection.point2 = this.calculateMouseCoordinates(frame.position);
+                        const selection = this.appState.getSelection();
+
+                        this.appState.selected = this.boardState.objects.filter(
+                            (object) =>
+                                object.topLeftCorner.x > selection.topLeftCorner.x &&
+                                object.bottomRightCorner.x < selection.bottomRightCorner.x &&
+                                object.topLeftCorner.y > selection.topLeftCorner.y &&
+                                object.bottomRightCorner.y < selection.bottomRightCorner.y,
+                        );
+
+                        this.boardState.version++;
+                    },
+                    () => {},
+                    () => {
+                        this.appState.selection = null;
+                    },
+                );
+                return;
             }
 
-            const dragging = closeObjects[0];
+            let dragging = [];
+
+            if (
+                this.appState.selected.length > 0 &&
+                closeObjects.filter((o) => this.appState.selected.includes(o)).length > 0
+            ) {
+                // Dragging selected object
+                dragging = this.appState.selected;
+            } else {
+                // Dragging unselected object (select top-most)
+                this.appState.selected = [closeObjects[closeObjects.length - 1]];
+                dragging = this.appState.selected;
+            }
+
             let lastPosition = touch.firstFrame.position;
 
             // TODO: optimization: Maybe somewhere should be unsubscribe
             touch.frames.subscribe(
                 (frame) => {
-                    dragging.move(frame.position.subtract(lastPosition));
+                    dragging.forEach((object) => {
+                        object.move(frame.position.subtract(lastPosition));
+                    });
                     lastPosition = frame.position;
                     this.boardState.version++;
                 },

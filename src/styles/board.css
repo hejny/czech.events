@@ -14,6 +14,7 @@ body {
 .menu-wrapper {
     position: absolute;
     display: flex;
+    flex-wrap: wrap-reverse;
 }
 
 .menu-wrapper.left,
@@ -56,7 +57,6 @@ body {
     background: #e6e6e6;
     border-radius: 6px;
     padding: 2px;
-    /*height: 46px;*/
     display: flex;
 }
 .menu-h {
@@ -91,6 +91,20 @@ body {
 }
 .menu-popup.menu-popup-left:before {
     right: 3px;
+}
+
+.menu-floating {
+    position: absolute;
+}
+.menu-floating .bubble {
+    position: absolute;
+    bottom: -10px;
+    width: 0;
+    height: 0;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+
+    border-top: 20px solid #e6e6e6;
 }
 
 .menu-h .menu-separator {
@@ -216,6 +230,16 @@ body {
     pointer-events: painted;
 }
 
+.board .object-transform-wrapper {
+    position: absolute;
+}
+
+.board .selection {
+    position: absolute;
+    border: 2px solid rgb(0, 157, 219, 0.6);
+    background-color: rgb(0, 157, 219, 0.05);
+}
+
 /* ===== CUSTOM ====== */
 .board-name {
     width: 170px;
@@ -264,6 +288,16 @@ body {
     .menu-v .menu-separator {
         width: 28px;
         margin: 5px 1px;
+    }
+    .menu-wrapper > * {
+        margin: 8px;
+    }
+    .menu-floating .bubble {
+        border-left: 8px solid transparent;
+        border-right: 8px solid transparent;
+
+        border-top: 8px solid #e6e6e6;
+        bottom: -6px;
     }
 }
 

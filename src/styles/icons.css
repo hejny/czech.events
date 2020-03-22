@@ -69,3 +69,19 @@
 .icon-link:after {
     background-image: url('/assets/icons/icon-link@2x.png');
 }
+
+.icon-list:after {
+    background-image: url('/assets/icons/icon-list@2x.png');
+}
+
+.icon-bin:after {
+    background-image: url('/assets/icons/icon-bin@2x.png');
+}
+
+.icon-group:after {
+    background-image: url('/assets/icons/icon-group@2x.png');
+}
+
+.icon-copy:after {
+    background-image: url('/assets/icons/icon-copy@2x.png');
+}

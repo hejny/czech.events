@@ -9,7 +9,7 @@ export class EraseTool extends AbstractTool {
             touch.frames.subscribe(
                 (frame) => {
                     this.boardState.objects = this.boardState.objects.filter(
-                        (object) => !object.isNear(frame.position.subtract(this.appState.transformation.translate)),
+                        (object) => !object.isNear(this.calculateMouseCoordinates(frame.position)),
                     );
                     this.boardState.version++;
                 },
