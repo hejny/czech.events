@@ -14,8 +14,8 @@ export class DrawTool extends AbstractTool {
                             .translate /* TODO: There should be some apply function in touchcontroller*/,
                     ),
                 ],
-                'red',
-                2,
+                this.appState.color,
+                this.appState.weight,
             );
             this.boardState.objects.push(objectInProcess);
 

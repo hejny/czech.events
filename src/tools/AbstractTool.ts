@@ -9,6 +9,15 @@ export enum ToolName {
     Drag,
 }
 
+export const drawingColors: { [key: string]: string } = {
+    black: '#000000',
+    blue: '#3167A4',
+    red: '#EE2333',
+    green: '#40B93C',
+    orange: '#F36717',
+    yellow: '#EDF050',
+};
+
 export abstract class AbstractTool {
     constructor(public appState: AppState, public boardState: BoardState, public touchController: TouchController) {}
 

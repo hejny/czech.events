@@ -68,3 +68,49 @@ export class Icon extends React.Component<IIconProps, IIconState> {
         );
     }
 }
+
+interface IIconColorProps {
+    color: string;
+    onClick?: () => void;
+    className?: string;
+    active?: boolean;
+    inactive?: boolean;
+}
+
+export class IconColor extends React.Component<IIconColorProps, IIconState> {
+    state: IIconState = {
+        submenuOpen: false,
+    };
+
+    clickHandler() {
+        if (this.props.active) {
+            if (this.state.submenuOpen) {
+                this.setState({
+                    submenuOpen: false,
+                });
+            } else {
+                this.setState({
+                    submenuOpen: true,
+                });
+            }
+        } else {
+            this.props.onClick && this.props.onClick();
+        }
+    }
+
+    closeSubmenu() {
+        this.setState({
+            submenuOpen: false,
+        });
+    }
+
+    render() {
+        const { className, color, active, inactive } = this.props;
+        return (
+            <div className={classNames('icon', 'icon-color', active && 'active', inactive && 'inactive', className)}>
+                <span style={{ backgroundColor: color }}></span>
+                <div className="click-detector" onClick={() => this.clickHandler()}></div>
+            </div>
+        );
+    }
+}

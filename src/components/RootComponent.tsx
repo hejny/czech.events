@@ -3,14 +3,14 @@ import { ApiClient } from '../api/ApiClient';
 import { PUBLIC_URL } from '../config';
 import { TouchController } from 'touchcontroller';
 import { MenuWrapper } from './menu/MenuWrapper';
-import { Icon } from './menu/Icon';
+import { Icon, IconColor } from './menu/Icon';
 import { Separator } from './menu/Separator';
 import { Menu } from './menu/Menu';
 import { BoardState } from '../model/BoardState';
 import { observer } from 'mobx-react';
 import { BoardComponent } from './BoardComponent';
 import { AppState } from '../model/AppState';
-import { ToolName } from '../tools/AbstractTool';
+import { ToolName, drawingColors } from '../tools/AbstractTool';
 
 interface IRootComponentProps {
     appState: AppState;
@@ -78,27 +78,7 @@ export class RootComponent extends React.Component<IRootComponentProps, IRootCom
                             icon="pen"
                             active={this.props.appState.tool === ToolName.Draw}
                             onClick={() => (this.props.appState.tool = ToolName.Draw)}
-                        >
-                            {/*
-                            <div className="icon icon-stroke-1"></div>
-                            <div className="icon icon-stroke-2"></div>
-                            <div className="icon icon-stroke-3"></div>
-                            <div className="menu-separator"></div>
-                            <div className="icon icon-color">
-                                <span style={{ backgroundColor: `rgb(49, 103, 164)` }}></span>
-                            </div>
-                            <div className="icon icon-color">
-                                <span style={{ backgroundColor: `rgb(238, 35, 51)` }}></span>
-                            </div>
-                            <div className="icon icon-color">
-                                <span style={{ backgroundColor: `rgb(64, 185, 60)` }}></span>
-                            </div>
-                            <div className="icon icon-color">
-                                <span style={{ backgroundColor: `rgb(237, 240, 80)` }}></span>
-                            </div>
-                            <div className="icon icon-add"></div>
-                            */}
-                        </Icon>
+                        />
                         <Icon
                             icon="erase"
                             active={this.props.appState.tool === ToolName.Erase}
@@ -106,6 +86,37 @@ export class RootComponent extends React.Component<IRootComponentProps, IRootCom
                         />
                     </Menu>
                 </MenuWrapper>
+                {this.props.appState.tool === ToolName.Draw && (
+                    <MenuWrapper position="bottom-rtl">
+                        <Menu orientation="horizontal">
+                            <Icon
+                                icon="stroke-1"
+                                active={this.props.appState.weight === 2}
+                                onClick={() => (this.props.appState.weight = 2)}
+                            />
+                            <Icon
+                                icon="stroke-2"
+                                active={this.props.appState.weight === 5}
+                                onClick={() => (this.props.appState.weight = 5)}
+                            />
+                            <Icon
+                                icon="stroke-3"
+                                active={this.props.appState.weight === 15}
+                                onClick={() => (this.props.appState.weight = 15)}
+                            />
+                            <Separator />
+                            <>
+                                {Object.keys(drawingColors).map((key) => (
+                                    <IconColor
+                                        color={drawingColors[key]}
+                                        active={this.props.appState.color === drawingColors[key]}
+                                        onClick={() => (this.props.appState.color = drawingColors[key])}
+                                    />
+                                ))}
+                            </>
+                        </Menu>
+                    </MenuWrapper>
+                )}
             </>
         );
     }
