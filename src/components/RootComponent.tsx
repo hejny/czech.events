@@ -11,6 +11,7 @@ import { observer } from 'mobx-react';
 import { BoardComponent } from './BoardComponent';
 import { AppState } from '../model/AppState';
 import { ToolName, drawingColors } from '../tools/AbstractTool';
+import { objectSerializer } from '../model/objects/10-objectSerializer';
 
 interface IRootComponentProps {
     appState: AppState;
@@ -35,12 +36,10 @@ export class RootComponent extends React.Component<IRootComponentProps, IRootCom
         // TODO: refactoring: Break to multiple components
         return (
             <>
-                <div className="debug">
-                    aaa
-                    {this.props.boardState.objects[0] && 'aaa'}
+                <div className="debug" style={{ display: 'none' }}>
                     <pre>
                         {this.props.boardState.objects[0] &&
-                            JSON.stringify(this.props.boardState.objects[0].serialize(), null, 4)}
+                            JSON.stringify(objectSerializer.serialize(this.props.boardState.objects[0]), null, 4)}
                     </pre>
                 </div>
                 <BoardComponent {...this.props} />

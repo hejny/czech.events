@@ -12,11 +12,11 @@ export class MoveTool extends AbstractTool {
 
             if (this.appState.tool !== ToolName.Move) return;
 
-            console.log('multitouch', multitouch);
+            //console.log('multitouch', multitouch);
 
             multitouch.transformations(BoundingBox.One()).subscribe(
                 (transformation) => {
-                    console.log('transformation', transformation);
+                    //console.log('transformation', transformation);
 
                     // TODO: Sanitize transformation - remove scale and rotation
                     this.appState.transformation = this.appState.transformation.add(transformation);

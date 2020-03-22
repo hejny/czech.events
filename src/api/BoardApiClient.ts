@@ -7,6 +7,8 @@ import { BoardState } from '../model/BoardState';
 import { observe } from 'mobx';
 import { ObjectPool } from './ObjectPool';
 import { idstring } from '../utils/idstring';
+import { AbstractObject } from '../model/objects/AbstractObject';
+import { objectSerializer } from '../model/objects/10-objectSerializer';
 
 // TODO: Maybe this should be named driver
 export class BoardApiClient {
@@ -38,7 +40,7 @@ export class BoardApiClient {
 
         observe(this.boardState, () => {
             const changed = objectPool.registerNewVersions(this.boardState.objects);
-            this.socket.emit('objects', changed);
+            this.socket.emit('objects', changed.map(objectSerializer.serialize, objectSerializer));
         });
 
         this.socket.on('objects', (newObjectsData) => {
@@ -47,19 +49,7 @@ export class BoardApiClient {
             //console.log('data', data);
             //this.boardState.objects.push(object);
 
-            // TODO: To some better function to propperly hydrate / dehydrate
-            const newObjects = newObjectsData.map((objectData) => {
-                const object = new Freehand(
-                    objectData.points.map((pointData) => new Vector2(pointData.x, pointData.y)),
-                    objectData.color,
-                    objectData.weight,
-                );
-
-                object.uuid = objectData.uuid;
-                object.updateTick();
-
-                return object;
-            });
+            const newObjects = newObjectsData.map(objectSerializer.deserialize, objectSerializer);
 
             for (const newObject of newObjects) {
                 const oldObjectIndex = this.boardState.objects.findIndex(
