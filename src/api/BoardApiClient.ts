@@ -41,10 +41,33 @@ export class BoardApiClient {
             this.socket.emit('objects', changed);
         });
 
-        /*this.socket.on('object', (data: Message) => {
-            this.boardState.objects.push(object);
-        });*/
+        this.socket.on('objects', (newObjectsData) => {
+            console.log('new objects from server');
 
+            //console.log('data', data);
+            //this.boardState.objects.push(object);
+
+            const newObjects = newObjectsData.map((objectData) => {
+                return new Freehand(
+                    objectData.points.map((pointData) => new Vector2(pointData.x, pointData.y)),
+                    objectData.color,
+                    objectData.weight,
+                );
+            });
+
+            for (const newObject of newObjects) {
+                const oldObjectIndex = this.boardState.objects.findIndex(
+                    (oldObject) => oldObject.uuid === newObject.uuid,
+                );
+                if (oldObjectIndex === -1) {
+                    this.boardState.objects.push(newObject);
+                } else {
+                    this.boardState.objects[oldObjectIndex] = newObject;
+                }
+            }
+        });
+
+        /*
         while (true) {
             await forTime(60 * 1000); // TODO: forTimeSynced
 
@@ -60,6 +83,7 @@ export class BoardApiClient {
             console.log('object', object);
             this.boardState.objects.push(object);
         }
+        */
     }
 
     /*public get objects(): Observable<AbstractObject> {

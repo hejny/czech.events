@@ -17,7 +17,8 @@ export async function createServer(): Promise<http.Server> {
     socket.on('connection', (connection) => {
         //connection.emit('test', {});
         connection.on('objects', (objects) => {
-            console.log('objects', objects);
+            //console.log('objects', objects);
+            connection.broadcast.emit('objects', objects);
         });
     });
 
