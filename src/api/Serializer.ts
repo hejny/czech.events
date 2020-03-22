@@ -2,7 +2,7 @@ import { isNull } from 'util';
 
 type Instantiable = { new (...args: any[]): any };
 type ISerializeRule = { name: string; class: Instantiable };
-export type ISerialized = { __class: string | null };
+export type ISerialized = { __class?: string };
 
 /*
 // TODO: Create AbscractApiClient library
@@ -20,7 +20,12 @@ export class Serializer {
     constructor(private serializeRules: ISerializeRule[]) {}
 
     serialize(instance: any): ISerialized {
-        const serializedData: ISerialized = { __class: this.getClassName(instance) };
+        const serializedData: ISerialized = {};
+
+        const serializeRule = this.getSerializeRule(instance);
+        if (serializeRule) {
+            serializedData.__class = serializeRule.name;
+        }
 
         for (const key of Object.keys(instance)) {
             const value = instance[key];
@@ -63,10 +68,10 @@ export class Serializer {
         throw new Error(`Serialization: Value have unexpected type "${typeof value}".`);
     }
 
-    private getClassName(instance: any): string | null {
+    private getSerializeRule(instance: any): ISerializeRule | null {
         for (const serializeRule of this.serializeRules) {
             if (instance instanceof serializeRule.class) {
-                return serializeRule.name;
+                return serializeRule;
             }
         }
 
