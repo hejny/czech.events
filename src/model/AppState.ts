@@ -20,6 +20,13 @@ export class AppState {
     @observable
     selection: null | { point1: Vector2; point2: Vector2 } = null;
 
+    //This is hack for force updating and will be in future removed by more optimized way how to update a board
+    @observable version: number = 0;
+
+    public updateTick() {
+        this.version++;
+    }
+
     getSelection() {
         if (this.selection == null) {
             return null;

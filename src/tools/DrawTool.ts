@@ -28,7 +28,7 @@ export class DrawTool extends AbstractTool {
                     objectInProcess.points.push(this.calculateMouseCoordinates(frame.position));
                     commit = commit.nextCommit(objectInProcess, 'REPLACE');
                     this.objectVersionSystem.pushCommit(commit);
-                    this.appState.version.updateTick();
+                    this.appState.updateTick();
 
                     //objectInProcess.updateTick();
                     //this.objectVersionSystem.updateTick();
