@@ -62,6 +62,10 @@ export class DragTool extends AbstractTool {
                 (frame) => {
                     dragging.forEach((object) => {
                         object.move(frame.position.subtract(lastPosition));
+                        const commit = this.objectVersionSystem
+                            .lastCommitOfObject(object)
+                            .nextCommit(object, 'REPLACE');
+                        this.objectVersionSystem.pushCommit(commit);
                     });
                     lastPosition = frame.position;
                     //this.objectVersionSystem.version++;
