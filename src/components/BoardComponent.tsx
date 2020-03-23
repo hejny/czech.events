@@ -1,5 +1,4 @@
 import * as React from 'react';
-import { ObjectVersionSystem } from '../model/ObjectVersionSystem';
 import { TouchController } from 'touchcontroller';
 import { observer } from 'mobx-react';
 import { AppState } from '../model/AppState';
@@ -9,6 +8,7 @@ import { AttributeType } from '../model/objects/AbstractObject';
 import { Separator } from './menu/Separator';
 import { WeightSelector } from './menu/attributes/WeightSelector';
 import { ColorSelector } from './menu/attributes/ColorSelector';
+import { ObjectVersionSystem } from '../api/ObjectVersionSystem/ObjectVersionSystem';
 
 interface IBoardComponentProps {
     appState: AppState;
@@ -30,7 +30,7 @@ export class BoardComponent extends React.Component<IBoardComponentProps, IBoard
         // TODO: any
         const changeAttributeValue = (value: string | number, key: string) => {
             this.props.appState.selected.forEach((o) => ((o as any)[key] = value));
-            this.props.objectVersionSystem.version++;
+            //this.props.objectVersionSystem.version++;
         };
 
         return (
@@ -60,10 +60,10 @@ export class BoardComponent extends React.Component<IBoardComponentProps, IBoard
                             backgroundPositionY: translate.y,
                         }}
                     ></div>
-                    <div style={{ display: 'none' }}>{this.props.objectVersionSystem.version}</div>
-                    {this.props.objectVersionSystem.objects.map((item) => (
+                    <div style={{ display: 'none' }}>{this.props.appState.version}</div>
+                    {this.props.objectVersionSystem.objects.map((item, i) => (
                         <div
-                            key={item.uuid}
+                            key={i}
                             className="object-transform-wrapper"
                             style={{
                                 position: 'absolute',
@@ -119,11 +119,14 @@ export class BoardComponent extends React.Component<IBoardComponentProps, IBoard
                         <Icon
                             icon="bin"
                             onClick={() => {
+                                /*
+                                TODO:
                                 this.props.objectVersionSystem.objects = this.props.objectVersionSystem.objects.filter(
                                     (object) => !this.props.appState.selected.includes(object),
                                 );
+                                */
                                 this.props.appState.selected = [];
-                                this.props.objectVersionSystem.version++;
+                                //this.props.objectVersionSystem.version++;
                             }}
                         />
                         {commonAttributes.includes(AttributeType.Weight) && (

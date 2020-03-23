@@ -31,7 +31,7 @@ export class DragTool extends AbstractTool {
                                 object.bottomRightCorner.y < selection.bottomRightCorner.y,
                         );
 
-                        this.objectVersionSystem.version++;
+                        //this.objectVersionSystem.version++;
                     },
                     () => {},
                     () => {
@@ -64,7 +64,7 @@ export class DragTool extends AbstractTool {
                         object.move(frame.position.subtract(lastPosition));
                     });
                     lastPosition = frame.position;
-                    this.objectVersionSystem.version++;
+                    //this.objectVersionSystem.version++;
                 },
                 () => {},
                 () => {},

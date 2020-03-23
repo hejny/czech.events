@@ -6,8 +6,7 @@ import { ApiClient } from './api/ApiClient';
 import * as serviceWorker from './serviceWorker';
 import { RootComponent } from './components/RootComponent';
 import { TouchController } from 'touchcontroller';
-import { observe } from 'mobx';
-import { ObjectVersionSystem } from './model/ObjectVersionSystem';
+
 import { AppState } from './model/AppState';
 import { MoveTool } from './tools/MoveTool';
 import { DrawTool } from './tools/DrawTool';

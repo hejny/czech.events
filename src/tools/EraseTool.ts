@@ -8,10 +8,12 @@ export class EraseTool extends AbstractTool {
             // TODO: optimization: Maybe somewhere should be unsubscribe
             touch.frames.subscribe(
                 (frame) => {
+                    /*
+                    TODO:
                     this.objectVersionSystem.objects = this.objectVersionSystem.objects.filter(
                         (object) => !object.isNear(this.calculateMouseCoordinates(frame.position)),
-                    );
-                    this.objectVersionSystem.version++;
+                    );*/
+                    //this.objectVersionSystem.version++;
                 },
                 () => {},
                 () => {},

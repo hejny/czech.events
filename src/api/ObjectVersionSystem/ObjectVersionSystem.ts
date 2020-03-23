@@ -1,7 +1,8 @@
 import { Observable, Observer } from 'rxjs';
-import 'rxjs/add/operator/share';
+//import 'rxjs/add/operator/share';
 import { Commit } from './Commit';
 import { forValueDefined } from 'waitasecond';
+import { AbstractObject } from '../../model/objects/AbstractObject';
 
 export class ObjectVersionSystem {
     public readonly commits: Observable<Commit>;
@@ -12,10 +13,12 @@ export class ObjectVersionSystem {
     constructor() {
         this.commits = Observable.create((observer: Observer<Commit>) => {
             this.commitsObserver = observer;
-        }).share();
+        }); // TODO: maybe .share();
     }
 
     public async pushCommit(...commits: Commit[]) {
+        console.log('commit');
+
         const commitsObserver = await forValueDefined(() => this.commitsObserver);
 
         for (const commit of commits) {
@@ -27,11 +30,15 @@ export class ObjectVersionSystem {
 
             this.commitsPool[commit.commitId] = commit;
 
-            this.commitsObserver.next(commit);
-
+            commitsObserver.next(commit);
             // TODO: Maybe some animation frame waiting
         }
     }
-}
 
-// TODO: objects should maybe be generic
+    // TODO: objects should maybe be generic
+    get objects(): AbstractObject[] {
+        return Object.values(this.commitsPool)
+            .map((commit) => commit.data)
+            .filter((x) => x);
+    }
+}

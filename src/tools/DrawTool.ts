@@ -1,5 +1,6 @@
 import { Freehand } from '../model/objects/Freehand';
 import { AbstractTool, ToolName } from './AbstractTool';
+import { Commit } from '../api/ObjectVersionSystem/Commit';
 
 export class DrawTool extends AbstractTool {
     setListeners() {
@@ -12,7 +13,10 @@ export class DrawTool extends AbstractTool {
                 this.appState.color,
                 this.appState.weight,
             );
-            this.objectVersionSystem.objects.push(objectInProcess);
+
+            // TODO: Maybe more elegant way how to create and push commit in one step with the chain of new commits
+            let commit = Commit.newCommit(objectInProcess);
+            this.objectVersionSystem.pushCommit(commit);
 
             // TODO: optimization: Maybe somewhere should be unsubscribe
             touch.frames.subscribe(
@@ -22,8 +26,12 @@ export class DrawTool extends AbstractTool {
                     //console.log('frame.positionRelative', frame.positionRelative);
 
                     objectInProcess.points.push(this.calculateMouseCoordinates(frame.position));
-                    objectInProcess.updateTick();
-                    this.objectVersionSystem.updateTick();
+                    commit = commit.nextCommit(objectInProcess, 'REPLACE');
+                    this.objectVersionSystem.pushCommit(commit);
+                    this.appState.version.updateTick();
+
+                    //objectInProcess.updateTick();
+                    //this.objectVersionSystem.updateTick();
                 },
                 () => {},
                 () => {
