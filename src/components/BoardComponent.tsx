@@ -60,7 +60,9 @@ export class BoardComponent extends React.Component<IBoardComponentProps, IBoard
                             backgroundPositionY: translate.y,
                         }}
                     ></div>
-                    <div style={{ display: 'none' }}>{this.props.appState.version}</div>
+                    <div style={{ display: 'none' }}>
+                        {this.props.appState._TODO_REMOVE_versionOfObjectsForRendring}
+                    </div>
                     {this.props.objectVersionSystem.objects.map((item, i) => (
                         <div
                             key={i}

@@ -17,7 +17,7 @@ export async function createServer(): Promise<http.Server> {
     socket.on('connection', (connection) => {
         //connection.emit('test', {});
         connection.on('commit', (commit) => {
-            console.log('commit', commit);
+            //console.log('commit', commit);
 
             commit.owners.push('remote');
 

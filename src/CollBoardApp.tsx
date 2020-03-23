@@ -50,7 +50,7 @@ export class CollBoardApp {
                             const objectVersionSystem = this.connectToBoard(match.params.boardId);
 
                             objectVersionSystem.commits.subscribe(() => {
-                                this.appState.updateTick();
+                                this.appState._TODO_REMOVE_versionOfObjectsForRendring++;
                             });
 
                             /*objectVersionSystem.commits.subscribe(() => {
