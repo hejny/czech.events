@@ -14,9 +14,8 @@ export class DrawTool extends AbstractTool {
                 this.appState.weight,
             );
 
-            // TODO: Maybe more elegant way how to create and push commit in one step with the chain of new commits
-            let commit = Commit.newCommit(objectInProcess);
-            this.objectVersionSystem.pushCommit(commit);
+            const commitChain = this.objectVersionSystem.commitChain('REPLACE');
+            commitChain(objectInProcess);
 
             // TODO: optimization: Maybe somewhere should be unsubscribe
             touch.frames.subscribe(
@@ -26,8 +25,7 @@ export class DrawTool extends AbstractTool {
                     //console.log('frame.positionRelative', frame.positionRelative);
 
                     objectInProcess.points.push(this.calculateMouseCoordinates(frame.position));
-                    commit = commit.nextCommit(objectInProcess, 'REPLACE');
-                    this.objectVersionSystem.pushCommit(commit);
+                    commitChain(objectInProcess);
                     this.appState.updateTick();
 
                     //objectInProcess.updateTick();

@@ -17,7 +17,7 @@ export class ObjectVersionSystem {
     }
 
     public async pushCommit(...commits: Commit[]) {
-        console.log('commit');
+        //console.log('commit');
 
         const commitsObserver = await forValueDefined(() => this.commitsObserver);
 
@@ -33,6 +33,19 @@ export class ObjectVersionSystem {
             commitsObserver.next(commit);
             // TODO: Maybe some animation frame waiting
         }
+    }
+
+    public commitChain(previousVersion: 'KEEP' | 'REPLACE'): (data: AbstractObject) => void {
+        let commit: Commit | null = null;
+
+        return (data: AbstractObject) => {
+            if (!commit) {
+                commit = Commit.newCommit(data);
+            } else {
+                commit.nextCommit(data, previousVersion);
+            }
+            this.pushCommit(commit);
+        };
     }
 
     // TODO: objects should maybe be generic
