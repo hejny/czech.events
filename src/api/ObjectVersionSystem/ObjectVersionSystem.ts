@@ -49,9 +49,19 @@ export class ObjectVersionSystem {
     }
 
     // TODO: objects should maybe be generic
-    get objects(): AbstractObject[] {
+    public get objects(): AbstractObject[] {
         return Object.values(this.commitsPool)
             .map((commit) => commit.data)
             .filter((x) => x);
+    }
+
+    // TODO: objects should maybe be generic
+    public lastCommitOfObject(object: AbstractObject): Commit | null {
+        for (const commit of Object.values(this.commitsPool)) {
+            if (commit.data === object) {
+                return commit;
+            }
+        }
+        return null;
     }
 }

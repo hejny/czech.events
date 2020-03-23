@@ -1,4 +1,5 @@
 import { AbstractTool, ToolName } from './AbstractTool';
+import { Commit } from '../api/ObjectVersionSystem/Commit';
 
 export class EraseTool extends AbstractTool {
     setListeners() {
@@ -8,12 +9,17 @@ export class EraseTool extends AbstractTool {
             // TODO: optimization: Maybe somewhere should be unsubscribe
             touch.frames.subscribe(
                 (frame) => {
-                    /*
-                    TODO:
-                    this.objectVersionSystem.objects = this.objectVersionSystem.objects.filter(
+                    /*this.objectVersionSystem.objects = this.objectVersionSystem.objects.filter(
                         (object) => !object.isNear(this.calculateMouseCoordinates(frame.position)),
                     );*/
-                    //this.objectVersionSystem.version++;
+
+                    for (const object of this.objectVersionSystem.objects) {
+                        if (object.isNear(this.calculateMouseCoordinates(frame.position))) {
+                            let commit = this.objectVersionSystem.lastCommitOfObject(object);
+                            commit = commit.nextCommit(null, 'KEEP');
+                            this.objectVersionSystem.pushCommit(commit);
+                        }
+                    }
                 },
                 () => {},
                 () => {},

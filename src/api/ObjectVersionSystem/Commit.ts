@@ -15,7 +15,9 @@ export class Commit {
     // TODO: better then string
     public owners: string[] = [];
 
-    constructor(public data: AbstractObject | null /* TODO: This should maybe be generic data: TData;*/) {}
+    constructor(
+        public data: AbstractObject | null /* TODO: This should maybe be generic data: TData; TODO: Should it be named data or object? */,
+    ) {}
 
     public static newCommit(data: AbstractObject | null): Commit {
         const newCommit = new Commit(data);
