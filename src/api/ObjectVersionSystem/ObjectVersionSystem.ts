@@ -1,5 +1,5 @@
 import { Observable, Observer } from 'rxjs';
-//import 'rxjs/add/operator/share';
+import { share } from 'rxjs/operators';
 import { Commit } from './Commit';
 import { forValueDefined } from 'waitasecond';
 import { AbstractObject } from '../../model/objects/AbstractObject';
@@ -13,7 +13,7 @@ export class ObjectVersionSystem {
     constructor() {
         this.commits = Observable.create((observer: Observer<Commit>) => {
             this.commitsObserver = observer;
-        }); // TODO: maybe .share();
+        }).pipe(share()); // TODO: Maybe publish
     }
 
     public async pushCommit(...commits: Commit[]) {

@@ -28,11 +28,13 @@ export class BoardApiClient {
         */
 
         this.objectVersionSystem.commits.subscribe((commit) => {
-            this.socket.emit('commit', objectSerializer.serialize(commit));
+            if (!commit.owners.includes('remote')) {
+                this.socket.emit('commit', objectSerializer.serialize(commit));
+            }
         });
 
         this.socket.on('commit', (newCommitData) => {
-            //console.log('new objects from server');
+            console.log('new objects from server');
 
             //console.log('data', data);
             //this.objectVersionSystem.objects.push(object);

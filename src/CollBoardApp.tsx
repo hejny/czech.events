@@ -48,6 +48,15 @@ export class CollBoardApp {
                         path="/:boardId"
                         render={({ match }) => {
                             const objectVersionSystem = this.connectToBoard(match.params.boardId);
+
+                            objectVersionSystem.commits.subscribe(() => {
+                                this.appState.updateTick();
+                            });
+
+                            /*objectVersionSystem.commits.subscribe(() => {
+                                console.log('new commit2');
+                            });*/
+
                             return (
                                 <RootComponent
                                     {...{
