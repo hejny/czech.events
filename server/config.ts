@@ -8,7 +8,7 @@ const config = ConfigChecker.from(process.env);
 export const PORT = config
     .get('PORT')
     .number()
-    .default(3001).value!;
+    .default(9977).value!;
 
 //Database
 export const DB_HOST = config.get('DB_HOST').required().value;
@@ -24,3 +24,5 @@ export const DB_SYNCHRONIZE = config
     .get('DB_SYNCHRONIZE')
     .boolean()
     .default(false).value!;
+
+// TODO: Do not run mailService and newsletterService on local PC

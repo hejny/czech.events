@@ -1,0 +1,20 @@
+input.stealth {
+    background: none;
+    border: none;
+}
+
+/* Custom colors */
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:focus,
+.btn-primary:active {
+    color: #fff !important;
+    background-color: #009edd !important;
+    border: 0.05rem solid #009edd !important;
+}
+.bg-primary {
+    background-color: #009edd !important;
+}
+.bg-secondary {
+    background-color: #206cb2 !important;
+}
