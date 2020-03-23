@@ -1,7 +1,3 @@
-import { CollBoardApp } from './CollBoardApp';
-import './styles/index.css';
-import './styles/board.css';
-import './styles/icons.css';
-import './styles/common.css';
+import { EventsApp } from './EventsApp';
 
-(window as any).CollBoardApp = CollBoardApp;
+(window as any).EventsApp = EventsApp;

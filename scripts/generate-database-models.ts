@@ -47,9 +47,6 @@ async function main() {
 
         console.info('Database models successfully created, please purge them before commit by:');
         console.warn('\x1b[43m', '\x1b[30m', `rm -rf ${baseFolder}`, '\x1b[0m');
-        console.warn(
-            'Do not forget to add the newly generated Entities to server/database.ts and src/model/database/_emitDecoratorMetadata.ts!',
-        );
 
         // TODO: Automatically push to specific branch and create merge to current branch
         //await execAsyncFull(`cp ${baseFolder}/entities`);

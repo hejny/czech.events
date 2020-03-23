@@ -1,13 +1,13 @@
 import 'reflect-metadata';
-import { createServer } from './createServer';
+import { createApp } from './app';
 import { PORT } from './config';
 
 main();
 
 async function main() {
-    const server = await createServer();
+    const { app } = await createApp();
 
-    server.listen(PORT, () => {
+    app.listen(PORT, () => {
         console.info('██████████████████████████████████████████');
         console.info(`API is running at http://localhost:${PORT}`);
         // TODO: displayRoutes(app);
