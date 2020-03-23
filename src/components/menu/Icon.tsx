@@ -24,7 +24,12 @@ interface IIconProps {
         | 'list'
         | 'bin'
         | 'group'
-        | 'copy';
+        | 'copy'
+        | 'hejny'
+        | 'text'
+        | 'font-size-1'
+        | 'font-size-2'
+        | 'font-size-3';
     onClick?: () => void;
     className?: string;
     active?: boolean;

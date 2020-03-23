@@ -7,6 +7,9 @@ export enum ToolName {
     Draw,
     Erase,
     Drag,
+    Text,
+    Hejny,
+    Shapes,
 }
 
 export const drawingColors: { [key: string]: string } = {

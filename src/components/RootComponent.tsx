@@ -12,6 +12,9 @@ import { AppState } from '../model/AppState';
 import { ToolName } from '../tools/AbstractTool';
 import { ColorSelector } from './menu/attributes/ColorSelector';
 import { WeightSelector } from './menu/attributes/WeightSelector';
+import { FontSizeSelector } from './menu/attributes/FontSizeSelector';
+import { ListStyleSelector } from './menu/attributes/ListStyleSelector';
+import { FontStyleSelector } from './menu/attributes/FontStyleSelector';
 
 interface IRootComponentProps {
     appState: AppState;
@@ -99,17 +102,45 @@ export class RootComponent extends React.Component<IRootComponentProps, IRootCom
                             active={this.props.appState.tool === ToolName.Erase}
                             onClick={() => this.switchTool(ToolName.Erase)}
                         />
+                        {/*<Icon
+                            icon="text"
+                            active={this.props.appState.tool === ToolName.Text}
+                            onClick={() => this.switchTool(ToolName.Text)}
+                        />*/}
                     </Menu>
                     {this.props.appState.tool === ToolName.Draw && (
                         <Menu orientation="horizontal">
                             <WeightSelector
-                                value={this.props.appState.weight}
-                                onChange={(value) => (this.props.appState.weight = value as number)}
+                                value={this.props.appState.toolWeight}
+                                onChange={(value) => (this.props.appState.toolWeight = value as number)}
                             />
                             <Separator />
                             <ColorSelector
-                                value={this.props.appState.color}
-                                onChange={(value) => (this.props.appState.color = value as string)}
+                                value={this.props.appState.toolColor}
+                                onChange={(value) => (this.props.appState.toolColor = value as string)}
+                            />
+                        </Menu>
+                    )}
+                    {this.props.appState.tool === ToolName.Text && (
+                        <Menu orientation="horizontal">
+                            <FontSizeSelector
+                                value={this.props.appState.toolFontSize}
+                                onChange={(value) => (this.props.appState.toolFontSize = value as number)}
+                            />
+                            <Separator />
+                            <ListStyleSelector
+                                value={this.props.appState.toolListStyle}
+                                onChange={(value) => (this.props.appState.toolListStyle = value as any)}
+                            />
+                            <Separator />
+                            <ColorSelector
+                                value={this.props.appState.toolColor}
+                                onChange={(value) => (this.props.appState.toolColor = value as string)}
+                            />
+                            <Separator />
+                            <FontStyleSelector
+                                value={this.props.appState.toolFontStyle as Object}
+                                onChange={(value) => (this.props.appState.toolFontStyle = value as any)}
                             />
                         </Menu>
                     )}

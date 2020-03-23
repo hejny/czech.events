@@ -28,7 +28,7 @@ export class BoardComponent extends React.Component<IBoardComponentProps, IBoard
         const commonAttributes = this.props.appState.getCommonAttributes();
 
         // TODO: any
-        const changeAttributeValue = (value: string | number, key: string) => {
+        const changeAttributeValue = (value: string | number | Object, key: string) => {
             this.props.appState.selected.forEach((o) => ((o as any)[key] = value));
             this.props.boardState.version++;
         };

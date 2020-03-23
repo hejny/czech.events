@@ -109,13 +109,13 @@ body {
 
 .menu-h .menu-separator {
     height: 32px;
-    width: 2px;
+    width: 1.5px;
     background: #4e4e4e;
-    margin: 5px 10px;
+    margin: 5px 5px;
     border-radius: 4px;
 }
 .menu-v .menu-separator {
-    height: 2px;
+    height: 1.5px;
     width: 32px;
     background: #4e4e4e;
     margin: 5px 5px;

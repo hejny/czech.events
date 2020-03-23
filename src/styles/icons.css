@@ -85,3 +85,23 @@
 .icon-copy:after {
     background-image: url('/assets/icons/icon-copy@2x.png');
 }
+
+.icon-hejny:after {
+    background-image: url('/assets/icons/icon-hejny@2x.png');
+}
+
+.icon-text:after {
+    background-image: url('/assets/icons/icon-text@2x.png');
+}
+
+.icon-font-size-1:after {
+    background-image: url('/assets/icons/icon-font-size-1@2x.png');
+}
+
+.icon-font-size-2:after {
+    background-image: url('/assets/icons/icon-font-size-2@2x.png');
+}
+
+.icon-font-size-3:after {
+    background-image: url('/assets/icons/icon-font-size-3@2x.png');
+}
