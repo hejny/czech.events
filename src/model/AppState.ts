@@ -1,15 +1,24 @@
 import { observable } from 'mobx';
 import { ToolName, drawingColors } from '../tools/AbstractTool';
 import { Transformation, Vector2 } from 'touchcontroller';
-import { AbstractObject, AttributeType } from './objects/AbstractObject';
+import { AbstractObject } from './objects/AbstractObject';
 
 /**
  * AppState represents data of the current user session
  */
 export class AppState {
     @observable tool: ToolName = ToolName.Draw;
-    @observable color: string = drawingColors.black;
-    @observable weight: number = 2;
+
+    // Tool attributes
+    @observable toolColor: string = drawingColors.black;
+    @observable toolWeight: number = 2;
+    @observable toolFontSize: number = 21;
+    @observable toolFontStyle: { bold: boolean; italic: boolean; underline: boolean } = {
+        bold: false,
+        italic: false,
+        underline: false,
+    };
+    @observable toolListStyle: 'ordered' | 'unordered' | 'none' = 'none';
 
     // This represents observer view on the current board, Every user can have different. For example every user can have different position on the board.
     // TODO: Now there is working only translation, make working also scale and rotation

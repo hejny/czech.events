@@ -1,4 +1,4 @@
 export interface ISelectorProps {
-    value: number | string;
-    onChange: (value: number | string) => void;
+    value: number | string | Object;
+    onChange: (value: number | string | Object) => void;
 }

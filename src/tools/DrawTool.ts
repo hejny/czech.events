@@ -10,8 +10,8 @@ export class DrawTool extends AbstractTool {
 
             const objectInProcess = new Freehand(
                 [this.calculateMouseCoordinates(touch.firstFrame.position)],
-                this.appState.color,
-                this.appState.weight,
+                this.appState.toolColor,
+                this.appState.toolWeight,
             );
 
             const commitChain = this.objectVersionSystem.commitChain('REPLACE');
