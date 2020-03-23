@@ -8,10 +8,10 @@ export class EraseTool extends AbstractTool {
             // TODO: optimization: Maybe somewhere should be unsubscribe
             touch.frames.subscribe(
                 (frame) => {
-                    this.boardState.objects = this.boardState.objects.filter(
+                    this.objectVersionSystem.objects = this.objectVersionSystem.objects.filter(
                         (object) => !object.isNear(this.calculateMouseCoordinates(frame.position)),
                     );
-                    this.boardState.version++;
+                    this.objectVersionSystem.version++;
                 },
                 () => {},
                 () => {},

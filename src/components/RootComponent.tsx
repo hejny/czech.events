@@ -5,7 +5,6 @@ import { MenuWrapper } from './menu/MenuWrapper';
 import { Icon } from './menu/Icon';
 import { Separator } from './menu/Separator';
 import { Menu } from './menu/Menu';
-import { BoardState } from '../model/BoardState';
 import { observer } from 'mobx-react';
 import { BoardComponent } from './BoardComponent';
 import { AppState } from '../model/AppState';
@@ -13,10 +12,11 @@ import { objectSerializer } from '../model/objects/10-objectSerializer';
 import { ToolName } from '../tools/AbstractTool';
 import { ColorSelector } from './menu/attributes/ColorSelector';
 import { WeightSelector } from './menu/attributes/WeightSelector';
+import { ObjectVersionSystem } from '../api/ObjectVersionSystem/ObjectVersionSystem';
 
 interface IRootComponentProps {
     appState: AppState;
-    boardState: BoardState;
+    objectVersionSystem: ObjectVersionSystem;
     //apiClient: ApiClient;
     touchController: TouchController;
 }
@@ -45,10 +45,14 @@ export class RootComponent extends React.Component<IRootComponentProps, IRootCom
         return (
             <>
                 <div className="debug" style={{ display: 'none' }}>
-                    <pre>
-                        {this.props.boardState.objects[0] &&
-                            JSON.stringify(objectSerializer.serialize(this.props.boardState.objects[0]), null, 4)}
-                    </pre>
+                    {/* <pre>
+                        {this.props.objectVersionSystem.objects[0] &&
+                            JSON.stringify(
+                                objectSerializer.serialize(this.props.objectVersionSystem.objects[0]),
+                                null,
+                                4,
+                            )}
+                    </pre> */}
                 </div>
                 <BoardComponent {...this.props} />
                 <MenuWrapper position="right">
@@ -63,14 +67,16 @@ export class RootComponent extends React.Component<IRootComponentProps, IRootCom
                 <MenuWrapper position="top-ltr">
                     <img src={`${PUBLIC_URL}/assets/logo-dark.png`} alt="CollBoard.com" className="brand" />
                     <Menu orientation="horizontal" className="d-none d-sm-block">
-                        <input
+                        {/*
+                            TODO:
+                            <input
                             type="text"
                             className="stealth board-name"
-                            defaultValue={this.props.boardState.name}
+                            defaultValue={this.props.objectVersionSystem.name}
                             onChange={(event) => {
-                                this.props.boardState.name = event.target.value;
+                                this.props.objectVersionSystem.name = event.target.value;
                             }}
-                        />
+                        /> */}
                         <button type="button" className="btn btn-primary">
                             Sdílet
                         </button>

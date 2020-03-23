@@ -7,7 +7,7 @@ import * as serviceWorker from './serviceWorker';
 import { RootComponent } from './components/RootComponent';
 import { TouchController } from 'touchcontroller';
 import { observe } from 'mobx';
-import { BoardState } from './model/BoardState';
+import { ObjectVersionSystem } from './model/ObjectVersionSystem';
 import { AppState } from './model/AppState';
 import { MoveTool } from './tools/MoveTool';
 import { DrawTool } from './tools/DrawTool';
@@ -15,6 +15,7 @@ import { EraseTool } from './tools/EraseTool';
 import { DragTool } from './tools/DragTool';
 import uuid from 'uuid';
 import { idstring } from './utils/idstring';
+import { ObjectVersionSystem } from './api/ObjectVersionSystem/ObjectVersionSystem';
 
 // TODO: Join app and createApp
 export class CollBoardApp {
@@ -47,12 +48,12 @@ export class CollBoardApp {
                         exact
                         path="/:boardId"
                         render={({ match }) => {
-                            const boardState = this.connectToBoard(match.params.boardId);
+                            const objectVersionSystem = this.connectToBoard(match.params.boardId);
                             return (
                                 <RootComponent
                                     {...{
                                         appState: this.appState,
-                                        boardState,
+                                        objectVersionSystem,
                                         //apiClient: this.apiClient, // TODO: Is it nessesery to put here apiClient?
                                         touchController: this.touchController, // TODO: Is it nessesery to put here whole touchController not just function to propagate board element?
                                     }}
@@ -72,34 +73,38 @@ export class CollBoardApp {
         serviceWorker.unregister();
     }
 
-    private connectToBoard(boardId: idstring): BoardState {
-        const boardState = new BoardState();
-        this.apiClient.boardApiClient(boardId, boardState);
-        this.initTools(boardState);
+    private connectToBoard(boardId: idstring): ObjectVersionSystem {
+        const objectVersionSystem = new ObjectVersionSystem();
 
+        this.apiClient.boardApiClient(boardId, objectVersionSystem);
+        this.initTools(objectVersionSystem);
+
+        /*
+        TODO:
         const setAppTitle = () => {
             // TODO: Some language/translate functions
-            window.document.title = `${boardState.name} | CollBoard.com - Sdílená tabule ihned k použití.`;
+            window.document.title = `${objectVersionSystem.name} | CollBoard.com - Sdílená tabule ihned k použití.`;
         };
         setAppTitle();
-        observe(boardState, setAppTitle);
+        observe(objectVersionSystem, setAppTitle);
+        */
 
-        return boardState;
+        return objectVersionSystem;
     }
 
-    private initTools(boardState: BoardState) {
+    private initTools(objectVersionSystem: ObjectVersionSystem) {
         // TODO: refactor
 
-        const moveTool = new MoveTool(this.appState, boardState, this.touchController);
+        const moveTool = new MoveTool(this.appState, objectVersionSystem, this.touchController);
         moveTool.setListeners();
 
-        const drawTool = new DrawTool(this.appState, boardState, this.touchController);
+        const drawTool = new DrawTool(this.appState, objectVersionSystem, this.touchController);
         drawTool.setListeners();
 
-        const eraseTool = new EraseTool(this.appState, boardState, this.touchController);
+        const eraseTool = new EraseTool(this.appState, objectVersionSystem, this.touchController);
         eraseTool.setListeners();
 
-        const dragTool = new DragTool(this.appState, boardState, this.touchController);
+        const dragTool = new DragTool(this.appState, objectVersionSystem, this.touchController);
         dragTool.setListeners();
     }
 }

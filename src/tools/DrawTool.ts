@@ -12,7 +12,7 @@ export class DrawTool extends AbstractTool {
                 this.appState.color,
                 this.appState.weight,
             );
-            this.boardState.objects.push(objectInProcess);
+            this.objectVersionSystem.objects.push(objectInProcess);
 
             // TODO: optimization: Maybe somewhere should be unsubscribe
             touch.frames.subscribe(
@@ -23,7 +23,7 @@ export class DrawTool extends AbstractTool {
 
                     objectInProcess.points.push(this.calculateMouseCoordinates(frame.position));
                     objectInProcess.updateTick();
-                    this.boardState.updateTick();
+                    this.objectVersionSystem.updateTick();
                 },
                 () => {},
                 () => {

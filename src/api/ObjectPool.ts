@@ -1,12 +1,14 @@
 import { AbstractObject } from '../model/objects/AbstractObject';
 import { idstring } from '../utils/idstring';
 
+// TODO: DEPRECATED
+
 /**
  * TODO: Better name
  * Stores and compares objects for recognition which objects have changed and which not.
  */
-export class ObjectPool {
-    private objectsFingerprints: { uuid: idstring; version: idstring }[] = [];
+export class __ObjectPool {
+    /*private objectsFingerprints: { uuid: idstring; version: idstring }[] = [];
 
     public registerNewVersions(objects: AbstractObject[]): AbstractObject[] {
         const newObjects: AbstractObject[] = [];
@@ -31,5 +33,5 @@ export class ObjectPool {
         }
 
         return newObjects;
-    }
+    }*/
 }

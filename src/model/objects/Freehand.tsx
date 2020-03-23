@@ -63,7 +63,6 @@ export class Freehand extends AbstractObject {
         this.calculateBoundingBox();
         return (
             <div
-                key={this.uuid}
                 className={classNames('object', selected && 'selected')}
                 style={{
                     position: 'absolute',
@@ -79,7 +78,6 @@ export class Freehand extends AbstractObject {
                     <g>
                         <path
                             d={this.path}
-                            id={this.uuid}
                             fillOpacity="null"
                             strokeOpacity="null"
                             strokeWidth={this.weight}

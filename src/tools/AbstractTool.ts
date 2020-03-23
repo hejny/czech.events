@@ -1,6 +1,6 @@
-import { BoardState } from '../model/BoardState';
 import { TouchController, Vector2 } from 'touchcontroller';
 import { AppState } from '../model/AppState';
+import { ObjectVersionSystem } from '../api/ObjectVersionSystem/ObjectVersionSystem';
 
 export enum ToolName {
     Move,
@@ -19,7 +19,11 @@ export const drawingColors: { [key: string]: string } = {
 };
 
 export abstract class AbstractTool {
-    constructor(public appState: AppState, public boardState: BoardState, public touchController: TouchController) {}
+    constructor(
+        public appState: AppState,
+        public objectVersionSystem: ObjectVersionSystem,
+        public touchController: TouchController,
+    ) {}
 
     // TODO: refactor: Is setListeners / unsetListeners good naming? Would not it be bette something like init / uninit?
     public abstract setListeners(): void;

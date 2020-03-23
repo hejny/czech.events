@@ -7,7 +7,7 @@ export class DragTool extends AbstractTool {
                 return;
             }
 
-            const closeObjects = this.boardState.objects.filter((object) =>
+            const closeObjects = this.objectVersionSystem.objects.filter((object) =>
                 object.isNear(this.calculateMouseCoordinates(touch.firstFrame.position)),
             );
 
@@ -23,7 +23,7 @@ export class DragTool extends AbstractTool {
                         this.appState.selection.point2 = this.calculateMouseCoordinates(frame.position);
                         const selection = this.appState.getSelection();
 
-                        this.appState.selected = this.boardState.objects.filter(
+                        this.appState.selected = this.objectVersionSystem.objects.filter(
                             (object) =>
                                 object.topLeftCorner.x > selection.topLeftCorner.x &&
                                 object.bottomRightCorner.x < selection.bottomRightCorner.x &&
@@ -31,7 +31,7 @@ export class DragTool extends AbstractTool {
                                 object.bottomRightCorner.y < selection.bottomRightCorner.y,
                         );
 
-                        this.boardState.version++;
+                        this.objectVersionSystem.version++;
                     },
                     () => {},
                     () => {
@@ -64,7 +64,7 @@ export class DragTool extends AbstractTool {
                         object.move(frame.position.subtract(lastPosition));
                     });
                     lastPosition = frame.position;
-                    this.boardState.version++;
+                    this.objectVersionSystem.version++;
                 },
                 () => {},
                 () => {},

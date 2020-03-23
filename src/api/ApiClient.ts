@@ -1,6 +1,6 @@
 import { BoardApiClient } from './BoardApiClient';
-import { BoardState } from '../model/BoardState';
 import { idstring } from '../utils/idstring';
+import { ObjectVersionSystem } from './ObjectVersionSystem/ObjectVersionSystem';
 
 export class ApiClient {
     constructor(private apiUrl: string) {}
@@ -9,9 +9,9 @@ export class ApiClient {
         return this.get('/about');
     }
 
-    public boardApiClient(boardUuid: idstring, boardState: BoardState): BoardApiClient {
+    public boardApiClient(boardUuid: idstring, objectVersionSystem: ObjectVersionSystem): BoardApiClient {
         // TODO: Cache
-        return new BoardApiClient(this.apiUrl, boardUuid, boardState);
+        return new BoardApiClient(this.apiUrl, boardUuid, objectVersionSystem);
     }
 
     // TODO: Create AbscractApiClient library

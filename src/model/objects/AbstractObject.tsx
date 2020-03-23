@@ -1,8 +1,4 @@
-import uuid from 'uuid';
 import { Vector2 } from 'touchcontroller';
-import { idstring } from '../../utils/idstring';
-//import { Freehand } from './Freehand';
-//import { Serializer, ISerialized } from '../../api/Serializer';
 
 export const IS_NEAR_DISTANCE = 20;
 
@@ -13,13 +9,10 @@ export enum AttributeType {
 
 // TODO: refactoring: maybe better naming
 export abstract class AbstractObject {
-    uuid: string;
     shift: Vector2;
-    version: idstring;
 
     constructor() {
-        this.uuid = uuid.v4();
-        this.shift = new Vector2(0, 0);
+        this.shift = Vector2.Zero();
     }
 
     abstract render(selected: boolean): JSX.Element;
@@ -33,10 +26,6 @@ export abstract class AbstractObject {
 
     move(shift: Vector2) {
         this.shift = this.shift.add(shift);
-    }
-    public updateTick() {
-        // TODO: optimize
-        this.version = uuid.v4();
     }
 
     /*

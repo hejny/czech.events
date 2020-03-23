@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { BoardState } from '../model/BoardState';
+import { ObjectVersionSystem } from '../model/ObjectVersionSystem';
 import { TouchController } from 'touchcontroller';
 import { observer } from 'mobx-react';
 import { AppState } from '../model/AppState';
@@ -12,7 +12,7 @@ import { ColorSelector } from './menu/attributes/ColorSelector';
 
 interface IBoardComponentProps {
     appState: AppState;
-    boardState: BoardState;
+    objectVersionSystem: ObjectVersionSystem;
     touchController: TouchController;
 }
 
@@ -30,7 +30,7 @@ export class BoardComponent extends React.Component<IBoardComponentProps, IBoard
         // TODO: any
         const changeAttributeValue = (value: string | number, key: string) => {
             this.props.appState.selected.forEach((o) => ((o as any)[key] = value));
-            this.props.boardState.version++;
+            this.props.objectVersionSystem.version++;
         };
 
         return (
@@ -60,8 +60,8 @@ export class BoardComponent extends React.Component<IBoardComponentProps, IBoard
                             backgroundPositionY: translate.y,
                         }}
                     ></div>
-                    <div style={{ display: 'none' }}>{this.props.boardState.version}</div>
-                    {this.props.boardState.objects.map((item) => (
+                    <div style={{ display: 'none' }}>{this.props.objectVersionSystem.version}</div>
+                    {this.props.objectVersionSystem.objects.map((item) => (
                         <div
                             key={item.uuid}
                             className="object-transform-wrapper"
@@ -119,11 +119,11 @@ export class BoardComponent extends React.Component<IBoardComponentProps, IBoard
                         <Icon
                             icon="bin"
                             onClick={() => {
-                                this.props.boardState.objects = this.props.boardState.objects.filter(
+                                this.props.objectVersionSystem.objects = this.props.objectVersionSystem.objects.filter(
                                     (object) => !this.props.appState.selected.includes(object),
                                 );
                                 this.props.appState.selected = [];
-                                this.props.boardState.version++;
+                                this.props.objectVersionSystem.version++;
                             }}
                         />
                         {commonAttributes.includes(AttributeType.Weight) && (
