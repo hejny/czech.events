@@ -6,6 +6,7 @@ import { databaseConnectionPromise } from '../../database';
 import { EmailService } from '../EmailService/EmailService';
 import { INewsletterServiceStatus } from './INewsletterServiceStatus';
 
+// TODO: to waitasecond
 export async function forTimeSynced(period: number, shift: number = 0): Promise<void> {
     const currentTime = new Date().getTime();
     const wait = period - ((currentTime - shift) % period);
