@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "CzechEventsAddButton",
+  "version": "0.0.2",
+  "author": "Pavol Hejný",
+  "description": "Scrape data from social networks and send it to Czech.events",
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.facebook.com/*"
+      ],
+      "css": [
+        "src/style.css"
+      ],
+      "js": [
+        "src/jquery-3.4.1.min.js",
+        "src/index.js"
+      ]
+    }
+  ],
+  "permissions": ["storage"]
+}
