@@ -6,6 +6,7 @@ import { subscriberPostRouteHandler } from './routes/subscriberPostRouteHandler'
 import { connectionPromise } from './database';
 import { getEventsRouteHandler } from './routes/getEventsRouteHandler';
 import { getNewsletterRouteHandler } from './routes/getNewsletterRouteHandler';
+import { adminRouter } from './routes/admin/adminRouter';
 const packageJson = require('../package.json');
 
 export async function createApp(): Promise<{ app: express.Application; server: http.Server }> {
@@ -15,6 +16,8 @@ export async function createApp(): Promise<{ app: express.Application; server: h
 
     app.use(json());
     app.use(cors());
+
+    app.use(adminRouter);
 
     const server = http.createServer(app);
 

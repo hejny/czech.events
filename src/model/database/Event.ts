@@ -37,7 +37,7 @@ export class Event {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;
 
-    @Column('varchar', { name: 'serializeId', unique: true, length: 1000 })
+    @Column('varchar', { name: 'serializeId', unique: true, length: 1000 }) // TODO: This should be named just URL
     serializeId: string;
 
     @Column('varchar', { name: 'name', length: 300 })

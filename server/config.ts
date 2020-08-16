@@ -24,3 +24,5 @@ export const DB_SYNCHRONIZE = config
     .get('DB_SYNCHRONIZE')
     .boolean()
     .default(false).value!;
+
+export const ADMIN_TOKEN = config.get('ADMIN_TOKEN').value;
