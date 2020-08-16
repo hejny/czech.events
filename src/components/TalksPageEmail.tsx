@@ -41,21 +41,9 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
                 {/*`📅 Konference / meetupy / hackathony – co se děje z IT / Startupové akce 🌆`*/}
                 <NewsletterContentsComponent {...{ newsletterContents, position: NewsletterContentPosition.SUBJECT }} />
             </h2>
-            {/* Ahoj,
-            <br />
-            opět jsme dali dohromady seznam událostí, na které se vyplatí zajít:
-            <br /> */}
             Ahoj,
             <br />
-            bohužel aktuální situace nepřeje žádným konferencím, hackathonům ani jiným IT&amp;Startup událostem.
-            <br />
-            <br />
-            Nebudeme rozepisovat všechny akce, které musely být zrušené. 😷 Místo toho vypíšeme alespoň ty skupiny,
-            které přesunuly svoji činnost na webináře a remote meetupy. <br />
-            <br />
-            Nebudeme zmiňovat každý konkrétní event, protože se to v aktuálním chaosu rychle mění. V emailu vás odkážeme
-            na zdroje, odkud se můžete o nových věcech průběžně dozvídat.
-            <br />
+            opět jsme dali dohromady seznam událostí, na které se vyplatí zajít:
             <br />
             <NewsletterContentsComponent {...{ newsletterContents, position: NewsletterContentPosition.HEAD }} />
             {Object.keys(categorizedEvents).map((type) => (

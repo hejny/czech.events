@@ -50,24 +50,29 @@ adminRouter.get('/admin/events', async (request, response) => {
         }
     }
 
+    delete event!.eventCodes;
+    delete event!.newsletterContents;
+
     return response.send(event);
 });
 
 adminRouter.put('/admin/events', async (request, response) => {
     const connection = await connectionPromise;
 
-    const updateResult = await connection.manager.update(
-        Event,
-        {
-            where: { serializeId: request.query.serializeId },
-            limit: 1,
-        },
-        request.body,
-    );
+    try {
+        const updateResult = await connection
+            .createQueryBuilder()
+            .update(Event)
+            .set(request.body)
+            .where({ serializeId: request.query.serializeId })
+            .limit(1)
+            .execute();
 
-    console.log(`updateResult`, updateResult);
-
-    return response.send(updateResult);
+        //console.log(`updateResult`, updateResult);
+        return response.send(updateResult);
+    } catch (error) {
+        return response.status(400).send(error);
+    }
 });
 
 adminRouter.use('/admin/*', (request, response) => {

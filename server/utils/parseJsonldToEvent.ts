@@ -1,36 +1,52 @@
-import { Event } from '../../src/model/database/Event';
+import { Event, EventType } from '../../src/model/database/Event';
 
 export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event> {
-    const startDate = new Date(eventJsonld.startDate);
-    const endDate = new Date(eventJsonld.endDate);
+    try {
+        const startDate = new Date(eventJsonld.startDate);
+        const endDate = new Date(eventJsonld.endDate);
 
-    const days =
-        startDate.getDate() === endDate.getDate()
-            ? startDate.getDate().toString()
-            : `${startDate.getDate()}-${endDate.getDate()}`;
+        const days =
+            startDate.getDate() === endDate.getDate()
+                ? startDate.getDate().toString()
+                : `${startDate.getDate()}-${endDate.getDate()}`;
 
-    return {
-        serializeId: url,
-        name: eventJsonld.name,
-        topic: null,
-        //type: EventType;
-        web: url,
-        city: eventJsonld.location.address.addressLocality,
-        year: startDate.getFullYear(),
-        month: startDate.getMonth() + 1,
-        days,
-        time: `${startDate
-            .getHours()
-            .toString()
-            .padStart(2, '0')}:${startDate
-            .getMinutes()
-            .toString()
-            .padStart(2, '0')}`,
-        price: null,
-        priceCurrency: null,
-        //visibility: EventVisibility;
-        //note: string | null;
-    };
+        let type = EventType.CONFERENCE;
+
+        const keywords = `${eventJsonld.name} ${eventJsonld.description}`.toLowerCase();
+        if (keywords.includes('hackathon')) type = EventType.HACKATHON;
+        if (keywords.includes('meetup')) type = EventType.MEETUP;
+        if (keywords.includes('sraz')) type = EventType.MEETUP;
+        if (keywords.includes('workshop')) type = EventType.WORKSHOP;
+
+        // TODO: Also detect meetup vs. conference by duration
+
+        return {
+            serializeId: url,
+            name: eventJsonld.name,
+            topic: null,
+            type,
+            web: url,
+            city: eventJsonld?.location?.address?.addressLocality,
+            year: startDate.getFullYear(),
+            month: startDate.getMonth() + 1,
+            days,
+            time: `${startDate
+                .getHours()
+                .toString()
+                .padStart(2, '0')}:${startDate
+                .getMinutes()
+                .toString()
+                .padStart(2, '0')}`,
+            price: null,
+            priceCurrency: null,
+            //visibility: EventVisibility;
+            //note: string | null;
+        };
+    } catch (error) {
+        console.error(error);
+        console.info(eventJsonld);
+        throw new Error(`Can not create Event`);
+    }
 }
 
 /*{
