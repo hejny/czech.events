@@ -2,6 +2,8 @@ import { Subscriber } from '../../src/model/database/Subscriber';
 import { constructObjectFromJSON } from '../../src/utils/constructObjectFromJSON';
 import { RequestHandler } from 'express';
 import { connectionPromise } from '../database';
+import sendgrid from '@sendgrid/helpers';
+import sendgridClient from '@sendgrid/client';
 import uuid from 'uuid';
 
 export const subscriberPostRouteHandler: RequestHandler = async (request, response, next) => {
@@ -11,6 +13,9 @@ export const subscriberPostRouteHandler: RequestHandler = async (request, respon
     subscriber.created = new Date();
     subscriber.uuid = uuid.v4();
     const insertResult = await connection.manager.insert(Subscriber, subscriber);
+
+    sendgrid.helpers.
+
 
     if (insertResult.identifiers.length === 1) {
         const subscriber = await connection.manager.findOne(Subscriber, insertResult.identifiers[0].id);
@@ -22,3 +27,6 @@ export const subscriberPostRouteHandler: RequestHandler = async (request, respon
         // TODO: some error
     }
 };
+
+
+

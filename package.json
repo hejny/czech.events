@@ -26,6 +26,10 @@
     "url": "https://github.com/hejny/events"
   },
   "dependencies": {
+    "@sendgrid/client": "^7.2.6",
+    "@sendgrid/contact-importer": "^7.2.6",
+    "@sendgrid/helpers": "^7.2.6",
+    "@sendgrid/mail": "^7.2.6",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.4.0",
     "@testing-library/user-event": "^7.2.1",

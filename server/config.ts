@@ -26,3 +26,8 @@ export const DB_SYNCHRONIZE = config
     .default(false).value!;
 
 export const ADMIN_TOKEN = config.get('ADMIN_TOKEN').value;
+
+
+
+export const SENDGRID_API_KEY = config.get('SENDGRID_API_KEY').required().value;
+
