@@ -1,20 +1,16 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Event } from './Event';
 
-@Index('uuid', ['uuid'], { unique: true })
-@Index('event_id', ['event_id'], {})
+@Index('event_id', ['eventId'], {})
 @Index('type', ['type'], {})
 @Index('value', ['value'], {})
-@Entity('EventCode', {})
+@Entity('EventCode')
 export class EventCode {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;
 
-    @Column('char', { name: 'uuid', nullable: true, unique: true, length: 36 })
-    uuid: string | null;
-
     @Column('int', { name: 'event_id' })
-    event_id: number;
+    eventId: number;
 
     @Column('enum', { name: 'type', enum: ['DISCOUNT_PERCENT'] })
     type: 'DISCOUNT_PERCENT';

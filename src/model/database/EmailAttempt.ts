@@ -1,24 +1,24 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Email } from './Email';
 
-@Index('Email_id', ['email_id'], {})
+@Index('EmailId', ['emailId'], {})
 @Index('Success', ['success'], {})
 @Index('Created', ['created'], {})
-@Entity('EmailAttempt', {})
+@Entity('EmailAttempt', { schema: 'czechevents' })
 export class EmailAttempt {
-    @PrimaryGeneratedColumn({ type: 'int', name: 'id', unsigned: true })
+    @PrimaryGeneratedColumn({ type: 'int', name: 'Id', unsigned: true })
     id: number;
 
-    @Column('int', { name: 'email_id' })
-    email_id: number;
+    @Column('int', { name: 'EmailId' })
+    emailId: number;
 
-    @Column('tinyint', { name: 'success' })
-    success: boolean;
+    @Column('tinyint', { name: 'Success' })
+    success: number;
 
-    @Column('text', { name: 'message' })
+    @Column('text', { name: 'Message' })
     message: string;
 
-    @Column('datetime', { name: 'created', default: () => 'CURRENT_TIMESTAMP' })
+    @Column('datetime', { name: 'Created', default: () => 'CURRENT_TIMESTAMP' })
     created: Date;
 
     @ManyToOne(
@@ -26,6 +26,6 @@ export class EmailAttempt {
         (email) => email.emailAttempts,
         { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' },
     )
-    @JoinColumn([{ name: 'email_id', referencedColumnName: 'id' }])
+    @JoinColumn([{ name: 'EmailId', referencedColumnName: 'id' }])
     email: Email;
 }

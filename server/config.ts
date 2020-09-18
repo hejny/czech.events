@@ -24,36 +24,3 @@ export const DB_SYNCHRONIZE = config
     .get('DB_SYNCHRONIZE')
     .boolean()
     .default(false).value!;
-
-// TODO: Do not run mailService and newsletterService on local PC
-
-//Email SMTP config
-export const EMAIL_HOST = config.get('EMAIL_HOST', 'Smtp server').required().value;
-export const EMAIL_USER = config.get('EMAIL_USER').required().value;
-export const EMAIL_PASSWORD = config.get('EMAIL_PASSWORD').required().value;
-export const EMAIL_ADDITIONAL_CONFIG = config
-    .get('EMAIL_ADDITIONAL_CONFIG')
-    .json()
-    .default({}).value;
-// TODO: remove or use export const EMAIL_PORT = config.get('EMAIL_PORT').number().default(25 /*TODO: or 465, 587*/);
-
-export const EMAIL_LIMIT_SEND_FREQUENCY = config
-    .get('EMAIL_LIMIT_SEND_FREQUENCY')
-    .number()
-    .default(60).value!;
-export const EMAIL_LIMIT_IN_ONE_TICK = config
-    .get('EMAIL_LIMIT_IN_ONE_TICK')
-    .number()
-    .default(2).value!;
-export const EMAIL_LIMIT_RETRY_AFTER = config
-    .get('EMAIL_LIMIT_RETRY_AFTER')
-    .number()
-    .default(3600).value!;
-export const EMAIL_LIMIT_LIVETIME = config
-    .get('EMAIL_LIMIT_LIVETIME')
-    .number()
-    .default(60 * 60 * 24 * 3).value!;
-export const EMAIL_LIMIT_RETRIES = config
-    .get('EMAIL_LIMIT_RETRIES')
-    .number()
-    .default(3).value!;

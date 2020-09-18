@@ -3,19 +3,19 @@ import { Event } from './Event';
 import { Newsletter } from './Newsletter';
 
 // TODO: All enums to real TS enums
-@Index('event_id', ['event_id'], {})
-@Index('newsletter_id', ['newsletter_id'], {})
+@Index('event_id', ['eventId'], {})
+@Index('newsletter_id', ['newsletterId'], {})
 @Index('status', ['status'], {})
-@Entity('Event_Newsletter', {})
+@Entity('Event_Newsletter')
 export class EventNewsletter {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;
 
     @Column('int', { name: 'event_id' })
-    event_id: number;
+    eventId: number;
 
     @Column('int', { name: 'newsletter_id' })
-    newsletter_id: number;
+    newsletterId: number;
 
     @Column('enum', { name: 'status', enum: ['VISIBLE', 'HIDDEN'] })
     status: 'VISIBLE' | 'HIDDEN';

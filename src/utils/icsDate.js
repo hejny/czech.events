@@ -1,4 +1,6 @@
-export function icsDate(date: Date) {
+'use strict';
+Object.defineProperty(exports, '__esModule', { value: true });
+function icsDate(date) {
     // TODO: Maybe create VTIMEZONE not shift the dates
     date = new Date(date.getTime() - 1000 * 60 * 60);
     const day =
@@ -14,3 +16,4 @@ export function icsDate(date: Date) {
         '00';
     return day + 'T' + hour + 'Z';
 }
+exports.icsDate = icsDate;

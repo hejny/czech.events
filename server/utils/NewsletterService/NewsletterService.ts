@@ -6,6 +6,7 @@ import { databaseConnectionPromise } from '../../database';
 import { EmailService } from '../EmailService/EmailService';
 import { INewsletterServiceStatus } from './INewsletterServiceStatus';
 
+// TODO: to waitasecond
 export async function forTimeSynced(period: number, shift: number = 0): Promise<void> {
     const currentTime = new Date().getTime();
     const wait = period - ((currentTime - shift) % period);
@@ -41,9 +42,9 @@ export class NewsletterService {
 
 
         //if (test) {
-            while (true) {
-                //await forTimeSynced(10 * 60 * 1000, 7 * 60 * 1000);
-                try{
+        while (true) {
+            //await forTimeSynced(10 * 60 * 1000, 7 * 60 * 1000);
+            try {
                 await forTime(60 * 60 * 1000);
                 await this.emailService.send({
                     to: 'me@pavolhejny.com',
@@ -51,11 +52,11 @@ export class NewsletterService {
                     subject: 'Czech.events - NewsletterService tick',
                     body: 'test<hr/>test',
                 });
-                }catch(error){
-                    console.error(error);
-                }
-                //this.sendingTick(test);
+            } catch (error) {
+                console.error(error);
             }
+            //this.sendingTick(test);
+        }
         /*} else {
             while (true) {
                 await forTimeSynced(this.emailService.config.limits.sendFrequency * 1000);

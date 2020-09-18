@@ -1,10 +1,7 @@
+import { NewsletterContent } from './NewsletterContent';
 import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { EventCode } from './EventCode';
 import { EventNewsletter } from './EventNewsletter';
-import { NewsletterContent } from './NewsletterContent';
-import moment from 'moment';
-import 'moment/locale/cs';
-import { icsDate } from '../../utils/icsDate';
 
 export enum EventType {
     CONFERENCE = 'CONFERENCE',
@@ -27,7 +24,6 @@ export enum EventVisibility {
 
 @Index('serializeId', ['serializeId'], { unique: true })
 @Index('name_topic', ['name', 'topic'], { unique: true })
-@Index('uuid', ['uuid'], { unique: true })
 @Index('type', ['type'], {})
 @Index('city', ['city'], {})
 @Index('year', ['year'], {})
@@ -40,9 +36,6 @@ export enum EventVisibility {
 export class Event {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;
-
-    @Column('char', { name: 'uuid', nullable: true, unique: true, length: 36 })
-    uuid: string | null;
 
     @Column('varchar', { name: 'serializeId', unique: true, length: 1000 })
     serializeId: string;
@@ -128,11 +121,6 @@ export class Event {
     get date(): Date | null {
         if (this.year && this.month && this.day) {
             const date = new Date(this.year, this.month - 1, this.day);
-            // TODO: Maybe better?
-            const time = moment(this.time || '00:00 AM', 'hh A').toDate();
-            date.setHours(time.getHours());
-            date.setMinutes(time.getMinutes());
-            // TODO: Maybe seconds?
 
             if (!isNaN(date.getDate())) {
                 return date;
@@ -162,24 +150,7 @@ export class Event {
         }
     }
 
-    get ics(): string | null {
-        const { name, topic, date } = this;
-        if (!date) {
-            return null;
-        }
-        //TODO: escape
-        const ics = `BEGIN:VEVENT
-UID:${this.uuid}@czech.events
-DTSTAMP:${icsDate(date)}
-DTSTART:${icsDate(date)}
-DTEND:${icsDate(date)}
-SUMMARY:${`${name.trim()}${topic ? ` – ${topic.trim()}` : ''}`}
-CLASS:PUBLIC
-END:VEVENT`;
-        return ics;
-    }
-
     /*static error(error: Error):Event{
-  return new Event();
-  }*/
+    return new Event();
+    }*/
 }

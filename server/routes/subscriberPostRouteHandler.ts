@@ -1,18 +1,19 @@
 import { Subscriber } from '../../src/model/database/Subscriber';
 import { constructObjectFromJSON } from '../../src/utils/constructObjectFromJSON';
 import { RequestHandler } from 'express';
-import { databaseConnectionPromise } from '../database';
+import { connectionPromise } from '../database';
 import uuid from 'uuid';
 
 export const subscriberPostRouteHandler: RequestHandler = async (request, response, next) => {
-    const databaseConnection = await databaseConnectionPromise;
+    const connection = await connectionPromise;
     // TODO: Purge internal IDs
     const subscriber = constructObjectFromJSON(Subscriber, request.body);
-    subscriber.uuid = uuid.v4(); // TODO: UUID generate function
-    const insertResult = await databaseConnection.manager.insert(Subscriber, subscriber);
+    subscriber.created = new Date();
+    subscriber.uuid = uuid.v4();
+    const insertResult = await connection.manager.insert(Subscriber, subscriber);
 
     if (insertResult.identifiers.length === 1) {
-        const subscriber = await databaseConnection.manager.findOne(Subscriber, insertResult.identifiers[0].id);
+        const subscriber = await connection.manager.findOne(Subscriber, insertResult.identifiers[0].id);
         //console.log('subscriber', subscriber);
         // TODO: Purge internal IDs
         return response.send(subscriber);

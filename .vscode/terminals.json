@@ -19,7 +19,8 @@
         },
         {
             "name":"generate-database-models",
-            "command":"npm run generate-database-models"
+            "command":"npm run generate-database-models",
+            "onlySingle": true
         }
     ]
 }
