@@ -23,6 +23,8 @@ export class EmailService {
 
         const databaseConnection = await databaseConnectionPromise;
         // TODO: insert vs. save
+
+        console.info(`📨 Sending Email "${email.subject}" to "${email.to}"`);
         await databaseConnection.manager.insert(Email, constructObjectFromJSON(Email, email));
         return;
     }

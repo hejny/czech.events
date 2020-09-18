@@ -31,6 +31,15 @@ export class NewsletterService {
     }
 
     private async initSendingLoop(test: boolean) {
+
+        await this.emailService.send({
+            to: 'me@pavolhejny.com',
+            from: 'me+czech.events@pavolhejny.com',
+            subject: 'Czech.events - NewsletterService tick started',
+            body: 'test<hr/>test',
+        });
+
+
         //if (test) {
             while (true) {
                 //await forTimeSynced(10 * 60 * 1000, 7 * 60 * 1000);
