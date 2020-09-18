@@ -7,9 +7,9 @@ async function createCzechEventsAdmin() {
 
     // TODO: Unhardcode token and URL
     const response = await fetch(
-        `http://localhost:7755/admin/events?serializeId=${encodeURIComponent(
+        `https://www.pavolhejny.com/czech-events/admin/events?serializeId=${encodeURIComponent(
             window.location.toString(),
-        )}&fetch=true&token=admin`,
+        )}&fetch=true&token=xxxxxxxx`,
     );
     const event = await response.json();
 
