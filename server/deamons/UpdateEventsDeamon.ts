@@ -15,7 +15,7 @@ export class UpdateEventsDeamon {
     private async init() {
         const connection = await connectionPromise;
         while (true) {
-            //await forTimeSynced(5 * 60 * 1000);
+            await forTimeSynced(5 * 60 * 1000);
 
             let lastEvent = await connection.manager.findOne(Event, {
                 where: {
@@ -32,8 +32,18 @@ export class UpdateEventsDeamon {
             console.info(`Updating`, lastEvent.name);
             //console.log(`updating`, lastEvent);
 
-            const jsonld = await extractJsonldFromUrl(lastEvent.web);
-            const eventData = await parseJsonldToEvent(jsonld, lastEvent.web);
+            let eventData: Partial<Event>;
+            try {
+                const jsonld = await extractJsonldFromUrl(lastEvent.web);
+                eventData = await parseJsonldToEvent(jsonld, lastEvent.web);
+            } catch (error) {
+                eventData = {
+                    /*
+                TODO: Maybe not
+                canceled: 1
+            */
+                };
+            }
 
             //console.log(`new info`, eventData);
 
@@ -47,7 +57,7 @@ export class UpdateEventsDeamon {
 
             //console.log(`updateResult`, updateResult);
 
-            break;
+            //break;
         }
     }
 }

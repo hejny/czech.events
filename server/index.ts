@@ -2,11 +2,13 @@ import 'reflect-metadata';
 import { createApp } from './app';
 import { PORT } from './config';
 import { UpdateEventsDeamon } from './deamons/UpdateEventsDeamon';
+import { extractJsonldFromUrl } from './utils/extractJsonldFromUrl';
+import { parseJsonldToEvent } from './utils/parseJsonldToEvent';
 
 main();
 
 async function main() {
-    /*
+    /**/
     const { app } = await createApp();
 
     app.listen(PORT, () => {
@@ -14,10 +16,20 @@ async function main() {
         console.info(`API is running at http://localhost:${PORT}`);
         // TODO: displayRoutes(app);
     });
-    */
+    /**/
 
     /*const updateEventsDeamon = */ new UpdateEventsDeamon();
-    console.info(`UpdateEventsDeamon is running`);
+    //console.info(`UpdateEventsDeamon is running`);
+
+    /*/
+    // Note: Keep this for scraper testing
+    const url = `https://www.facebook.com/events/812314359581592/`;
+
+    const jsonld = await extractJsonldFromUrl(url);
+    console.log(`jsonld`, jsonld);
+    const eventData = await parseJsonldToEvent(jsonld, url);
+    console.log(`eventData`, eventData);
+    /**/
 }
 
 // TODO: Auto imports organize

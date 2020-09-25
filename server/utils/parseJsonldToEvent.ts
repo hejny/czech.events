@@ -3,7 +3,7 @@ import { Event, EventType } from '../../src/model/database/Event';
 export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event> {
     try {
         const startDate = new Date(eventJsonld.startDate);
-        const endDate = new Date(eventJsonld.endDate);
+        const endDate = new Date(eventJsonld.endDate || eventJsonld.startDate);
 
         const days =
             startDate.getDate() === endDate.getDate()
@@ -20,8 +20,12 @@ export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event
 
         // TODO: Also detect meetup vs. conference by duration
 
-        // TODO: !!! Canceled
+        //let online = false;
         // TODO: !!! Online
+
+        //let canceled = false;
+        // Probbably? Note: canceled is detected by not fetching JSON LD
+        //if (keywords.includes('zrušeno')) canceled = true;
 
         const { name, topic } = parseNameAndTopic(eventJsonld.name);
 
@@ -44,6 +48,8 @@ export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event
                 .padStart(2, '0')}`,
             price: null,
             priceCurrency: null,
+            //online: online ? 1 : 0,
+            //canceled: canceled ? 1 : 0,
 
             //visibility: EventVisibility;
             //note: string | null;
