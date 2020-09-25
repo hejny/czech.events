@@ -34,6 +34,8 @@ export enum EventVisibility {
 @Index('visibility', ['visibility'], {})
 @Index('created', ['created'], {})
 @Index('updated', ['updated'], {})
+@Index('canceled', ['canceled'], {})
+@Index('online', ['online'], {})
 @Entity('Event')
 export class Event {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
@@ -88,6 +90,12 @@ export class Event {
         default: () => "'PENDING'",
     })
     visibility: EventVisibility;
+
+    @Column('tinyint', { name: 'canceled', nullable: true })
+    canceled: number | null;
+
+    @Column('tinyint', { name: 'online', nullable: true })
+    online: number | null;
 
     @Column('text', { name: 'note', nullable: true })
     note: string | null;
