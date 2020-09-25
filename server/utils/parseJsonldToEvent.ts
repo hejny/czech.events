@@ -23,10 +23,12 @@ export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event
         // TODO: !!! Canceled
         // TODO: !!! Online
 
+        const { name, topic } = parseNameAndTopic(eventJsonld.name);
+
         return {
             serializeId: url,
-            name: eventJsonld.name,
-            topic: null,
+            name,
+            topic,
             type,
             web: url,
             city: eventJsonld?.location?.address?.addressLocality,
@@ -51,6 +53,34 @@ export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event
         console.info(eventJsonld);
         throw new Error(`Can not create Event`);
     }
+}
+
+function parseNameAndTopic(
+    fullName: string /* Maybe a description as input? */,
+): { name: string; topic: string | null } {
+    // TODO: !!! Cleanup
+
+    fullName = fullName.replace(/\(.*?\)/g, ''); // Removing things in (brackets)
+    fullName = fullName.replace(new Date().getFullYear().toString(), ''); // Removing current year
+    fullName = fullName.replace(/Praha|Prague|Bratislava/, ''); // Removing city
+    // TODO: Full list of the cities
+
+    const result = /\s*(?<name>.*)\s*(–|(\-)|(\#\d+)|(\|))\s*(?<topic>.*)\s*/.exec(fullName);
+
+    if (result) {
+        let { name, topic } = result.groups!;
+        name = trimCoreName(name);
+        topic = trimCoreName(topic);
+        return { name, topic };
+    }
+
+    return { name: trimCoreName(fullName), topic: null };
+}
+
+function trimCoreName(fullName: string): string {
+    fullName = fullName.replace(/^[^a-zA-Z0-9ěščřžýáíéúůĚŠČŘŽÝÁÍÉÚŮ]+/, '');
+    fullName = fullName.replace(/[^a-zA-Z0-9ěščřžýáíéúůĚŠČŘŽÝÁÍÉÚŮ]+$/, '');
+    return fullName;
 }
 
 /*{
