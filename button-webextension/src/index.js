@@ -5,14 +5,17 @@ async function createCzechEventsAdmin() {
 
     rootElement.innerHTML = `Loading...`;
 
-    // TODO: Unhardcode token and URL
+    // TODO: !!! Unhardcode token and URL
     const response = await fetch(
+        // TODO: !!! Unhardcode here URL
         `http://localhost:7755/admin/events?serializeId=${encodeURIComponent(
             window.location.toString(),
         )}&fetch=true&token=admin`,
     );
+    
     const event = await response.json();
 
+    // TODO: Show here JSON5 or other nice format (if not using JSON5 remove it from dependencies)
     rootElement.innerHTML = `
         <textarea>${JSON.stringify(event, null, 4)}</textarea>
         <button>Update</button>
@@ -30,8 +33,9 @@ async function createCzechEventsAdmin() {
 
         //rootElement.innerHTML = `Updating...`;
 
-        // TODO: Unhardcode token and URL
+        // TODO: !!! Unhardcode token and URL
         const response = await fetch(
+            // TODO: !!! Unhardcode here URL
             `http://localhost:7755/admin/events?serializeId=${encodeURIComponent(
                 window.location.toString(),
             )}&fetch=true&token=admin`,

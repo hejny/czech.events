@@ -9,7 +9,10 @@ import './index.css';
 import * as serviceWorker from './serviceWorker';
 import { Partners } from './components/Partners';
 
+// TODO: In some time suddenly occures "Failed to fetch" in the
+
 // TODO: Join app and createApp
+
 export class EventsApp {
     private apiClient: ApiClient;
     private history: History;

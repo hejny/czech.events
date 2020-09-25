@@ -1,11 +1,10 @@
-import { NextFunction, Request, Response, Router, RequestHandler } from 'express';
+import { NextFunction, Request, Response, Router } from 'express';
 
-import { ADMIN_TOKEN } from './../../config';
-import { connectionPromise } from '../../database';
 import { Event } from '../../../src/model/database/Event';
-import fetch from 'node-fetch';
+import { connectionPromise } from '../../database';
 import { extractJsonldFromUrl } from '../../utils/extractJsonldFromUrl';
 import { parseJsonldToEvent } from '../../utils/parseJsonldToEvent';
+import { ADMIN_TOKEN } from './../../config';
 
 export const adminRouter = Router();
 
