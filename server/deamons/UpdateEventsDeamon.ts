@@ -24,17 +24,28 @@ export class UpdateEventsDeamon {
                     year: MoreThanOrEqual(new Date().getFullYear()),
                     // TODO: Maybe also check a date
                 },
-                order: { updated: 'DESC' },
+                order: { updated: 'ASC' },
             });
 
             if (!lastEvent || !lastEvent.web) continue;
 
-            console.log(`updating`, lastEvent);
+            console.info(`Updating`, lastEvent.name);
+            //console.log(`updating`, lastEvent);
 
             const jsonld = await extractJsonldFromUrl(lastEvent.web);
             const eventData = await parseJsonldToEvent(jsonld, lastEvent.web);
 
-            console.log(`new info`, eventData);
+            //console.log(`new info`, eventData);
+
+            const updateResult = await connection
+                .createQueryBuilder()
+                .update(Event)
+                .set({ ...eventData, updated: 'CURRENT_TIMESTAMP' })
+                .where({ serializeId: lastEvent.serializeId })
+                .limit(1)
+                .execute();
+
+            //console.log(`updateResult`, updateResult);
 
             break;
         }

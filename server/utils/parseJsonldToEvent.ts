@@ -42,6 +42,7 @@ export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event
                 .padStart(2, '0')}`,
             price: null,
             priceCurrency: null,
+
             //visibility: EventVisibility;
             //note: string | null;
         };
