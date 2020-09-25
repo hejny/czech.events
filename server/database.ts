@@ -11,6 +11,7 @@ import { DB_HOST, DB_NAME, DB_PASSWORD, DB_USER, DB_LOGGING, DB_SYNCHRONIZE } fr
 // TODO: In future use top level await
 export const connectionPromise = createConnection({
     type: 'mysql',
+    timezone: 'Z',
     host: DB_HOST,
     username: DB_USER,
     password: DB_PASSWORD,
