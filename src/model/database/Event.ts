@@ -32,6 +32,8 @@ export enum EventVisibility {
 @Index('price', ['price'], {})
 @Index('priceCurrency', ['priceCurrency'], {})
 @Index('visibility', ['visibility'], {})
+@Index('created', ['created'], {})
+@Index('updated', ['updated'], {})
 @Entity('Event')
 export class Event {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
@@ -89,6 +91,12 @@ export class Event {
 
     @Column('text', { name: 'note', nullable: true })
     note: string | null;
+
+    @Column('timestamp', { name: 'created', default: () => 'CURRENT_TIMESTAMP' })
+    created: Date;
+
+    @Column('timestamp', { name: 'updated', default: () => 'CURRENT_TIMESTAMP' })
+    updated: Date;
 
     @OneToMany(
         () => EventCode,

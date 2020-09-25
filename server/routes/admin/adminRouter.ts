@@ -49,6 +49,7 @@ adminRouter.get('/admin/events', async (request, response) => {
         }
     }
 
+    // TODO: Dry or make eagers some other way
     delete event!.eventCodes;
     delete event!.newsletterContents;
 

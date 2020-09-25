@@ -6,6 +6,7 @@ import { UpdateEventsDeamon } from './deamons/UpdateEventsDeamon';
 main();
 
 async function main() {
+    /*
     const { app } = await createApp();
 
     app.listen(PORT, () => {
@@ -13,6 +14,7 @@ async function main() {
         console.info(`API is running at http://localhost:${PORT}`);
         // TODO: displayRoutes(app);
     });
+    */
 
     /*const updateEventsDeamon = */ new UpdateEventsDeamon();
     console.info(`UpdateEventsDeamon is running`);

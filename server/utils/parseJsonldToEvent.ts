@@ -13,12 +13,15 @@ export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event
         let type = EventType.CONFERENCE;
 
         const keywords = `${eventJsonld.name} ${eventJsonld.description}`.toLowerCase();
-        if (keywords.includes('hackathon')) type = EventType.HACKATHON;
+        if (keywords.includes('hackathon') || keywords.includes('startup weekend')) type = EventType.HACKATHON;
         if (keywords.includes('meetup')) type = EventType.MEETUP;
         if (keywords.includes('sraz')) type = EventType.MEETUP;
         if (keywords.includes('workshop')) type = EventType.WORKSHOP;
 
         // TODO: Also detect meetup vs. conference by duration
+
+        // TODO: !!! Canceled
+        // TODO: !!! Online
 
         return {
             serializeId: url,
