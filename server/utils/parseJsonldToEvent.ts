@@ -14,6 +14,7 @@ export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event
 
         let type = EventType.CONFERENCE;
 
+        // TODO: toLowerCase also for ěščřžýáíéúů
         const keywords = `${eventJsonld.name} ${eventJsonld.description}`.toLowerCase();
         if (keywords.includes('hackathon') || keywords.includes('startup weekend')) type = EventType.HACKATHON;
         if (keywords.includes('meetup')) type = EventType.MEETUP;
@@ -24,6 +25,8 @@ export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event
 
         let online = false;
         if (keywords.includes('online')) online = true;
+        if (keywords.includes('stream')) online = true;
+        if (keywords.includes('vysílání')) online = true;
 
         let canceled = false;
         // Probbably? Note: canceled is detected by not fetching JSON LD
@@ -71,8 +74,8 @@ function parseNameAndTopic(
 
     fullName = fullName.replace(/\(.*?\)/g, ''); // Removing things in (brackets)
     fullName = fullName.replace(new Date().getFullYear().toString(), ''); // Removing current year
-    fullName = fullName.replace(/praha|prague|bratislava/gi, ''); // Removing city
-    fullName = fullName.replace(/canceled|zrušeno|online/gi, ''); // Removing other keywords
+    fullName = fullName.replace(/praha|prague|bratislava/gi, ''); // Removing city // TODO: DRY
+    fullName = fullName.replace(/canceled|zrušeno|online|stream|vysílání/gi, ''); // Removing other keywords // TODO: DRY
 
     // TODO: Full list of the cities
 
