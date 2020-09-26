@@ -2,6 +2,8 @@ import { Event, EventType } from '../../src/model/database/Event';
 
 export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event> {
     try {
+        // TODO: Volumes "11. Sraz přátel PHP v Pardubicích" vs "FuckUp Night  Vol. XXXVI" ,...
+
         const startDate = new Date(eventJsonld.startDate);
         const endDate = new Date(eventJsonld.endDate || eventJsonld.startDate);
 
@@ -20,12 +22,13 @@ export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event
 
         // TODO: Also detect meetup vs. conference by duration
 
-        //let online = false;
-        // TODO: !!! Online
+        let online = false;
+        if (keywords.includes('online')) online = true;
 
-        //let canceled = false;
+        let canceled = false;
         // Probbably? Note: canceled is detected by not fetching JSON LD
-        //if (keywords.includes('zrušeno')) canceled = true;
+        if (keywords.includes('zrušeno')) canceled = true;
+        if (keywords.includes('canceled')) canceled = true;
 
         const { name, topic } = parseNameAndTopic(eventJsonld.name);
 
@@ -48,8 +51,8 @@ export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event
                 .padStart(2, '0')}`,
             price: null,
             priceCurrency: null,
-            //online: online ? 1 : 0,
-            //canceled: canceled ? 1 : 0,
+            online: online ? 1 : 0,
+            canceled: canceled ? 1 : 0,
 
             //visibility: EventVisibility;
             //note: string | null;
@@ -68,10 +71,12 @@ function parseNameAndTopic(
 
     fullName = fullName.replace(/\(.*?\)/g, ''); // Removing things in (brackets)
     fullName = fullName.replace(new Date().getFullYear().toString(), ''); // Removing current year
-    fullName = fullName.replace(/Praha|Prague|Bratislava/, ''); // Removing city
+    fullName = fullName.replace(/praha|prague|bratislava/gi, ''); // Removing city
+    fullName = fullName.replace(/canceled|zrušeno|online/gi, ''); // Removing other keywords
+
     // TODO: Full list of the cities
 
-    const result = /\s*(?<name>.*)\s*(–|(\-)|(\#\d+)|(\|))\s*(?<topic>.*)\s*/.exec(fullName);
+    const result = /\s*(?<name>.*)\s*(–|(\-)|(\#\d+)|(\|)|(\:))\s*(?<topic>.*)\s*/.exec(fullName);
 
     if (result) {
         let { name, topic } = result.groups!;

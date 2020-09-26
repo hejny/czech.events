@@ -18,8 +18,9 @@ async function main() {
     });
     /**/
 
-    /*const updateEventsDeamon = */ new UpdateEventsDeamon();
+    const updateEventsDeamon = new UpdateEventsDeamon();
     //console.info(`UpdateEventsDeamon is running`);
+    updateEventsDeamon.run();
 
     /*/
     // Note: Keep this for scraper testing
