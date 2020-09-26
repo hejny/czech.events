@@ -31,7 +31,6 @@ export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event
         if (keywords.includes('vysílání')) online = true;
         if (keywords.includes('virtuální')) online = true;
         if (keywords.includes('virtual')) online = true;
-        
 
         let canceled = false;
         // Probbably? Note: canceled is detected by not fetching JSON LD
