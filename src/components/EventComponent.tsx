@@ -18,10 +18,13 @@ export function EventComponent({ event }: IEventComponentProps) {
                 {event.topic ? ` – ${event.topic}` : ''}
             </a>
             <br />
-            <>
-                🌆&nbsp;{event.city} {/* TODO: Plzeň 🐪 */}
-            </>
-            &nbsp;
+            {event.canceled === 1 && <>🚫&nbsp;Zrušeno&nbsp;</>}
+            {event.online === 1 && <>🌍&nbsp;Online&nbsp;</>}
+            {event.city && (
+                <>
+                    🌆&nbsp;{event.city}&nbsp;{/* TODO: Plzeň místo 🌆 dát jako easter egg 🐪 */}
+                </>
+            )}
             <EventDateComponent {...{ event }} />
             <EventTimeComponent {...{ event }} />
             &nbsp;
