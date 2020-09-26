@@ -22,6 +22,8 @@ export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event
         if (keywords.includes('meetup')) type = EventType.MEETUP;
         if (keywords.includes('sraz')) type = EventType.MEETUP;
         if (keywords.includes('workshop')) type = EventType.WORKSHOP;
+        if (keywords.includes('webinář')) type = EventType.WORKSHOP;
+        if (keywords.includes('kurz')) type = EventType.WORKSHOP;
 
         // TODO: Also detect meetup vs. conference by duration
 
@@ -31,6 +33,7 @@ export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event
         if (keywords.includes('vysílání')) online = true;
         if (keywords.includes('virtuální')) online = true;
         if (keywords.includes('virtual')) online = true;
+        if (keywords.includes('webinář')) online = true;
 
         let canceled = false;
         // Probbably? Note: canceled is detected by not fetching JSON LD
@@ -81,7 +84,7 @@ function parseNameAndTopic(
 
     // TODO: Full list of the cities
 
-    const result = /\s*(?<name>.*)\s*(–|(\-)|(\#\d+)|(\|)|(\:))\s*(?<topic>.*)\s*/.exec(fullName);
+    const result = /\s*(?<name>.*?)\s*(–|(\-)|(\#\d+)|(\|)|(\:))\s*(?<topic>.*)\s*/.exec(fullName);
 
     if (result) {
         let { name, topic } = result.groups!;
@@ -94,8 +97,12 @@ function parseNameAndTopic(
 }
 
 function trimCoreName(fullName: string): string {
+    // DRY [^a-zA-Z0-9ěščřžýáíéúůĚŠČŘŽÝÁÍÉÚŮ]+
     fullName = fullName.replace(/^[^a-zA-Z0-9ěščřžýáíéúůĚŠČŘŽÝÁÍÉÚŮ]+/, '');
-    fullName = fullName.replace(/[^a-zA-Z0-9ěščřžýáíéúůĚŠČŘŽÝÁÍÉÚŮ]+$/, '');
+    fullName = fullName.replace(/[^a-zA-Z0-9ěščřžýáíéúůĚŠČŘŽÝÁÍÉÚŮ]+[ia]?[^a-zA-Z0-9ěščřžýáíéúůĚŠČŘŽÝÁÍÉÚŮ]+$/, '');
+
+    // TODO: Not a pure trim
+    fullName = fullName.replace(`"`, '');
     return fullName;
 }
 
