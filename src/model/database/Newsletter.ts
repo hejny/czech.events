@@ -2,6 +2,9 @@ import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from 'typeor
 import { EventNewsletter } from './EventNewsletter';
 import { NewsletterContent } from './NewsletterContent';
 
+/**
+ * @deprecated TODO: Remove
+ */
 @Index('year', ['year'], {})
 @Index('month', ['month'], {})
 @Entity('Newsletter')

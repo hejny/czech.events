@@ -8,16 +8,16 @@ import { NewsletterContent, NewsletterContentPosition } from '../model/database/
 import { NewsletterContentsComponent } from './NewsletterContentsComponent';
 import { eventTypeToNewsletterContentPosition } from '../utils/eventTypeToNewsletterContentPosition';
 import { compareEventsbyDate } from '../utils/compareDates';
-import { Newsletter } from '../model/database/Newsletter';
+// TODO: Remove @deprecated import { Newsletter } from '../model/database/Newsletter';
 
 interface ITalksPageEmailProps {
     range: DateRange;
     events: Event[];
-    newsletter: null | Newsletter;
+    // TODO: Remove @deprecated newsletter: null | Newsletter;
 }
 
 export function TalksPageEmail(props: ITalksPageEmailProps) {
-    const { events, range, newsletter } = props;
+    const { events, range /*  TODO: Remove @deprecated , newsletter */ } = props;
 
     const filteredEvents = events
         //.filter((event) => (event instanceof Event ? event.inMail : true))
@@ -28,9 +28,9 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
     const categorizedEvents = categorizeEvents(filteredEvents);
 
     const newsletterContents: NewsletterContent[] = [];
-    if (newsletter) {
-        newsletterContents.push(...newsletter.newsletterContents);
-    }
+    // TODO: Remove @deprecated if (newsletter) {
+    // TODO: Remove @deprecated     newsletterContents.push(...newsletter.newsletterContents);
+    // TODO: Remove @deprecated }
     for (const event of filteredEvents) {
         newsletterContents.push(...event.newsletterContents);
     }

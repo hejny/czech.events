@@ -13,6 +13,9 @@ export class ApiClient {
         return data.map((data) => constructObjectFromJSON(Event, data));
     }
 
+    /**
+     * @deprecated TODO: Remove
+     */
     async getNewsletter(year: number, month: number): Promise<Newsletter> {
         const data = await this.get(`/newsletters/${year}/${month}`);
         return constructObjectFromJSON(Newsletter, data);

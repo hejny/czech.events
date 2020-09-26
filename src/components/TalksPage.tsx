@@ -6,7 +6,7 @@ import { LoadingComponent } from './LoadingComponent';
 import { TalksPageEmail } from './TalksPageEmail';
 import { Event } from '../model/database/Event';
 import { ApiClient } from '../api/ApiClient';
-import { Newsletter } from '../model/database/Newsletter';
+// TODO: Remove @deprecated import { Newsletter } from '../model/database/Newsletter';
 import { Partners } from './Partners';
 
 interface ITalksPageProps {
@@ -18,7 +18,7 @@ interface ITalksPageState {
     error: null | string;
     range: DateRange;
     events: null | Event[];
-    newsletter: null | Newsletter;
+    // TODO: Remove @deprecated newsletter: null | Newsletter;
 }
 
 const OPTIONS = [
@@ -45,7 +45,7 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
         error: null,
         range: DateRange.fromConstants('CURRENT_MONTH', 'NEXT_MONTH'),
         events: null,
-        newsletter: null,
+        // TODO: Remove @deprecated newsletter: null,
     };
 
     constructor(props: ITalksPageProps) {
@@ -59,9 +59,9 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
             //console.log('events', events);
             this.setState({ events });
 
-            const newsletter = await this.props.apiClient.getNewsletter(2020, 2 /* TODO: Unhardcode */);
-            //console.log('newsletter', newsletter);
-            this.setState({ newsletter });
+            // TODO: Remove @deprecated const newsletter = await this.props.apiClient.getNewsletter(2020, 2 /* TODO: Unhardcode */);
+            // TODO: Remove @deprecated //console.log('newsletter', newsletter);
+            // TODO: Remove @deprecated this.setState({ newsletter });
         } catch (error) {
             this.setState({ error: error.message });
         }
@@ -145,7 +145,7 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                                 <TalksPageEmail
                                     {...{
                                         events: this.state.events,
-                                        newsletter: this.state.newsletter,
+                                        // TODO: Remove @deprecated newsletter: this.state.newsletter,
                                         range: this.state.range,
                                     }}
                                 />
