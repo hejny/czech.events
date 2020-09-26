@@ -20,11 +20,12 @@ async function main() {
 
     const updateEventsDeamon = new UpdateEventsDeamon();
     //console.info(`UpdateEventsDeamon is running`);
+    //updateEventsDeamon.quick();
     updateEventsDeamon.run();
 
     /*/
     // Note: Keep this for scraper testing
-    const url = `https://www.facebook.com/events/812314359581592/`;
+    const url = `https://www.facebook.com/events/343796723412434`;
 
     const jsonld = await extractJsonldFromUrl(url);
     console.log(`jsonld`, jsonld);

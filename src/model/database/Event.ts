@@ -91,11 +91,9 @@ export class Event {
     })
     visibility: EventVisibility;
 
-    // TODO: !!! Show this in UI
     @Column('tinyint', { name: 'canceled', nullable: true })
     canceled: number | null;
 
-    // TODO: !!! Show this in UI
     @Column('tinyint', { name: 'online', nullable: true })
     online: number | null;
 

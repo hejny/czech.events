@@ -3,6 +3,7 @@ import { Event, EventType } from '../../src/model/database/Event';
 export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event> {
     try {
         // TODO: Volumes "11. Sraz přátel PHP v Pardubicích" vs "FuckUp Night  Vol. XXXVI" ,...
+        // TODO: Price is not in JSON LD and should be probbably scraped by puppeteer
 
         const startDate = new Date(eventJsonld.startDate);
         const endDate = new Date(eventJsonld.endDate || eventJsonld.startDate);
@@ -16,7 +17,8 @@ export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event
 
         // TODO: toLowerCase also for ěščřžýáíéúů
         const keywords = `${eventJsonld.name} ${eventJsonld.description}`.toLowerCase();
-        if (keywords.includes('hackathon') || keywords.includes('startup weekend')) type = EventType.HACKATHON;
+        if (keywords.includes('hackathon')) type = EventType.HACKATHON;
+        if (keywords.includes('startup weekend')) type = EventType.HACKATHON;
         if (keywords.includes('meetup')) type = EventType.MEETUP;
         if (keywords.includes('sraz')) type = EventType.MEETUP;
         if (keywords.includes('workshop')) type = EventType.WORKSHOP;
@@ -70,8 +72,6 @@ export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event
 function parseNameAndTopic(
     fullName: string /* Maybe a description as input? */,
 ): { name: string; topic: string | null } {
-    // TODO: !!! Cleanup
-
     fullName = fullName.replace(/\(.*?\)/g, ''); // Removing things in (brackets)
     fullName = fullName.replace(new Date().getFullYear().toString(), ''); // Removing current year
     fullName = fullName.replace(/praha|prague|bratislava/gi, ''); // Removing city // TODO: DRY
