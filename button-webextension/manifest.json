@@ -10,10 +10,11 @@
         "*://*.facebook.com/events/*"
       ],
       "css": [
-        "src/style.css"
+        "./src/style.css"
       ],
       "js": [
-        "src/index.js"
+        "./src/config.js",
+        "./src/index.js"
       ]
     }
   ],
