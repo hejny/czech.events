@@ -79,7 +79,7 @@ async function createCzechEventsAdmin() {
             // TODO: !!! Unhardcode here URL
             `${apiUrl}/admin/events?serializeId=${encodeURIComponent(
                 window.location.toString(),
-            )}&fetch=true&token=admin`,
+            )}&fetch=true&token=${token}`,
             {
                 method: 'PUT',
                 body: value,
