@@ -78,7 +78,7 @@ async function createCzechEventsAdmin() {
         const response = await fetch(
             // TODO: !!! Unhardcode here URL
             `${apiUrl}/admin/events?serializeId=${encodeURIComponent(
-                window.location.toString(),
+                eventUrl.toString(),
             )}&fetch=true&token=${token}`,
             {
                 method: 'PUT',

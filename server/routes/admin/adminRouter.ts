@@ -59,6 +59,8 @@ adminRouter.get('/admin/events', async (request, response) => {
 adminRouter.put('/admin/events', async (request, response) => {
     const connection = await connectionPromise;
 
+
+    //console.log('request.query',request.query);
     try {
         const updateResult = await connection
             .createQueryBuilder()
