@@ -41,6 +41,8 @@ adminRouter.get('/admin/events', async (request, response) => {
             const jsonld = await extractJsonldFromUrl(request.query.serializeId);
             const eventData = await parseJsonldToEvent(jsonld, request.query.serializeId);
 
+            // TODO: Create here an UUID
+
             await connection.manager.insert(Event, eventData);
 
             event = await connection.manager.findOne(Event, {
@@ -58,7 +60,6 @@ adminRouter.get('/admin/events', async (request, response) => {
 
 adminRouter.put('/admin/events', async (request, response) => {
     const connection = await connectionPromise;
-
 
     //console.log('request.query',request.query);
     try {
