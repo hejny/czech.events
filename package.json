@@ -7,8 +7,8 @@
   "scripts": {
     "preversion": "npm run prettier-commit",
     "postversion": "git push && git push --tags && npm run frontend-deploy && npm run server-deploy",
-    "prettier": "prettier --config .prettierrc --write \"{src,server,public,scripts}/**/*.{ts,tsx,js,jsx,html,css}\"",
-    "prettier-watch": "onchange \"{src,server,public,scripts}/**/*.{ts,tsx,js,jsx,html,css}\" -- prettier --config .prettierrc --write \"{{changed}}\"",
+    "prettier": "prettier --config .prettierrc --write \"{src,server,public,scripts,button-webextension}/**/*.{ts,tsx,js,jsx,html,css}\"",
+    "prettier-watch": "onchange \"{src,server,public,scripts,button-webextension}/**/*.{ts,tsx,js,jsx,html,css}\" -- prettier --config .prettierrc --write \"{{changed}}\"",
     "prettier-commit": "git diff --exit-code && npm run prettier && git add . && git commit --allow-empty -m \"Prettier\"",
     "frontend-develop": "cross-env PORT=3000 react-scripts start",
     "frontend-develop-emit-decorator-metadata": "tsc --project src/model/database/_emitDecoratorMetadata.tsconfig.json && tsc --watch --project src/model/database/_emitDecoratorMetadata.tsconfig.json",

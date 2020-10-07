@@ -39,3 +39,9 @@
     -webkit-appearance: none;
     -webkit-tap-highlight-color: transparent;
 }
+
+/*.czech-events textarea:disabled*/
+.czech-events.disabled,
+.czech-events .disabled {
+    opacity: 50%;
+}
