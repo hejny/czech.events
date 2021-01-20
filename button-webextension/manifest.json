@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
   "name": "CzechEventsAddButton",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "author": "Pavol Hejný",
   "description": "Scrape data from social networks and send it to Czech.events",
   "content_scripts": [
@@ -18,5 +18,5 @@
       ]
     }
   ],
-  "permissions": ["storage"]
+  "permissions": ["storage", "<all_urls>"]
 }
