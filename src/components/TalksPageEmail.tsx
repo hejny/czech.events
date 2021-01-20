@@ -8,6 +8,7 @@ import { NewsletterContent, NewsletterContentPosition } from '../model/database/
 import { NewsletterContentsComponent } from './NewsletterContentsComponent';
 import { eventTypeToNewsletterContentPosition } from '../utils/eventTypeToNewsletterContentPosition';
 import { compareEventsbyDate } from '../utils/compareDates';
+import { joinArray, shuffleArray } from '../utils/array';
 // TODO: Remove @deprecated import { Newsletter } from '../model/database/Newsletter';
 
 interface ITalksPageEmailProps {
@@ -76,12 +77,19 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
             */}
             <br />
             <br />
-            {/* TODO: Random shuffle */}
-            <a href="https://www.pavolhejny.com/?utm_source=czech.events-mail&amp;utm_medium=referral&amp;utm_campaign=signature">
-                Pavol Hejný
-            </a>
-            &nbsp;&amp;&nbsp;
-            <a href="https://www.linkedin.com/in/tereza-texlova/">Tereza Texlová</a>
+            {joinArray(
+                shuffleArray([
+                    <>
+                        <a href="https://www.pavolhejny.com/?utm_source=czech.events-mail&amp;utm_medium=referral&amp;utm_campaign=signature">
+                            Pavol Hejný
+                        </a>
+                    </>,
+                    <>
+                        <a href="https://www.linkedin.com/in/tereza-texlova/">Tereza Texlová</a>
+                    </>,
+                ]),
+                <>&nbsp;&amp;&nbsp;</>,
+            )}
         </>
     );
 }

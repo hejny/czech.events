@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { shuffleArray } from '../utils/array';
 
 interface IPartnersProps {
     selfUrl: string;
@@ -10,7 +11,7 @@ export function Partners(props: IPartnersProps) {
             <div className="partners">
                 <h2>Mediální partneři</h2>
 
-                {[
+                {shuffleArray([
                     // TODO: To some other file or even to DB
                     {
                         name: 'Startup Weekend Prague',
@@ -52,7 +53,7 @@ export function Partners(props: IPartnersProps) {
                     },*/
                     // TODO: CzechFuture tech
                     // TODO: Random shuffle
-                ].map(({ name, logoUrl, link }) => {
+                ]).map(({ name, logoUrl, link }) => {
                     return (
                         <a
                             href={`${link}?utm_source=czech.events&amp;utm_medium=referral&amp;utm_campaign=partners`}
