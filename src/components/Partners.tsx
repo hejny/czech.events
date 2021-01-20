@@ -33,6 +33,11 @@ export function Partners(props: IPartnersProps) {
                         logoUrl: `${props.selfUrl}/design/logos/partners/hackprague.svg`,
                         link: 'https://hackprague.com/',
                     },
+                    {
+                        name: 'StartupBox',
+                        logoUrl: `${props.selfUrl}/design/logos/partners/startupbox.png`,
+                        link: 'https://www.startupbox.cz/',
+                    },
                     /*
                     TODO:
                     {
@@ -49,7 +54,7 @@ export function Partners(props: IPartnersProps) {
                     // TODO: Random shuffle
                 ].map(({ name, logoUrl, link }) => {
                     return (
-                        <a href={link} target="_blank" rel="noopener noreferrer" title={name}>
+                        <a href={`${link}?utm_source=czech.events&amp;utm_medium=referral&amp;utm_campaign=partners`} target="_blank" rel="noopener noreferrer" title={name}>
                             <div key={name} className="logo" style={{ backgroundImage: `url(${logoUrl})` }}>
                                 {/* <img src={logoUrl} title={name} alt={`${name} logo`} /> */}
                                 {/*`${name} `*/}
