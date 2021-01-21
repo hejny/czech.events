@@ -67,7 +67,7 @@ form {
     transition: 0.25s ease;
 }
 
-.front form #gdpr {
+.front form .gdpr label {
     top: 2px;
     padding-left: 8px;
 }
