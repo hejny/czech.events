@@ -1,7 +1,6 @@
 import { NewsletterContent } from './NewsletterContent';
 import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { EventCode } from './EventCode';
-import { EventNewsletter } from './EventNewsletter';
 
 export enum EventType {
     CONFERENCE = 'CONFERENCE',
@@ -112,12 +111,6 @@ export class Event {
         { eager: true },
     )
     eventCodes: EventCode[];
-
-    @OneToMany(
-        () => EventNewsletter,
-        (eventNewsletter) => eventNewsletter.event,
-    )
-    eventNewsletters: EventNewsletter[];
 
     @OneToMany(
         () => NewsletterContent,

@@ -1,14 +1,13 @@
 import * as React from 'react';
+
+import { Event } from '../model/database/Event';
+import { NewsletterContentPosition } from '../model/database/NewsletterContent';
 import { DateRange } from '../model/DateRange';
-import { Event, EventType } from '../model/database/Event';
-import { categorizeEvents } from '../utils/categorizeEvents';
-import { translateEventType } from '../utils/translate';
-import { EventComponent } from './EventComponent';
-import { NewsletterContent, NewsletterContentPosition } from '../model/database/NewsletterContent';
-import { NewsletterContentsComponent } from './NewsletterContentsComponent';
-import { eventTypeToNewsletterContentPosition } from '../utils/eventTypeToNewsletterContentPosition';
-import { compareEventsbyDate } from '../utils/compareDates';
 import { joinArray, shuffleArray } from '../utils/array';
+import { createNewsletter } from '../utils/createNewsletter';
+import { NewsletterContentsComponent } from './NewsletterContentsComponent';
+import { TalksPageEmailEvents } from './TalksPageEmailEvents';
+
 // TODO: Remove @deprecated import { Newsletter } from '../model/database/Newsletter';
 
 interface ITalksPageEmailProps {
@@ -18,23 +17,8 @@ interface ITalksPageEmailProps {
 }
 
 export function TalksPageEmail(props: ITalksPageEmailProps) {
-    const { events, range /*  TODO: Remove @deprecated , newsletter */ } = props;
-
-    const filteredEvents = events
-        //.filter((event) => (event instanceof Event ? event.inMail : true))
-        .filter((event) => (event instanceof Event ? range.isIn(event.dateToCompare) : true))
-        .sort((a, b) => compareEventsbyDate(a, b));
-
-    //console.log('filteredEvents', filteredEvents);
-    const categorizedEvents = categorizeEvents(filteredEvents);
-
-    const newsletterContents: NewsletterContent[] = [];
-    // TODO: Remove @deprecated if (newsletter) {
-    // TODO: Remove @deprecated     newsletterContents.push(...newsletter.newsletterContents);
-    // TODO: Remove @deprecated }
-    for (const event of filteredEvents) {
-        newsletterContents.push(...event.newsletterContents);
-    }
+    const newsletter = createNewsletter(props);
+    const { newsletterContents } = newsletter;
 
     return (
         <>
@@ -47,20 +31,7 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
             opět jsme dali dohromady seznam událostí, na které se vyplatí zajít:
             <br />
             <NewsletterContentsComponent {...{ newsletterContents, position: NewsletterContentPosition.HEAD }} />
-            {Object.keys(categorizedEvents).map((type) => (
-                <div key={type}>
-                    <br />
-                    <h2>{translateEventType(type as any)}</h2>
-                    <NewsletterContentsComponent
-                        {...{ newsletterContents, position: eventTypeToNewsletterContentPosition(type as EventType) }}
-                    />
-                    <span>
-                        {categorizedEvents![type].map((event) => (
-                            <EventComponent {...{ event, key: event.serializeId }} />
-                        ))}
-                    </span>
-                </div>
-            ))}
+            <TalksPageEmailEvents {...{ newsletter }} />
             <br /> <br />
             <NewsletterContentsComponent {...{ newsletterContents, position: NewsletterContentPosition.BOTTOM }} />
             {/* <i>

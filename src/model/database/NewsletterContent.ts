@@ -1,5 +1,5 @@
 import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
-import { Newsletter } from './Newsletter';
+
 import { Event } from './Event';
 
 export enum NewsletterContentPosition {
@@ -12,15 +12,11 @@ export enum NewsletterContentPosition {
     BOTTOM = 'BOTTOM',
 }
 
-@Index('newsletter_id', ['newsletterId'], {})
 @Index('position', ['position'], {})
 @Entity('NewsletterContent')
 export class NewsletterContent {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;
-
-    @Column('int', { name: 'newsletter_id', nullable: true })
-    newsletterId: number;
 
     @Column('int', { name: 'event_id', nullable: true, comment: 'Is the paragraph connected to some one event?' })
     eventId: number;
@@ -39,14 +35,6 @@ export class NewsletterContent {
 
     @Column('text', { name: 'note', nullable: true })
     note: string | null;
-
-    @ManyToOne(
-        () => Newsletter,
-        (newsletter) => newsletter.newsletterContents,
-        { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' },
-    )
-    @JoinColumn([{ name: 'newsletter_id', referencedColumnName: 'id' }])
-    newsletter: Newsletter;
 
     @ManyToOne(
         () => Event,
