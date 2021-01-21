@@ -34,7 +34,7 @@ export async function deployApi(remote) {
     await client.exec(`npm test`);
 
     await client.exec(`pm2 delete czech-events`, false);
-    await client.exec(`pm2 start czech-events.sh`);
+    await client.exec(`pm2 start ecosystem.config.js`);
     /**/
 
     /**/
