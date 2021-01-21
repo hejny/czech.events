@@ -1,6 +1,6 @@
 import { RequestHandler } from 'express';
 import * as React from 'react';
-import { readFile } from 'fs/promises';
+import { promises as fsp } from 'fs';
 import { join } from 'path';
 import prettier from 'prettier';
 import ReactDOMServer from 'react-dom/server';
@@ -11,6 +11,8 @@ import { In } from 'typeorm';
 import { Event, EventVisibility } from '../../src/model/database/Event';
 import { DateRange } from '../../src/model/DateRange';
 import { connectionPromise } from '../database';
+
+const { readFile } = fsp; // TODO: } from 'fs/promises';
 
 export const getExportHtmlRouteHandler: RequestHandler = async (request, response, next) => {
     const connection = await connectionPromise;

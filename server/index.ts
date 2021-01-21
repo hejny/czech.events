@@ -13,7 +13,7 @@ async function main() {
     app.listen(PORT, () => {
         console.info('██████████████████████████████████████████');
         console.info(`API is running at http://localhost:${PORT}`);
-        process.send('ready' /* Note: Signal to PM2 */);
+        // TODO: process.send('ready' /* Note: Signal to PM2 */);
         // TODO: displayRoutes(app);
     });
     /**/

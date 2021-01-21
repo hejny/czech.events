@@ -11,7 +11,7 @@ export async function deployApi(remote) {
     await uploadFilesToSsh(remote.credentials, path.join(__dirname, '..', '..'), remoteDir, [
         'server',
         'src',
-        'czech-events.sh',
+        'ecosystem.config.js',
         'package.json',
         'package-lock.json',
     ]);
