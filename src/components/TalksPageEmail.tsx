@@ -6,7 +6,7 @@ import { DateRange } from '../model/DateRange';
 import { joinArray, shuffleArray } from '../utils/array';
 import { createNewsletter } from '../utils/createNewsletter';
 import { NewsletterContentsComponent } from './NewsletterContentsComponent';
-import { TalksPageEmailEvents } from './TalksPageEmailEvents';
+import { NewsletterComponent } from './NewsletterComponent';
 
 // TODO: Remove @deprecated import { Newsletter } from '../model/database/Newsletter';
 
@@ -31,7 +31,7 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
             opět jsme dali dohromady seznam událostí, na které se vyplatí zajít:
             <br />
             <NewsletterContentsComponent {...{ newsletterContents, position: NewsletterContentPosition.HEAD }} />
-            <TalksPageEmailEvents {...{ newsletter }} />
+            <NewsletterComponent {...{ newsletter }} />
             <br /> <br />
             <NewsletterContentsComponent {...{ newsletterContents, position: NewsletterContentPosition.BOTTOM }} />
             {/* <i>

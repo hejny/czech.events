@@ -1,5 +1,4 @@
 import * as React from 'react';
-
 import { EventType } from '../model/database/Event';
 import { INewsletter } from '../model/INewsletter';
 import { eventTypeToNewsletterContentPosition } from '../utils/eventTypeToNewsletterContentPosition';
@@ -9,11 +8,11 @@ import { NewsletterContentsComponent } from './NewsletterContentsComponent';
 
 // TODO: Remove @deprecated import { Newsletter } from '../model/database/Newsletter';
 
-interface ITalksPageEmailEventsProps {
+interface INewsletterComponentProps {
     newsletter: INewsletter;
 }
 
-export function TalksPageEmailEvents(props: ITalksPageEmailEventsProps) {
+export function NewsletterComponent(props: INewsletterComponentProps) {
     const { categorizedEvents, newsletterContents } = props.newsletter;
 
     return (

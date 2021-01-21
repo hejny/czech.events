@@ -1,11 +1,13 @@
-@import url('https://fonts.googleapis.com/css?family=Oswald|Montserrat:100,400,700,800,900&display=swap');
+/* 
+TODO: Try to move it into styled-components style
+*/
 
 body {
     display: block;
     text-align: center;
 
     background-color: #1d1c21;
-    background-image: url('/network.svg');
+    background-image: url('./network.svg');
     background-position: 100% 0;
     background-size: 50rem;
     background-repeat: no-repeat;
@@ -237,15 +239,6 @@ form {
     border-radius: 50px;
 }
 
-.past {
-    opacity: 0.5;
-}
-
-.canceled {
-    opacity: 0.5;
-    text-decoration: line-through;
-}
-
 .error {
     background-color: #f00;
     color: #fff;
@@ -273,36 +266,3 @@ form {
     width: 200px;
     overflow-x: scroll;
 }
-
-.partners {
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif, 'Montserrat', serif;
-    color: rgb(212, 212, 212);
-    padding: 2em;
-    /* padding-top: 0; */
-}
-
-.partners h2 {
-    font-size: 1.5rem;
-    font-family: 'Montserrat', serif;
-}
-
-.partners .logo {
-    margin: 20px;
-    border-radius: 5px;
-    display: inline-block;
-    width: 100px;
-    height: 100px;
-    color: white;
-    background-size: contain;
-    background-repeat: no-repeat;
-    background-position: center;
-}
-
-/*
-.partners .logo img {
-    display: block;
-    max-width: 100px;
-    max-height: 100px;
-}
-*/

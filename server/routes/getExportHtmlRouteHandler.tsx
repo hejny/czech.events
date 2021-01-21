@@ -1,7 +1,9 @@
 import { RequestHandler } from 'express';
 import * as React from 'react';
+import { readFile } from 'fs/promises';
+import { join } from 'path';
 import ReactDOMServer from 'react-dom/server';
-import { TalksPageEmailEvents } from '../../src/components/TalksPageEmailEvents';
+import { NewsletterComponent } from '../../src/components/NewsletterComponent';
 import { createNewsletter } from '../../src/utils/createNewsletter';
 import { In } from 'typeorm';
 
@@ -19,7 +21,7 @@ export const getExportHtmlRouteHandler: RequestHandler = async (request, respons
 
     const range = DateRange.fromConstants('CURRENT_MONTH', 'NEXT_MONTH');
     const newsletter = createNewsletter({ range, events });
-    const html = ReactDOMServer.renderToStaticMarkup(<TalksPageEmailEvents {...{ newsletter }} />);
-
-    response.send(html);
+    const html = ReactDOMServer.renderToStaticMarkup(<NewsletterComponent {...{ newsletter }} />);
+    const style = await readFile(join(__dirname, '../../src/style/newsletter.css'));
+    response.send(`${html}<style>${style}</style>`);
 };

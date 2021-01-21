@@ -1,4 +1,6 @@
 import * as React from 'react';
+import styled from 'styled-components';
+
 import { shuffleArray } from '../utils/array';
 
 interface IPartnersProps {
@@ -72,3 +74,36 @@ export function Partners(props: IPartnersProps) {
         </>
     );
 }
+
+const PartnersDiv = styled.div`
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif, 'Montserrat', serif;
+    color: rgb(212, 212, 212);
+    padding: 2em;
+    /* padding-top: 0; */
+
+    h2 {
+        font-size: 1.5rem;
+        font-family: 'Montserrat', serif;
+    }
+
+    .logo {
+        margin: 20px;
+        border-radius: 5px;
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        color: white;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    /*
+    .logo img {
+        display: block;
+        max-width: 100px;
+        max-height: 100px;
+    }
+    */
+`;

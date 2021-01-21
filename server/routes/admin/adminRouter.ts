@@ -38,8 +38,8 @@ adminRouter.get('/admin/events', async (request, response) => {
         if (!request.query.fetch) {
             return response.status(404).send({ message: `Event not found and fetch param is not set.` });
         } else {
-            const jsonld = await extractJsonldFromUrl(request.query.serializeId);
-            const eventData = await parseJsonldToEvent(jsonld, request.query.serializeId);
+            const jsonld = await extractJsonldFromUrl(request.query.serializeId as string);
+            const eventData = await parseJsonldToEvent(jsonld, request.query.serializeId as string);
 
             // TODO: Create here an UUID
 
