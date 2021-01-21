@@ -2,6 +2,7 @@ import { RequestHandler } from 'express';
 import * as React from 'react';
 import { readFile } from 'fs/promises';
 import { join } from 'path';
+import prettier from 'prettier';
 import ReactDOMServer from 'react-dom/server';
 import { NewsletterComponent } from '../../src/components/NewsletterComponent';
 import { createNewsletter } from '../../src/utils/createNewsletter';
@@ -21,7 +22,8 @@ export const getExportHtmlRouteHandler: RequestHandler = async (request, respons
 
     const range = DateRange.fromConstants('CURRENT_MONTH', 'NEXT_MONTH');
     const newsletter = createNewsletter({ range, events });
-    const html = ReactDOMServer.renderToStaticMarkup(<NewsletterComponent {...{ newsletter }} />);
+    const content = ReactDOMServer.renderToStaticMarkup(<NewsletterComponent {...{ newsletter }} />);
     const style = await readFile(join(__dirname, '../../src/style/newsletter.css'));
-    response.send(`${html}<style>${style}</style>`);
+    const html = `${content}<style>${style}</style>`;
+    response.send(prettier.format(html, { parser: 'html' }));
 };
