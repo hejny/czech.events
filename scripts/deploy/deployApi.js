@@ -5,10 +5,7 @@ import * as packageInfo from '../../package.json';
 const version = packageInfo.version;
 
 export async function deployApi(remote) {
-    const remoteDir = path
-        .join(remote.baseVersionsDir, version)
-        .split('\\')
-        .join('/');
+    const remoteDir = path.join(remote.baseVersionsDir, version).split('\\').join('/');
 
     /**/
     await uploadFilesToSsh(remote.credentials, path.join(__dirname, '..', '..'), remoteDir, [

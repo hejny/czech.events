@@ -24,10 +24,7 @@ export async function uploadFilesToSsh(sshCredentials, localDir, remoteDir, only
         })
         .map((file) => path.normalize(file));
     const files = localFiles.map((localFile) => {
-        const remoteFile = localFile
-            .replace(localDir, remoteDir)
-            .split('\\')
-            .join('/');
+        const remoteFile = localFile.replace(localDir, remoteDir).split('\\').join('/');
 
         return {
             localFile,

@@ -105,18 +105,10 @@ export class Event {
     @Column('timestamp', { name: 'updated', default: () => 'CURRENT_TIMESTAMP' })
     updated: Date;
 
-    @OneToMany(
-        () => EventCode,
-        (eventCode) => eventCode.event,
-        { eager: true },
-    )
+    @OneToMany(() => EventCode, (eventCode) => eventCode.event, { eager: true })
     eventCodes: EventCode[];
 
-    @OneToMany(
-        () => NewsletterContent,
-        (newsletterContent) => newsletterContent.event,
-        { eager: true },
-    )
+    @OneToMany(() => NewsletterContent, (newsletterContent) => newsletterContent.event, { eager: true })
     newsletterContents: NewsletterContent[];
 
     get day(): number | null {

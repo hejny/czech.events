@@ -52,10 +52,7 @@ export function parseJsonldToEvent(eventJsonld: any, url: string): Partial<Event
             year: startDate.getFullYear(),
             month: startDate.getMonth() + 1,
             days,
-            time: `${startDate
-                .getHours()
-                .toString()
-                .padStart(2, '0')}:${startDate
+            time: `${startDate.getHours().toString().padStart(2, '0')}:${startDate
                 .getMinutes()
                 .toString()
                 .padStart(2, '0')}`,

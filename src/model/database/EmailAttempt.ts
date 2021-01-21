@@ -21,11 +21,7 @@ export class EmailAttempt {
     @Column('datetime', { name: 'Created', default: () => 'CURRENT_TIMESTAMP' })
     created: Date;
 
-    @ManyToOne(
-        () => Email,
-        (email) => email.emailAttempts,
-        { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' },
-    )
+    @ManyToOne(() => Email, (email) => email.emailAttempts, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' })
     @JoinColumn([{ name: 'EmailId', referencedColumnName: 'id' }])
     email: Email;
 }
