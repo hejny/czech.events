@@ -1,9 +1,8 @@
 import 'reflect-metadata';
+
 import { createApp } from './app';
 import { PORT } from './config';
 import { UpdateEventsDeamon } from './deamons/UpdateEventsDeamon';
-import { extractJsonldFromUrl } from './utils/extractJsonldFromUrl';
-import { parseJsonldToEvent } from './utils/parseJsonldToEvent';
 
 main();
 

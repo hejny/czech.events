@@ -1,18 +1,17 @@
-import express from 'express';
-import cors from 'cors';
-import http from 'http';
 import { json } from 'body-parser';
-import { subscriberPostRouteHandler } from './routes/subscriberPostRouteHandler';
-import { connectionPromise } from './database';
-import { getEventsRouteHandler } from './routes/getEventsRouteHandler';
-import { getNewsletterRouteHandler } from './routes/getNewsletterRouteHandler';
+import cors from 'cors';
+import express from 'express';
+import http from 'http';
+
 import { adminRouter } from './routes/admin/adminRouter';
+import { getEventsRouteHandler } from './routes/getEventsRouteHandler';
+import { getExportHtmlRouteHandler } from './routes/getExportHtmlRouteHandler';
+import { subscriberPostRouteHandler } from './routes/subscriberPostRouteHandler';
+
 const packageJson = require('../package.json');
 
 export async function createApp(): Promise<{ app: express.Application; server: http.Server }> {
     const app = express();
-
-    const connection = await connectionPromise;
 
     app.use(json());
     app.use(cors());
@@ -32,8 +31,8 @@ export async function createApp(): Promise<{ app: express.Application; server: h
     });
 
     app.get('/events', getEventsRouteHandler);
-    app.get('/newsletters/:year/:month', getNewsletterRouteHandler);
     app.post('/subscribers', subscriberPostRouteHandler);
+    app.get('/export/html', getExportHtmlRouteHandler);
 
     return {
         app,
