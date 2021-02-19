@@ -1,3 +1,1 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="40" height="65" version="1">
-  <path fill="var(--logo-color1, #fff)" fill-rule="nonzero" d="M0 36l16-16V9H8v8l-8 8V1h40v64H0V36zm24-2v23h8V9h-8v14L8 39v18h8V42l8-8z"/>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="40" height="65" version="1"><path fill="var(--logo-color1, #fff)" fill-rule="nonzero" d="M0 36l16-16V9H8v8l-8 8V1h40v64H0V36zm24-2v23h8V9h-8v14L8 39v18h8V42l8-8z"/></svg>
