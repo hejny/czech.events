@@ -17,4 +17,6 @@ describe('how parsing events from JSON+LD works', () => {
     it('can parse Meetup event', () => {
         expect(parseJsonldToEvent(_MEETUP_SAMPLE_JSONLD)).toEqual(_MEETUP_SAMPLE_EVENT);
     });
+
+    // TODO: Make tests for complicated situations like online, canceled event, invalid dated etc...
 });
