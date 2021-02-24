@@ -84,11 +84,15 @@ adminRouter.put('/admin/events', async (request, response) => {
             .createQueryBuilder()
             .update(Event)
             .set(request.body)
-            .where({ serializeId: request.query.serializeId })
+            .where({
+                serializeId:
+                    /*Note: not using request.query, because it can be updated from other page*/ request.body
+                        .serializeId,
+            })
             .limit(1)
             .execute();
 
-        //console.log(`updateResult`, updateResult);
+        console.log(`updateResult`, updateResult);
         return response.send(updateResult);
     } catch (error) {
         return response.status(400).send(error);
