@@ -1,7 +1,7 @@
 import 'reflect-metadata';
-
 import { createApp } from './app';
 import { PORT } from './config';
+//import fetch from 'node-fetch';
 import { UpdateEventsDeamon } from './deamons/UpdateEventsDeamon';
 
 main();
@@ -27,7 +27,8 @@ async function main() {
     // Note: Keep this for scraper testing
     const url = `https://www.facebook.com/events/343796723412434`;
 
-    const jsonld = await extractJsonldFromUrl(url);
+
+    const jsonld = await extractJsonldFromUrl(await(await fetch(url)).text());
     console.log(`jsonld`, jsonld);
     const eventData = await parseJsonldToEvent(jsonld, url);
     console.log(`eventData`, eventData);

@@ -1,9 +1,10 @@
-import { connectionPromise } from '../database';
-import { extractJsonldFromUrl } from '../utils/extractJsonldFromUrl';
-import { parseJsonldToEvent } from '../utils/parseJsonldToEvent';
-import { Event, EventVisibility } from '../../src/model/database/Event';
-import { forTime, forTimeSynced } from 'waitasecond';
+import fetch from 'node-fetch';
 import { In, MoreThanOrEqual } from 'typeorm';
+import { forTime, forTimeSynced } from 'waitasecond';
+import { Event, EventVisibility } from '../../src/model/database/Event';
+import { connectionPromise } from '../database';
+import { extractJsonldFromHtml } from '../utils/extractJsonldFromHtml';
+import { parseJsonldToEvent } from '../utils/parseJsonldToEvent';
 
 export class UpdateEventsDeamon {
     // TODO: Maybe extend from some generic IDestroyable class/interface
@@ -45,7 +46,7 @@ export class UpdateEventsDeamon {
 
         let eventData: Partial<Event>;
         try {
-            const jsonld = await extractJsonldFromUrl(lastEvent.web);
+            const jsonld = await extractJsonldFromHtml(await (await fetch(lastEvent.web)).text());
             eventData = await parseJsonldToEvent(jsonld, lastEvent.web);
         } catch (error) {
             eventData = {

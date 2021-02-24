@@ -5,12 +5,6 @@ async function createCzechEventsAdmin(apiUrl, token) {
     //const {apiUrl,token} = await getApiUrlAndToken();
     console.info(`Czech.events are using apiUrl="${apiUrl}".`);
 
-    const rootElement = document.createElement('P');
-    rootElement.classList.add(`czech-events`);
-    document.body.appendChild(rootElement);
-
-    rootElement.innerHTML = `Loading...`;
-
     const eventUrl = new URL(window.location.toString());
     eventUrl.search = '';
     eventUrl.hash = '';
@@ -19,12 +13,21 @@ async function createCzechEventsAdmin(apiUrl, token) {
         .filter((x) => x !== '')
         .join('/');
 
-    // TODO: !!! Unhardcode token and URL
     const response = await fetch(
         `${apiUrl}/admin/events?serializeId=${encodeURIComponent(eventUrl.toString())}&fetch=true&token=${token}`,
     );
 
     const event = await response.json();
+
+    if (event.error) {
+        throw new Error(event.error);
+    }
+
+    const rootElement = document.createElement('P');
+    rootElement.classList.add(`czech-events`);
+    document.body.appendChild(rootElement);
+
+    //rootElement.innerHTML = `Loading...`;
 
     // TODO: Show here JSON5 or other nice format (if not using JSON5 remove it from dependencies)
     rootElement.innerHTML = `

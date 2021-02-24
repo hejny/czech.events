@@ -1,8 +1,8 @@
 import { NextFunction, Request, Response, Router } from 'express';
-
+import fetch from 'node-fetch';
 import { Event } from '../../../src/model/database/Event';
 import { connectionPromise } from '../../database';
-import { extractJsonldFromUrl } from '../../utils/extractJsonldFromUrl';
+import { extractJsonldFromHtml } from '../../utils/extractJsonldFromHtml';
 import { parseJsonldToEvent } from '../../utils/parseJsonldToEvent';
 import { ADMIN_TOKEN } from './../../config';
 
@@ -34,20 +34,30 @@ adminRouter.get('/admin/events', async (request, response) => {
         where: { serializeId: request.query.serializeId },
     });
 
-    if (!event) {
+    if (!event || true) {
         if (!request.query.fetch) {
             return response.status(404).send({ message: `Event not found and fetch param is not set.` });
         } else {
-            const jsonld = await extractJsonldFromUrl(request.query.serializeId as string);
-            const eventData = await parseJsonldToEvent(jsonld, request.query.serializeId as string);
+            try {
+                const jsonlds = await extractJsonldFromHtml(
+                    await (await fetch(request.query.serializeId as string)).text(),
+                );
+                console.log({ jsonlds });
 
-            // TODO: Create here an UUID
+                const jsonld = jsonlds[0]; /* TODO: !!! Pick best */
+                const eventData = await parseJsonldToEvent(jsonld, request.query.serializeId as string);
 
-            await connection.manager.insert(Event, eventData);
+                // TODO: Create here an UUID
 
-            event = await connection.manager.findOne(Event, {
-                where: { serializeId: request.query.serializeId },
-            });
+                await connection.manager.insert(Event, eventData);
+
+                event = await connection.manager.findOne(Event, {
+                    where: { serializeId: request.query.serializeId },
+                });
+            } catch (error) {
+                throw error;
+                //return response.status(400).send({ error: error.message });
+            }
         }
     }
 

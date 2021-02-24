@@ -1,22 +1,16 @@
 {
-  "manifest_version": 2,
-  "name": "CzechEventsAddButton",
-  "version": "0.0.3",
-  "author": "Pavol Hejný",
-  "description": "Scrape data from social networks and send it to Czech.events",
-  "content_scripts": [
-    {
-      "matches": [
-        "*://*.facebook.com/events/*"
-      ],
-      "css": [
-        "./src/style.css"
-      ],
-      "js": [
-        "./src/config.js",
-        "./src/index.js"
-      ]
-    }
-  ],
-  "permissions": ["storage", "<all_urls>"]
+    "manifest_version": 2,
+    "name": "CzechEventsAddButton",
+    "version": "0.0.4",
+    "author": "Pavol Hejný",
+    "description": "Scrape data from social networks and send it to Czech.events",
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "exclude_matches": ["*://localhost:*/"],
+            "css": ["./src/style.css"],
+            "js": ["./src/config.js", "./src/index.js"]
+        }
+    ],
+    "permissions": ["storage", "<all_urls>"]
 }
