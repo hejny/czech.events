@@ -1,6 +1,7 @@
-import { IJsonLd } from '../../interfaces/jsonld/IJsonLd';
+import { Event, EventType } from '../../src/model/database/Event';
+import { ISemanticEvent } from '../interfaces/jsonld/ISemanticEvent';
 
-export const _KATALOGAKCI_SAMPLE_JSONLD: IJsonLd = {
+export const _KATALOGAKCI_SAMPLE_JSONLD: ISemanticEvent = {
     '@context': 'https://schema.org',
     '@type': 'Event',
     name: 'Frontendisti.cz Praha - Hospodsk&#xFD; sraz 09.06.2021',

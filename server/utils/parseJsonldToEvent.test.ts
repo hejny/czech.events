@@ -1,7 +1,7 @@
-import { _EVENTBRITE_SAMPLE_EVENT, _EVENTBRITE_SAMPLE_JSONLD } from 'server/tests/tests-typing/eventbrite';
-import { _FACEBOOK_SAMPLE_EVENT, _FACEBOOK_SAMPLE_JSONLD } from 'server/tests/tests-typing/facebook';
-import { _KATALOGAKCI_SAMPLE_EVENT, _KATALOGAKCI_SAMPLE_JSONLD } from 'server/tests/tests-typing/katalogakci';
-import { _MEETUP_SAMPLE_EVENT, _MEETUP_SAMPLE_JSONLD } from 'server/tests/tests-typing/meetup';
+import { _EVENTBRITE_SAMPLE_EVENT, _EVENTBRITE_SAMPLE_JSONLD } from '../mocks/eventbrite';
+import { _FACEBOOK_SAMPLE_EVENT, _FACEBOOK_SAMPLE_JSONLD } from '../tests/tests-typing/facebook';
+import { _KATALOGAKCI_SAMPLE_EVENT, _KATALOGAKCI_SAMPLE_JSONLD } from '../tests/tests-typing/katalogakci';
+import { _MEETUP_SAMPLE_EVENT, _MEETUP_SAMPLE_JSONLD } from '../tests/tests-typing/meetup';
 import { parseJsonldToEvent } from './parseJsonldToEvent';
 
 describe('how parsing events from JSON+LD works', () => {

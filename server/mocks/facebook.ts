@@ -1,6 +1,7 @@
-import { IJsonLd } from '../../interfaces/jsonld/IJsonLd';
+import { Event, EventType } from '../../src/model/database/Event';
+import { ISemanticEvent } from '../interfaces/jsonld/ISemanticEvent';
 
-export const _FACEBOOK_SAMPLE_JSONLD: IJsonLd = {
+export const _FACEBOOK_SAMPLE_JSONLD: ISemanticEvent = {
     '@context': 'http://schema.org',
     '@type': 'Event',
     startDate: '2021-02-11T15:00:00+0100',

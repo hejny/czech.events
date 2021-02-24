@@ -1,7 +1,7 @@
-import { IJsonLd } from 'server/interfaces/jsonld/IJsonLd';
-import { Event, EventType } from 'src/model/database/Event';
+import { Event, EventType } from '../../src/model/database/Event';
+import { ISemanticEvent } from '../interfaces/jsonld/ISemanticEvent';
 
-export const _EVENTBRITE_SAMPLE_JSONLD: IJsonLd = {
+export const _EVENTBRITE_SAMPLE_JSONLD: ISemanticEvent = {
     '@context': 'http://schema.org',
     '@type': 'EducationEvent',
     startDate: '2021-02-25T18:00:00+01:00',
@@ -56,17 +56,17 @@ export const _EVENTBRITE_SAMPLE_JSONLD: IJsonLd = {
 export const _EVENTBRITE_SAMPLE_EVENT: Partial<Event> = {
     // TODO: !!! fill
     serializeId: 'https://www.eventbrite.com/e/online-ios-talk-hands-on-mac-catalyst-tickets-140831903013',
-    name: 'Zn&#xE1;m&#xE9; vlastnosti Azure Storage',
-    topic: null,
-    type: EventType.CONFERENCE,
-    web: 'https://it.katalogakci.cz/e-1583/ne-zname-vlastnosti-azure-storage-jiri-cincura-mvp',
-    city: undefined,
-    year: NaN,
-    month: NaN,
-    days: 'NaN-NaN',
-    time: 'NaN:NaN',
-    price: null,
+    name: 'Online iOS Talk',
+    topic: 'Hands-on Mac Catalyst',
+    type: EventType.MEETUP,
+    web: 'https://www.eventbrite.com/e/online-ios-talk-hands-on-mac-catalyst-tickets-140831903013',
+    city: null,
+    year: 2021,
+    month: 2,
+    days: '25',
+    time: '18:00',
+    price: 0,
     priceCurrency: null,
-    online: 0,
+    online: 1,
     canceled: 0,
 };
