@@ -1,6 +1,6 @@
 import { Event, EventType } from '../../src/model/database/Event';
 
-export function parseJsonldToEvent(eventJsonld: any /* TODO: !!! IJsonLd*/, url: string): Partial<Event> {
+export function parseJsonldToEvent(eventJsonld: any /* TODO: !!! IJsonLd*/, url?: string): Partial<Event> {
     try {
         // TODO: Volumes "11. Sraz přátel PHP v Pardubicích" vs "FuckUp Night  Vol. XXXVI" ,...
         // TODO: Price is not in JSON LD and should be probbably scraped by puppeteer

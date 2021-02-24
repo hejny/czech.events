@@ -28,3 +28,21 @@ export const _FACEBOOK_SAMPLE_JSONLD: IJsonLd = {
         'https://scontent-prg1-1.xx.fbcdn.net/v/t1.0-0/c43.0.206.206a/p206x206/145467520_1291306784577689_6644237370038120316_o.jpg?_nc_cat=102&ccb=3&_nc_sid=b386c4&_nc_ohc=pmf1QoGwXxMAX9d96E5&_nc_ht=scontent-prg1-1.xx&tp=27&oh=d44e251ece5ce27877ded9e8efa586dc&oe=605BDE39',
     performers: [],
 };
+
+export const _FACEBOOK_SAMPLE_EVENT: Partial<Event> = {
+    // TODO: !!! fill
+    serializeId: 'https://www.eventbrite.com/e/online-ios-talk-hands-on-mac-catalyst-tickets-140831903013',
+    name: 'Zn&#xE1;m&#xE9; vlastnosti Azure Storage',
+    topic: null,
+    type: EventType.CONFERENCE,
+    web: 'https://it.katalogakci.cz/e-1583/ne-zname-vlastnosti-azure-storage-jiri-cincura-mvp',
+    city: undefined,
+    year: NaN,
+    month: NaN,
+    days: 'NaN-NaN',
+    time: 'NaN:NaN',
+    price: null,
+    priceCurrency: null,
+    online: 0,
+    canceled: 0,
+};

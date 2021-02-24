@@ -27,3 +27,21 @@ export const _KATALOGAKCI_SAMPLE_JSONLD: IJsonLd = {
     image: 'https://it.katalogakci.cz/Attachment/Image/106',
     organizer: { '@type': 'Organization', name: 'Frontendisti.cz Praha', url: 'https://www.meetup.com/frontendisti/' },
 };
+
+export const _KATALOGAKCI_SAMPLE_EVENT: Partial<Event> = {
+    // TODO: !!! fill
+    serializeId: 'https://www.eventbrite.com/e/online-ios-talk-hands-on-mac-catalyst-tickets-140831903013',
+    name: 'Zn&#xE1;m&#xE9; vlastnosti Azure Storage',
+    topic: null,
+    type: EventType.CONFERENCE,
+    web: 'https://it.katalogakci.cz/e-1583/ne-zname-vlastnosti-azure-storage-jiri-cincura-mvp',
+    city: undefined,
+    year: NaN,
+    month: NaN,
+    days: 'NaN-NaN',
+    time: 'NaN:NaN',
+    price: null,
+    priceCurrency: null,
+    online: 0,
+    canceled: 0,
+};
