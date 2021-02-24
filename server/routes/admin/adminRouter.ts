@@ -39,21 +39,28 @@ adminRouter.get('/admin/events', async (request, response) => {
             return response.status(404).send({ message: `Event not found and fetch param is not set.` });
         } else {
             try {
-                const jsonlds = await extractJsonldFromHtml(
+                const jsonld = await extractJsonldFromHtml(
                     await (await fetch(request.query.serializeId as string)).text(),
                 );
-                console.log({ jsonlds });
 
-                const jsonld = jsonlds[0]; /* TODO: !!! Pick best */
                 const eventData = await parseJsonldToEvent(jsonld, request.query.serializeId as string);
 
                 // TODO: Create here an UUID
 
-                await connection.manager.insert(Event, eventData);
-
-                event = await connection.manager.findOne(Event, {
-                    where: { serializeId: request.query.serializeId },
+                // Note: Some events can be copyied throught multiple event sites
+                const eventWithSameNameAndTopic = await connection.manager.findOne(Event, {
+                    where: { name: eventData.name, topic: eventData.topic },
                 });
+
+                if (eventWithSameNameAndTopic) {
+                    event = eventWithSameNameAndTopic;
+                } else {
+                    await connection.manager.insert(Event, eventData);
+
+                    event = await connection.manager.findOne(Event, {
+                        where: { serializeId: request.query.serializeId },
+                    });
+                }
             } catch (error) {
                 throw error;
                 //return response.status(400).send({ error: error.message });
