@@ -31,19 +31,18 @@ export const _FACEBOOK_SAMPLE_JSONLD: ISemanticEvent = {
 };
 
 export const _FACEBOOK_SAMPLE_EVENT: Partial<Event> = {
-    // TODO: !!! fill
-    serializeId: 'https://www.eventbrite.com/e/online-ios-talk-hands-on-mac-catalyst-tickets-140831903013',
-    name: 'Zn&#xE1;m&#xE9; vlastnosti Azure Storage',
+    serializeId: 'https://www.facebook.com/events/d41d8cd9/hybridn%C3%AD-v%C3%BDuka/3507283792730526',
+    name: 'Hybridní výuka',
     topic: null,
-    type: EventType.CONFERENCE,
-    web: 'https://it.katalogakci.cz/e-1583/ne-zname-vlastnosti-azure-storage-jiri-cincura-mvp',
-    city: undefined,
-    year: NaN,
-    month: NaN,
-    days: 'NaN-NaN',
-    time: 'NaN:NaN',
-    price: null,
+    type: EventType.WORKSHOP,
+    web: 'https://www.facebook.com/events/d41d8cd9/hybridn%C3%AD-v%C3%BDuka/3507283792730526',
+    city: null,
+    year: 2021,
+    month: 2,
+    days: '11',
+    time: '15:00',
+    price: 0,
     priceCurrency: null,
-    online: 0,
+    online: 1,
     canceled: 0,
 };

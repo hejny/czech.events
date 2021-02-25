@@ -54,7 +54,6 @@ export const _EVENTBRITE_SAMPLE_JSONLD: ISemanticEvent = {
 };
 
 export const _EVENTBRITE_SAMPLE_EVENT: Partial<Event> = {
-    // TODO: !!! fill
     serializeId: 'https://www.eventbrite.com/e/online-ios-talk-hands-on-mac-catalyst-tickets-140831903013',
     name: 'iOS Talk',
     topic: 'Hands-on Mac Catalyst',

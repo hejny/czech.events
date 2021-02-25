@@ -30,17 +30,16 @@ export const _KATALOGAKCI_SAMPLE_JSONLD: ISemanticEvent = {
 };
 
 export const _KATALOGAKCI_SAMPLE_EVENT: Partial<Event> = {
-    // TODO: !!! fill
-    serializeId: 'https://www.eventbrite.com/e/online-ios-talk-hands-on-mac-catalyst-tickets-140831903013',
-    name: 'Zn&#xE1;m&#xE9; vlastnosti Azure Storage',
-    topic: null,
-    type: EventType.CONFERENCE,
-    web: 'https://it.katalogakci.cz/e-1583/ne-zname-vlastnosti-azure-storage-jiri-cincura-mvp',
-    city: undefined,
-    year: NaN,
-    month: NaN,
-    days: 'NaN-NaN',
-    time: 'NaN:NaN',
+    serializeId: 'https://it.katalogakci.cz/e-1461/frontendisti-cz-praha--hospodsky-sraz-09-06-2021',
+    name: 'Frontendisti.cz',
+    topic: 'Hospodský sraz',
+    type: EventType.MEETUP,
+    web: 'https://it.katalogakci.cz/e-1461/frontendisti-cz-praha--hospodsky-sraz-09-06-2021',
+    city: 'Praha',
+    year: 2021,
+    month: 6,
+    days: '9',
+    time: null,
     price: null,
     priceCurrency: null,
     online: 0,

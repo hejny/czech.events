@@ -24,19 +24,18 @@ export const _MEETUP_SAMPLE_JSONLD: ISemanticEvent = {
 };
 
 export const _MEETUP_SAMPLE_EVENT: Partial<Event> = {
-    // TODO: !!! fill
-    serializeId: 'https://www.eventbrite.com/e/online-ios-talk-hands-on-mac-catalyst-tickets-140831903013',
-    name: 'Zn&#xE1;m&#xE9; vlastnosti Azure Storage',
-    topic: null,
-    type: EventType.CONFERENCE,
-    web: 'https://it.katalogakci.cz/e-1583/ne-zname-vlastnosti-azure-storage-jiri-cincura-mvp',
-    city: undefined,
-    year: NaN,
-    month: NaN,
-    days: 'NaN-NaN',
-    time: 'NaN:NaN',
-    price: null,
+    serializeId: 'https://www.meetup.com/STRV-Meetups/events/276248017',
+    name: 'iOS Talk',
+    topic: 'Hands-on Mac Catalyst',
+    type: EventType.MEETUP,
+    web: 'https://www.meetup.com/STRV-Meetups/events/276248017/',
+    city: null,
+    year: 2021,
+    month: 2,
+    days: '25',
+    time: '18:00',
+    price: 0,
     priceCurrency: null,
-    online: 0,
+    online: 1,
     canceled: 0,
 };
