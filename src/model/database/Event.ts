@@ -1,6 +1,6 @@
-import { NewsletterContent } from './NewsletterContent';
 import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { EventCode } from './EventCode';
+import { NewsletterContent } from './NewsletterContent';
 
 export enum EventType {
     CONFERENCE = 'CONFERENCE',
@@ -11,6 +11,7 @@ export enum EventType {
 
 export enum EventPriceCurrency {
     CZK = 'CZK',
+    USD = 'USD',
     EUR = 'EUR',
 }
 

@@ -1,8 +1,10 @@
-import { Event, EventType } from '../../src/model/database/Event';
+import { Event, EventPriceCurrency, EventType } from '../../src/model/database/Event';
 import { ISemanticEvent } from '../interfaces/jsonld/ISemanticEvent';
+import { makeArray } from './makeArray';
 
 export function parseJsonldToEvent(semanticEvent: ISemanticEvent, url?: string): Partial<Event> {
     try {
+        // TODO: Break into  smaller functions+tests which parse one atomic part of the event like price, city, etc...
         // TODO: Volumes "11. Sraz přátel PHP v Pardubicích" vs "FuckUp Night  Vol. XXXVI" ,...
         // TODO: Price is not in JSON LD and should be probbably scraped by puppeteer
 
@@ -13,6 +15,7 @@ export function parseJsonldToEvent(semanticEvent: ISemanticEvent, url?: string):
             startDate.getDate() === endDate.getDate()
                 ? startDate.getDate().toString()
                 : `${startDate.getDate()}-${endDate.getDate()}`;
+        const durationInHours = (endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60;
 
         let type = EventType.CONFERENCE;
 
@@ -25,8 +28,7 @@ export function parseJsonldToEvent(semanticEvent: ISemanticEvent, url?: string):
         if (keywords.includes('workshop')) type = EventType.WORKSHOP;
         if (keywords.includes('webinář')) type = EventType.WORKSHOP;
         if (keywords.includes('kurz')) type = EventType.WORKSHOP;
-
-        // TODO: Also detect meetup vs. conference by duration
+        if (durationInHours < 4 && type === EventType.CONFERENCE) type = EventType.MEETUP;
 
         let online = false;
         if (keywords.includes('online')) online = true;
@@ -43,12 +45,22 @@ export function parseJsonldToEvent(semanticEvent: ISemanticEvent, url?: string):
 
         const { name, topic } = parseNameAndTopic(semanticEvent.name);
 
+        let price: null | number = null;
+        let priceCurrency: null | EventPriceCurrency = null;
+        makeArray(semanticEvent.offers).forEach((offer) => {
+            // TODO: Only for worst offer
+            price = price || +offer.price;
+            priceCurrency = priceCurrency || (offer.priceCurrency as EventPriceCurrency);
+        });
+        if (price === 0) priceCurrency = null;
+
         return {
-            serializeId: url,
+            serializeId: url || semanticEvent.url,
             name,
             topic,
             type,
-            web: url,
+            web: url || semanticEvent.url,
+            city: null,
             // !!! city: semanticEvent?.location?.address?.addressLocality,
             year: startDate.getFullYear(),
             month: startDate.getMonth() + 1,
@@ -57,8 +69,8 @@ export function parseJsonldToEvent(semanticEvent: ISemanticEvent, url?: string):
                 .getMinutes()
                 .toString()
                 .padStart(2, '0')}`,
-            price: null,
-            priceCurrency: null,
+            price,
+            priceCurrency,
             online: online ? 1 : 0,
             canceled: canceled ? 1 : 0,
 
