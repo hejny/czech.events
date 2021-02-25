@@ -1,9 +1,11 @@
 type string_iso_date = string;
 type string_url = string;
-type currency = 'CZK';
+type currency = 'CZK' | 'USD' | 'EUR';
 
 /**
- * Note: not using WithContext<Event> from 'schema-dts' because real production app did not correspond well with this rigid definition
+ * This is just apporximated version of JSON+LD semantic event taken from real data of some sites!!!
+ *
+ * Note: not using WithContext<Event> from 'schema-dts' (or other advanced library) because real production app did not correspond well with this rigid definition
  */
 export interface ISemanticEvent {
     [key: string]: string | number | object;
@@ -14,8 +16,13 @@ export interface ISemanticEvent {
     name: string;
     description: string;
     url: string_url;
-    image: string_url;
+    image?: string_url;
     eventStatus?: string_url;
+    eventAttendanceMode?:
+        | 'OfflineEventAttendanceMode'
+        | 'https://schema.org/OfflineEventAttendanceMode'
+        | 'OnlineEventAttendanceMode'
+        | 'https://schema.org/OnlineEventAttendanceMode';
     offers?: ISemanticEventOffer[] | ISemanticEventOffer;
     /*location: {
         url: 'https://www.eventbrite.com/e/online-ios-talk-hands-on-mac-catalyst-tickets-140831903013';
@@ -29,6 +36,8 @@ export interface ISemanticEvent {
         '@type': 'Organization';
         name: 'STRV';
     };*/
+
+    performers?: any;
 }
 
 export interface ISemanticEventOffer {
@@ -37,10 +46,10 @@ export interface ISemanticEventOffer {
     name?: string;
     url?: string_url;
     priceCurrency?: currency;
-    price?: number;
+    price?: number | string;
     lowPrice?: number;
     highPrice?: number;
-    availability?: 'InStock';
+    availability?: 'https://schema.org/InStock' | 'InStock';
     availabilityStarts?: string_iso_date;
     availabilityEnds?: string_iso_date;
     validFrom?: string_iso_date;

@@ -1,12 +1,13 @@
 import { Event, EventType } from '../../src/model/database/Event';
+import { ISemanticEvent } from '../interfaces/jsonld/ISemanticEvent';
 
-export function parseJsonldToEvent(eventJsonld: any /* TODO: !!! IJsonLd*/, url?: string): Partial<Event> {
+export function parseJsonldToEvent(semanticEvent: ISemanticEvent, url?: string): Partial<Event> {
     try {
         // TODO: Volumes "11. Sraz přátel PHP v Pardubicích" vs "FuckUp Night  Vol. XXXVI" ,...
         // TODO: Price is not in JSON LD and should be probbably scraped by puppeteer
 
-        const startDate = new Date(eventJsonld.startDate);
-        const endDate = new Date(eventJsonld.endDate || eventJsonld.startDate);
+        const startDate = new Date(semanticEvent.startDate);
+        const endDate = new Date(semanticEvent.endDate || semanticEvent.startDate);
 
         const days =
             startDate.getDate() === endDate.getDate()
@@ -16,7 +17,7 @@ export function parseJsonldToEvent(eventJsonld: any /* TODO: !!! IJsonLd*/, url?
         let type = EventType.CONFERENCE;
 
         // TODO: toLowerCase also for ěščřžýáíéúů
-        const keywords = `${eventJsonld.name} ${eventJsonld.description}`.toLowerCase();
+        const keywords = `${semanticEvent.name} ${semanticEvent.description}`.toLowerCase();
         if (keywords.includes('hackathon')) type = EventType.HACKATHON;
         if (keywords.includes('startup weekend')) type = EventType.HACKATHON;
         if (keywords.includes('meetup')) type = EventType.MEETUP;
@@ -40,7 +41,7 @@ export function parseJsonldToEvent(eventJsonld: any /* TODO: !!! IJsonLd*/, url?
         if (keywords.includes('zrušeno')) canceled = true;
         if (keywords.includes('canceled')) canceled = true;
 
-        const { name, topic } = parseNameAndTopic(eventJsonld.name);
+        const { name, topic } = parseNameAndTopic(semanticEvent.name);
 
         return {
             serializeId: url,
@@ -48,7 +49,7 @@ export function parseJsonldToEvent(eventJsonld: any /* TODO: !!! IJsonLd*/, url?
             topic,
             type,
             web: url,
-            city: eventJsonld?.location?.address?.addressLocality,
+            // !!! city: semanticEvent?.location?.address?.addressLocality,
             year: startDate.getFullYear(),
             month: startDate.getMonth() + 1,
             days,
@@ -66,7 +67,7 @@ export function parseJsonldToEvent(eventJsonld: any /* TODO: !!! IJsonLd*/, url?
         };
     } catch (error) {
         console.error(error);
-        console.info(eventJsonld);
+        console.info({ semanticEvent });
         throw new Error(`Can not create Event`);
     }
 }
