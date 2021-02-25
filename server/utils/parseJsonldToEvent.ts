@@ -8,6 +8,8 @@ export function parseJsonldToEvent(semanticEvent: ISemanticEvent, url?: string):
         // TODO: Volumes "11. Sraz přátel PHP v Pardubicích" vs "FuckUp Night  Vol. XXXVI" ,...
         // TODO: Price is not in JSON LD and should be probbably scraped by puppeteer
 
+        const serializeId = new URL(url || semanticEvent.url).toString().replace(/\/$/, '');
+
         const startDate = new Date(semanticEvent.startDate);
         const endDate = new Date(semanticEvent.endDate || semanticEvent.startDate);
 
@@ -53,9 +55,12 @@ export function parseJsonldToEvent(semanticEvent: ISemanticEvent, url?: string):
             priceCurrency = priceCurrency || (offer.priceCurrency as EventPriceCurrency);
         });
         if (price === 0) priceCurrency = null;
+        if (price === null) {
+            if (keywords.includes('zdarma') || keywords.includes('free')) price = 0;
+        }
 
         return {
-            serializeId: url || semanticEvent.url,
+            serializeId,
             name,
             topic,
             type,
