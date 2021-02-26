@@ -26,4 +26,18 @@ describe('how decoding hex unicode chars works', () => {
             a: { b: { c: `ý` } },
         });
     });
+
+    it('can decode hex unicode chars in deep with array', () => {
+        expect(decodeHexDeep([`&#x10C;`, `&#xFD;`])).toEqual(['Č', 'ý']);
+    });
+
+    it('can decode hex unicode chars in deep object with array', () => {
+        expect(
+            decodeHexDeep({
+                a: { b: { c: [`&#xFD;`, { x: `&#x10C;&#xFD;a` }] } },
+            }),
+        ).toEqual({
+            a: { b: { c: [`ý`, { x: `Čýa` }] } },
+        });
+    });
 });

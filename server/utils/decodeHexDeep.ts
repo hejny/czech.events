@@ -1,16 +1,20 @@
 import { decodeHex } from './decodeHex';
 
 // TODO: Universal deep apply and this only as bind of it
-export function decodeHexDeep<T extends object>(input: T): T {
-    const converted: T = {} as T;
-    for (const key in input) {
-        if (typeof input[key] === 'object') {
-            converted[key] = decodeHexDeep(input[key] as any);
-        } else if (typeof input[key] === 'string') {
-            converted[key as any] = decodeHex(input[key] as any);
+export function decodeHexDeep<T>(input: T): T {
+    if (typeof input === 'object') {
+        if (Array.isArray(input)) {
+            return input.map((item: any) => decodeHexDeep(item)) as any;
         } else {
-            converted[key] = input[key];
+            const converted: T = {} as T;
+            for (const key in input) {
+                converted[key] = decodeHexDeep(input[key] as any);
+            }
+            return converted;
         }
+    } else if (typeof input === 'string') {
+        return decodeHex(input) as any;
+    } else {
+        return input;
     }
-    return converted;
 }
