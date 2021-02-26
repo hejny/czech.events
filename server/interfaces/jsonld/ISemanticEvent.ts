@@ -24,6 +24,8 @@ export interface ISemanticEvent {
         | 'OnlineEventAttendanceMode'
         | 'https://schema.org/OnlineEventAttendanceMode';
     offers?: ISemanticEventOffer[] | ISemanticEventOffer;
+    location?: ISemanticPlace;
+
     /*location: {
         url: 'https://www.eventbrite.com/e/online-ios-talk-hands-on-mac-catalyst-tickets-140831903013';
         '@type': 'VirtualLocation';
@@ -53,4 +55,24 @@ export interface ISemanticEventOffer {
     availabilityStarts?: string_iso_date;
     availabilityEnds?: string_iso_date;
     validFrom?: string_iso_date;
+}
+
+export interface ISemanticPlace {
+    '@type': 'Place';
+    name: string;
+    url: string_url;
+    address: {
+        '@type': 'PostalAddress';
+        streetAddress: string;
+        addressLocality: string;
+        postalCode: string;
+        addressCountry: string;
+    };
+    geo?: GeoCoordinates;
+}
+
+export interface ISemanticGeoCoordinates {
+    '@type': 'GeoCoordinates';
+    latitude: number;
+    longitude: number;
 }

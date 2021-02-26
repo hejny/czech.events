@@ -1,15 +1,18 @@
 import { Event, EventPriceCurrency, EventType } from '../../src/model/database/Event';
 import { ISemanticEvent } from '../interfaces/jsonld/ISemanticEvent';
+import { decodeHexDeep } from './decodeHexDeep';
 import { makeArray } from './makeArray';
 
 export function parseJsonldToEvent(semanticEvent: ISemanticEvent, url?: string): Partial<Event> {
     try {
-        // TODO: Break into  smaller functions+tests which parse one atomic part of the event like price, city, etc...
+        // TODO: Break into  smaller functions+tests which parse one atomic part of the event like parseNameAndTopic (already is) price, city, etc...
         // TODO: Volumes "11. Sraz přátel PHP v Pardubicích" vs "FuckUp Night  Vol. XXXVI" ,...
         // TODO: Price is not in JSON LD and should be probbably scraped by puppeteer
 
-        const serializeId = new URL(url || semanticEvent.url).toString().replace(/\/$/, '');
+        semanticEvent = decodeHexDeep(semanticEvent);
 
+        //-----------------[ Common ]---
+        const serializeId = new URL(url || semanticEvent.url).toString().replace(/\/$/, '');
         const startDate = new Date(semanticEvent.startDate);
         const endDate = new Date(semanticEvent.endDate || semanticEvent.startDate);
 
@@ -18,9 +21,10 @@ export function parseJsonldToEvent(semanticEvent: ISemanticEvent, url?: string):
                 ? startDate.getDate().toString()
                 : `${startDate.getDate()}-${endDate.getDate()}`;
         const durationInHours = (endDate.getTime() - startDate.getTime()) / 1000 / 60 / 60;
+        //--------------------
 
+        //-----------------[ Type ]---
         let type = EventType.CONFERENCE;
-
         // TODO: toLowerCase also for ěščřžýáíéúů
         const keywords = `${semanticEvent.name} ${semanticEvent.description}`.toLowerCase();
         if (keywords.includes('hackathon')) type = EventType.HACKATHON;
@@ -31,7 +35,9 @@ export function parseJsonldToEvent(semanticEvent: ISemanticEvent, url?: string):
         if (keywords.includes('webinář')) type = EventType.WORKSHOP;
         if (keywords.includes('kurz')) type = EventType.WORKSHOP;
         if (durationInHours < 4 && type === EventType.CONFERENCE) type = EventType.MEETUP;
+        //--------------------
 
+        //-----------------[ Online ]---
         let online = false;
         if (keywords.includes('online')) online = true;
         if (keywords.includes('stream')) online = true;
@@ -39,14 +45,18 @@ export function parseJsonldToEvent(semanticEvent: ISemanticEvent, url?: string):
         if (keywords.includes('virtuální')) online = true;
         if (keywords.includes('virtual')) online = true;
         if (keywords.includes('webinář')) online = true;
+        //--------------------
 
+        //-----------------[ Canceled ]---
         let canceled = false;
         // Probbably? Note: canceled is detected by not fetching JSON LD
         if (keywords.includes('zrušeno')) canceled = true;
         if (keywords.includes('canceled')) canceled = true;
+        //--------------------
 
         const { name, topic } = parseNameAndTopic(semanticEvent.name);
 
+        //-----------------[ Price ]---
         let price: null | number = null;
         let priceCurrency: null | EventPriceCurrency = null;
         makeArray(semanticEvent.offers).forEach((offer) => {
@@ -58,6 +68,15 @@ export function parseJsonldToEvent(semanticEvent: ISemanticEvent, url?: string):
         if (price === null) {
             if (keywords.includes('zdarma') || keywords.includes('free')) price = 0;
         }
+        //--------------------
+
+        //-----------------[ City ]---
+        let city: null | string = null;
+        if (semanticEvent?.location?.address?.addressLocality) {
+            city = semanticEvent.location.address.addressLocality;
+        }
+        // TODO: More methods
+        //--------------------
 
         return {
             serializeId,
@@ -65,8 +84,7 @@ export function parseJsonldToEvent(semanticEvent: ISemanticEvent, url?: string):
             topic,
             type,
             web: url || semanticEvent.url,
-            city: null,
-            // !!! city: semanticEvent?.location?.address?.addressLocality,
+            city,
             year: startDate.getFullYear(),
             month: startDate.getMonth() + 1,
             days,

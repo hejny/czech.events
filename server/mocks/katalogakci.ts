@@ -32,16 +32,18 @@ export const _KATALOGAKCI_SAMPLE_JSONLD: ISemanticEvent = {
 export const _KATALOGAKCI_SAMPLE_EVENT: Partial<Event> = {
     serializeId: 'https://it.katalogakci.cz/e-1461/frontendisti-cz-praha--hospodsky-sraz-09-06-2021',
     name: 'Frontendisti.cz',
-    topic: 'Hospodský sraz',
+    topic: 'Hospodský sraz 09.06.' /* TODO: In future this should be just "Hospodský sraz" */,
     type: EventType.MEETUP,
     web: 'https://it.katalogakci.cz/e-1461/frontendisti-cz-praha--hospodsky-sraz-09-06-2021',
     city: 'Praha',
     year: 2021,
     month: 6,
     days: '9',
-    time: null,
+    time: '18:30',
     price: null,
     priceCurrency: null,
     online: 0,
     canceled: 0,
 };
+
+// TODO: Make database of internal knowlage - like we know that all meetups from Frontendisti are free but this is not exported into semantic data
