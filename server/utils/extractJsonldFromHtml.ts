@@ -30,7 +30,7 @@ export async function extractJsonldFromHtml(html: string): Promise<ISemanticEven
         throw new Error(`JSON LD not found`);
     }*/
 
-    const jsonldsEvents = jsonlds.filter((jsonld) => /^.*[eE]vent$/.test(jsonld['@type']));
+    const jsonldsEvents = jsonlds.filter((jsonld) => /^.*(?<!Whatever)(?<!Sale)[eE]vent$/.test(jsonld['@type']));
 
     if (!jsonldsEvents.length) {
         throw new Error(`There is no parsed event JSON+LD in the html.`);
