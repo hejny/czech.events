@@ -1,5 +1,4 @@
 import { EventsApp } from './EventsApp';
-import './style/index.css';
-import './style/newsletter.css';
+import './style/body.css';
 
 (window as any).EventsApp = EventsApp;

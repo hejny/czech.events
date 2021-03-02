@@ -1,13 +1,14 @@
 import * as React from 'react';
-
+import styled from 'styled-components';
+import { PageDiv } from './PageDiv';
 interface IAboutPageProps {
     selfUrl: string;
 }
 
 export function AboutPage(props: IAboutPageProps) {
     return (
-        <>
-            <div className="content about">
+        <PageDiv>
+            <AboutPageDiv>
                 <div className="front black">
                     <div className="inner">
                         {/* <h1>Czech.events</h1> */}
@@ -44,7 +45,33 @@ export function AboutPage(props: IAboutPageProps) {
                         })}
                     </div>
                 </div>
-            </div>
-        </>
+            </AboutPageDiv>
+        </PageDiv>
     );
 }
+
+export const AboutPageDiv = styled.div`
+    .logo {
+        margin: 20px;
+        border-radius: 5px;
+        display: inline-block;
+        width: 200px;
+        height: 200px;
+        color: white;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .logo img {
+        display: block;
+        max-width: 200px;
+        max-height: 200px;
+    }
+
+    .logo pre {
+        display: block;
+        width: 200px;
+        overflow-x: scroll;
+    }
+`;

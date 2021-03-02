@@ -1,6 +1,6 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 import styled from 'styled-components';
-
 import { shuffleArray } from '../utils/array';
 
 interface IPartnersProps {
@@ -10,9 +10,8 @@ interface IPartnersProps {
 export function Partners(props: IPartnersProps) {
     return (
         <>
-            <div className="partners">
+            <PartnersDiv className="partners">
                 <h2>Mediální partneři</h2>
-
                 {shuffleArray([
                     // TODO: To some other file or even to DB
                     {
@@ -70,12 +69,16 @@ export function Partners(props: IPartnersProps) {
                         </a>
                     );
                 })}
-            </div>
+
+                <Link to="/about" className="our-logos">
+                    O nás a loga Czech.events
+                </Link>
+            </PartnersDiv>
         </>
     );
 }
 
-const PartnersDiv = styled.div`
+export const PartnersDiv = styled.div`
     text-align: center;
     font-family: Arial, Helvetica, sans-serif, 'Montserrat', serif;
     color: rgb(212, 212, 212);
@@ -99,11 +102,9 @@ const PartnersDiv = styled.div`
         background-position: center;
     }
 
-    /*
-    .logo img {
+    .our-logos {
+        font-size: 0.8em;
+        color: white;
         display: block;
-        max-width: 100px;
-        max-height: 100px;
     }
-    */
 `;
