@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 import { Event } from '../../../src/model/database/Event';
 import { connectionPromise } from '../../database';
 import { extractJsonldFromHtml } from '../../utils/extractJsonldFromHtml';
-import { parseJsonldToEvent } from '../../utils/parseJsonldToEvent';
+import { parseJsonldToEvent } from '../../utils/parsing/parseJsonldToEvent';
 import { ADMIN_TOKEN } from './../../config';
 
 export const adminRouter = Router();
@@ -43,7 +43,10 @@ adminRouter.get('/admin/events', async (request, response) => {
                     await (await fetch(request.query.serializeId as string)).text(),
                 );
 
-                const eventData = await parseJsonldToEvent(jsonld, request.query.serializeId as string);
+                const eventData = await parseJsonldToEvent({
+                    semanticEvent: jsonld,
+                    url: request.query.serializeId as string,
+                });
 
                 // TODO: Create here an UUID
 
