@@ -6,10 +6,7 @@
     "private": true,
     "scripts": {
         "test": "jest --config jestconfig.json",
-        "preversion": "npm run prettier-commit",
         "postversion": "git push && git push --tags && npm run frontend-deploy && npm run server-deploy",
-        "prettier": "prettier --config .prettierrc --write \"{src,server,public,scripts,button-webextension}/**/*.{ts,tsx,js,jsx,html,css}\"",
-        "prettier-commit": "git diff --exit-code && npm run prettier && git add . && git commit --allow-empty -m \"Prettier\"",
         "frontend-develop": "cross-env PORT=3000 react-scripts start",
         "frontend-develop-emit-decorator-metadata": "tsc --project src/model/database/_emitDecoratorMetadata.tsconfig.json && tsc --watch --project src/model/database/_emitDecoratorMetadata.tsconfig.json",
         "frontend-develop-delete-decorator-metadata": "find ./src/model/database/ -name '*.js' -delete",
@@ -59,7 +56,6 @@
         "node-fetch": "^2.6.1",
         "onchange": "^7.1.0",
         "papaparse": "^5.3.0",
-        "prettier": "^2.2.1",
         "react": "^17.0.1",
         "react-dom": "^17.0.1",
         "react-router-dom": "^5.2.0",
