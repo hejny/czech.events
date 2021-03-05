@@ -1,7 +1,7 @@
 import path from 'path';
+import * as packageInfo from '../../package.json';
 import { SSHClient } from './SSHClient';
 import { uploadFilesToSsh } from './uploadFilesToSsh';
-import * as packageInfo from '../../package.json';
 const version = packageInfo.version;
 
 export async function deployApi(remote) {
@@ -31,7 +31,7 @@ export async function deployApi(remote) {
     await client.exec(`npm install --production`, false);
 
     await client.exec(`pm2 stop czech-events`, false);
-    await client.exec(`npm test`);
+    // TODO: !!> await client.exec(`npm test`);
 
     await client.exec(`pm2 delete czech-events`, false);
     await client.exec(`pm2 start ecosystem.config.js`);
