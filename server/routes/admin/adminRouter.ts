@@ -39,9 +39,18 @@ adminRouter.get('/admin/events', async (request, response) => {
             return response.status(404).send({ message: `Event not found and fetch param is not set.` });
         } else {
             try {
-                const jsonld = await extractJsonldFromHtml(
-                    await (await fetch(request.query.serializeId as string)).text(),
-                );
+                // TODO: DRY some fetching function
+                const content = await (
+                    await fetch(
+                        request.query.serializeId as string /*.split('www.facebook.com').join('m.facebook.com')*/,
+                    )
+                ).text();
+
+                if (content.includes(`You’re Temporarily Blocked`)) {
+                    throw new Error(`Temporarily Blocked from Facebook`);
+                }
+
+                const jsonld = await extractJsonldFromHtml(content);
 
                 const eventData = await parseJsonldToEvent({
                     semanticEvent: jsonld,
@@ -65,8 +74,8 @@ adminRouter.get('/admin/events', async (request, response) => {
                     });
                 }
             } catch (error) {
-                throw error;
-                //return response.status(400).send({ error: error.message });
+                console.error(error);
+                return response.status(400).send({ error: { name: error.name, message: error.message, ...error } });
             }
         }
     }
@@ -98,7 +107,8 @@ adminRouter.put('/admin/events', async (request, response) => {
         console.log(`updateResult`, updateResult);
         return response.send(updateResult);
     } catch (error) {
-        return response.status(400).send(error);
+        console.error(error);
+        return response.status(400).send({ error: { name: error.name, message: error.message, ...error } });
     }
 });
 
