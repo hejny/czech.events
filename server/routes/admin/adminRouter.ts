@@ -74,7 +74,7 @@ adminRouter.get('/admin/events', async (request, response) => {
                     });
                 }
             } catch (error) {
-                console.error(error);
+                // console.error(error);
                 return response.status(400).send({ error: { name: error.name, message: error.message, ...error } });
             }
         }
@@ -107,7 +107,7 @@ adminRouter.put('/admin/events', async (request, response) => {
         console.log(`updateResult`, updateResult);
         return response.send(updateResult);
     } catch (error) {
-        console.error(error);
+        // console.error(error);
         return response.status(400).send({ error: { name: error.name, message: error.message, ...error } });
     }
 });
