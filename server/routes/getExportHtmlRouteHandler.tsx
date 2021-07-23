@@ -14,19 +14,24 @@ import { connectionPromise } from '../database';
 const { readFile } = fsp; // TODO: } from 'fs/promises';
 
 export const getExportHtmlRouteHandler: RequestHandler = async (request, response, next) => {
-    const connection = await connectionPromise;
-    const events = await connection.manager.find(Event, {
-        where: { visibility: In([EventVisibility.FEATURED, EventVisibility.VISIBLE]) /* TODO: Is this working? */ },
-    });
-    // TODO: Purge internal IDs
-    // TODO: Remove codes
+    try {
+        const connection = await connectionPromise;
+        const events = await connection.manager.find(Event, {
+            where: { visibility: In([EventVisibility.FEATURED, EventVisibility.VISIBLE]) /* TODO: Is this working? */ },
+        });
+        // TODO: Purge internal IDs
+        // TODO: Remove codes
 
-    const rangeString = request.query.range; /* TODO: when vs. range */
+        const rangeString = request.query.range; /* TODO: when vs. range */
 
-    const range = DateRange.fromConstant((rangeString as any) || 'CURRENT_MONTH-NEXT_MONTH');
-    const newsletter = createNewsletter({ range, events });
-    const content = ReactDOMServer.renderToStaticMarkup(<NewsletterComponent {...{ newsletter }} />);
-    const style = await readFile(join(__dirname, '../../src/style/newsletter.css'));
-    const html = `${content}<style>${style}</style>`;
-    response.send(prettier.format(html, { parser: 'html' }));
+        const range = DateRange.fromConstant((rangeString as any) || 'CURRENT_MONTH-NEXT_MONTH');
+        const newsletter = createNewsletter({ range, events });
+        const content = ReactDOMServer.renderToStaticMarkup(<NewsletterComponent {...{ newsletter }} />);
+        const style = await readFile(join(__dirname, '../../src/style/newsletter.css'));
+        const html = `${content}<style>${style}</style>`;
+        return response.send(prettier.format(html, { parser: 'html' }));
+    } catch (error) {
+        // console.error(error);
+        return response.status(400).send({ error: { name: error.name, message: error.message, ...error } });
+    }
 };
