@@ -44,7 +44,7 @@ const OPTIONS = [
 export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState> {
     state: ITalksPageState = {
         error: null,
-        range: DateRange.fromConstants('CURRENT_MONTH', 'NEXT_MONTH'),
+        range: DateRange.fromConstant('CURRENT_MONTH-NEXT_MONTH'),
         events: null,
         // TODO: Remove @deprecated newsletter: null,
     };
@@ -87,11 +87,7 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                             <select
                                 className={'font-light option-in-text'}
                                 onChange={(event) => {
-                                    const [beginConstant, endConstant] = event.target.value.split(
-                                        '-',
-                                    ) as RangeConstant[];
-
-                                    const range = DateRange.fromConstants(beginConstant, endConstant);
+                                    const range = DateRange.fromConstant(event.target.value as RangeConstant);
                                     /*console.log(
                                             event.target.value,
                                             DateRange.fromConstant(beginConstant),
