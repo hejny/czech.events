@@ -13,7 +13,7 @@ export class UpdateEventsDeamon {
 
     public async run() {
         while (true) {
-            await forTimeSynced(5 * 60 * 1000);
+            await forTimeSynced(60 /* minutes */ * 60 * 1000);
             // TODO: forTimeSyncedRandomDeterministic
             await this.one();
             //break;
