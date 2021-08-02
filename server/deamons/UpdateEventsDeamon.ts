@@ -9,8 +9,6 @@ import { parseJsonldToEvent } from '../utils/parsing/parseJsonldToEvent';
 export class UpdateEventsDeamon {
     // TODO: Maybe extend from some generic IDestroyable class/interface
 
-    constructor() {}
-
     public async run() {
         while (true) {
             await forTimeSynced(60 /* minutes */ * 60 * 1000);
