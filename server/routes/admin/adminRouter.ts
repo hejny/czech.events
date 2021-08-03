@@ -46,10 +46,6 @@ adminRouter.get('/admin/events', async (request, response) => {
                     )
                 ).text();
 
-                if (content.includes(`You’re Temporarily Blocked`)) {
-                    throw new Error(`Temporarily Blocked from Facebook`);
-                }
-
                 const jsonld = await extractJsonldFromHtml(content);
 
                 const eventData = await parseJsonldToEvent({
@@ -75,7 +71,12 @@ adminRouter.get('/admin/events', async (request, response) => {
                 }
             } catch (error) {
                 // console.error(error);
-                return response.status(400).send({ error: { name: error.name, message: error.message, ...error } });
+
+                if (!request.query.html) {
+                    return response.status(400).send({ error: { name: error.name, message: error.message, ...error } });
+                } else {
+                    return response.status(400).send(error.unparsableHtml);
+                }
             }
         }
     }

@@ -20,13 +20,20 @@ export async function extractJsonldFromHtml(html: string): Promise<ISemanticEven
     }
 
     if (jsonlds.length === 0) {
-        throw new ParsingError(`JSON LD not found`, html);
+        const errorMatch = /class="fb_content.*<h2.*>(?<message>.*)<\/h2>/.exec(html);
+
+        if (errorMatch) {
+            const { message } = errorMatch.groups;
+            throw new ParsingError(`Facebook: ` + message, html);
+        } else {
+            throw new ParsingError(`JSON LD not found for unknown reason`, html);
+        }
     }
 
     const jsonldsEvents = jsonlds.filter((jsonld) => /^.*(?<!Whatever)(?<!Sale)[eE]vent$/.test(jsonld['@type']));
 
-    if (!jsonldsEvents.length) {
-        throw new ParsingError(`There is no parsed event JSON+LD in the html.`, jsonldsEvents);
+    if (jsonldsEvents.length === 0) {
+        throw new ParsingError(`There is no parsed event JSON+LD in the html.`, html, { html, jsonldsEvents });
     }
 
     return jsonldsEvents[0];
@@ -35,7 +42,7 @@ export async function extractJsonldFromHtml(html: string): Promise<ISemanticEven
 class ParsingError extends Error {
     public name = 'ParsingError';
 
-    constructor(message: string, public unparsable: any) {
+    constructor(message: string, public unparsableHtml: string, public details?: any) {
         super(message);
     }
 }
