@@ -20,7 +20,9 @@ async function createCzechEventsAdmin(apiUrl, token) {
     const event = await response.json();
 
     if (event.error) {
-        throw new Error(event.error);
+        const error = new Error(event.error.message);
+        Object.assign(error, event.error);
+        throw error;
     }
 
     const rootElement = document.createElement('P');
