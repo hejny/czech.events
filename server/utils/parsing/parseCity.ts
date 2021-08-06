@@ -42,5 +42,28 @@ export function parseCity({ semanticEvent, keywords }: { semanticEvent: ISemanti
 
 const CITIES: Record<string, string[]> = {
     Praha: ['Prague'],
+    Brno: [],
+    Ostrava: [],
+    Plzeň: ['Pilsen'],
+    Liberec: [],
+    Olomouc: [],
+    'České Budějovice': [],
+    'Ústí nad Labem': [],
+    'Hradec Králové': [],
+    Zlín: [],
+    Havířov: [],
+    Kladno: [],
+    Most: [],
+    Opava: [],
+    'Frýdek Místek': [],
+    Karviná: [],
+    Jihlava: [],
+    Teplice: [],
+    Děčín: [],
+
+    // Slovakia
     Bratislava: [],
+    Košice: [],
+    Prešov: [],
+    Žilina: [],
 };
