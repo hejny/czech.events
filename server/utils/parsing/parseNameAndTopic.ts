@@ -3,6 +3,8 @@ import { trimCoreName } from './trimCoreName';
 export function parseNameAndTopic(
     fullName: string /* Maybe a description as input? */,
 ): { name: string; topic: string | null } {
+    fullName = fullName.replace(`tart-up`, 'tartup');
+
     fullName = fullName.replace(/\(.*?\)/g, ''); // Removing things in (brackets)
     fullName = fullName.replace(new Date().getFullYear().toString(), ''); // Removing current year
     fullName = fullName.replace(/praha|prague|bratislava/gi, ''); // Removing city // TODO: DRY
