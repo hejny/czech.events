@@ -31,7 +31,7 @@ export function parseJsonldToEvent({
         const { canceled } = parseCancel({ semanticEvent, keywords });
         const { name, topic } = parseNameAndTopic(semanticEvent.name);
         const { price, priceCurrency } = parsePrice({ semanticEvent, keywords });
-        const { city } = parseCity({ semanticEvent });
+        const { city } = parseCity({ semanticEvent, keywords });
 
         return {
             serializeId,
