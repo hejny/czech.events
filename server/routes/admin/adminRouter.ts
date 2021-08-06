@@ -29,7 +29,6 @@ const adminEventsRouteHandler = async (request: Request, response: Response) => 
     // TODO: Process PUT here
     // TODO: To separate file
 
-
     const connection = await connectionPromise;
 
     let event = await connection.manager.findOne(Event, {
@@ -44,9 +43,11 @@ const adminEventsRouteHandler = async (request: Request, response: Response) => 
                 let content: string;
 
                 if (request.body.html) {
+                    console.info(`Taking HTML from client`);
                     content = request.body.html;
                 } else {
                     // TODO: DRY some fetching function
+                    console.info(`Fetching HTML from server`);
                     content = await (
                         await fetch(
                             request.query.serializeId as string /*.split('www.facebook.com').join('m.facebook.com')*/,

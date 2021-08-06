@@ -13,9 +13,20 @@ async function createCzechEventsAdmin(apiUrl, token) {
         .filter((x) => x !== '')
         .join('/');
 
+    const html = document.body.innerHTML;
+    if (
+        !html.match(
+            // Note: Copy from server/utils/extractJsonldFromHtml.ts
+            /<script[\sa-zA-Z0-p-_="']+type=["']application\/ld\+json["'][\sa-zA-Z0-p-_="']*>(.*?)<\/script\s*>/gs,
+        )
+    ) {
+        console.info(`Czech.events did not found JSON+LD in the source code of the page.`);
+        //return;
+    }
+
     const response = await fetch(
         `${apiUrl}/admin/events?serializeId=${encodeURIComponent(eventUrl.toString())}&fetch=true&token=${token}`,
-        { method: 'POST', body: JSON.stringify({ html: document.body.innerHTML }) },
+        { method: 'POST', body: JSON.stringify({ html }) },
     );
 
     const event = await response.json();
