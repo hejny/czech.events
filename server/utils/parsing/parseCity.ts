@@ -40,7 +40,7 @@ export function parseCity({ semanticEvent, keywords }: { semanticEvent: ISemanti
             console.warn(`There are more cities parsed from keywords ${[...citiesFromKeywords].join(', ')}.`);
         }
 
-        console.log({ keywords, citiesFromKeywords, city });
+        // console.log({ keywords, citiesFromKeywords, city });
     }
 
     // TODO: Pilsen easter egg
@@ -60,23 +60,23 @@ function normalizeCity(city: string): string | null {
 }
 
 const CITIES: Record<string, string[]> = {
-    Praha: ['Prague'],
-    Brno: [],
-    Ostrava: [],
-    Plzeň: ['Pilsen'],
-    Liberec: [],
-    Olomouc: [],
-    'České Budějovice': [],
+    Praha: ['Praze', 'Prague'],
+    Brno: ['Brně'],
+    Ostrava: ['Ostravě'],
+    Plzeň: ['Plzni', 'Pilsen', 'SitPort'],
+    Liberec: ['Liberci'],
+    Olomouc: ['Olomouci'],
+    'České Budějovice': ['Budějovicích', 'Budějicích'],
     'Ústí nad Labem': [],
-    'Hradec Králové': [],
-    Zlín: [],
-    Havířov: [],
-    Kladno: [],
+    'Hradec Králové': ['Hradci'],
+    Zlín: ['Zlíně'],
+    Havířov: ['Havířově'],
+    Kladno: ['Kladně'],
     Most: [],
     Opava: [],
     'Frýdek Místek': [],
     Karviná: [],
-    Jihlava: [],
+    Jihlava: ['Jihlavě'],
     Teplice: [],
     Děčín: [],
 
