@@ -15,6 +15,7 @@ async function createCzechEventsAdmin(apiUrl, token) {
 
     const response = await fetch(
         `${apiUrl}/admin/events?serializeId=${encodeURIComponent(eventUrl.toString())}&fetch=true&token=${token}`,
+        { method: 'POST', body: JSON.stringify({ html: document.body.innerHTML }) },
     );
 
     const event = await response.json();

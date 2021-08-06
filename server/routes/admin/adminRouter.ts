@@ -25,8 +25,10 @@ adminRouter.use('/admin/*', (request: Request, response: Response, next: NextFun
     return next();
 });
 
-adminRouter.get('/admin/events', async (request, response) => {
+const adminEventsRouteHandler = async (request: Request, response: Response) => {
+    // TODO: Process PUT here
     // TODO: To separate file
+
 
     const connection = await connectionPromise;
 
@@ -39,12 +41,18 @@ adminRouter.get('/admin/events', async (request, response) => {
             return response.status(404).send({ message: `Event not found and fetch param is not set.` });
         } else {
             try {
-                // TODO: DRY some fetching function
-                const content = await (
-                    await fetch(
-                        request.query.serializeId as string /*.split('www.facebook.com').join('m.facebook.com')*/,
-                    )
-                ).text();
+                let content: string;
+
+                if (request.body.html) {
+                    content = request.body.html;
+                } else {
+                    // TODO: DRY some fetching function
+                    content = await (
+                        await fetch(
+                            request.query.serializeId as string /*.split('www.facebook.com').join('m.facebook.com')*/,
+                        )
+                    ).text();
+                }
 
                 const jsonld = await extractJsonldFromHtml(content);
 
@@ -86,8 +94,10 @@ adminRouter.get('/admin/events', async (request, response) => {
     delete event!.newsletterContents;
 
     return response.send(event);
-});
+};
 
+adminRouter.get('/admin/events', adminEventsRouteHandler);
+adminRouter.post('/admin/events', adminEventsRouteHandler);
 adminRouter.put('/admin/events', async (request, response) => {
     const connection = await connectionPromise;
 
