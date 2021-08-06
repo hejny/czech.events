@@ -5,6 +5,14 @@ export function parseCity({ semanticEvent, keywords }: { semanticEvent: ISemanti
     if (semanticEvent?.location?.address?.addressLocality) {
         city = semanticEvent.location.address.addressLocality;
         // TODO: Normalize aleternatives from CITIES
+
+        const normalizedCity = normalizeCity(city);
+
+        if (normalizedCity) {
+            city = normalizedCity;
+        } else {
+            console.warn(`City "${city}" is not in the list.`);
+        }
     }
 
     if (typeof city !== 'string') {
@@ -38,6 +46,17 @@ export function parseCity({ semanticEvent, keywords }: { semanticEvent: ISemanti
     // TODO: Pilsen easter egg
 
     return { city };
+}
+
+function normalizeCity(city: string): string | null {
+    for (const [key, alternatives] of Object.entries(CITIES)) {
+        for (const alternative of [key, ...alternatives]) {
+            if (alternative.toLowerCase(/* TODO: better normalization */) === city.toLowerCase()) {
+                return key;
+            }
+        }
+    }
+    return null;
 }
 
 const CITIES: Record<string, string[]> = {
