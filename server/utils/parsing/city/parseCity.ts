@@ -1,4 +1,6 @@
-import { ISemanticEvent } from '../../interfaces/jsonld/ISemanticEvent';
+import { ISemanticEvent } from '../../../interfaces/jsonld/ISemanticEvent';
+import { CITIES } from './CITIES';
+import { normalizeCity } from './normalizeCity';
 
 export function parseCity({ semanticEvent, keywords }: { semanticEvent: ISemanticEvent; keywords: string[] }) {
     let city: null | string = null;
@@ -48,41 +50,4 @@ export function parseCity({ semanticEvent, keywords }: { semanticEvent: ISemanti
     return { city };
 }
 
-function normalizeCity(city: string): string | null {
-    for (const [key, alternatives] of Object.entries(CITIES)) {
-        for (const alternative of [key, ...alternatives]) {
-            if (alternative.toLowerCase(/* TODO: better normalization */) === city.toLowerCase()) {
-                return key;
-            }
-        }
-    }
-    return null;
-}
 
-const CITIES: Record<string, string[]> = {
-    Praha: ['Praze', 'Prague'],
-    Brno: ['Brně'],
-    Ostrava: ['Ostravě'],
-    Plzeň: ['Plzni', 'Pilsen', 'SitPort'],
-    Liberec: ['Liberci'],
-    Olomouc: ['Olomouci'],
-    'České Budějovice': ['Budějovicích', 'Budějicích'],
-    'Ústí nad Labem': [],
-    'Hradec Králové': ['Hradci'],
-    Zlín: ['Zlíně'],
-    Havířov: ['Havířově'],
-    Kladno: ['Kladně'],
-    Most: [],
-    Opava: [],
-    'Frýdek Místek': [],
-    Karviná: [],
-    Jihlava: ['Jihlavě'],
-    Teplice: [],
-    Děčín: [],
-
-    // Slovakia
-    Bratislava: [],
-    Košice: [],
-    Prešov: [],
-    Žilina: [],
-};

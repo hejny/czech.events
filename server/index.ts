@@ -19,7 +19,6 @@ async function main() {
     /**/
 
     const updateEventsDeamon = new UpdateEventsDeamon();
-    //console.info(`UpdateEventsDeamon is running`);
     //updateEventsDeamon.quick();
     updateEventsDeamon.run();
 

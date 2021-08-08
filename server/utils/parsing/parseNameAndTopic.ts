@@ -1,3 +1,4 @@
+import { removeCity } from './city/removeCity';
 import { trimCoreName } from './trimCoreName';
 
 export function parseNameAndTopic(
@@ -7,7 +8,8 @@ export function parseNameAndTopic(
 
     fullName = fullName.replace(/\(.*?\)/g, ''); // Removing things in (brackets)
     fullName = fullName.replace(new Date().getFullYear().toString(), ''); // Removing current year
-    fullName = fullName.replace(/praha|prague|bratislava/gi, ''); // Removing city // TODO: DRY
+    fullName = removeCity(fullName);
+    // TODO: More removing utils as external functions
     fullName = fullName.replace(/canceled|zrušeno|online|stream|vysílání|virtuální|virtual|prezenčně|prez\./gi, ''); // Removing other keywords // TODO: DRY
 
     // TODO: Full list of the cities
