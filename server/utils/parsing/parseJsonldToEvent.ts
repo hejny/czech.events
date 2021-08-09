@@ -35,6 +35,8 @@ export function parseJsonldToEvent({
         const { price, priceCurrency } = parsePrice({ semanticEvent, keywords });
         const { city } = parseCity({ semanticEvent, keywords });
 
+        // console.log({ city });
+
         return {
             serializeId,
             name,
