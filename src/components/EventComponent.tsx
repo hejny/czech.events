@@ -21,12 +21,12 @@ export function EventComponent({ event }: IEventComponentProps) {
                 </a>
                 <br />
                 {event.canceled === 1 && <>🚫&nbsp;Zrušeno&nbsp;</>}
-                {event.online === 1 && <>🌍&nbsp;Online&nbsp;</>}
                 {event.city && (
                     <>
                         🌆&nbsp;{event.city}&nbsp;{/* TODO: Plzeň místo 🌆 dát jako easter egg 🐪 */}
                     </>
                 )}
+                {event.online === 1 && <>🌍&nbsp;Online&nbsp;</>}
                 <EventDateComponent {...{ event }} />
                 <EventTimeComponent {...{ event }} />
                 &nbsp;
