@@ -6,11 +6,23 @@ describe('how trimming a core from name works', () => {
         expect(trimCoreName('%^#*@&  Some name')).toEqual('Some name');
         expect(trimCoreName('  %^#*@&Some name')).toEqual('Some name');
         expect(trimCoreName('❤️✨🔥Some name')).toEqual('Some name');
+        expect(trimCoreName('{Some name')).toEqual('Some name');
+        expect(trimCoreName("'Some name")).toEqual('Some name');
+        expect(trimCoreName('"Some name')).toEqual('Some name');
+        expect(trimCoreName('(Some name')).toEqual('Some name');
+        expect(trimCoreName('()()Some name')).toEqual('Some name');
+        expect(trimCoreName('[Some name')).toEqual('Some name');
     });
 
     it('trims from end', () => {
         expect(trimCoreName('Some name%^#*@&')).toEqual('Some name');
         expect(trimCoreName('Some name   %^#*@&  ')).toEqual('Some name');
         expect(trimCoreName('Some name❤️✨🔥')).toEqual('Some name');
+        expect(trimCoreName('Some name}')).toEqual('Some name');
+        expect(trimCoreName("Some name'")).toEqual('Some name');
+        expect(trimCoreName('Some name"')).toEqual('Some name');
+        expect(trimCoreName('Some name)')).toEqual('Some name');
+        expect(trimCoreName('Some name()()')).toEqual('Some name');
+        expect(trimCoreName('Some name]')).toEqual('Some name');
     });
 });
