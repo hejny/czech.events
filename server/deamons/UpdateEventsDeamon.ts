@@ -19,13 +19,22 @@ export class UpdateEventsDeamon {
     }
 
     public async quick() {
+        let firstUpdated: string;
         while (true) {
             await forTime(10);
-            await this.one();
+            const lastupdated = await this.one();
+
+            if (!firstUpdated && lastupdated) {
+                firstUpdated = lastupdated;
+            } else if (firstUpdated === lastupdated) {
+                const WAIT_HOURS = 5;
+                console.info(`⌛ All events updated, waiting ${WAIT_HOURS} hours to next update`);
+                await forTime(WAIT_HOURS * 3600 * 1000);
+            }
         }
     }
 
-    public async one() {
+    public async one(): Promise<string | null> {
         const connection = await connectionPromise;
         let lastEvent = await connection.manager.findOne(Event, {
             where: {
@@ -37,7 +46,7 @@ export class UpdateEventsDeamon {
             order: { updated: 'ASC' },
         });
 
-        if (!lastEvent || !lastEvent.web) return;
+        if (!lastEvent || !lastEvent.web) return null;
 
         console.info(`Updating`, lastEvent.name);
         //console.log(`updating`, lastEvent);
@@ -57,7 +66,7 @@ export class UpdateEventsDeamon {
 
         //console.log(`new info`, eventData);
 
-        const updateResult = await connection
+        /*const updateResult = */ await connection
             .createQueryBuilder()
             .update(Event)
             .set({ ...eventData, updated: 'CURRENT_TIMESTAMP' })
@@ -65,6 +74,7 @@ export class UpdateEventsDeamon {
             .limit(1)
             .execute();
 
+        return lastEvent.serializeId;
         //console.log(`updateResult`, updateResult);
     }
 }
