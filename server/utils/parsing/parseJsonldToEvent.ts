@@ -1,8 +1,8 @@
 import { Event } from '../../../src/model/database/Event';
 import { ISemanticEvent } from '../../interfaces/jsonld/ISemanticEvent';
 import { decodeHexDeep } from './../decodeHexDeep';
-import { parseCancel } from './parseCancel';
 import { parseCity } from './city/parseCity';
+import { parseCancel } from './parseCancel';
 import { parseEventType } from './parseEventType';
 import { parseKeywords } from './parseKeywords';
 import { parseNameAndTopic } from './parseNameAndTopic';
@@ -23,10 +23,12 @@ export function parseJsonldToEvent({
         // TODO: Price is not in JSON LD and should be probbably scraped by puppeteer
 
         semanticEvent = decodeHexDeep(semanticEvent);
+        semanticEvent = { description: '', ...semanticEvent };
+
         const { serializeId } = parseSerializeId({ semanticEvent, url });
         const { days, startDate, durationInHours } = parseTimesAndDates({ semanticEvent });
-        const { keywords,keywordsFromName, keywordsFromDescription } = parseKeywords({ semanticEvent });
-        const { type } = parseEventType({ keywordsFromName,keywordsFromDescription, semanticEvent,  durationInHours });
+        const { keywords, keywordsFromName, keywordsFromDescription } = parseKeywords({ semanticEvent });
+        const { type } = parseEventType({ keywordsFromName, keywordsFromDescription, semanticEvent, durationInHours });
         const { online } = parseOnline({ semanticEvent, keywords });
         const { canceled } = parseCancel({ semanticEvent, keywords });
         const { name, topic } = parseNameAndTopic(semanticEvent.name);
