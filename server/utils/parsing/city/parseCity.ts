@@ -20,9 +20,9 @@ export function parseCity({
 
         if (normalizedCity) {
             return { city: normalizedCity };
-        } else {
+        } /*else {
             console.warn(`City "${possibleCity}" is not in the list.`);
-        }
+        }*/
     }
 
     const citiesFromKeywords: Set<string> = new Set();

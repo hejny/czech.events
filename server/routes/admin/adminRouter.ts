@@ -47,7 +47,7 @@ const adminEventsRouteHandler = async (request: Request, response: Response) => 
                     content = request.body.html;
                 } else {
                     // TODO: DRY some fetching function
-                    console.info(`Fetching HTML from server`);
+                    // console.info(`Fetching HTML from server`);
                     content = await (
                         await fetch(
                             request.query.serializeId as string /*.split('www.facebook.com').join('m.facebook.com')*/,
