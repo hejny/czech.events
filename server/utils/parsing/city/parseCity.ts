@@ -31,7 +31,7 @@ export function parseCity({ semanticEvent, keywords }: { semanticEvent: ISemanti
 
             for (const alternative of alternatives) {
                 if (keywords.includes(alternative.toLowerCase())) {
-                    citiesFromKeywords.add(alternative);
+                    citiesFromKeywords.add(key);
                 }
             }
         }
@@ -42,12 +42,10 @@ export function parseCity({ semanticEvent, keywords }: { semanticEvent: ISemanti
             console.warn(`There are more cities parsed from keywords ${[...citiesFromKeywords].join(', ')}.`);
         }
 
-        // console.log({ keywords, citiesFromKeywords, city });
+        // console.log({ CITIES, keywords, citiesFromKeywords, city });
     }
 
     // TODO: Pilsen easter egg
 
     return { city };
 }
-
-
