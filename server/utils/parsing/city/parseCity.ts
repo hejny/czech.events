@@ -9,10 +9,13 @@ export function parseCity({
     semanticEvent: ISemanticEvent;
     keywords: string[];
 }): { city: string | null } {
-    for (const possibleCity of [
-        semanticEvent?.location?.name,
-        semanticEvent?.location?.address?.addressLocality,
-    ].filter((adress) => adress !== null && adress !== undefined)) {
+    if (!semanticEvent || !semanticEvent.location || semanticEvent?.location?.['@type'] === 'VirtualLocation') {
+        return { city: null };
+    }
+
+    for (const possibleCity of [semanticEvent.location.name, semanticEvent.location.address?.addressLocality].filter(
+        (adress) => adress !== null && adress !== undefined,
+    )) {
         // console.log({ possibleCity });
         // TODO: Normalize aleternatives from CITIES
 
@@ -40,9 +43,9 @@ export function parseCity({
     }
 
     if (citiesFromKeywords.size === 1) {
-        return { city: [...citiesFromKeywords][0] };
+        return { city: Array.from(citiesFromKeywords)[0] };
     } else if (citiesFromKeywords.size > 1) {
-        console.warn(`There are more cities parsed from keywords ${[...citiesFromKeywords].join(', ')}.`);
+        console.warn(`There are more cities parsed from keywords ${[Array.from(citiesFromKeywords)].join(', ')}.`);
         return { city: null };
     }
 

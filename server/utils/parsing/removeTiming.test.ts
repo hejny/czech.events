@@ -11,13 +11,32 @@ describe('how removing of order and timing works', () => {
         expect(removeTiming('CZSK PPUG Setkání a povídání 09/21')).toEqual('CZSK PPUG Setkání a povídání');
         expect(removeTiming('CZSK PPUG Setkání a povídání 11/21')).toEqual('CZSK PPUG Setkání a povídání');
         expect(removeTiming('CZSK PPUG Setkání a povídání 12/21')).toEqual('CZSK PPUG Setkání a povídání');
+        expect(removeTiming('HackPrague 2021 hackathon')).toEqual('HackPrague hackathon');
+    });
+
+    it('removes full date', () => {
+        expect(removeTiming('Event 9.6.2021')).toEqual('Event');
+        expect(removeTiming('Event 09.06.2021')).toEqual('Event');
+        expect(removeTiming('Event 2021/6/9')).toEqual('Event');
+        expect(removeTiming('Event 2021-6-9')).toEqual('Event');
+    });
+
+    it('removes date', () => {
+        expect(removeTiming('Event 09.06.')).toEqual('Event');
+        expect(removeTiming('Event 09.06')).toEqual('Event');
+        expect(removeTiming('Event 9.6')).toEqual('Event');
+    });
+
+    it(`not removes numbers that may look like date but thay ain't`, () => {
+        expect(removeTiming('Demokracie 2.0')).toEqual('Demokracie 2.0');
+        expect(removeTiming('Demokracie 2.1')).toEqual('Demokracie 2.1');
+        expect(removeTiming('Demokracie 3.0')).toEqual('Demokracie 3.0');
     });
 
     it('removes an order number', () => {
-        // Note: "...Night– S...",  "...Soutěž & Podnikej –" does not matter because of the following processing
         expect(removeTiming('CzechFuture.tech #1')).toEqual('CzechFuture.tech');
         expect(removeTiming('StartUp Boat Night Vol. IV')).toEqual('StartUp Boat Night');
-        expect(removeTiming('FuckUp Night Vol. XXXVI – Staying Alive')).toEqual('FuckUp Night– Staying Alive');
+        expect(removeTiming('FuckUp Night Vol. XXXVI – Staying Alive')).toEqual('FuckUp Night – Staying Alive');
         expect(removeTiming('Regionální finále Soutěž & Podnikej – I')).toEqual(
             'Regionální finále Soutěž & Podnikej –',
         );
@@ -28,13 +47,13 @@ describe('how removing of order and timing works', () => {
         // TODO: expect(removeTiming('Návrhové vzory – dev meetup 05')).toEqual('Návrhové vzory – dev meetup');
         expect(removeTiming('Kotlin Meetup #8')).toEqual('Kotlin Meetup');
         expect(removeTiming('Data Science Nights III – Data Analysis from T to B')).toEqual(
-            'Data Science Nights– Data Analysis from T to B',
+            'Data Science Nights – Data Analysis from T to B',
         );
         expect(removeTiming('44. sraz přátel PHP v Praze v Driveto a Glami')).toEqual(
             'sraz přátel PHP v Praze v Driveto a Glami',
         );
         expect(removeTiming('11. Sraz přátel PHP v Pardubicích')).toEqual('Sraz přátel PHP v Pardubicích');
-        expect(removeTiming('INNOMEET – 1. setkání')).toEqual('INNOMEET –setkání');
+        expect(removeTiming('INNOMEET – 1. setkání')).toEqual('INNOMEET – setkání');
         expect(removeTiming('Startup Boat Night Vol. V')).toEqual('Startup Boat Night');
     });
 

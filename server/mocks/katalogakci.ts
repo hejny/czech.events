@@ -32,7 +32,7 @@ export const _KATALOGAKCI_SAMPLE_JSONLD: ISemanticEvent = {
 export const _KATALOGAKCI_SAMPLE_EVENT: Partial<Event> = {
     serializeId: 'https://it.katalogakci.cz/e-1461/frontendisti-cz-praha--hospodsky-sraz-09-06-2021',
     name: 'Frontendisti.cz',
-    topic: 'Hospodský sraz 09.06.' /* TODO: In future this should be just "Hospodský sraz" */,
+    topic: 'Hospodský sraz',
     type: EventType.MEETUP,
     web: 'https://it.katalogakci.cz/e-1461/frontendisti-cz-praha--hospodsky-sraz-09-06-2021',
     city: 'Praha',
