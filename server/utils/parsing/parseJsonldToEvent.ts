@@ -25,7 +25,7 @@ export function parseJsonldToEvent({
         semanticEvent = decodeHexDeep(semanticEvent);
         semanticEvent = { description: '', ...semanticEvent };
 
-        const { serializeId } = parseSerializeId({ semanticEvent, url });
+        const serializeId = parseSerializeId(url || semanticEvent.url);
         const { days, startDate, durationInHours } = parseTimesAndDates({ semanticEvent });
         const { keywords, keywordsFromName, keywordsFromDescription } = parseKeywords({ semanticEvent });
         const { type } = parseEventType({ keywordsFromName, keywordsFromDescription, semanticEvent, durationInHours });

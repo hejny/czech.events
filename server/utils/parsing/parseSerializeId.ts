@@ -1,7 +1,8 @@
-import { ISemanticEvent } from '../../interfaces/jsonld/ISemanticEvent';
-
-export function parseSerializeId({ semanticEvent, url }: { semanticEvent: ISemanticEvent; url?: string }) {
+export function parseSerializeId(url: string) {
     // TODO: Make some normalization
-    const serializeId = new URL(url || semanticEvent.url).toString().replace(/\/$/, '');
-    return { serializeId };
+    return new URL(url)
+        .toString()
+        .replace('m.facebook.com', 'www.facebook.com')
+        .replace(/\?.*$/, '')
+        .replace(/\/$/, '');
 }
