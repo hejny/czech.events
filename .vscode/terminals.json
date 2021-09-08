@@ -2,25 +2,30 @@
     "autokill": true,
     "terminals": [
         {
-            "name":"server-develop",
-            "command":"npm run server-develop"
+            "name": "server-develop",
+            "command": "npm run server-develop"
         },
         {
-            "name":"frontend-develop-emit-decorator-metadata",
-            "command":"npm run frontend-develop-emit-decorator-metadata"
+            "name": "frontend-develop-emit-decorator-metadata",
+            "command": "npm run frontend-develop-emit-decorator-metadata"
         },
         {
-            "name":"frontend-develop",
-            "command":"npm run frontend-develop"
+            "name": "frontend-develop",
+            "command": "npm run frontend-develop"
         },
         {
-            "name":"generate-database-models",
-            "command":"npm run generate-database-models",
+            "name": "generate-database-models",
+            "command": "npm run generate-database-models",
             "onlySingle": true
         },
         {
-            "name":"ssh pavolhejny",
-            "command":"ssh root@pavolhejny.com",
+            "name": "ssh pavolhejny",
+            "command": "ssh root@pavolhejny.com",
+            "onlySingle": true
+        },
+        {
+            "name": "Adminer",
+            "command": "start  https://pavolhejny.com/mysql/?username=czechevents&db=czechevents",
             "onlySingle": true
         }
     ]
