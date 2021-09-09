@@ -13,5 +13,6 @@ export function processPiece(piece: string): string {
         .apply(removeMetalabels)
         .apply(expandShortcuts)
         .apply(trimCoreName)
-        .apply(capitalizeFirstLetter).value;
+        .apply(capitalizeFirstLetter)
+        .apply((value) => value.replace(/-/g, '–')).value;
 }

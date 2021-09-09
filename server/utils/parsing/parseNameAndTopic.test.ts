@@ -50,7 +50,7 @@ describe('how parsing name and topic works', () => {
         });
         expect(parseNameAndTopic(`Scitalks | Jan Blažek - Algoritmy v umění`)).toEqual({
             name: `Scitalks`,
-            topic: `Jan Blažek - Algoritmy v umění`,
+            topic: `Jan Blažek – Algoritmy v umění`,
         });
     });
 });

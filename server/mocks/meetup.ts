@@ -26,7 +26,7 @@ export const _MEETUP_SAMPLE_JSONLD: ISemanticEvent = {
 export const _MEETUP_SAMPLE_EVENT: Partial<Event> = {
     serializeId: 'https://www.meetup.com/STRV-Meetups/events/276248017',
     name: 'iOS Talk',
-    topic: 'Hands-on Mac Catalyst',
+    topic: 'Hands–on Mac Catalyst',
     type: EventType.MEETUP,
     web: 'https://www.meetup.com/STRV-Meetups/events/276248017/',
     city: null,
