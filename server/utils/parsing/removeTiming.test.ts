@@ -10,7 +10,7 @@ describe('how removing of order and timing works', () => {
         expect(removeTiming('CZSK PPUG Setkání a povídání 08/21')).toEqual('CZSK PPUG Setkání a povídání');
         expect(removeTiming('CZSK PPUG Setkání a povídání 09/21')).toEqual('CZSK PPUG Setkání a povídání');
         expect(removeTiming('CZSK PPUG Setkání a povídání 11/21')).toEqual('CZSK PPUG Setkání a povídání');
-        expect(removeTiming('CZSK PPUG Setkání a povídání 12/21')).toEqual('CZSK PPUG Setkání a povídání');
+        expect(removeTiming('CZSK PPUG Setkání a povídání 10/21')).toEqual('CZSK PPUG Setkání a povídání');
         expect(removeTiming('HackPrague 2021 hackathon')).toEqual('HackPrague hackathon');
     });
 
@@ -55,6 +55,9 @@ describe('how removing of order and timing works', () => {
         expect(removeTiming('11. Sraz přátel PHP v Pardubicích')).toEqual('Sraz přátel PHP v Pardubicích');
         expect(removeTiming('INNOMEET – 1. setkání')).toEqual('INNOMEET – setkání');
         expect(removeTiming('Startup Boat Night Vol. V')).toEqual('Startup Boat Night');
+        expect(removeTiming('Startup Boat Night Vol. V')).toEqual('Startup Boat Night');
+        expect(removeTiming('Co nás čeká v .NET 6 a C# 10')).toEqual('Co nás čeká v .NET 6 a C#');
+        expect(removeTiming('Wolves Summit 14')).toEqual('Wolves Summit');
     });
 
     it('not removes a number that is probbably not a year nor a order number', () => {
