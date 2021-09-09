@@ -15,14 +15,15 @@ export interface ISemanticEvent {
     endDate: string_iso_date;
     name: string;
     description: string;
-    url: string_url;
+    url?: string_url;
     image?: string_url;
     eventStatus?: string_url;
     eventAttendanceMode?:
         | 'OfflineEventAttendanceMode'
         | 'https://schema.org/OfflineEventAttendanceMode'
         | 'OnlineEventAttendanceMode'
-        | 'https://schema.org/OnlineEventAttendanceMode';
+        | 'https://schema.org/OnlineEventAttendanceMode'
+        | string_url;
     offers?: ISemanticEventOffer[] | ISemanticEventOffer;
     location?: ISemanticPlace | ISemanticPlaceVirtual;
 
@@ -60,13 +61,14 @@ export interface ISemanticEventOffer {
 export interface ISemanticPlace {
     '@type': 'Place';
     name: string;
-    url: string_url;
+    url?: string_url;
     address: {
         '@type': 'PostalAddress';
         streetAddress: string;
-        addressLocality: string;
-        postalCode: string;
-        addressCountry: string;
+        addressLocality?: string;
+        postalCode?: string;
+        addressCountry?: string;
+        telephone?: string;
     };
     geo?: ISemanticGeoCoordinates;
 }

@@ -35,7 +35,14 @@ export function parseJsonldToEvent({
         const { price, priceCurrency } = parsePrice({ semanticEvent, keywords });
         const { city } = parseCity({ semanticEvent, keywords });
 
-        // console.log({ city });
+        // TODO: To special parse
+        let time = `${startDate.getHours().toString().padStart(2, '0')}:${startDate
+            .getMinutes()
+            .toString()
+            .padStart(2, '0')}`;
+        if (time === '00:00') {
+            time = null;
+        }
 
         return {
             serializeId,
@@ -47,10 +54,7 @@ export function parseJsonldToEvent({
             year: startDate.getFullYear(),
             month: startDate.getMonth() + 1,
             days,
-            time: `${startDate.getHours().toString().padStart(2, '0')}:${startDate
-                .getMinutes()
-                .toString()
-                .padStart(2, '0')}`,
+            time,
             price,
             priceCurrency,
             online: online ? 1 : 0,

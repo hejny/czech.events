@@ -1,3 +1,4 @@
+import { _CZECHSTARTUPS_SAMPLE_EVENT, _CZECHSTARTUPS_SAMPLE_JSONLD } from '../../mocks/czechstartups';
 import { _EVENTBRITE_SAMPLE_EVENT, _EVENTBRITE_SAMPLE_JSONLD } from '../../mocks/eventbrite';
 import { _FACEBOOK_SAMPLE_EVENT, _FACEBOOK_SAMPLE_JSONLD } from '../../mocks/facebook';
 import { _KATALOGAKCI_SAMPLE_EVENT, _KATALOGAKCI_SAMPLE_JSONLD } from '../../mocks/katalogakci';
@@ -16,6 +17,15 @@ describe('how parsing events from JSON+LD works', () => {
     });
     it('can parse Meetup event', () => {
         expect(parseJsonldToEvent({ semanticEvent: _MEETUP_SAMPLE_JSONLD })).toEqual(_MEETUP_SAMPLE_EVENT);
+    });
+
+    it('can parse Czechstartups.org event', () => {
+        expect(
+            parseJsonldToEvent({
+                url: 'https://www.czechstartups.org/novinky/event/webexpo-2021/',
+                semanticEvent: _CZECHSTARTUPS_SAMPLE_JSONLD,
+            }),
+        ).toEqual(_CZECHSTARTUPS_SAMPLE_EVENT);
     });
 
     // TODO: Make tests for complicated situations like online, canceled event, invalid dated etc...
