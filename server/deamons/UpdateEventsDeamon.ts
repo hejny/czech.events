@@ -9,40 +9,49 @@ import { parseJsonldToEvent } from '../utils/parsing/parseJsonldToEvent';
 export class UpdateEventsDeamon {
     // TODO: Maybe extend from some generic IDestroyable class/interface
 
-    public async run() {
+    public async run(all: boolean) {
         while (true) {
             await forTimeSynced(1 /* minutes */ * 60 * 1000);
             // TODO: forTimeSyncedRandomDeterministic
-            await this.one();
+            await this.one(all);
             //break;
         }
     }
 
-    public async quick() {
+    public async quick(all: boolean) {
         let firstUpdated: string;
         while (true) {
             await forTime(10);
-            const lastupdated = await this.one();
+
+            const lastupdated = await this.one(all);
 
             if (!firstUpdated && lastupdated) {
                 firstUpdated = lastupdated;
             } else if (firstUpdated === lastupdated) {
                 const WAIT_HOURS = 5;
-                console.info(`⌛ All events updated, waiting ${WAIT_HOURS} hours to next update`);
+                console.info(`⌛ Future events updated, waiting ${WAIT_HOURS} hours to next update`);
                 await forTime(WAIT_HOURS * 3600 * 1000);
             }
         }
     }
 
-    public async one(): Promise<string | null> {
+    public async one(all: boolean): Promise<string | null> {
         const connection = await connectionPromise;
+
+        const where = {
+            visibility: In([EventVisibility.VISIBLE, EventVisibility.FEATURED]),
+            month: MoreThanOrEqual(new Date().getMonth() + 1),
+            year: MoreThanOrEqual(new Date().getFullYear()),
+            // TODO: Maybe also check a date
+        };
+
+        if (all) {
+            delete where.month;
+            delete where.year;
+        }
+
         let lastEvent = await connection.manager.findOne(Event, {
-            where: {
-                visibility: In([EventVisibility.VISIBLE, EventVisibility.FEATURED]),
-                month: MoreThanOrEqual(new Date().getMonth() + 1),
-                year: MoreThanOrEqual(new Date().getFullYear()),
-                // TODO: Maybe also check a date
-            },
+            where,
             order: { updated: 'ASC' },
         });
 
@@ -72,7 +81,9 @@ export class UpdateEventsDeamon {
             };
         }
 
-        //console.log(`new info`, eventData);
+        delete eventData.serializeId;
+
+        //console.log({ eventData });
 
         /*const updateResult = */ await connection
             .createQueryBuilder()

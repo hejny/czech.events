@@ -21,8 +21,9 @@ async function main() {
     const updateEventsDeamon = new UpdateEventsDeamon();
 
     // TODO As an arg
-    //updateEventsDeamon.quick();
     //updateEventsDeamon.run();
+    //updateEventsDeamon.quick();
+    //updateEventsDeamon.quick(true);
 
     /*/
     // Note: Keep this for scraper testing
