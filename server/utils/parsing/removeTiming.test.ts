@@ -56,7 +56,6 @@ describe('how removing of order and timing works', () => {
         expect(removeTiming('INNOMEET – 1. setkání')).toEqual('INNOMEET – setkání');
         expect(removeTiming('Startup Boat Night Vol. V')).toEqual('Startup Boat Night');
         expect(removeTiming('Startup Boat Night Vol. V')).toEqual('Startup Boat Night');
-        expect(removeTiming('Co nás čeká v .NET 6 a C# 10')).toEqual('Co nás čeká v .NET 6 a C#');
         expect(removeTiming('Wolves Summit 14')).toEqual('Wolves Summit');
     });
 
@@ -75,5 +74,9 @@ describe('how removing of order and timing works', () => {
         expect(removeTiming('Hackathon vzdělávání 2.0')).toEqual('Hackathon vzdělávání 2.0');
         expect(removeTiming('48 for the Future')).toEqual('48 for the Future');
         expect(removeTiming('Něco i něco jiného v Praze')).toEqual('Něco i něco jiného v Praze');
+
+        // TODO: There should be preserved .NET 6 and C# 10 as they are versions of the software not number of the event
+        //       >  expect(removeTiming('Co nás čeká v .NET 6')).toEqual('Co nás čeká v .NET 6');
+        //       >  expect(removeTiming('Co nás čeká v .NET 6 a C# 10')).toEqual('Co nás čeká v .NET 6 a C# 10');
     });
 });

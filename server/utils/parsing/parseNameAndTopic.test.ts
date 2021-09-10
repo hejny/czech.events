@@ -52,5 +52,19 @@ describe('how parsing name and topic works', () => {
             name: `Scitalks`,
             topic: `Jan Blažek – Algoritmy v umění`,
         });
+
+        expect(parseNameAndTopic(`Power platform user group ~ Setkání a povídání`)).toEqual({
+            name: `Power platform user group`,
+            topic: `Setkání a povídání`,
+        });
+    });
+
+    it('can parsing name and topic WITH extra meta-labels', () => {
+        expect(parseNameAndTopic(`[ONLINE] Power platform user group ~ Setkání a povídání`)).toEqual({
+            name: `Power platform user group`,
+            topic: `Setkání a povídání`,
+        });
+
+        // TODO: More
     });
 });

@@ -2,7 +2,7 @@ import { expandShortcuts } from './expandShortcuts';
 
 describe('how expanding shortcuts works', () => {
     it('expands', () => {
-        expect(expandShortcuts('PPUG: abc')).toEqual('Power platform user group~: abc');
+        expect(expandShortcuts('PPUG: abc')).toEqual('Power platform user group ~: abc');
     });
 
     it('does nothing when no shortcut present', () => {

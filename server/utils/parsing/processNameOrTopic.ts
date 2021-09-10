@@ -1,18 +1,14 @@
 import { capitalizeFirstLetter } from '../capitalizeFirstLetter';
 import { Chain } from './Chain';
 import { removeCity } from './city/removeCity';
-import { expandShortcuts } from './expandShortcuts';
-import { removeMetalabels } from './removeMetalabels';
 import { removeTiming } from './removeTiming';
 import { trimCoreName } from './trimCoreName';
 
-export function processPiece(piece: string): string {
-    return new Chain(piece)
+export function processNameOrTopic(nameOrTopic: string): string {
+    return new Chain(nameOrTopic, { log: false })
         .apply(removeTiming)
         .apply(removeCity)
-        .apply(removeMetalabels)
-        .apply(expandShortcuts)
         .apply(trimCoreName)
         .apply(capitalizeFirstLetter)
-        .apply((value) => value.replace(/-/g, '–')).value;
+        .apply((nameOrTopic) => nameOrTopic.replace(/-/g, '–')).value;
 }
