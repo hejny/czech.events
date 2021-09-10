@@ -4,10 +4,10 @@ export function parseOnline({ semanticEvent, keywords }: { semanticEvent: ISeman
     let online = false;
     if (keywords.includes('online')) online = true;
     if (keywords.includes('stream')) online = true;
-    if (keywords.includes('vysílání')) online = true;
-    if (keywords.includes('virtuální')) online = true;
+    if (keywords.includes('vysilani')) online = true;
+    if (keywords.includes('virtualni')) online = true;
     if (keywords.includes('virtual')) online = true;
-    if (keywords.includes('webinář')) online = true;
+    if (keywords.includes('webinár')) online = true;
 
     if (semanticEvent?.location?.['@type'] === 'VirtualLocation') {
         online = true;

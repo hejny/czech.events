@@ -53,6 +53,14 @@ export class UpdateEventsDeamon {
 
         let eventData: Partial<Event>;
         try {
+            /**
+             * TODO: Some FB pages do not contains LD+JSON, scrape it with puppeteer:
+             * - https://www.facebook.com/events/3945405942253092/
+             * - https://www.facebook.com/events/890908898190026
+             * - https://www.facebook.com/events/1995761740592210/
+             * - https://www.facebook.com/events/222934836388270
+             */
+
             const jsonld = await extractJsonldFromHtml(await (await fetch(lastEvent.web)).text());
             eventData = await parseJsonldToEvent({ semanticEvent: jsonld, url: lastEvent.web });
         } catch (error) {

@@ -5,7 +5,7 @@ import { findItemsWithBiggestQuantity } from '../findItemsWithBiggestQuantity';
 export function parseEventType({
     keywordsFromName,
     keywordsFromDescription,
-    semanticEvent,
+    semanticEvent: { name },
     durationInHours,
 }: {
     keywordsFromName: string[];
@@ -23,24 +23,28 @@ export function parseEventType({
         if (keywords.includes('meetup')) possibleTypes.push(EventType.MEETUP);
         if (keywords.includes('sraz')) possibleTypes.push(EventType.MEETUP);
         if (keywords.includes('srazu')) possibleTypes.push(EventType.MEETUP);
-        if (keywords.includes('setkání')) possibleTypes.push(EventType.MEETUP);
+        if (keywords.includes('setkani')) possibleTypes.push(EventType.MEETUP);
         if (keywords.includes('workshop')) possibleTypes.push(EventType.WORKSHOP);
         if (keywords.includes('workshopu')) possibleTypes.push(EventType.WORKSHOP);
-        if (keywords.includes('webinář')) possibleTypes.push(EventType.WORKSHOP);
-        if (keywords.includes('webináři')) possibleTypes.push(EventType.WORKSHOP);
-        if (keywords.includes('webináře')) possibleTypes.push(EventType.WORKSHOP);
+        if (keywords.includes('webinar')) possibleTypes.push(EventType.WORKSHOP);
+        if (keywords.includes('webinari')) possibleTypes.push(EventType.WORKSHOP);
+        if (keywords.includes('webinare')) possibleTypes.push(EventType.WORKSHOP);
+        if (keywords.includes('seminár')) possibleTypes.push(EventType.WORKSHOP);
+        if (keywords.includes('seminari')) possibleTypes.push(EventType.WORKSHOP);
+        if (keywords.includes('seminare')) possibleTypes.push(EventType.WORKSHOP);
         if (keywords.includes('kurz')) possibleTypes.push(EventType.WORKSHOP);
         if (keywords.includes('kurzu')) possibleTypes.push(EventType.WORKSHOP);
         if (keywords.includes('konference')) possibleTypes.push(EventType.CONFERENCE);
+        if (keywords.includes('festival')) possibleTypes.push(EventType.CONFERENCE);
     }
 
-    if (durationInHours < 4) possibleTypes.push(EventType.MEETUP, EventType.WORKSHOP);
+    if (durationInHours < 2.5) possibleTypes.push(EventType.MEETUP, EventType.WORKSHOP);
 
     // TODO: More signs of type;
 
     const bestPossibleTypes = findItemsWithBiggestQuantity(possibleTypes);
 
-    // console.log({ possibleTypes, bestPossibleTypes });
+    // console.log({ name, durationInHours, keywordsFromName, keywordsFromDescription, possibleTypes, bestPossibleTypes });
 
     for (const type of [EventType.MEETUP, EventType.HACKATHON, EventType.WORKSHOP, EventType.CONFERENCE]) {
         if (bestPossibleTypes.includes(type)) return { type };

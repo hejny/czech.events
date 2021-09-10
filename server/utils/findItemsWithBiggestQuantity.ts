@@ -25,5 +25,5 @@ export function findItemsWithBiggestQuantity<T>(items: T[]): T[] {
         }
     }
 
-    return itemsWithBiggestQuantity;
+    return itemsWithBiggestQuantity.reverse();
 }

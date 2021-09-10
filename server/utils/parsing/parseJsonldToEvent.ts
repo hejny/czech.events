@@ -4,7 +4,7 @@ import { decodeHexDeep } from './../decodeHexDeep';
 import { parseCity } from './city/parseCity';
 import { parseCancel } from './parseCancel';
 import { parseEventType } from './parseEventType';
-import { parseKeywords } from './parseKeywords';
+import { parseKeywordsFromSemanticEvent } from './parseKeywordsFromSemanticEvent';
 import { parseNameAndTopic } from './parseNameAndTopic';
 import { parseOnline } from './parseOnline';
 import { parsePrice } from './parsePrice';
@@ -19,7 +19,6 @@ export function parseJsonldToEvent({
     url?: string;
 }): Partial<Event> {
     try {
-        // TODO: Volumes "11. Sraz přátel PHP v Pardubicích" vs "FuckUp Night  Vol. XXXVI" ,...
         // TODO: Price is not in JSON LD and should be probbably scraped by puppeteer
 
         semanticEvent = decodeHexDeep(semanticEvent);
@@ -27,7 +26,9 @@ export function parseJsonldToEvent({
 
         const serializeId = parseSerializeId(url || semanticEvent.url);
         const { days, startDate, durationInHours } = parseTimesAndDates({ semanticEvent });
-        const { keywords, keywordsFromName, keywordsFromDescription } = parseKeywords({ semanticEvent });
+        const { keywords, keywordsFromName, keywordsFromDescription } = parseKeywordsFromSemanticEvent({
+            semanticEvent,
+        });
         const { type } = parseEventType({ keywordsFromName, keywordsFromDescription, semanticEvent, durationInHours });
         const { online } = parseOnline({ semanticEvent, keywords });
         const { canceled } = parseCancel({ semanticEvent, keywords });

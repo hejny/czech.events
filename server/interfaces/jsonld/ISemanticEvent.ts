@@ -62,7 +62,7 @@ export interface ISemanticPlace {
     '@type': 'Place';
     name: string;
     url?: string_url;
-    address: {
+    address?: {
         '@type': 'PostalAddress';
         streetAddress: string;
         addressLocality?: string;

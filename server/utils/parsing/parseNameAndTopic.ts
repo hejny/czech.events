@@ -23,7 +23,7 @@ export function parseNameAndTopic(
         name = processNameOrTopic(name);
         topic = processNameOrTopic(topic);
 
-        if (topic === '') {
+        if (topic === '' || topic === 'Opět') {
             topic = null;
         }
 
