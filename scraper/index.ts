@@ -28,77 +28,83 @@ async function main() {
     });
 
     for (const eventSourceUrl of EVENT_SOURCES) {
-        console.info(chalk.bgGray(eventSourceUrl));
+        try {
+            console.info(chalk.bgGray(eventSourceUrl));
 
-        const eventSourcePage = (await (await browser.pages())[0]) || (await browser.newPage());
+            const eventSourcePage = (await (await browser.pages())[0]) || (await browser.newPage());
 
-        if (/^https:\/\/www.facebook.com/.test(eventSourceUrl)) {
-            await setFacebookCookies(eventSourcePage, FACEBOOK_COOKIES);
-        }
-
-        await eventSourcePage.goto(
-            eventSourceUrl,
-
-            { waitUntil: 'networkidle2' },
-        );
-
-        const hrefs: string[] = await Promise.all(
-            (await eventSourcePage.$x('//a')).map(
-                async (element) => (await element.getProperty('href'))._remoteObject.value,
-            ),
-        );
-
-        const eventUrls: string[] = hrefs
-            .filter((href) => {
-                if (/^https:\/\/www.facebook.com/.test(href)) {
-                    return /\/events\/[0-9]+/.test(href);
-                } else if (/^https:\/\/www.meetup.com/.test(href)) {
-                    return /\/events\/[0-9]+/.test(href);
-                } else if (/^https:\/\/www.eventbrite.com/.test(href)) {
-                    return /\/e\/[0-9]+/.test(href);
-                } else if (/^https:\/\/it.katalogakci.cz/.test(href)) {
-                    return /\/Event\/[0-9]+/.test(href);
-                } else if (/^https:\/\/www.wug.cz/.test(href)) {
-                    return /\/akce\/[0-9]+/.test(href);
-                } else {
-                    return /^https?:\/\//.test(href);
-                }
-            })
-            .map((href) => {
-                const url = new URL(href);
-                url.search = '';
-                url.hash = '';
-                url.pathname = url.pathname
-                    .split('/')
-                    .filter((x) => x !== '')
-                    .join('/');
-
-                return url.href;
-            });
-
-        for (const eventUrl of eventUrls) {
-            // console.info(chalk.gray(eventUrl));
-
-            const eventPage = await browser.newPage();
-            await eventPage.goto(eventUrl);
-
-            const isScrapable = await Promise.race([
-                eventPage.waitForXPath(`//*[contains(@class, 'update-visible')]`).then(() => 'SCRAPABLE'),
-                eventPage.waitForXPath(`//*[contains(@class, 'update')]`).then(() => 'SCRAPED'),
-                forTime(15000).then(() => 'NOT_SCRAPABLE'),
-            ]);
-
-            if (isScrapable === 'SCRAPABLE') {
-                await eventPage.click(`.update-visible`);
-                console.info(chalk.green('[✓] ' + eventUrl));
-            } else if (isScrapable === 'SCRAPED') {
-                console.info(chalk.yellow('[-] ' + eventUrl));
-            } else if (isScrapable === 'NOT_SCRAPABLE') {
-                console.info(chalk.red('[×] ' + eventUrl));
+            if (/^https:\/\/www.facebook.com/.test(eventSourceUrl)) {
+                await setFacebookCookies(eventSourcePage, FACEBOOK_COOKIES);
             }
-            await forTime(1000);
-            await eventPage.close();
+
+            await eventSourcePage.goto(
+                eventSourceUrl,
+
+                { waitUntil: 'networkidle2' },
+            );
+
+            const hrefs: string[] = await Promise.all(
+                (await eventSourcePage.$x('//a')).map(
+                    async (element) => (await element.getProperty('href'))._remoteObject.value,
+                ),
+            );
+
+            const eventUrls: string[] = hrefs
+                .filter((href) => {
+                    if (/^https:\/\/www.facebook.com/.test(href)) {
+                        return /\/events\/[0-9]+/.test(href);
+                    } else if (/^https:\/\/www.meetup.com/.test(href)) {
+                        return /\/events\/[0-9]+/.test(href);
+                    } else if (/^https:\/\/www.eventbrite.com/.test(href)) {
+                        return /\/e\/[0-9]+/.test(href);
+                    } else if (/^https:\/\/it.katalogakci.cz/.test(href)) {
+                        return /\/Event\/[0-9]+/.test(href);
+                    } else if (/^https:\/\/www.wug.cz/.test(href)) {
+                        return /\/akce\/[0-9]+/.test(href);
+                    } else {
+                        return /^https?:\/\//.test(href);
+                    }
+                })
+                .map((href) => {
+                    const url = new URL(href);
+                    url.search = '';
+                    url.hash = '';
+                    url.pathname = url.pathname
+                        .split('/')
+                        .filter((x) => x !== '')
+                        .join('/');
+
+                    return url.href;
+                });
+
+            console.info(chalk.gray(`Going to scrape ${eventUrls.join(', ')}`));
+
+            for (const eventUrl of eventUrls) {
+                // console.info(chalk.gray(eventUrl));
+
+                const eventPage = await browser.newPage();
+                await eventPage.goto(eventUrl);
+
+                const isScrapable = await Promise.race([
+                    eventPage.waitForXPath(`//*[contains(@class, 'update-visible')]`).then(() => 'SCRAPABLE'),
+                    eventPage.waitForXPath(`//*[contains(@class, 'update')]`).then(() => 'SCRAPED'),
+                    forTime(15000).then(() => 'NOT_SCRAPABLE'),
+                ]);
+
+                if (isScrapable === 'SCRAPABLE') {
+                    await eventPage.click(`.update-visible`);
+                    console.info(chalk.green('[✓] ' + eventUrl));
+                } else if (isScrapable === 'SCRAPED') {
+                    console.info(chalk.yellow('[-] ' + eventUrl));
+                } else if (isScrapable === 'NOT_SCRAPABLE') {
+                    console.info(chalk.red('[×] ' + eventUrl));
+                }
+                await forTime(1000);
+                await eventPage.close();
+            }
+            // Note: Do not close only page: await eventSourcePage.close();
+        } catch (error) {
+            console.error(error);
         }
-        // Note: Do not close only page: await eventSourcePage.close();
     }
 }
