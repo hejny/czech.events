@@ -28,9 +28,13 @@ async function main() {
     });
 
     for (const eventSourceUrl of EVENT_SOURCES) {
+        // console.info(chalk.bgGray(eventSourceUrl));
+
         const eventSourcePage = (await browser.pages())[0] || (await browser.newPage());
 
-        await setFacebookCookies(eventSourcePage, FACEBOOK_COOKIES);
+        if (/^https:\/\/www.facebook.com/.test(eventSourceUrl)) {
+            await setFacebookCookies(eventSourcePage, FACEBOOK_COOKIES);
+        }
 
         await eventSourcePage.goto(
             eventSourceUrl,
@@ -57,7 +61,7 @@ async function main() {
                 } else if (/^https:\/\/www.wug.cz/.test(href)) {
                     return /\/akce\/[0-9]+/.test(href);
                 } else {
-                    return true;
+                    return /^https?:\/\//.test(href);
                 }
             })
             .map((href) => {
@@ -73,6 +77,8 @@ async function main() {
             });
 
         for (const eventUrl of eventUrls) {
+            console.info(chalk.gray(eventUrl));
+
             const eventPage = await browser.newPage();
             await eventPage.goto(eventUrl);
 
