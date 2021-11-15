@@ -28,7 +28,7 @@ async function main() {
     });
 
     for (const eventSourceUrl of EVENT_SOURCES) {
-        // console.info(chalk.bgGray(eventSourceUrl));
+        console.info(chalk.bgGray(eventSourceUrl));
 
         const eventSourcePage = (await browser.pages())[0] || (await browser.newPage());
 
@@ -77,7 +77,7 @@ async function main() {
             });
 
         for (const eventUrl of eventUrls) {
-            console.info(chalk.gray(eventUrl));
+            // console.info(chalk.gray(eventUrl));
 
             const eventPage = await browser.newPage();
             await eventPage.goto(eventUrl);
