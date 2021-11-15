@@ -90,11 +90,11 @@ async function main() {
 
             if (isScrapable === 'SCRAPABLE') {
                 await eventPage.click(`.update-visible`);
-                console.info(chalk.green(eventUrl));
+                console.info(chalk.green('[✓] ' + eventUrl));
             } else if (isScrapable === 'SCRAPED') {
-                console.info(chalk.yellow(eventUrl));
+                console.info(chalk.yellow('[-] ' + eventUrl));
             } else if (isScrapable === 'NOT_SCRAPABLE') {
-                console.info(chalk.red(eventUrl));
+                console.info(chalk.red('[×] ' + eventUrl));
             }
             await forTime(1000);
             await eventPage.close();
