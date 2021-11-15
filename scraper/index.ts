@@ -30,7 +30,16 @@ async function main() {
     for (const eventSourceUrl of EVENT_SOURCES) {
         console.info(chalk.bgGray(eventSourceUrl));
 
-        const eventSourcePage = (await browser.pages())[0] || (await browser.newPage());
+        const eventSourcePage = await (async () => {
+            // Note: .....
+            try {
+                return (await browser.pages())[0] || (await browser.newPage());
+            } catch (error) {
+                console.warn(chalk.yellow(`Error when opening new tab, trying again.`));
+                await forTime(5000);
+                return await browser.newPage();
+            }
+        })();
 
         if (/^https:\/\/www.facebook.com/.test(eventSourceUrl)) {
             await setFacebookCookies(eventSourcePage, FACEBOOK_COOKIES);
