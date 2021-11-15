@@ -30,16 +30,7 @@ async function main() {
     for (const eventSourceUrl of EVENT_SOURCES) {
         console.info(chalk.bgGray(eventSourceUrl));
 
-        const eventSourcePage = await (async () => {
-            // Note: .....
-            try {
-                return (await browser.pages())[0] || (await browser.newPage());
-            } catch (error) {
-                console.warn(chalk.yellow(`Error when opening new tab, trying again.`));
-                await forTime(5000);
-                return await browser.newPage();
-            }
-        })();
+        const eventSourcePage = (await (await browser.pages())[0]) || (await browser.newPage());
 
         if (/^https:\/\/www.facebook.com/.test(eventSourceUrl)) {
             await setFacebookCookies(eventSourcePage, FACEBOOK_COOKIES);
@@ -99,7 +90,7 @@ async function main() {
 
             if (isScrapable === 'SCRAPABLE') {
                 await eventPage.click(`.update-visible`);
-                await forTime(5000);
+                await forTime(15000);
                 console.info(chalk.green(eventUrl));
             } else if (isScrapable === 'SCRAPED') {
                 console.info(chalk.yellow(eventUrl));
@@ -108,6 +99,6 @@ async function main() {
             }
             await eventPage.close();
         }
-        await eventSourcePage.close();
+        // Note: Do not close only page: await eventSourcePage.close();
     }
 }
