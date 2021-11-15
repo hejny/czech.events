@@ -85,18 +85,18 @@ async function main() {
             const isScrapable = await Promise.race([
                 eventPage.waitForXPath(`//*[contains(@class, 'update-visible')]`).then(() => 'SCRAPABLE'),
                 eventPage.waitForXPath(`//*[contains(@class, 'update')]`).then(() => 'SCRAPED'),
-                forTime(5000).then(() => 'NOT_SCRAPABLE'),
+                forTime(15000).then(() => 'NOT_SCRAPABLE'),
             ]);
 
             if (isScrapable === 'SCRAPABLE') {
                 await eventPage.click(`.update-visible`);
-                await forTime(15000);
                 console.info(chalk.green(eventUrl));
             } else if (isScrapable === 'SCRAPED') {
                 console.info(chalk.yellow(eventUrl));
             } else if (isScrapable === 'NOT_SCRAPABLE') {
                 console.info(chalk.red(eventUrl));
             }
+            await forTime(1000);
             await eventPage.close();
         }
         // Note: Do not close only page: await eventSourcePage.close();
