@@ -79,6 +79,7 @@ async function main() {
 
             console.info(chalk.gray(`Going to scrape ${eventUrls.join(', ')}`));
 
+            // TODO: Probbably make this scraping paralel
             for (const eventUrl of eventUrls) {
                 // console.info(chalk.gray(eventUrl));
 
@@ -107,4 +108,6 @@ async function main() {
             console.error(error);
         }
     }
+
+    console.info(chalk.bgGreen('[ Done ]'));
 }
