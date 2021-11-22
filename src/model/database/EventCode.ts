@@ -24,11 +24,7 @@ export class EventCode {
     @Column('text', { name: 'note', nullable: true })
     note: string | null;
 
-    @ManyToOne(
-        () => Event,
-        (event) => event.eventCodes,
-        { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' },
-    )
+    @ManyToOne(() => Event, (event) => event.eventCodes, { onDelete: 'RESTRICT', onUpdate: 'RESTRICT' })
     @JoinColumn([{ name: 'event_id', referencedColumnName: 'id' }])
     event: Event;
 }

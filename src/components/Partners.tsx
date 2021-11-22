@@ -1,4 +1,7 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
+import styled from 'styled-components';
+import { shuffleArray } from '../utils/array';
 
 interface IPartnersProps {
     selfUrl: string;
@@ -7,19 +10,18 @@ interface IPartnersProps {
 export function Partners(props: IPartnersProps) {
     return (
         <>
-            <div className="partners">
+            <PartnersDiv className="partners">
                 <h2>Mediální partneři</h2>
-
-                {[
+                {shuffleArray([
                     // TODO: To some other file or even to DB
                     {
-                        name: 'Startup Weekend | Prague',
+                        name: 'Startup Weekend Prague',
                         logoUrl: `${props.selfUrl}/design/logos/partners/startup-weekend-prague.png`,
                         link: 'https://www.facebook.com/swprague/',
                     },
 
                     {
-                        name: 'Startup Weekend | Bratislava',
+                        name: 'Startup Weekend Bratislava',
                         logoUrl: `${props.selfUrl}/design/logos/partners/startup-weekend-bratislava.png`,
                         link: 'https://www.facebook.com/StartupWeekendBratislava/',
                     },
@@ -27,6 +29,16 @@ export function Partners(props: IPartnersProps) {
                         name: 'Undout Sleep Box',
                         logoUrl: `${props.selfUrl}/design/logos/partners/undout.png`,
                         link: 'https://undout.com/',
+                    },
+                    {
+                        name: 'HackPrague',
+                        logoUrl: `${props.selfUrl}/design/logos/partners/hackprague.svg`,
+                        link: 'https://hackprague.com/',
+                    },
+                    {
+                        name: 'StartupBox',
+                        logoUrl: `${props.selfUrl}/design/logos/partners/startupbox.png`,
+                        link: 'https://www.startupbox.cz/',
                     },
                     /*
                     TODO:
@@ -42,17 +54,57 @@ export function Partners(props: IPartnersProps) {
                     },*/
                     // TODO: CzechFuture tech
                     // TODO: Random shuffle
-                ].map(({ name, logoUrl, link }) => {
+                ]).map(({ name, logoUrl, link }) => {
                     return (
-                        <div key={name} className="logo">
-                            <a href={link} target="_blank" rel="noopener noreferrer">
-                                <img src={logoUrl} title={name} alt={`${name} logo`} />
-                            </a>
-                            {/*`${name} `*/}
-                        </div>
+                        <a
+                            href={`${link}?utm_source=czech.events&amp;utm_medium=referral&amp;utm_campaign=partners`}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            title={name}
+                        >
+                            <div key={name} className="logo" style={{ backgroundImage: `url(${logoUrl})` }}>
+                                {/* <img src={logoUrl} title={name} alt={`${name} logo`} /> */}
+                                {/*`${name} `*/}
+                            </div>
+                        </a>
                     );
                 })}
-            </div>
+
+                <Link to="/about" className="our-logos">
+                    O nás a loga Czech.events
+                </Link>
+            </PartnersDiv>
         </>
     );
 }
+
+export const PartnersDiv = styled.div`
+    text-align: center;
+    font-family: Arial, Helvetica, sans-serif, 'Montserrat', serif;
+    color: rgb(212, 212, 212);
+    padding: 2em;
+    /* padding-top: 0; */
+
+    h2 {
+        font-size: 1.5rem;
+        font-family: 'Montserrat', serif;
+    }
+
+    .logo {
+        margin: 20px;
+        border-radius: 5px;
+        display: inline-block;
+        width: 100px;
+        height: 100px;
+        color: white;
+        background-size: contain;
+        background-repeat: no-repeat;
+        background-position: center;
+    }
+
+    .our-logos {
+        font-size: 0.8em;
+        color: white;
+        display: block;
+    }
+`;

@@ -32,9 +32,6 @@ export class Email {
     @Column('text', { name: 'Note', nullable: true })
     note: string | null;
 
-    @OneToMany(
-        () => EmailAttempt,
-        (emailAttempt) => emailAttempt.email,
-    )
+    @OneToMany(() => EmailAttempt, (emailAttempt) => emailAttempt.email)
     emailAttempts: EmailAttempt[];
 }

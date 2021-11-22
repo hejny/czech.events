@@ -1,0 +1,11 @@
+body {
+    display: block;
+    text-align: center;
+
+    background-color: #1d1c21;
+    background-image: url('./network.svg');
+    background-position: 100% 0;
+    background-size: 50rem;
+    background-repeat: no-repeat;
+    /*TODO fixed*/
+}

@@ -1,11 +1,16 @@
 export class DateRange {
     constructor(public from?: Date, public to?: Date) {}
 
-    static fromConstants(beginConstant: RangeConstant, endConstant: RangeConstant): DateRange {
+    private static fromConstants(beginConstant: RangeConstantSimple, endConstant: RangeConstantSimple): DateRange {
         return new DateRange(DateRange.fromConstant(beginConstant).from, DateRange.fromConstant(endConstant).to);
     }
 
     static fromConstant(constant: RangeConstant): DateRange {
+        if (constant.includes('-')) {
+            const [from, to] = constant.split('-');
+            return DateRange.fromConstants(from as RangeConstantSimple, to as RangeConstantSimple);
+        }
+
         const now = new Date();
 
         switch (constant) {
@@ -27,7 +32,9 @@ export class DateRange {
                 return new DateRange();
 
             default:
-                throw new Error(`Unknown range constant "${constant}".`);
+                throw new Error(
+                    `Unknown range constant "${constant}". Please use NOW, CURRENT_MONTH, NEXT_MONTH, NEXT_NEXT_MONTH or INFINITY.`,
+                );
         }
     }
 
@@ -59,7 +66,14 @@ export class DateRange {
     }
 }
 
-export type RangeConstant = 'NOW' | 'CURRENT_MONTH' | 'NEXT_MONTH' | 'NEXT_NEXT_MONTH' | 'INFINITY';
+export type RangeConstantSimple = 'NOW' | 'CURRENT_MONTH' | 'NEXT_MONTH' | 'NEXT_NEXT_MONTH' | 'INFINITY';
+export type RangeConstant =
+    | 'NOW'
+    | 'CURRENT_MONTH'
+    | 'NEXT_MONTH'
+    | 'NEXT_NEXT_MONTH'
+    | 'INFINITY'
+    | `${RangeConstantSimple}-${RangeConstantSimple}`;
 
 /*/
 for (const constant of ['NOW', 'CURRENT_MONTH', 'NEXT_MONTH', 'NEXT_NEXT_MONTH', 'INFINITY'] as RangeConstant[]) {

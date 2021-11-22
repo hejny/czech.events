@@ -1,7 +1,6 @@
-import { NewsletterContent } from './NewsletterContent';
 import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { EventCode } from './EventCode';
-import { EventNewsletter } from './EventNewsletter';
+import { NewsletterContent } from './NewsletterContent';
 
 export enum EventType {
     CONFERENCE = 'CONFERENCE',
@@ -12,6 +11,7 @@ export enum EventType {
 
 export enum EventPriceCurrency {
     CZK = 'CZK',
+    USD = 'USD',
     EUR = 'EUR',
 }
 
@@ -32,12 +32,16 @@ export enum EventVisibility {
 @Index('price', ['price'], {})
 @Index('priceCurrency', ['priceCurrency'], {})
 @Index('visibility', ['visibility'], {})
+@Index('created', ['created'], {})
+@Index('updated', ['updated'], {})
+@Index('canceled', ['canceled'], {})
+@Index('online', ['online'], {})
 @Entity('Event')
 export class Event {
     @PrimaryGeneratedColumn({ type: 'int', name: 'id' })
     id: number;
 
-    @Column('varchar', { name: 'serializeId', unique: true, length: 1000 })
+    @Column('varchar', { name: 'serializeId', unique: true, length: 1000 }) // TODO: This should be named just URL
     serializeId: string;
 
     @Column('varchar', { name: 'name', length: 300 })
@@ -87,27 +91,25 @@ export class Event {
     })
     visibility: EventVisibility;
 
+    @Column('tinyint', { name: 'canceled', nullable: true })
+    canceled: number | null;
+
+    @Column('tinyint', { name: 'online', nullable: true })
+    online: number | null;
+
     @Column('text', { name: 'note', nullable: true })
     note: string | null;
 
-    @OneToMany(
-        () => EventCode,
-        (eventCode) => eventCode.event,
-        { eager: true },
-    )
+    @Column('timestamp', { name: 'created', default: () => 'CURRENT_TIMESTAMP' })
+    created: Date;
+
+    @Column('timestamp', { name: 'updated', default: () => 'CURRENT_TIMESTAMP' })
+    updated: Date;
+
+    @OneToMany(() => EventCode, (eventCode) => eventCode.event, { eager: true })
     eventCodes: EventCode[];
 
-    @OneToMany(
-        () => EventNewsletter,
-        (eventNewsletter) => eventNewsletter.event,
-    )
-    eventNewsletters: EventNewsletter[];
-
-    @OneToMany(
-        () => NewsletterContent,
-        (newsletterContent) => newsletterContent.event,
-        { eager: true },
-    )
+    @OneToMany(() => NewsletterContent, (newsletterContent) => newsletterContent.event, { eager: true })
     newsletterContents: NewsletterContent[];
 
     get day(): number | null {
