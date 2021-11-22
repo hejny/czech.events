@@ -69,7 +69,7 @@ export class NewsletterService {
         const databaseConnection = await databaseConnectionPromise;
         try {
             const sql = `
-                SELECT 
+                SELECT
                     *
                     FROM Newsletter
                     WHERE TRUE
