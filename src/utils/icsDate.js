@@ -17,3 +17,6 @@ function icsDate(date) {
     return day + 'T' + hour + 'Z';
 }
 exports.icsDate = icsDate;
+
+
+// TODO: Probbably remove

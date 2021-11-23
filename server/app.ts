@@ -33,7 +33,7 @@ export async function createApp(): Promise<{ app: express.Application; server: h
     app.get('/events', getEventsRouteHandler);
     app.post('/subscribers', subscriberPostRouteHandler);
     app.get('/export/html', getExportHtmlRouteHandler);
-    app.get('/export/ical', getExportIcalRouteHandler);
+    app.get('/export/ical*', getExportIcalRouteHandler);
 
     return {
         app,
