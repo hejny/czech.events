@@ -46,7 +46,7 @@
         {
             "name": "🌍🧪 Check calendar feed",
             "commands": [
-                "start \"https://larrybolt.github.io/online-ics-feed-viewer/#feed=http%3A//localhost%3A7755/export/ical&cors=false&title=My%20Feed&hideinput=false\"",
+                "start \"https://larrybolt.github.io/online-ics-feed-viewer/#feed=http%3A//localhost%3A7755/export/ical/czech.events.ics&cors=false&title=My%20Feed&hideinput=false\"",
                 "exit 0"
             ],
             "onlySingle": true
