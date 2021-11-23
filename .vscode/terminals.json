@@ -36,6 +36,20 @@
             "command": "start  https://pavolhejny.com/mysql/?username=czechevents&db=czechevents&select=Event&columns%5B0%5D%5Bfun%5D=&columns%5B0%5D%5Bcol%5D=&where%5B0%5D%5Bcol%5D=name&where%5B0%5D%5Bop%5D=%3D&where%5B0%5D%5Bval%5D=Meetup+Frontedisti.cz&where%5B01%5D%5Bcol%5D=&where%5B01%5D%5Bop%5D=%3D&where%5B01%5D%5Bval%5D=&order%5B0%5D=&limit=50&text_length=100",
             "onlySingle": true,
             "focus": true
+        },
+        {
+            "name": "🧪 Test",
+            "command": "npm run test",
+            "onlySingle": true,
+            "focus": true
+        },
+        {
+            "name": "🌍🧪 Check calendar feed",
+            "commands": [
+                "start \"https://larrybolt.github.io/online-ics-feed-viewer/#feed=http%3A//localhost%3A7755/export/ical&cors=false&title=My%20Feed&hideinput=false\"",
+                "exit 0"
+            ],
+            "onlySingle": true
         }
     ]
 }
