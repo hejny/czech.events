@@ -2,11 +2,11 @@ import { createHashHistory, History } from 'history';
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { Route, Router, Switch } from 'react-router-dom';
-import { ApiClient } from './api/ApiClient';
+import { ApiClient, ApiClientContext } from './api/ApiClient';
 import { AboutPage } from './components/AboutPage';
+import { Partners } from './components/Partners';
 import { TalksPage } from './components/TalksPage';
 import * as serviceWorker from './serviceWorker';
-import { Partners } from './components/Partners';
 
 // TODO: In some time suddenly occures "Failed to fetch" in the
 
@@ -29,19 +29,21 @@ export class EventsApp {
         this.apiClient = new ApiClient(this.apiUrl);
 
         ReactDOM.render(
-            <Router {...{ history: this.history }}>
-                <Switch>
-                    <Route exact path="/">
-                        <TalksPage {...{ apiClient: this.apiClient, selfUrl: this.selfUrl }} />
-                    </Route>
-                    <Route exact path="/about">
-                        <AboutPage {...{ selfUrl: this.selfUrl }} />
-                    </Route>
-                    <Route exact path="/partners">
-                        <Partners {...{ selfUrl: this.selfUrl }} />
-                    </Route>
-                </Switch>
-            </Router>,
+            <ApiClientContext.Provider value={this.apiClient}>
+                <Router {...{ history: this.history }}>
+                    <Switch>
+                        <Route exact path="/">
+                            <TalksPage {...{ apiClient: this.apiClient, selfUrl: this.selfUrl }} />
+                        </Route>
+                        <Route exact path="/about">
+                            <AboutPage {...{ selfUrl: this.selfUrl }} />
+                        </Route>
+                        <Route exact path="/partners">
+                            <Partners {...{ selfUrl: this.selfUrl }} />
+                        </Route>
+                    </Switch>
+                </Router>
+            </ApiClientContext.Provider>,
             this.rootElement,
         );
         // If you want your app to work offline and load faster, you can change
