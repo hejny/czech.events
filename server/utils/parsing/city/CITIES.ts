@@ -1,7 +1,7 @@
 export const CITIES: Record<string, string[]> = {
     Praha: ['Praze', 'Prague', 'PRG', 'Loď Tajemství'],
     Brno: ['Brně', 'BRN'],
-    Ostrava: ['Ostravě'],
+    Ostrava: ['Ostravě', 'Ostrava-Vítkovice'],
     Plzeň: ['Plzni', 'Pilsen', 'SIT Port'],
     Liberec: ['Liberci'],
     Olomouc: ['Olomouci'],
