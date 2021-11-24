@@ -48,19 +48,19 @@ export const getExportIcalRouteHandler: RequestHandler = async (request, respons
 
                     // !! TODO: Scrape descriptions
                     description: spaceTrim(`
-                            
-                        ${jsxToString(<EventSummary {...{ event }} />)}         
+
+                        ${jsxToString(<EventSummary {...{ event }} />)}
                         ${getEventTags(event)
                             .map(jsxToString)
                             .map((line) => line.trim())
                             .filter((line) => line !== '')
-                            .join('\n')})}  
-                        
+                            .join('\n')})}
+
                         ${event.web}
                         ______
                         🌍 Find more events at https://czech.events/
-                    
-                    
+
+
                     `),
                     location: event.city,
                     url: event.web,
