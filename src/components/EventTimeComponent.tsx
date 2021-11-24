@@ -1,10 +1,7 @@
-import * as React from 'react';
-import { Event } from '../model/database/Event';
 import moment from 'moment';
 import 'moment/locale/cs';
+import * as React from 'react';
 import { IEventComponentProps } from './EventComponent';
-
-
 
 export function EventTimeComponent({ event }: IEventComponentProps) {
     const { time } = event;
