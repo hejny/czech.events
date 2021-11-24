@@ -12,6 +12,10 @@ import { TalksPageEmail } from './TalksPageEmail';
 
 interface ITalksPageProps {
     selfUrl: string;
+
+    /**
+     * @deprecated use prepared React context to pass apiClient
+     */
     apiClient: ApiClient;
 }
 
