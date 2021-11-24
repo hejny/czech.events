@@ -2,12 +2,11 @@ import * as React from 'react';
 import { Event } from '../model/database/Event';
 import moment from 'moment';
 import 'moment/locale/cs';
+import { IEventComponentProps } from './EventComponent';
 
-interface EventTimeComponentProps {
-    event: Event;
-}
 
-export function EventTimeComponent({ event }: EventTimeComponentProps) {
+
+export function EventTimeComponent({ event }: IEventComponentProps) {
     const { time } = event;
 
     if (!time) {

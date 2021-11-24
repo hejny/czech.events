@@ -1,18 +1,27 @@
+import * as React from 'react';
 import { Event } from '../model/database/Event';
-import { constructObjectFromJSON } from '../utils/constructObjectFromJSON';
 import { Subscriber } from '../model/database/Subscriber';
+import { constructObjectFromJSON } from '../utils/constructObjectFromJSON';
+
+export const ApiClientContext = React.createContext<ApiClient | null>(null);
 
 export class ApiClient {
-    constructor(private apiUrl: string) {}
+    public constructor(private apiUrl: string) {}
 
-    async getAbout() {}
+    public async getAbout() {}
 
-    async getEvents(): Promise<Event[]> {
+    public async getEvents(): Promise<Event[]> {
         const data = await this.get(`/events`);
-        return data.map((data) => constructObjectFromJSON(Event, data));
+        return data.map((data: any) => constructObjectFromJSON(Event, data));
     }
 
-    async postSubscriber(subscriber: Subscriber): Promise<Subscriber> {
+    public createEventCalendarUrl(event: Event): string {
+        return `${this.apiUrl}/export/ical/${encodeURIComponent(event.name)}.ics?serializeId=${encodeURIComponent(
+            event.serializeId,
+        )}`;
+    }
+
+    public async postSubscriber(subscriber: Subscriber): Promise<Subscriber> {
         const data = await this.post(
             `/subscribers`,
             subscriber /* TODO: Should be subscriber data directly in request body or should it be wrapped in {subscriber:{...}} */,

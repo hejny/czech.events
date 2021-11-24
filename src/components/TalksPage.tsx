@@ -12,6 +12,10 @@ import { TalksPageEmail } from './TalksPageEmail';
 
 interface ITalksPageProps {
     selfUrl: string;
+
+    /**
+     * @deprecated use prepared React context to pass apiClient
+     */
     apiClient: ApiClient;
 }
 
@@ -120,7 +124,7 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                     <div className="inner">
                         {/*
                             TODO: Here can be a selecotr of the months but firstly we need to add backend and better DB so it is not priority now.
-                            
+
                             TODO: Or maybe like this:
                             <select>
                                 <option>Aktuální měsíc</option>

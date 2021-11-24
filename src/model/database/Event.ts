@@ -125,6 +125,10 @@ export class Event {
             const date = new Date(this.year, this.month - 1, this.day);
 
             if (!isNaN(date.getDate())) {
+                const [hh, mm] = (this.time || '00:00').split(':').map((x) => parseInt(x, 10));
+                //console.log(hh, mm);
+                date.setHours(hh, mm);
+
                 return date;
             } else {
                 return null;

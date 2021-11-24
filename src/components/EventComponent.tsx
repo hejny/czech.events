@@ -1,12 +1,11 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { Event, EventVisibility } from '../model/database/Event';
+import { Event } from '../model/database/Event';
 import { EventCodeParagraph } from './EventCodeParagraph';
-import { EventDateComponent } from './EventDateComponent';
-import { EventPrice } from './EventPrice';
-import { EventTimeComponent } from './EventTimeComponent';
+import { EventSummary } from './EventSummary';
+import { EventTags } from './EventTags';
 
-interface IEventComponentProps {
+export interface IEventComponentProps {
     event: Event;
 }
 
@@ -14,34 +13,18 @@ export function EventComponent({ event }: IEventComponentProps) {
     return (
         <EventSpan>
             <span className={`${event.dateToCompare < new Date() ? 'past' : ''}`}>
-                {event.visibility === EventVisibility.FEATURED ? '⭐' : ''}
-                <a href={event.web.toString()} target="_blank" rel="nofolow noopener noreferrer">
-                    <b>{event.name}</b>
-                    {event.topic ? ` – ${event.topic}` : ''}
-                </a>
+                <EventSummary {...{ event }} />
                 <br />
-                {event.canceled === 1 && <>🚫&nbsp;Zrušeno&nbsp;</>}
-                {event.city && (
-                    <>
-                        🌆&nbsp;{event.city}&nbsp;{/* TODO: Plzeň místo 🌆 dát jako easter egg 🐪 */}
-                    </>
-                )}
-                {event.online === 1 && <>🌍&nbsp;Online&nbsp;</>}
-                <EventDateComponent {...{ event }} />
-                <EventTimeComponent {...{ event }} />
-                &nbsp;
-                <EventPrice {...{ event }} />
+                <EventTags {...{ event }} />
                 <EventCodeParagraph {...{ event, verbose: true, showCode: false }} />
-                {}
                 <br />
                 <br />
-                {}
             </span>
         </EventSpan>
     );
 }
 
-const EventSpan = styled.form`
+const EventSpan = styled.span`
     .past {
         opacity: 0.5;
     }
