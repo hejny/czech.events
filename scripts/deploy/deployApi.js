@@ -28,7 +28,7 @@ export async function deployApi(remote) {
 
     /**/
     await client.exec(`/bin/cp -R ${remote.configDir}/. ${remoteDir}`);
-    await client.exec(`npm install --production`, false);
+    await client.exec(`npm ci`, false);
 
     await client.exec(`pm2 stop czech-events`, false);
     // TODO: !!> await client.exec(`npm test`);
