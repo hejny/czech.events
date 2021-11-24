@@ -1,14 +1,19 @@
 import { RequestHandler } from 'express';
 import ical from 'ical-generator';
 import moment from 'moment';
-import { spaceTrim } from 'spacetrim';
+import * as React from 'react';
+import spaceTrim from 'spacetrim';
 import { FindConditions, In } from 'typeorm';
+import { EventSummary } from '../../src/components/EventSummary';
+import { getEventTags } from '../../src/components/EventTags';
+import { getCharForEventTag } from '../../src/components/getCharForEventTag';
 import { Event, EventVisibility } from '../../src/model/database/Event';
+import { jsxToString } from '../../src/utils/jsxToString';
 import { connectionPromise } from '../database';
 
 export const getExportIcalRouteHandler: RequestHandler = async (request, response, next) => {
     const serializeId = request.query.serializeId as string | undefined;
-    const { filename, extension } = request.path.match(/(?<filename>[a-zA-Z0-9\-_+]+\.?(?<extension>[a-zA-Z0-9]+))$/)
+    const { filename, extension } = request.path.match(/(?<filename>[a-zA-Z0-9\-_+\s%]+\.?(?<extension>[a-zA-Z0-9]+))$/)
         ?.groups || {
         filename: 'czech.events.ics',
         extension: 'ics',
@@ -39,12 +44,17 @@ export const getExportIcalRouteHandler: RequestHandler = async (request, respons
                     start: moment(event.date /* !!! Include time into event.date */),
                     // TODO: !! Also include end> end: moment().add(1, 'hour'),
 
-                    // TODO: Some universal util how to join featured+name+topic into summary
-                    summary: event.name + ' – ' + event.topic,
+                    summary: getCharForEventTag(event.type) + jsxToString(EventSummary({ event })),
 
-                    // !! TODO: Scrape descriptions + Convert React at letter to plain text
+                    // !! TODO: Scrape descriptions
                     description: spaceTrim(`
-                    
+                            
+                        ${jsxToString(<EventSummary {...{ event }} />)}         
+                        ${getEventTags(event)
+                            .map(jsxToString)
+                            .map((line) => line.trim())
+                            .filter((line) => line !== '')
+                            .join('\n')})}  
                         
                         ${event.web}
                         ______
