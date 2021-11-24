@@ -8,6 +8,10 @@ export type ICalendarLinkProps = React.PropsWithChildren<IEventComponentProps>;
 export function CalendarLink({ event, children }: ICalendarLinkProps) {
     const apiClient = React.useContext(ApiClientContext);
 
+    if (!apiClient) {
+        return <>{children}</>;
+    }
+
     return <CalendarA href={apiClient.createEventCalendarUrl(event)}>{children}</CalendarA>;
 }
 
