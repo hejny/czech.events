@@ -1,8 +1,6 @@
-import 'moment/locale/cs';
-
 import moment from 'moment';
+import 'moment/locale/cs';
 import * as React from 'react';
-
 import { Event } from '../model/database/Event';
 import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter';
 
@@ -17,7 +15,7 @@ export function EventDateComponent({ event }: EventDateComponentProps) {
         try {
             moment.locale('cs');
             let dateString = moment(date).format('LLLL');
-            dateString = dateString.split('0:00')[0];
+            dateString = dateString.split('00:00')[0];
             //TODO: More elegant way
             dateString = dateString.replace('leden', 'ledna');
             dateString = dateString.replace('únor', 'února');
@@ -51,8 +49,4 @@ export function EventDateComponent({ event }: EventDateComponentProps) {
     } else {
         return <></>;
     }
-}
-
-interface EventTimeComponentProps {
-    time: string;
 }
