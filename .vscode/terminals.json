@@ -50,6 +50,14 @@
                 "exit 0"
             ],
             "onlySingle": true
+        },
+        {
+            "name": "🌍🔥 Adminer",
+            "commands": [
+                "start \"https://www.pavolhejny.com/mysql/?server=localhost&username=hejny&db=czechevents\"",
+                "exit 0"
+            ],
+            "onlySingle": true
         }
     ]
 }
