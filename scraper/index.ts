@@ -1,5 +1,5 @@
 import chalk from 'chalk';
-import { IDestroyable } from 'destroyable';
+import { IDestroyable, softDestroy } from 'destroyable';
 import { locateBrowser } from 'locate-app';
 import { join } from 'path';
 import puppeteer from 'puppeteer-core';
@@ -36,7 +36,7 @@ async function main() {
         process.exit(1);
     });
 
-    const tabManager = new TabManager(browser, { preparePages: 100 });
+    const tabManager = new TabManager(browser, { preparePages: 15 });
 
     const firstPage = await tabManager.takePage();
     /* not await */ firstPage.goto(`https://www.pavolhejny.com/`);
@@ -116,11 +116,12 @@ async function main() {
 
                 const eventPage = await tabManager.takePage();
                 await eventPage.goto(eventUrl, { waitUntil: 'networkidle2' });
+                await eventPage.bringToFront();
 
                 const isScrapable = await Promise.race([
                     eventPage.waitForXPath(`//*[contains(@class, 'update-visible')]`).then(() => 'SCRAPABLE'),
                     eventPage.waitForXPath(`//*[contains(@class, 'update')]`).then(() => 'SCRAPED'),
-                    forTime(15000).then(() => 'NOT_SCRAPABLE'),
+                    forTime(5000 /* !!! What is the best number to wait */).then(() => 'NOT_SCRAPABLE'),
                 ]);
 
                 if (isScrapable === 'SCRAPABLE') {
@@ -132,12 +133,12 @@ async function main() {
                     console.info(chalk.red('[×] ' + eventUrl));
                 }
                 await forTime(1000);
-                await eventPage.destroy();
+                await softDestroy(eventPage);
             }
         } catch (error) {
             console.error(error);
         } finally {
-            await eventSourcePage.destroy();
+            await softDestroy(eventSourcePage);
         }
     }
 

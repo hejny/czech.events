@@ -44,7 +44,6 @@ export class TabManager {
             freePage.page,
             {
                 get: function (target, prop, receiver) {
-                    console.log({ prop });
                     if (destroyable[prop]) {
                         return destroyable[prop];
                     } else {
@@ -60,6 +59,7 @@ export class TabManager {
 /**
  * TODO:
  * - Preserve tab order
+ * - What if seemengly free tab is already closed (or broken)
  */
 
 /*
