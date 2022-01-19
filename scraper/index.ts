@@ -1,5 +1,4 @@
 import chalk from 'chalk';
-import { IDestroyable, softDestroy } from 'destroyable';
 import { locateBrowser } from 'locate-app';
 import { join } from 'path';
 import puppeteer from 'puppeteer-core';
@@ -7,7 +6,6 @@ import { forTime } from 'waitasecond';
 import { FACEBOOK_COOKIES } from './config';
 import { EVENT_SOURCES } from './eventSources';
 import { setFacebookCookies } from './setFacebookCookies';
-import { TabManager } from './TabManager';
 
 main();
 
@@ -36,9 +34,7 @@ async function main() {
         process.exit(1);
     });
 
-    const tabManager = new TabManager(browser, { preparePages: 15 });
-
-    const firstPage = await tabManager.takePage();
+    const firstPage = await browser.newPage();
     /* not await */ firstPage.goto(`https://www.pavolhejny.com/`);
 
     await Promise.race([
@@ -54,15 +50,15 @@ async function main() {
         forTime(5000).then(() => Promise.reject(new Error('Browser webextension is not running.'))),
     ]);
 
-    await firstPage.destroy();
+    await firstPage.close();
 
     for (const eventSourceUrl of EVENT_SOURCES) {
-        let eventSourcePage: puppeteer.Page & IDestroyable;
+        let eventSourcePage: puppeteer.Page;
 
         try {
             console.info(chalk.bgGray(eventSourceUrl));
 
-            eventSourcePage = await tabManager.takePage();
+            eventSourcePage = await browser.newPage();
 
             if (/^https:\/\/www.facebook.com/.test(eventSourceUrl)) {
                 await setFacebookCookies(eventSourcePage, FACEBOOK_COOKIES);
@@ -114,7 +110,7 @@ async function main() {
             for (const eventUrl of eventUrls) {
                 // console.info(chalk.gray(eventUrl));
 
-                const eventPage = await tabManager.takePage();
+                const eventPage = await browser.newPage();
                 await eventPage.goto(eventUrl, { waitUntil: 'networkidle2' });
                 await eventPage.bringToFront();
 
@@ -133,12 +129,12 @@ async function main() {
                     console.info(chalk.red('[×] ' + eventUrl));
                 }
                 await forTime(1000);
-                await softDestroy(eventPage);
+                await eventPage.close();
             }
         } catch (error) {
             console.error(error);
         } finally {
-            await softDestroy(eventSourcePage);
+            await eventSourcePage.close();
         }
     }
 
