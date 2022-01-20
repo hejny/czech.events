@@ -47,7 +47,12 @@ async function createCzechEventsAdmin(apiUrl, token) {
     rootElement.innerHTML = `
         <textarea class="event-data">${JSON.stringify(event, null, 4)}</textarea>
         <button class="update">Update</button>
-        ${event.visibility === 'PENDING' ? `<button class="update-visible">VISIBLE</button>` : ''}
+        ${event.visibility === 'PENDING' ? `<button class="update-visible">Make Visible</button>` : ''}
+        ${
+            event.visibility === 'VISIBLE' || event.visibility === 'PENDING'
+                ? `<button class="update-hidden">Make Hidden</button>`
+                : ''
+        }
     
     `;
 
@@ -56,7 +61,10 @@ async function createCzechEventsAdmin(apiUrl, token) {
         .addEventListener(`click`, () => updateEvent(apiUrl, token, rootElement, eventUrl));
     rootElement
         .querySelector(`.update-visible`)
-        .addEventListener(`click`, () => updateEvent(apiUrl, token, rootElement, eventUrl, { visibility: 'VISIBLE' }));
+        ?.addEventListener(`click`, () => updateEvent(apiUrl, token, rootElement, eventUrl, { visibility: 'VISIBLE' }));
+    rootElement
+        .querySelector(`.update-hidden`)
+        ?.addEventListener(`click`, () => updateEvent(apiUrl, token, rootElement, eventUrl, { visibility: 'HIDDEN' }));
 }
 
 async function updateEvent(apiUrl, token, rootElement, eventUrl, additionalData = {}) {
