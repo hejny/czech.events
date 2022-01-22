@@ -3,7 +3,7 @@
         "target": "es6",
         "module": "commonjs",
         "lib": ["es2017"],
-        "rootDir": "./",
+        "rootDir": "../",
         "downlevelIteration": true,
         "baseUrl": "../",
         "sourceMap": true,
@@ -16,11 +16,9 @@
         "noImplicitAny": true,
         "suppressImplicitAnyIndexErrors": true,
         "noUnusedLocals": false,
-        "esModuleInterop":true,
+        "esModuleInterop": true,
         "experimentalDecorators": true,
-        "emitDecoratorMetadata":true
+        "emitDecoratorMetadata": true
     },
-    "exclude": [
-        "node_modules"
-    ]
+    "exclude": ["node_modules"]
 }

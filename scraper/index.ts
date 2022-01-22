@@ -3,8 +3,9 @@ import { locateBrowser } from 'locate-app';
 import { join } from 'path';
 import puppeteer from 'puppeteer-core';
 import { forTime } from 'waitasecond';
+import { connectionPromise } from '../server/database';
+import { EventSource } from '../src/model/database/EventSource';
 import { FACEBOOK_COOKIES } from './config';
-import { EVENT_SOURCES } from './eventSources';
 import { setFacebookCookies } from './setFacebookCookies';
 
 main();
@@ -52,7 +53,10 @@ async function main() {
 
     await firstPage.close();
 
-    for (const eventSourceUrl of EVENT_SOURCES) {
+    const eventSources = await (await connectionPromise).manager.find(EventSource);
+
+    for (const eventSource of eventSources) {
+        const eventSourceUrl = eventSource.url;
         let eventSourcePage: puppeteer.Page;
 
         try {
