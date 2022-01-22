@@ -53,7 +53,7 @@ async function main() {
 
     await firstPage.close();
 
-    const eventSources = await (await connectionPromise).manager.find(EventSource);
+    const eventSources = await (await connectionPromise).manager.find(EventSource, { order: { id: 'ASC' } });
 
     for (const eventSource of eventSources) {
         const eventSourceUrl = eventSource.url;
@@ -80,33 +80,37 @@ async function main() {
                 ),
             );
 
-            const eventUrls: string[] = hrefs
-                .filter((href) => {
-                    if (/^https:\/\/www.facebook.com/.test(href)) {
-                        return /\/events\/[0-9]+/.test(href);
-                    } else if (/^https:\/\/www.meetup.com/.test(href)) {
-                        return /\/events\/[0-9]+/.test(href);
-                    } else if (/^https:\/\/www.eventbrite.com/.test(href)) {
-                        return /\/e\/[0-9]+/.test(href);
-                    } else if (/^https:\/\/it.katalogakci.cz/.test(href)) {
-                        return /\/Event\/[0-9]+/.test(href);
-                    } else if (/^https:\/\/www.wug.cz/.test(href)) {
-                        return /\/akce\/[0-9]+/.test(href);
-                    } else {
-                        return /^https?:\/\//.test(href);
-                    }
-                })
-                .map((href) => {
-                    const url = new URL(href);
-                    url.search = '';
-                    url.hash = '';
-                    url.pathname = url.pathname
-                        .split('/')
-                        .filter((x) => x !== '')
-                        .join('/');
+            const eventUrls: string[] = Array.from(
+                new Set(
+                    ...hrefs
+                        .filter((href) => {
+                            if (/^https:\/\/www.facebook.com/.test(href)) {
+                                return /\/events\/[0-9]+/.test(href);
+                            } else if (/^https:\/\/www.meetup.com/.test(href)) {
+                                return /\/events\/[0-9]+/.test(href);
+                            } else if (/^https:\/\/www.eventbrite.com/.test(href)) {
+                                return /\/e\/[0-9]+/.test(href);
+                            } else if (/^https:\/\/it.katalogakci.cz/.test(href)) {
+                                return /\/Event\/[0-9]+/.test(href);
+                            } else if (/^https:\/\/www.wug.cz/.test(href)) {
+                                return /\/akce\/[0-9]+/.test(href);
+                            } else {
+                                return /^https?:\/\//.test(href);
+                            }
+                        })
+                        .map((href) => {
+                            const url = new URL(href);
+                            url.search = '';
+                            url.hash = '';
+                            url.pathname = url.pathname
+                                .split('/')
+                                .filter((x) => x !== '')
+                                .join('/');
 
-                    return url.href;
-                });
+                            return url.href;
+                        }),
+                ),
+            );
 
             console.info(chalk.gray(`Going to scrape ${eventUrls.join(', ')}`));
 
