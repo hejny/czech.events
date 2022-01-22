@@ -49,6 +49,10 @@ export const PageDiv = styled.div`
         font-weight: 100;
     }
 
+    .black .warning {
+        color: rgb(255, 255, 80);
+    }
+
     .black h2 {
         color: rgb(255, 255, 255);
         text-align: left;

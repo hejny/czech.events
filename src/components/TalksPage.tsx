@@ -110,6 +110,12 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                                 ))}
                             </select>
                         </h2>
+
+                        {/*TODO: Semantically h2 is not very ideal here at all*/}
+                        <h2 className="line separator font-light warning">
+                            🦠 Vzhledem k pandemii bohužel fungujeme na poloviční výkon –⁠ evidujeme mnohem méně akcí a
+                            ne každý měsíc rozesíláme email.
+                        </h2>
                     </div>
                 </div>
 
