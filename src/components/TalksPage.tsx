@@ -78,49 +78,59 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
     render() {
         return (
             <PageDiv>
-                <div className="front black">
-                    <div className="inner">
-                        <h1>Mějte přehled o nejzajímavějších událostech z IT &amp; startupového světa.</h1>
-                        {/*TODO: Semantically h2 is not very ideal here*/}
-                        <h2 className="font-light">
-                            Dejte nám Vaší emailovou adresu a my Vám budeme pravidelně jednou za měsíc posílat co se
-                            děje:
-                        </h2>
-                        <Form {...{ apiClient: this.props.apiClient }} />
+                <div className="group">
+                    <div className="front black">
+                        <div className="inner">
+                            <div className="head">
+                                <img
+                                    src={`${this.props.selfUrl}/design/logos/czech.events.transparent-logo.fit.png`}
+                                    alt="Czech.events logo"
+                                    width="200"
+                                />
 
-                        {/*TODO: Semantically h2 is not very ideal here at all*/}
-                        <h2 className="line separator font-light">
-                            A jak takový mail vypadá? Tady máte živou ukázku z rozpracovaného mailu
-                            <select
-                                className={'font-light option-in-text'}
-                                onChange={(event) => {
-                                    const range = DateRange.fromConstant(event.target.value as RangeConstant);
-                                    /*console.log(
+                                <h1>Mějte přehled o nejzajímavějších událostech z IT &amp; startupového světa.</h1>
+                            </div>
+
+                            {/*TODO: Semantically h2 is not very ideal here*/}
+                            <h2 className="font-light">
+                                Dejte nám Vaší emailovou adresu a my Vám budeme pravidelně jednou za měsíc posílat co se
+                                děje:
+                            </h2>
+                            <Form {...{ apiClient: this.props.apiClient }} />
+
+                            {/*TODO: Semantically h2 is not very ideal here at all*/}
+                            <h2 className="line separator font-light">
+                                A jak takový mail vypadá? Tady máte živou ukázku z rozpracovaného mailu
+                                <select
+                                    className={'font-light option-in-text'}
+                                    onChange={(event) => {
+                                        const range = DateRange.fromConstant(event.target.value as RangeConstant);
+                                        /*console.log(
                                             event.target.value,
                                             DateRange.fromConstant(beginConstant),
                                             DateRange.fromConstant(endConstant),
                                             range,
                                         );*/
 
-                                    this.setState({ range });
-                                }}
-                            >
-                                {OPTIONS.map((item) => (
-                                    <option value={item.value}>{item.desc}</option>
-                                ))}
-                            </select>
-                        </h2>
+                                        this.setState({ range });
+                                    }}
+                                >
+                                    {OPTIONS.map((item) => (
+                                        <option value={item.value}>{item.desc}</option>
+                                    ))}
+                                </select>
+                            </h2>
 
-                        {/*TODO: Semantically h2 is not very ideal here at all*/}
-                        <h2 className="line separator font-light warning">
-                            🦠 Vzhledem k pandemii bohužel fungujeme na poloviční výkon –⁠ evidujeme mnohem méně akcí a
-                            ne každý měsíc rozesíláme email.
-                        </h2>
+                            {/*TODO: Semantically h2 is not very ideal here at all*/}
+                            <h2 className="line separator font-light warning">
+                                🦠 Vzhledem k pandemii bohužel fungujeme na poloviční výkon –⁠ evidujeme mnohem méně
+                                akcí a ne každý měsíc rozesíláme email.
+                            </h2>
+                        </div>
                     </div>
-                </div>
 
-                <div className="letter white">
-                    {/*
+                    <div className="letter white">
+                        {/*
                         TODO: Or make tabs - see bellow
                         <div className="tab" onClick={() => this.setState({ range: DateRange.CURRENT_MONTH })}>
                             Aktuání měsíc
@@ -130,8 +140,8 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                         </div>
                          */}
 
-                    <div className="inner">
-                        {/*
+                        <div className="inner">
+                            {/*
                             TODO: Here can be a selecotr of the months but firstly we need to add backend and better DB so it is not priority now.
 
                             TODO: Or maybe like this:
@@ -144,25 +154,27 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
 
                             */}
 
-                        {this.state.error ? (
-                            <ErrorComponent>
-                                <pre>{this.state.error}</pre>
-                            </ErrorComponent>
-                        ) : !this.state.events ? (
-                            <LoadingComponent />
-                        ) : (
-                            <TalksPageEmail
-                                {...{
-                                    events: this.state.events,
-                                    // TODO: Remove @deprecated newsletter: this.state.newsletter,
-                                    range: this.state.range,
-                                }}
-                            />
-                        )}
+                            {this.state.error ? (
+                                <ErrorComponent>
+                                    <pre>{this.state.error}</pre>
+                                </ErrorComponent>
+                            ) : !this.state.events ? (
+                                <LoadingComponent />
+                            ) : (
+                                <TalksPageEmail
+                                    {...{
+                                        events: this.state.events,
+                                        // TODO: Remove @deprecated newsletter: this.state.newsletter,
+                                        range: this.state.range,
+                                    }}
+                                />
+                            )}
+                        </div>
                     </div>
                 </div>
-
-                <Partners {...{ selfUrl: this.props.selfUrl }} />
+                <div className="group">
+                    <Partners {...{ selfUrl: this.props.selfUrl }} />{' '}
+                </div>
             </PageDiv>
         );
     }

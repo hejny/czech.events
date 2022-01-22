@@ -1,4 +1,5 @@
 import * as React from 'react';
+import spaceTrim from 'spacetrim';
 import styled from 'styled-components';
 import { PageDiv } from './PageDiv';
 interface IAboutPageProps {
@@ -23,6 +24,11 @@ export function AboutPage(props: IAboutPageProps) {
                                 name: 'Světlá verze',
                                 src: 'czech.events.white-logo.png',
                             },
+
+                            {
+                                name: 'Průhledná verze',
+                                src: 'czech.events.transparent-logo.png',
+                            },
                         ].map(({ name, src }) => {
                             const url = `${props.selfUrl}/design/logos/${src}`;
                             return (
@@ -35,10 +41,11 @@ export function AboutPage(props: IAboutPageProps) {
                                         (Stáhnout)
                                     </a>
                                     <pre>
-                                        {`                                     
-<a href="https://czech.events/">
-    <img src="${url}" alt="Czech.events logo" width="200" />
-</a>`.trim()}
+                                        {spaceTrim(`                                     
+                                            <a href="https://czech.events/">
+                                                <img src="${url}" alt="Czech.events logo" width="200" />
+                                            </a>
+                                        `)}
                                     </pre>
                                 </div>
                             );

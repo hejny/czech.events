@@ -107,6 +107,7 @@ export const PartnersDiv = styled.div`
         /**/
 
         display: flex;
+        flex-wrap: wrap;
     }
 
     .partner {

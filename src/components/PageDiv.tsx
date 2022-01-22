@@ -1,10 +1,19 @@
 import styled from 'styled-components';
 
 export const PageDiv = styled.div`
-    max-width: 1200px;
-    display: inline-block;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
     text-align: left;
     overflow: visible;
+
+    .group {
+        /*display: flex;*/
+        display: block;
+        max-width: 1200px;
+    }
 
     .white {
         /*We are using here standart Gmail font*/
@@ -26,6 +35,10 @@ export const PageDiv = styled.div`
         padding-bottom: 0;
     }
 
+    .front .inner .head {
+        text-align: center;
+    }
+
     .front .separator {
         /*margin-top: 10vh;*/
     }
@@ -37,7 +50,6 @@ export const PageDiv = styled.div`
 
     .black h1 {
         color: rgb(255, 255, 255);
-        text-align: left;
         font-size: 35px;
     }
 
