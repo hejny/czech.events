@@ -29,12 +29,14 @@ interface ITalksPageState {
 const OPTIONS = [
     {
         value: 'CURRENT_MONTH-NEXT_MONTH',
-        desc: 'na další měsíc + události tohoto měsíce:',
+        desc: 's aktuálním děním:',
     },
     {
         value: 'NEXT_MONTH-NEXT_NEXT_MONTH',
         desc: 'na další měsíc:',
     },
+
+    /*
     {
         value: 'NOW-INFINITY',
         desc: 'se všemi událostmi, co právě evidujeme do budoucna:',
@@ -43,6 +45,7 @@ const OPTIONS = [
         value: 'INFINITY-INFINITY',
         desc: 'se všemi událostmi, co právě evidujeme:',
     },
+    */
 ];
 
 export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState> {
