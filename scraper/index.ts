@@ -82,7 +82,7 @@ async function main() {
 
             const eventUrls: string[] = Array.from(
                 new Set(
-                    ...hrefs
+                    hrefs
                         .filter((href) => {
                             if (/^https:\/\/www.facebook.com/.test(href)) {
                                 return /\/events\/[0-9]+/.test(href);
