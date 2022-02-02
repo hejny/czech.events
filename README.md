@@ -2,9 +2,9 @@
 
 <!--Badges-->
 
- [![License of Czech.events](https://img.shields.io/github/license/hejny/czech.events.svg?style=flat)](https://github.com/hejny/czech.events/blob/main/LICENSE)
- [![Known Vulnerabilities](https://snyk.io/test/github/hejny/czech.events/badge.svg)](https://snyk.io/test/github/hejny/czech.events)
- [![Issues](https://img.shields.io/github/issues/hejny/czech.events.svg?style=flat)](https://github.com/hejny/czech.events/issues)
+[![License of Czech.events](https://img.shields.io/github/license/hejny/czech.events.svg?style=flat)](https://github.com/hejny/czech.events/blob/main/LICENSE)
+[![Known Vulnerabilities](https://snyk.io/test/github/hejny/czech.events/badge.svg)](https://snyk.io/test/github/hejny/czech.events)
+[![Issues](https://img.shields.io/github/issues/hejny/czech.events.svg?style=flat)](https://github.com/hejny/czech.events/issues)
 
 <!--/Badges-->
 
