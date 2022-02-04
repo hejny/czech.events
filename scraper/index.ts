@@ -107,6 +107,11 @@ async function main() {
                                 .filter((x) => x !== '')
                                 .join('/');
 
+                            if (url.hostname === 'www.facebook.com') {
+                                // Note: Sometimes happen that mobile version of facebook has JSON+LD but desktop version doesn't.
+                                url.hostname = 'm.facebook.com';
+                            }
+
                             return url.href;
                         }),
                 ),
