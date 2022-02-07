@@ -1,4 +1,4 @@
-import { EventType, EventPriceCurrency } from './../model/database/Event';
+import { EventPriceCurrency, EventType } from './../model/database/Event';
 
 export function translateCurrency(currency: EventPriceCurrency): string {
     // TODO: Hardcoded
@@ -19,12 +19,12 @@ export function translateEventType(eventType: EventType): string {
     // TODO: Hardcoded
     switch (eventType) {
         case EventType.HACKATHON:
-            return 'Hackathony';
+            return '🐱‍💻 Hackathony';
         case EventType.CONFERENCE:
-            return '‎Konference';
+            return '📛 Konference';
         case EventType.MEETUP:
-            return '‎Meetupy';
+            return '🧑🏽‍🤝‍🧑🏽 Meetupy';
         case EventType.WORKSHOP:
-            return '‎Workshopy';
+            return '🎓 Workshopy';
     }
 }
