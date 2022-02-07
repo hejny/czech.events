@@ -1,12 +1,13 @@
 import * as React from 'react';
-
 import { Event } from '../model/database/Event';
 import { NewsletterContentPosition } from '../model/database/NewsletterContent';
 import { DateRange } from '../model/DateRange';
-import { joinArray, shuffleArray } from '../utils/array';
 import { createNewsletter } from '../utils/createNewsletter';
-import { NewsletterContentsComponent } from './NewsletterContentsComponent';
+import { joinArray } from '../utils/joinArray';
+import { randomItem } from '../utils/randomItem';
+import { shuffleArray } from '../utils/shuffleArray';
 import { NewsletterComponent } from './NewsletterComponent';
+import { NewsletterContentsComponent } from './NewsletterContentsComponent';
 
 // TODO: Remove @deprecated import { Newsletter } from '../model/database/Newsletter';
 
@@ -26,10 +27,20 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
                 {/*`📅 Konference / meetupy / hackathony – co se děje z IT / Startupové akce 🌆`*/}
                 <NewsletterContentsComponent {...{ newsletterContents, position: NewsletterContentPosition.SUBJECT }} />
             </h2>
-            Ahoj,
-            <br />
-            opět jsme dali dohromady seznam událostí, na které se vyplatí zajít:
-            <br />
+            <p>
+                Ahoj,
+                <br />
+                opět jsme pro vás {randomItem('dali dohromady', 'sestavili')} seznam událostí, na které se vyplatí
+                zajít.
+            </p>
+            <p>
+                Nově si také můžete přidat{' '}
+                <a href="https://www.pavolhejny.com/czech-events/export/ical/czech-events.ics">
+                    události přímo do svého kalendáře
+                </a>
+                .<br />
+                Nebo můžete ťuknout na ikonku 📅 a událost se pošle do vašeho kalendáře.
+            </p>
             <NewsletterContentsComponent {...{ newsletterContents, position: NewsletterContentPosition.HEAD }} />
             <NewsletterComponent {...{ newsletter }} />
             <br /> <br />

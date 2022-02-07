@@ -1,6 +1,6 @@
 import * as React from 'react';
 import styled from 'styled-components';
-import { shuffleArray } from '../utils/array';
+import { shuffleArray } from "../utils/shuffleArray";
 
 interface IPartnersProps {
     selfUrl: string;
