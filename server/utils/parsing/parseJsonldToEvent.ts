@@ -45,12 +45,15 @@ export function parseJsonldToEvent({
             time = null;
         }
 
+        let web = url || semanticEvent.url;
+        web = web.split('m.facebook.com').join('www.facebook.com');
+
         return {
             serializeId,
             name,
             topic,
             type,
-            web: url || semanticEvent.url,
+            web,
             city,
             year: startDate.getFullYear(),
             month: startDate.getMonth() + 1,
