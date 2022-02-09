@@ -90,6 +90,8 @@ const adminEventsRouteHandler = async (request: Request, response: Response) => 
         }
     }
 
+    // console.log({ event });
+
     // TODO: Dry or make eagers some other way
     delete event!.eventCodes;
     delete event!.newsletterContents;
