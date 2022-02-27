@@ -39,7 +39,9 @@
       "last 1 safari version"
     ]
   },
-  "dependencies": {},
+  "dependencies": {
+    "save-ukraine": "^0.12.0"
+  },
   "devDependencies": {
     "@testing-library/jest-dom": "5.11.9",
     "@testing-library/react": "11.2.3",
