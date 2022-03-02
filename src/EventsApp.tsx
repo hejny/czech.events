@@ -5,6 +5,7 @@ import { Route, Router, Switch } from 'react-router-dom';
 import { ApiClient, ApiClientContext } from './api/ApiClient';
 import { AboutPage } from './components/AboutPage';
 import { Partners } from './components/Partners';
+import { SaveUkraine } from './components/SaveUkraine';
 import { TalksPage } from './components/TalksPage';
 import * as serviceWorker from './serviceWorker';
 
@@ -30,6 +31,7 @@ export class EventsApp {
 
         ReactDOM.render(
             <ApiClientContext.Provider value={this.apiClient}>
+                <SaveUkraine isCancelable={true} ribbon="TOP_LEFT" />
                 <Router {...{ history: this.history }}>
                     <Switch>
                         <Route exact path="/">
