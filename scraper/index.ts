@@ -1,5 +1,6 @@
 import chalk from 'chalk';
-import { locateBrowser } from 'locate-app';
+import { spawn } from 'child_process';
+import { locateChrome } from 'locate-app';
 import { join } from 'path';
 import puppeteer from 'puppeteer-core';
 import { forTime } from 'waitasecond';
@@ -16,7 +17,7 @@ async function main() {
 
     const browser = await puppeteer.launch({
         headless: false,
-        executablePath: await locateBrowser('chrome'),
+        executablePath: await locateChrome(),
         defaultViewport: null,
         args: [
             //'--proxy-server=socks5://127.0.0.1:9050',
@@ -136,6 +137,7 @@ async function main() {
                 if (isScrapable === 'SCRAPABLE') {
                     await eventPage.click(`.update-visible`);
                     console.info(chalk.green('[✓] ' + eventUrl));
+                    spawn(await locateChrome(), [eventUrl]);
                 } else if (isScrapable === 'SCRAPED') {
                     console.info(chalk.yellow('[-] ' + eventUrl));
                 } else if (isScrapable === 'NOT_SCRAPABLE') {
