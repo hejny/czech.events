@@ -20,6 +20,11 @@
             "command": "ts-node index.ts"
         },
         {
+            "name": "👨🏽‍💻🖊️ Writer",
+            "cwd": "./scraper",
+            "command": "ts-node writer.ts"
+        },
+        {
             "name": "🏭 Generate database models",
             "command": "npm run generate-database-models",
             "onlySingle": true,
