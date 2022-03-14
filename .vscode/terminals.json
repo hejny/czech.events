@@ -22,7 +22,9 @@
         {
             "name": "👨🏽‍💻🖊️ Writer",
             "cwd": "./scraper",
-            "command": "ts-node writer.ts"
+            "command": "ts-node writer.ts",
+            "onlySingle": true,
+            "focus": true
         },
         {
             "name": "🏭 Generate database models",
