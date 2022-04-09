@@ -7935,10 +7935,10 @@ moment-timezone@0.5.34:
   dependencies:
     moment ">= 2.9.0"
 
-moment@2.29.1, "moment@>= 2.9.0":
-  version "2.29.1"
-  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.1.tgz#b2be769fa31940be9eeea6469c075e35006fa3d3"
-  integrity sha512-kHmoybcPV8Sqy59DwNDY3Jefr64lK/by/da0ViFcuA4DH0vQg5Q6Ze5VimxkfQNSC+Mls/Kx53s7TjP1RhFEDQ==
+moment@2.29.2, "moment@>= 2.9.0":
+  version "2.29.2"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.29.2.tgz#00910c60b20843bcba52d37d58c628b47b1f20e4"
+  integrity sha512-UgzG4rvxYpN15jgCmVJwac49h9ly9NurikMWGPdVxm8GZD6XjkKPxDTjQQ43gtGgnV3X0cAyWDdP2Wexoquifg==
 
 move-concurrently@^1.0.1:
   version "1.0.1"
@@ -10444,6 +10444,11 @@ sass-loader@8.0.2:
     neo-async "^2.6.1"
     schema-utils "^2.6.1"
     semver "^6.3.0"
+
+save-ukraine@0.16.0:
+  version "0.16.0"
+  resolved "https://registry.yarnpkg.com/save-ukraine/-/save-ukraine-0.16.0.tgz#a961c6fd64078f20cf45c7da5e05ee1abff45cbc"
+  integrity sha512-ua6pTxp+OtrQA5YmhiI7UifjXmz9/x3Yw0yEiz46nBYwdZPCxV/aPvALKHnLHFY8GBCDH908GCY9qm4IiYFTdA==
 
 sax@>=0.6.0, sax@~1.2.4:
   version "1.2.4"
