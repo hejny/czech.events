@@ -7,6 +7,7 @@ import { forTime } from 'waitasecond';
 import { connectionPromise } from '../server/database';
 import { EventSource } from '../src/model/database/EventSource';
 import { FACEBOOK_COOKIES } from './config';
+import { forPlay } from './forPlay';
 import { setFacebookCookies } from './setFacebookCookies';
 
 main();
@@ -36,6 +37,8 @@ async function main() {
         process.exit(1);
     });
 
+    await forPlay();
+
     const firstPage = await browser.newPage();
     /* not await */ firstPage.goto(`https://www.pavolhejny.com/`);
 
@@ -54,9 +57,13 @@ async function main() {
 
     await firstPage.close();
 
+    await forPlay();
+
     const eventSources = await (await connectionPromise).manager.find(EventSource, { order: { id: 'ASC' } });
 
     for (const eventSource of eventSources) {
+        await forPlay();
+
         const eventSourceUrl = eventSource.url;
         let eventSourcePage: puppeteer.Page;
 
@@ -122,6 +129,7 @@ async function main() {
 
             // TODO: Probbably make this scraping paralel
             for (const eventUrl of eventUrls) {
+                await forPlay();
                 // console.info(chalk.gray(eventUrl));
 
                 const eventPage = await browser.newPage();

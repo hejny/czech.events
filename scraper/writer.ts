@@ -5,6 +5,7 @@ import puppeteer from 'puppeteer-core';
 import { spaceTrim } from 'spacetrim';
 import { forTime } from 'waitasecond';
 import { FACEBOOK_COOKIES } from './config';
+import { forPlay } from './forPlay';
 import { setFacebookCookies } from './setFacebookCookies';
 
 const FACEBOOK_GROUPS = [
@@ -192,6 +193,7 @@ async function main(isTesting: boolean) {
         process.exit(1);
     });
     for (const groupUrl of FACEBOOK_GROUPS) {
+        await forPlay();
         let groupPage: puppeteer.Page;
 
         try {

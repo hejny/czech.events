@@ -17,7 +17,7 @@
         {
             "name": "👨🏽‍💻🔥 Scraper",
             "cwd": "./scraper",
-            "command": "ts-node index.ts"
+            "command": "ts-node scraper.ts"
         },
         {
             "name": "👨🏽‍💻🖊️ Writer",
