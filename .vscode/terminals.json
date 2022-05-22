@@ -1,88 +1,88 @@
 {
-  "autokill": true,
-  "@see": "https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-terminals",
-  "terminals": [
-    {
-      "name": "👨🏽‍💻🔥 Server develop",
-      "command": "npm run server-develop"
-    },
-    {
-      "name": "🏭🔥 frontend-develop-emit-decorator-metadata",
-      "command": "npm run frontend-develop-emit-decorator-metadata"
-    },
-    {
-      "name": "👨🏽‍💻🔥 Frontend develop",
-      "command": "npm run frontend-develop"
-    },
-    {
-      "name": "👨🏽‍💻🔥 Scraper",
-      "cwd": "./scraper",
-      "command": "ts-node scraper.ts"
-    },
-    {
-      "name": "👨🏽‍💻🖊️ Writer",
-      "cwd": "./scraper",
-      "command": "ts-node writer.ts",
-      "onlySingle": true,
-      "focus": true
-    },
-    {
-      "name": "🏭 Generate database models",
-      "command": "npm run generate-database-models",
-      "onlySingle": true,
-      "focus": true
-    },
-    {
-      "name": "🌍 ssh pavolhejny.com",
-      "command": "ssh root@pavolhejny.com",
-      "onlySingle": true,
-      "focus": true
-    },
-    {
-      "name": "🌍🔥 Adminer",
-      "command": "start  https://pavolhejny.com/mysql/?username=czechevents&db=czechevents&select=Event&columns%5B0%5D%5Bfun%5D=&columns%5B0%5D%5Bcol%5D=&where%5B0%5D%5Bcol%5D=name&where%5B0%5D%5Bop%5D=%3D&where%5B0%5D%5Bval%5D=Meetup+Frontedisti.cz&where%5B01%5D%5Bcol%5D=&where%5B01%5D%5Bop%5D=%3D&where%5B01%5D%5Bval%5D=&order%5B0%5D=&limit=50&text_length=100",
-      "onlySingle": true,
-      "focus": true
-    },
-    {
-      "name": "🧪 Test",
-      "command": "npm run test",
-      "onlySingle": true,
-      "focus": true
-    },
-    {
-      "name": "🌍🧪 Check calendar feed",
-      "commands": [
-        "start \"https://larrybolt.github.io/online-ics-feed-viewer/#feed=http%3A//localhost%3A7755/export/ical/czech.events.ics&cors=false&title=My%20Feed&hideinput=false\"",
-        "exit 0"
-      ],
-      "onlySingle": true
-    },
-    {
-      "name": "🌍🔥 Adminer",
-      "commands": [
-        "start \"https://www.pavolhejny.com/mysql/?server=localhost&username=hejny&db=czechevents\"",
-        "exit 0"
-      ],
-      "onlySingle": true
-    },
-    {
-      "name": "🔼👑 Release major version",
-      "command": "npm version major",
-      "onlySingle": true,
-      "focus": true
-    },
-    {
-      "name": "🔼🚀 Release minor version",
-      "command": "npm version minor",
-      "onlySingle": true,
-      "focus": true
-    },
-    {
-      "name": "🔼🩹 Release patch version",
-      "command": "npm version patch",
-      "onlySingle": true,
-      "focus": true
-    }
-  ]
+    "autokill": true,
+    "@see": "https://marketplace.visualstudio.com/items?itemName=fabiospampinato.vscode-terminals",
+    "terminals": [
+        {
+            "name": "👨🏽‍💻🔥 Server develop",
+            "command": "npm run server-develop"
+        },
+        {
+            "name": "🏭🔥 frontend-develop-emit-decorator-metadata",
+            "command": "npm run frontend-develop-emit-decorator-metadata"
+        },
+        {
+            "name": "👨🏽‍💻🔥 Frontend develop",
+            "command": "npm run frontend-develop"
+        },
+        {
+            "name": "👨🏽‍💻🔥 Scraper",
+            "cwd": "./scraper",
+            "command": "ts-node scraper.ts"
+        },
+        {
+            "name": "👨🏽‍💻🖊️ Writer",
+            "cwd": "./scraper",
+            "command": "ts-node writer.ts",
+            "onlySingle": true,
+            "focus": true
+        },
+        {
+            "name": "🏭 Generate database models",
+            "command": "npm run generate-database-models",
+            "onlySingle": true,
+            "focus": true
+        },
+        {
+            "name": "🌍 ssh pavolhejny.com",
+            "command": "ssh root@pavolhejny.com",
+            "onlySingle": true,
+            "focus": true
+        },
+        {
+            "name": "🌍🔥 Adminer",
+            "command": "start  https://pavolhejny.com/mysql/?username=czechevents&db=czechevents&select=Event&columns%5B0%5D%5Bfun%5D=&columns%5B0%5D%5Bcol%5D=&where%5B0%5D%5Bcol%5D=name&where%5B0%5D%5Bop%5D=%3D&where%5B0%5D%5Bval%5D=Meetup+Frontedisti.cz&where%5B01%5D%5Bcol%5D=&where%5B01%5D%5Bop%5D=%3D&where%5B01%5D%5Bval%5D=&order%5B0%5D=&limit=50&text_length=100",
+            "onlySingle": true,
+            "focus": true
+        },
+        {
+            "name": "🧪 Test",
+            "command": "npm run test",
+            "onlySingle": true,
+            "focus": true
+        },
+        {
+            "name": "🌍🧪 Check calendar feed",
+            "commands": [
+                "start \"https://larrybolt.github.io/online-ics-feed-viewer/#feed=http%3A//localhost%3A7755/export/ical/czech.events.ics&cors=false&title=My%20Feed&hideinput=false\"",
+                "exit 0"
+            ],
+            "onlySingle": true
+        },
+        {
+            "name": "🌍🔥 Adminer",
+            "commands": [
+                "start \"https://www.pavolhejny.com/mysql/?server=localhost&username=hejny&db=czechevents\"",
+                "exit 0"
+            ],
+            "onlySingle": true
+        },
+        {
+            "name": "🔼👑 Release major version",
+            "command": "npm version major",
+            "onlySingle": true,
+            "focus": true
+        },
+        {
+            "name": "🔼🚀 Release minor version",
+            "command": "npm version minor",
+            "onlySingle": true,
+            "focus": true
+        },
+        {
+            "name": "🔼🩹 Release patch version",
+            "command": "npm version patch",
+            "onlySingle": true,
+            "focus": true
+        }
+    ]
 }
