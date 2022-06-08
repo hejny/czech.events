@@ -151,7 +151,7 @@ async function main() {
                 } else if (isScrapable === 'NOT_SCRAPABLE') {
                     console.info(chalk.red('[×] ' + eventUrl));
                 }
-                await forTime(1000 + 10000 * Math.random());
+                await forTime(1000 + 100000 * Math.random());
                 await eventPage.close();
             }
         } catch (error) {
