@@ -12,7 +12,8 @@
         },
         {
             "name": "👨🏽‍💻🔥 Frontend develop",
-            "command": "npm run frontend-develop"
+            "command": "npm run frontend-develop",
+            "onlySingle": true
         },
         {
             "name": "👨🏽‍💻🔥 Scraper",
