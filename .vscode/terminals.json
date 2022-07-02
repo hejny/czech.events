@@ -62,7 +62,7 @@
         {
             "name": "🌍🔥 Adminer",
             "commands": [
-                "start \"https://www.pavolhejny.com/mysql/?server=localhost&username=hejny&db=czechevents\"",
+                "start \"https://api.pavolhejny.com/mysql/?server=localhost&username=hejny&db=czechevents\"",
                 "exit 0"
             ],
             "onlySingle": true

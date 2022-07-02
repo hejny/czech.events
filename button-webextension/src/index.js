@@ -128,7 +128,7 @@ async function getApiUrlAndToken() {
         //if(!response.ok)
     }catch(error){
    
-        apiUrl = `https://www.pavolhejny.com/czech-events`;
+        apiUrl = `https://api.pavolhejny.com/czech-events`;
 
 
         token = window.localStorage.get(`token`);

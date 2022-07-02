@@ -35,7 +35,7 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
             </p>
             <p>
                 Nově si také můžete přidat{' '}
-                <a href="https://www.pavolhejny.com/czech-events/export/ical/czech-events.ics">
+                <a href="https://api.pavolhejny.com/czech-events/export/ical/czech-events.ics">
                     události přímo do svého kalendáře
                 </a>
                 .<br />

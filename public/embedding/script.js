@@ -21,7 +21,7 @@
     async function activateElement(element) {
         console.info(`Activating Czech.events`, { element });
 
-        const response = await fetch(`https://www.pavolhejny.com/czech-events/export/html`);
+        const response = await fetch(`https://api.pavolhejny.com/czech-events/export/html`);
         if (!response.ok) {
             element.innerHTML = 'Chyba při načítání.';
             return;

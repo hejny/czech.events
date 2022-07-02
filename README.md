@@ -21,7 +21,7 @@
 
 I am open to pull requests, feedback, and suggestions. Or if you like this utility, you can [☕ buy me a coffee](https://www.buymeacoffee.com/hejny) or [donate via cryptocurrencies](https://github.com/hejny/hejny/blob/main/documents/crypto.md).
 
-You can also ⭐ star the czech.events package, [follow me on GitHub](https://github.com/hejny) or [various other social networks](https://www.pavolhejny.com/contact/).
+You can also ⭐ star the czech.events package, [follow me on GitHub](https://github.com/hejny) or [various other social networks](https://www.pavolhejny.com/).
 
 <!--/Contributing-->
 
@@ -45,6 +45,6 @@ You can also ⭐ star the czech.events package, [follow me on GitHub](https://gi
 </a>
 
 
-[Become a partner](https://www.pavolhejny.com/contact/)
+[Become a partner](https://www.pavolhejny.com/)
 
 <!--/Partners-->
