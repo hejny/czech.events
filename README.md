@@ -45,6 +45,6 @@ You can also ⭐ star the czech.events package, [follow me on GitHub](https://gi
 </a>
 
 
-[Become a partner](https://www.pavolhejny.com/)
+[Become a partner](https://www.pavolhejny.com/contact/)
 
 <!--/Partners-->
