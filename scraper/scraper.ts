@@ -55,7 +55,7 @@ async function main() {
         forTime(5000).then(() => Promise.reject(new Error('Browser webextension is not running.'))),
     ]);
 
-    await firstPage.close();
+    // await firstPage.close();
 
     await forPlay();
 
