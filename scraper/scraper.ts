@@ -59,7 +59,9 @@ async function main() {
 
     await forPlay();
 
-    const eventSources = await (await connectionPromise).manager.find(EventSource, { order: { id: 'ASC' } });
+    const eventSources = await (await connectionPromise).manager.find(EventSource, {
+        order: { id: /* !!! 'ASC'*/ 'DESC' },
+    });
 
     for (const eventSource of eventSources) {
         await forPlay();
