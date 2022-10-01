@@ -154,8 +154,8 @@ async function main() {
                     console.info(chalk.red('[×] ' + eventUrl));
                 }
 
-                // Note: Wait 1s - 5m
-                await forTime(1000 + 1000 * 60 * 5 * Math.random());
+                // Note: Wait 1s - 1m
+                await forTime(1000 + 1000 * 60 * 1 * Math.random());
                 await eventPage.close();
             }
         } catch (error) {
