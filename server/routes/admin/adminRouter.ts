@@ -82,7 +82,17 @@ const adminEventsRouteHandler = async (request: Request, response: Response) => 
                 // console.error(error);
 
                 if (!request.query.html) {
-                    return response.status(400).send({ error: { name: error.name, message: error.message, ...error } });
+                    return response
+                        .status(400)
+                        .send({
+                            error: {
+                                name: error.name,
+                                hint: `Add &html=1 to URL to see just a HTML`,
+                                message: error.message,
+                                url: request.query.serializeId,
+                                ...error,
+                            },
+                        });
                 } else {
                     return response.status(400).send(error.unparsableHtml);
                 }
