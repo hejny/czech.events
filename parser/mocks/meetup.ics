@@ -1,0 +1,667 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Meetup//RemoteApi//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-ORIGINAL-URL:https://www.meetup.com/internationalsocialmeetups/events/i
+ cal/
+X-WR-CALNAME:Events - Locals and Expats Meetups
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+TZURL:http://tzurl.org/zoneinfo-outlook/Europe/Prague
+X-LIC-LOCATION:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221118T190000
+DTEND;TZID=Europe/Prague:20221119T000000
+STATUS:CONFIRMED
+SUMMARY:International Meetup & After-party (Free Entry)- New Venue
+DESCRIPTION:Locals and Expats Meetups\nFriday\, November 18 at 7:00 PM\n\
+ neský překlad Níže🇬🇧-EN- (Note: This Event is also on Facebook so expe
+ ct more people than you see here) \\~FREE EVENT\\~Do you live in Prague 
+ for a long ...\n\nhttps://www.meetup.com/internationalsocialmeetups/even
+ ts/289474646/
+CLASS:PUBLIC
+CREATED:20221101T153545Z
+GEO:50.08;14.43
+LOCATION:Miss Sophie's New Town (Melounova 3\, Praha 2-Nové Město\, Czech
+  Republic 120 00)
+URL:https://www.meetup.com/internationalsocialmeetups/events/289474646/
+LAST-MODIFIED:20221117T155520Z
+UID:event_289474646@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221119T190000
+DTEND;TZID=Europe/Prague:20221119T230000
+STATUS:CONFIRMED
+SUMMARY:Language Exchange & Live Music
+DESCRIPTION:Locals and Expats Meetups\nSaturday\, November 19 at 7:00 PM\
+ n\n~FREE EVENT~Český překlad Níže🇬🇧-EN- NOTE- This Event is also on Fa
+ cebook. So expect more people than you see here.  For first time\, your 
+ favorite lan...\n\nhttps://www.meetup.com/internationalsocialmeetups/eve
+ nts/289350107/
+CLASS:PUBLIC
+CREATED:20221026T125421Z
+GEO:50.08;14.43
+LOCATION:Czech Inn Bar (Francouzská 240/76\, Vršovice\, Praha-Praha 10\, 
+ Czech Republic 101 00)
+URL:https://www.meetup.com/internationalsocialmeetups/events/289350107/
+LAST-MODIFIED:20221026T125421Z
+UID:event_289350107@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221119T190000
+DTEND;TZID=Europe/Prague:20221119T230000
+STATUS:CONFIRMED
+SUMMARY:Prague BlaBla Language Exchange Event 
+DESCRIPTION:Locals and Expats Meetups\nSaturday\, November 19 at 7:00 PM\
+ n\nPřejděte dolů na český jazyk:🇬🇧 NOTE- This Event is also on Faceboo
+ k. So\, you will see more People in the Event than meetup app (Normal St
+ rength: 40-6...\n\nhttps://www.meetup.com/internationalsocialmeetups/eve
+ nts/289435919/
+CLASS:PUBLIC
+CREATED:20220921T105257Z
+GEO:50.08;14.43
+LOCATION:Czech Inn Bar (Francouzská 240/76\, Vršovice\, Praha-Praha 10\, 
+ Czech Republic 101 00)
+URL:https://www.meetup.com/internationalsocialmeetups/events/289435919/
+LAST-MODIFIED:20220921T105257Z
+UID:event_hksnxsydcpbzb@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221123T183000
+DTEND;TZID=Europe/Prague:20221123T213000
+STATUS:CONFIRMED
+SUMMARY:(Easy) English Speaking Meetup 🇬🇧
+DESCRIPTION:Locals and Expats Meetups\nWednesday\, November 23 at 6:30 PM
+ \n\nřejděte dolů na český jazyk: -EN- 🇬🇧--FREE EVENT--🫣Do you speak B
+ ad or Good English\, are you shy of communicating with people\, or just 
+ want to make ne...\n\nhttps://www.meetup.com/internationalsocialmeetups/
+ events/289523953/
+CLASS:PUBLIC
+CREATED:20220921T104640Z
+GEO:50.08;14.43
+LOCATION:Stories in Holešovice  (Osadní 25\, 170 00 Praha 7-Holešovice  \
+ , Prague\, Czech Republic)
+URL:https://www.meetup.com/internationalsocialmeetups/events/289523953/
+LAST-MODIFIED:20221109T113828Z
+UID:event_qqqnzsydcpbfc@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221125T190000
+DTEND;TZID=Europe/Prague:20221125T230000
+STATUS:CONFIRMED
+SUMMARY:Weekly Cz & Foreigners Meetup 
+DESCRIPTION:Locals and Expats Meetups\nFriday\, November 25 at 7:00 PM\n\
+ nFREE EVENT~ NOTE- This Event is also on Facebook. So\, you will see mor
+ e People in the Event than meetup app (Normal Strength: 30-55 people) Jo
+ in our w...\n\nhttps://www.meetup.com/internationalsocialmeetups/events/
+ 289567406/
+CLASS:PUBLIC
+CREATED:20220921T104956Z
+GEO:50.08;14.43
+LOCATION:Czech Inn Bar (Francouzská 240/76\, Vršovice\, Praha-Praha 10\, 
+ Czech Republic 101 00)
+URL:https://www.meetup.com/internationalsocialmeetups/events/289567406/
+LAST-MODIFIED:20220921T104956Z
+UID:event_bksnxsydcpbhc@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221126T190000
+DTEND;TZID=Europe/Prague:20221127T010000
+STATUS:CONFIRMED
+SUMMARY:Friends Matchmaking (Live DJ) Party II (SE.02)
+DESCRIPTION:Locals and Expats Meetups\nSaturday\, November 26 at 7:00 PM\
+ n\nČeský překlad Níže🇬🇧-EN- NOTE- This Event is also on Facebook so ex
+ pect more People than you see here. (Normal Strength 140-190 people) ✨Af
+ ter 10 Amaz...\n\nhttps://www.meetup.com/internationalsocialmeetups/even
+ ts/289047037/
+CLASS:PUBLIC
+CREATED:20221011T163407Z
+GEO:50.08;14.43
+LOCATION:Czech Inn Bar (Francouzská 240/76\, Vršovice\, Praha-Praha 10\, 
+ Czech Republic 101 00)
+URL:https://www.meetup.com/internationalsocialmeetups/events/289047037/
+LAST-MODIFIED:20221026T185201Z
+UID:event_289047037@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221126T190000
+DTEND;TZID=Europe/Prague:20221126T230000
+STATUS:CONFIRMED
+SUMMARY:Prague BlaBla Language Exchange Event 
+DESCRIPTION:Locals and Expats Meetups\nSaturday\, November 26 at 7:00 PM\
+ n\nPřejděte dolů na český jazyk:🇬🇧 NOTE- This Event is also on Faceboo
+ k. So\, you will see more People in the Event than meetup app (Normal St
+ rength: 40-6...\n\nhttps://www.meetup.com/internationalsocialmeetups/eve
+ nts/289585751/
+CLASS:PUBLIC
+CREATED:20220921T105257Z
+GEO:50.08;14.43
+LOCATION:Czech Inn Bar (Francouzská 240/76\, Vršovice\, Praha-Praha 10\, 
+ Czech Republic 101 00)
+URL:https://www.meetup.com/internationalsocialmeetups/events/289585751/
+LAST-MODIFIED:20220921T105257Z
+UID:event_hksnxsydcpbjc@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221130T183000
+DTEND;TZID=Europe/Prague:20221130T213000
+STATUS:CONFIRMED
+SUMMARY:(Easy) English Speaking Meetup 🇬🇧
+DESCRIPTION:Locals and Expats Meetups\nWednesday\, November 30 at 6:30 PM
+ \n\nřejděte dolů na český jazyk: -EN- 🇬🇧--FREE EVENT--🫣Do you speak B
+ ad or Good English\, are you shy of communicating with people\, or just 
+ want to make ne...\n\nhttps://www.meetup.com/internationalsocialmeetups/
+ events/289670075/
+CLASS:PUBLIC
+CREATED:20221109T113828Z
+GEO:50.08;14.43
+LOCATION:Stories in Holešovice  (Osadní 25\, 170 00 Praha 7-Holešovice  \
+ , Prague\, Czech Republic)
+URL:https://www.meetup.com/internationalsocialmeetups/events/289670075/
+LAST-MODIFIED:20221109T113828Z
+UID:event_qqqnzsydcpbnc@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221202T190000
+DTEND;TZID=Europe/Prague:20221202T230000
+STATUS:CONFIRMED
+SUMMARY:Weekly Cz & Foreigners Meetup 
+DESCRIPTION:Locals and Expats Meetups\nFriday\, December 2 at 7:00 PM\n\n
+ FREE EVENT~ NOTE- This Event is also on Facebook. So\, you will see more
+  People in the Event than meetup app (Normal Strength: 30-55 people) Joi
+ n our w...\n\nhttps://www.meetup.com/internationalsocialmeetups/events/2
+ 89713917/
+CLASS:PUBLIC
+CREATED:20220921T104956Z
+GEO:50.08;14.43
+LOCATION:Czech Inn Bar (Francouzská 240/76\, Vršovice\, Praha-Praha 10\, 
+ Czech Republic 101 00)
+URL:https://www.meetup.com/internationalsocialmeetups/events/289713917/
+LAST-MODIFIED:20220921T104956Z
+UID:event_bksnxsydcqbdb@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221203T190000
+DTEND;TZID=Europe/Prague:20221203T230000
+STATUS:CONFIRMED
+SUMMARY:Prague BlaBla Language Exchange Event 
+DESCRIPTION:Locals and Expats Meetups\nSaturday\, December 3 at 7:00 PM\n
+ \nPřejděte dolů na český jazyk:🇬🇧 NOTE- This Event is also on Facebook
+ . So\, you will see more People in the Event than meetup app (Normal Str
+ ength: 40-6...\n\nhttps://www.meetup.com/internationalsocialmeetups/even
+ ts/289731450/
+CLASS:PUBLIC
+CREATED:20220921T105257Z
+GEO:50.08;14.43
+LOCATION:Czech Inn Bar (Francouzská 240/76\, Vršovice\, Praha-Praha 10\, 
+ Czech Republic 101 00)
+URL:https://www.meetup.com/internationalsocialmeetups/events/289731450/
+LAST-MODIFIED:20220921T105257Z
+UID:event_hksnxsydcqbfb@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221207T183000
+DTEND;TZID=Europe/Prague:20221207T213000
+STATUS:CONFIRMED
+SUMMARY:(Easy) English Speaking Meetup 🇬🇧
+DESCRIPTION:Locals and Expats Meetups\nWednesday\, December 7 at 6:30 PM\
+ n\nřejděte dolů na český jazyk: -EN- 🇬🇧--FREE EVENT--🫣Do you speak Ba
+ d or Good English\, are you shy of communicating with people\, or just w
+ ant to make ne...\n\nhttps://www.meetup.com/internationalsocialmeetups/e
+ vents/289814367/
+CLASS:PUBLIC
+CREATED:20221109T113828Z
+GEO:50.08;14.43
+LOCATION:Stories in Holešovice  (Osadní 25\, 170 00 Praha 7-Holešovice  \
+ , Prague\, Czech Republic)
+URL:https://www.meetup.com/internationalsocialmeetups/events/289814367/
+LAST-MODIFIED:20221109T113828Z
+UID:event_qqqnzsydcqbkb@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221209T190000
+DTEND;TZID=Europe/Prague:20221209T230000
+STATUS:CONFIRMED
+SUMMARY:Weekly Cz & Foreigners Meetup 
+DESCRIPTION:Locals and Expats Meetups\nFriday\, December 9 at 7:00 PM\n\n
+ FREE EVENT~ NOTE- This Event is also on Facebook. So\, you will see more
+  People in the Event than meetup app (Normal Strength: 30-55 people) Joi
+ n our w...\n\nhttps://www.meetup.com/internationalsocialmeetups/events/b
+ ksnxsydcqbmb/
+CLASS:PUBLIC
+CREATED:20220921T104956Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/bksnxsydcqbm
+ b/
+LAST-MODIFIED:20220921T104956Z
+UID:event_bksnxsydcqbmb@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221210T190000
+DTEND;TZID=Europe/Prague:20221211T010000
+STATUS:CONFIRMED
+SUMMARY:Indo-Western Party (Live DJ🇮🇳)
+DESCRIPTION:Locals and Expats Meetups\nSaturday\, December 10 at 7:00 PM\
+ n\nČeský překlad Níže🇬🇧-EN- 🕺 YES! We're doing it again. I am sure yo
+ u remember our memorable Bollywood Party with amazing #DJBaerok 🙂 👫💃?
+ ?🧑‍🤝‍🧑 Join his ...\n\nhttps://www.meetup.com/internationalsocialmeet
+ ups/events/289686737/
+CLASS:PUBLIC
+CREATED:20221111T102922Z
+GEO:50.08;14.43
+LOCATION:Czech Inn Bar (Francouzská 240/76\, Vršovice\, Praha-Praha 10\, 
+ Czech Republic 101 00)
+URL:https://www.meetup.com/internationalsocialmeetups/events/289686737/
+LAST-MODIFIED:20221111T102922Z
+UID:event_289686737@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221210T190000
+DTEND;TZID=Europe/Prague:20221210T230000
+STATUS:CONFIRMED
+SUMMARY:Prague BlaBla Language Exchange Event 
+DESCRIPTION:Locals and Expats Meetups\nSaturday\, December 10 at 7:00 PM\
+ n\nPřejděte dolů na český jazyk:🇬🇧 NOTE- This Event is also on Faceboo
+ k. So\, you will see more People in the Event than meetup app (Normal St
+ rength: 40-6...\n\nhttps://www.meetup.com/internationalsocialmeetups/eve
+ nts/hksnxsydcqbnb/
+CLASS:PUBLIC
+CREATED:20220921T105257Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/hksnxsydcqbn
+ b/
+LAST-MODIFIED:20220921T105257Z
+UID:event_hksnxsydcqbnb@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221214T183000
+DTEND;TZID=Europe/Prague:20221214T213000
+STATUS:CONFIRMED
+SUMMARY:(Easy) English Speaking Meetup 🇬🇧
+DESCRIPTION:Locals and Expats Meetups\nWednesday\, December 14 at 6:30 PM
+ \n\nřejděte dolů na český jazyk: -EN- 🇬🇧--FREE EVENT--🫣Do you speak B
+ ad or Good English\, are you shy of communicating with people\, or just 
+ want to make ne...\n\nhttps://www.meetup.com/internationalsocialmeetups/
+ events/qqqnzsydcqbsb/
+CLASS:PUBLIC
+CREATED:20221109T113828Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/qqqnzsydcqbs
+ b/
+LAST-MODIFIED:20221109T113828Z
+UID:event_qqqnzsydcqbsb@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221216T190000
+DTEND;TZID=Europe/Prague:20221216T230000
+STATUS:CONFIRMED
+SUMMARY:Weekly Cz & Foreigners Meetup 
+DESCRIPTION:Locals and Expats Meetups\nFriday\, December 16 at 7:00 PM\n\
+ nFREE EVENT~ NOTE- This Event is also on Facebook. So\, you will see mor
+ e People in the Event than meetup app (Normal Strength: 30-55 people) Jo
+ in our w...\n\nhttps://www.meetup.com/internationalsocialmeetups/events/
+ bksnxsydcqbvb/
+CLASS:PUBLIC
+CREATED:20220921T104956Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/bksnxsydcqbv
+ b/
+LAST-MODIFIED:20220921T104956Z
+UID:event_bksnxsydcqbvb@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221217T190000
+DTEND;TZID=Europe/Prague:20221217T230000
+STATUS:CONFIRMED
+SUMMARY:Prague BlaBla Language Exchange Event 
+DESCRIPTION:Locals and Expats Meetups\nSaturday\, December 17 at 7:00 PM\
+ n\nPřejděte dolů na český jazyk:🇬🇧 NOTE- This Event is also on Faceboo
+ k. So\, you will see more People in the Event than meetup app (Normal St
+ rength: 40-6...\n\nhttps://www.meetup.com/internationalsocialmeetups/eve
+ nts/hksnxsydcqbwb/
+CLASS:PUBLIC
+CREATED:20220921T105257Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/hksnxsydcqbw
+ b/
+LAST-MODIFIED:20220921T105257Z
+UID:event_hksnxsydcqbwb@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221221T183000
+DTEND;TZID=Europe/Prague:20221221T213000
+STATUS:CONFIRMED
+SUMMARY:(Easy) English Speaking Meetup 🇬🇧
+DESCRIPTION:Locals and Expats Meetups\nWednesday\, December 21 at 6:30 PM
+ \n\nřejděte dolů na český jazyk: -EN- 🇬🇧--FREE EVENT--🫣Do you speak B
+ ad or Good English\, are you shy of communicating with people\, or just 
+ want to make ne...\n\nhttps://www.meetup.com/internationalsocialmeetups/
+ events/qqqnzsydcqbcc/
+CLASS:PUBLIC
+CREATED:20221109T113828Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/qqqnzsydcqbc
+ c/
+LAST-MODIFIED:20221109T113828Z
+UID:event_qqqnzsydcqbcc@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221223T190000
+DTEND;TZID=Europe/Prague:20221223T230000
+STATUS:CONFIRMED
+SUMMARY:Weekly Cz & Foreigners Meetup 
+DESCRIPTION:Locals and Expats Meetups\nFriday\, December 23 at 7:00 PM\n\
+ nFREE EVENT~ NOTE- This Event is also on Facebook. So\, you will see mor
+ e People in the Event than meetup app (Normal Strength: 30-55 people) Jo
+ in our w...\n\nhttps://www.meetup.com/internationalsocialmeetups/events/
+ bksnxsydcqbfc/
+CLASS:PUBLIC
+CREATED:20220921T104956Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/bksnxsydcqbf
+ c/
+LAST-MODIFIED:20220921T104956Z
+UID:event_bksnxsydcqbfc@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221224T190000
+DTEND;TZID=Europe/Prague:20221224T230000
+STATUS:CONFIRMED
+SUMMARY:Prague BlaBla Language Exchange Event 
+DESCRIPTION:Locals and Expats Meetups\nSaturday\, December 24 at 7:00 PM\
+ n\nPřejděte dolů na český jazyk:🇬🇧 NOTE- This Event is also on Faceboo
+ k. So\, you will see more People in the Event than meetup app (Normal St
+ rength: 40-6...\n\nhttps://www.meetup.com/internationalsocialmeetups/eve
+ nts/hksnxsydcqbgc/
+CLASS:PUBLIC
+CREATED:20220921T105257Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/hksnxsydcqbg
+ c/
+LAST-MODIFIED:20220921T105257Z
+UID:event_hksnxsydcqbgc@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221228T183000
+DTEND;TZID=Europe/Prague:20221228T213000
+STATUS:CONFIRMED
+SUMMARY:(Easy) English Speaking Meetup 🇬🇧
+DESCRIPTION:Locals and Expats Meetups\nWednesday\, December 28 at 6:30 PM
+ \n\nřejděte dolů na český jazyk: -EN- 🇬🇧--FREE EVENT--🫣Do you speak B
+ ad or Good English\, are you shy of communicating with people\, or just 
+ want to make ne...\n\nhttps://www.meetup.com/internationalsocialmeetups/
+ events/qqqnzsydcqblc/
+CLASS:PUBLIC
+CREATED:20221109T113828Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/qqqnzsydcqbl
+ c/
+LAST-MODIFIED:20221109T113828Z
+UID:event_qqqnzsydcqblc@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221230T190000
+DTEND;TZID=Europe/Prague:20221230T230000
+STATUS:CONFIRMED
+SUMMARY:Weekly Cz & Foreigners Meetup 
+DESCRIPTION:Locals and Expats Meetups\nFriday\, December 30 at 7:00 PM\n\
+ nFREE EVENT~ NOTE- This Event is also on Facebook. So\, you will see mor
+ e People in the Event than meetup app (Normal Strength: 30-55 people) Jo
+ in our w...\n\nhttps://www.meetup.com/internationalsocialmeetups/events/
+ bksnxsydcqbnc/
+CLASS:PUBLIC
+CREATED:20220921T104956Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/bksnxsydcqbn
+ c/
+LAST-MODIFIED:20220921T104956Z
+UID:event_bksnxsydcqbnc@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20221231T190000
+DTEND;TZID=Europe/Prague:20221231T230000
+STATUS:CONFIRMED
+SUMMARY:Prague BlaBla Language Exchange Event 
+DESCRIPTION:Locals and Expats Meetups\nSaturday\, December 31 at 7:00 PM\
+ n\nPřejděte dolů na český jazyk:🇬🇧 NOTE- This Event is also on Faceboo
+ k. So\, you will see more People in the Event than meetup app (Normal St
+ rength: 40-6...\n\nhttps://www.meetup.com/internationalsocialmeetups/eve
+ nts/hksnxsydcqbpc/
+CLASS:PUBLIC
+CREATED:20220921T105257Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/hksnxsydcqbp
+ c/
+LAST-MODIFIED:20220921T105257Z
+UID:event_hksnxsydcqbpc@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20230104T183000
+DTEND;TZID=Europe/Prague:20230104T213000
+STATUS:CONFIRMED
+SUMMARY:(Easy) English Speaking Meetup 🇬🇧
+DESCRIPTION:Locals and Expats Meetups\nWednesday\, January 4 at 6:30 PM\n
+ \nřejděte dolů na český jazyk: -EN- 🇬🇧--FREE EVENT--🫣Do you speak Bad
+  or Good English\, are you shy of communicating with people\, or just wa
+ nt to make ne...\n\nhttps://www.meetup.com/internationalsocialmeetups/ev
+ ents/qqqnzsyfccbgb/
+CLASS:PUBLIC
+CREATED:20221109T113828Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/qqqnzsyfccbg
+ b/
+LAST-MODIFIED:20221109T113828Z
+UID:event_qqqnzsyfccbgb@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20230106T190000
+DTEND;TZID=Europe/Prague:20230106T230000
+STATUS:CONFIRMED
+SUMMARY:Weekly Cz & Foreigners Meetup 
+DESCRIPTION:Locals and Expats Meetups\nFriday\, January 6 at 7:00 PM\n\nF
+ REE EVENT~ NOTE- This Event is also on Facebook. So\, you will see more 
+ People in the Event than meetup app (Normal Strength: 30-55 people) Join
+  our w...\n\nhttps://www.meetup.com/internationalsocialmeetups/events/bk
+ snxsyfccbjb/
+CLASS:PUBLIC
+CREATED:20220921T104956Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/bksnxsyfccbj
+ b/
+LAST-MODIFIED:20220921T104956Z
+UID:event_bksnxsyfccbjb@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20230107T190000
+DTEND;TZID=Europe/Prague:20230107T230000
+STATUS:CONFIRMED
+SUMMARY:Prague BlaBla Language Exchange Event 
+DESCRIPTION:Locals and Expats Meetups\nSaturday\, January 7 at 7:00 PM\n\
+ nPřejděte dolů na český jazyk:🇬🇧 NOTE- This Event is also on Facebook.
+  So\, you will see more People in the Event than meetup app (Normal Stre
+ ngth: 40-6...\n\nhttps://www.meetup.com/internationalsocialmeetups/event
+ s/hksnxsyfccbkb/
+CLASS:PUBLIC
+CREATED:20220921T105257Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/hksnxsyfccbk
+ b/
+LAST-MODIFIED:20220921T105257Z
+UID:event_hksnxsyfccbkb@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20230111T183000
+DTEND;TZID=Europe/Prague:20230111T213000
+STATUS:CONFIRMED
+SUMMARY:(Easy) English Speaking Meetup 🇬🇧
+DESCRIPTION:Locals and Expats Meetups\nWednesday\, January 11 at 6:30 PM\
+ n\nřejděte dolů na český jazyk: -EN- 🇬🇧--FREE EVENT--🫣Do you speak Ba
+ d or Good English\, are you shy of communicating with people\, or just w
+ ant to make ne...\n\nhttps://www.meetup.com/internationalsocialmeetups/e
+ vents/qqqnzsyfccbpb/
+CLASS:PUBLIC
+CREATED:20221109T113828Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/qqqnzsyfccbp
+ b/
+LAST-MODIFIED:20221109T113828Z
+UID:event_qqqnzsyfccbpb@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20230113T190000
+DTEND;TZID=Europe/Prague:20230113T230000
+STATUS:CONFIRMED
+SUMMARY:Weekly Cz & Foreigners Meetup 
+DESCRIPTION:Locals and Expats Meetups\nFriday\, January 13 at 7:00 PM\n\n
+ FREE EVENT~ NOTE- This Event is also on Facebook. So\, you will see more
+  People in the Event than meetup app (Normal Strength: 30-55 people) Joi
+ n our w...\n\nhttps://www.meetup.com/internationalsocialmeetups/events/b
+ ksnxsyfccbrb/
+CLASS:PUBLIC
+CREATED:20220921T104956Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/bksnxsyfccbr
+ b/
+LAST-MODIFIED:20220921T104956Z
+UID:event_bksnxsyfccbrb@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20230114T190000
+DTEND;TZID=Europe/Prague:20230114T230000
+STATUS:CONFIRMED
+SUMMARY:Prague BlaBla Language Exchange Event 
+DESCRIPTION:Locals and Expats Meetups\nSaturday\, January 14 at 7:00 PM\n
+ \nPřejděte dolů na český jazyk:🇬🇧 NOTE- This Event is also on Facebook
+ . So\, you will see more People in the Event than meetup app (Normal Str
+ ength: 40-6...\n\nhttps://www.meetup.com/internationalsocialmeetups/even
+ ts/hksnxsyfccbsb/
+CLASS:PUBLIC
+CREATED:20220921T105257Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/hksnxsyfccbs
+ b/
+LAST-MODIFIED:20220921T105257Z
+UID:event_hksnxsyfccbsb@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20230118T183000
+DTEND;TZID=Europe/Prague:20230118T213000
+STATUS:CONFIRMED
+SUMMARY:(Easy) English Speaking Meetup 🇬🇧
+DESCRIPTION:Locals and Expats Meetups\nWednesday\, January 18 at 6:30 PM\
+ n\nřejděte dolů na český jazyk: -EN- 🇬🇧--FREE EVENT--🫣Do you speak Ba
+ d or Good English\, are you shy of communicating with people\, or just w
+ ant to make ne...\n\nhttps://www.meetup.com/internationalsocialmeetups/e
+ vents/qqqnzsyfccbxb/
+CLASS:PUBLIC
+CREATED:20221109T113828Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/qqqnzsyfccbx
+ b/
+LAST-MODIFIED:20221109T113828Z
+UID:event_qqqnzsyfccbxb@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20230120T190000
+DTEND;TZID=Europe/Prague:20230120T230000
+STATUS:CONFIRMED
+SUMMARY:Weekly Cz & Foreigners Meetup 
+DESCRIPTION:Locals and Expats Meetups\nFriday\, January 20 at 7:00 PM\n\n
+ FREE EVENT~ NOTE- This Event is also on Facebook. So\, you will see more
+  People in the Event than meetup app (Normal Strength: 30-55 people) Joi
+ n our w...\n\nhttps://www.meetup.com/internationalsocialmeetups/events/b
+ ksnxsyfccbbc/
+CLASS:PUBLIC
+CREATED:20220921T104956Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/bksnxsyfccbb
+ c/
+LAST-MODIFIED:20220921T104956Z
+UID:event_bksnxsyfccbbc@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20230121T190000
+DTEND;TZID=Europe/Prague:20230121T230000
+STATUS:CONFIRMED
+SUMMARY:Prague BlaBla Language Exchange Event 
+DESCRIPTION:Locals and Expats Meetups\nSaturday\, January 21 at 7:00 PM\n
+ \nPřejděte dolů na český jazyk:🇬🇧 NOTE- This Event is also on Facebook
+ . So\, you will see more People in the Event than meetup app (Normal Str
+ ength: 40-6...\n\nhttps://www.meetup.com/internationalsocialmeetups/even
+ ts/hksnxsyfccbcc/
+CLASS:PUBLIC
+CREATED:20220921T105257Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/hksnxsyfccbc
+ c/
+LAST-MODIFIED:20220921T105257Z
+UID:event_hksnxsyfccbcc@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221118T122836Z
+DTSTART;TZID=Europe/Prague:20230125T183000
+DTEND;TZID=Europe/Prague:20230125T213000
+STATUS:CONFIRMED
+SUMMARY:(Easy) English Speaking Meetup 🇬🇧
+DESCRIPTION:Locals and Expats Meetups\nWednesday\, January 25 at 6:30 PM\
+ n\nřejděte dolů na český jazyk: -EN- 🇬🇧--FREE EVENT--🫣Do you speak Ba
+ d or Good English\, are you shy of communicating with people\, or just w
+ ant to make ne...\n\nhttps://www.meetup.com/internationalsocialmeetups/e
+ vents/qqqnzsyfccbhc/
+CLASS:PUBLIC
+CREATED:20221109T113828Z
+GEO:50.08;14.43
+URL:https://www.meetup.com/internationalsocialmeetups/events/qqqnzsyfccbh
+ c/
+LAST-MODIFIED:20221109T113828Z
+UID:event_qqqnzsyfccbhc@meetup.com
+END:VEVENT
+END:VCALENDAR

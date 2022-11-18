@@ -21,6 +21,11 @@
             "command": "npx ts-node scraper.ts"
         },
         {
+          "name": "👨🏽‍💻🔥 Parser",
+          "cwd": "./parser",
+          "command": "npx ts-node parser.ts"
+      },
+        {
             "name": "👨🏽‍💻🖊️ Writer",
             "cwd": "./scraper",
             "command": "npx ts-node writer.ts",
