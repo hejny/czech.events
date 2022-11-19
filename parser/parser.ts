@@ -9,10 +9,20 @@ async function main() {
     console.clear();
     console.log(chalk.bgBlue(' 🔥 Parser '));
     const icsString = await readFile(join(__dirname, 'mocks/meetup.ics'), 'utf-8');
+    const fullCalendar = ical.parseICS(icsString);
 
-    const ics = ical.parseICS(icsString);
+    Object.values(fullCalendar)
+        .filter(({ type }) => type === 'VEVENT')
+        .forEach((event) => console.log(JSON.stringify(event, null, 4)));
+    //.map(parseIcalToEvent);
 
-    console.log(ics);
+    console.log(Object.values(fullCalendar)[0]);
 
     console.info(chalk.bgGreen('[ Done ]'));
 }
+
+/**
+ * TODO: !!!! Sort important TODOs
+ * TODO: !!!! Make picker
+ * TODO: !!!! Save parsed to the database
+ */

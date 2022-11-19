@@ -1,0 +1,6 @@
+import ical from 'ical';
+import { Event } from '../../src/model/database/Event';
+
+function parseIcalToEvent(ical: ical.CalendarComponent & { type: 'VEVENT' }): Partial<Event> {
+    return {};
+}
