@@ -22,6 +22,8 @@ async function main() {
 }
 
 /**
+ * TODO: !!!! Find sources again
+ * TODO: !!!! Find Meetup sources
  * TODO: !!!! Sort important TODOs
  * TODO: !!!! Make picker
  * TODO: !!!! Save parsed to the database
