@@ -15,3 +15,7 @@ export function parseOnline({ semanticEvent, keywords }: { semanticEvent: ISeman
 
     return { online };
 }
+
+/**
+ * !!! isOnline
+ */

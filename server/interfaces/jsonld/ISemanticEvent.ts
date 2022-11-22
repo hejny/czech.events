@@ -83,3 +83,7 @@ export interface ISemanticGeoCoordinates {
     latitude: number | string;
     longitude: number | string;
 }
+
+/**
+ * TODO: !!! ACRY remane semanticEvent to JsonLdEvent
+ */

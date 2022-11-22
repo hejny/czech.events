@@ -8,3 +8,7 @@ export function parseCancel({ semanticEvent, keywords }: { semanticEvent: ISeman
     if (keywords.includes('postponed')) canceled = true;
     return { canceled };
 }
+
+/**
+ * !!! isCanceled
+ */

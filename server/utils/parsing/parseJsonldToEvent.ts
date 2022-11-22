@@ -26,6 +26,8 @@ export function parseJsonldToEvent({
 
         const serializeId = parseSerializeId(url || semanticEvent.url);
         const { days, startDate, durationInHours } = parseTimesAndDates({ semanticEvent });
+        const year = startDate.getFullYear();
+        const month = startDate.getMonth() + 1;
         const { keywords, keywordsFromName, keywordsFromDescription } = parseKeywordsFromSemanticEvent({
             semanticEvent,
         });
@@ -55,8 +57,8 @@ export function parseJsonldToEvent({
             type,
             web,
             city,
-            year: startDate.getFullYear(),
-            month: startDate.getMonth() + 1,
+            year,
+            month,
             days,
             time,
             price,
@@ -70,6 +72,6 @@ export function parseJsonldToEvent({
     } catch (error) {
         console.error(error);
         console.info({ semanticEvent });
-        throw new Error(`Can not create Event`);
+        throw new Error(`Can not parse Event from JSON+LD`);
     }
 }
