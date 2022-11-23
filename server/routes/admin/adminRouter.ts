@@ -3,7 +3,7 @@ import fetch from 'node-fetch';
 import { Event } from '../../../src/model/database/Event';
 import { connectionPromise } from '../../database';
 import { extractJsonldFromHtml } from '../../utils/extractJsonldFromHtml';
-import { parseJsonldToEvent } from '../../utils/parsing/parseJsonldToEvent';
+import { parseJsonldEventToEvent } from '../../utils/parsing/parseJsonldEventToEvent';
 import { ADMIN_TOKEN } from './../../config';
 
 export const adminRouter = Router();
@@ -57,7 +57,7 @@ const adminEventsRouteHandler = async (request: Request, response: Response) => 
 
                 const jsonld = await extractJsonldFromHtml(content);
 
-                const eventData = await parseJsonldToEvent({
+                const eventData = await parseJsonldEventToEvent({
                     semanticEvent: jsonld,
                     url: request.query.serializeId as string,
                 });
@@ -82,17 +82,15 @@ const adminEventsRouteHandler = async (request: Request, response: Response) => 
                 // console.error(error);
 
                 if (!request.query.html) {
-                    return response
-                        .status(400)
-                        .send({
-                            error: {
-                                name: error.name,
-                                hint: `Add &html=1 to URL to see just a HTML`,
-                                message: error.message,
-                                url: request.query.serializeId,
-                                ...error,
-                            },
-                        });
+                    return response.status(400).send({
+                        error: {
+                            name: error.name,
+                            hint: `Add &html=1 to URL to see just a HTML`,
+                            message: error.message,
+                            url: request.query.serializeId,
+                            ...error,
+                        },
+                    });
                 } else {
                     return response.status(400).send(error.unparsableHtml);
                 }

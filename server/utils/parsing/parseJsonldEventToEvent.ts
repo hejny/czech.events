@@ -1,6 +1,6 @@
 import { Event } from '../../../src/model/database/Event';
 import { ISemanticEvent } from '../../interfaces/jsonld/ISemanticEvent';
-import { decodeHexDeep } from './../decodeHexDeep';
+import { decodeHexDeep } from '../decodeHexDeep';
 import { parseCity } from './city/parseCity';
 import { parseCancel } from './parseCancel';
 import { parseEventType } from './parseEventType';
@@ -11,7 +11,7 @@ import { parsePrice } from './parsePrice';
 import { parseSerializeId } from './parseSerializeId';
 import { parseTimesAndDates } from './parseTimesAndDates';
 
-export function parseJsonldToEvent({
+export function parseJsonldEventToEvent({
     semanticEvent,
     url,
 }: {

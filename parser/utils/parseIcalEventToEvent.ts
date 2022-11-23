@@ -13,7 +13,7 @@ type IcalEventForParsing = { type: 'VEVENT' } & Pick<
     'type' | 'start' | 'end' | 'status' | 'summary' | 'description' | 'class' | 'geo' | 'location' | 'url' | 'uid'
 >;
 
-export function parseIcalToEvent(icalEvent: IcalEventForParsing): Partial<Event> {
+export function parseIcalEventToEvent(icalEvent: IcalEventForParsing): Partial<Event> {
     try {
         const serializeId: string = icalEvent.uid; /* <- TODO: Should be this processed by parseSerializeId? */
 

@@ -1,9 +1,9 @@
-import { parseIcalToEvent } from './parseIcalToEvent';
+import { parseIcalEventToEvent } from './parseIcalEventToEvent';
 
 describe('how parsing events from ical works', () => {
     it('can parse Meetup event', () => {
         expect(
-            parseIcalToEvent({
+            parseIcalEventToEvent({
                 type: 'VEVENT',
                 start: new Date('2022-11-24T17:00:00.000Z'),
                 end: new Date('2022-11-24T21:00:00.000Z'),

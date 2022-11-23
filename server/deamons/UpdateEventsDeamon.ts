@@ -4,7 +4,7 @@ import { forTime, forTimeSynced } from 'waitasecond';
 import { Event, EventVisibility } from '../../src/model/database/Event';
 import { connectionPromise } from '../database';
 import { extractJsonldFromHtml } from '../utils/extractJsonldFromHtml';
-import { parseJsonldToEvent } from '../utils/parsing/parseJsonldToEvent';
+import { parseJsonldEventToEvent } from '../utils/parsing/parseJsonldEventToEvent';
 
 export class UpdateEventsDeamon {
     // TODO: Maybe extend from some generic IDestroyable class/interface
@@ -71,7 +71,7 @@ export class UpdateEventsDeamon {
              */
 
             const jsonld = await extractJsonldFromHtml(await (await fetch(lastEvent.web)).text());
-            eventData = await parseJsonldToEvent({ semanticEvent: jsonld, url: lastEvent.web });
+            eventData = await parseJsonldEventToEvent({ semanticEvent: jsonld, url: lastEvent.web });
         } catch (error) {
             eventData = {
                 /*

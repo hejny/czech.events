@@ -4,25 +4,27 @@ import { _EVENTBRITE_SAMPLE_EVENT, _EVENTBRITE_SAMPLE_JSONLD } from '../../mocks
 import { _FACEBOOK_SAMPLE_EVENT, _FACEBOOK_SAMPLE_JSONLD } from '../../mocks/facebook';
 import { _KATALOGAKCI_SAMPLE_EVENT, _KATALOGAKCI_SAMPLE_JSONLD } from '../../mocks/katalogakci';
 import { _MEETUP_SAMPLE_EVENT, _MEETUP_SAMPLE_JSONLD } from '../../mocks/meetup';
-import { parseJsonldToEvent } from './parseJsonldToEvent';
+import { parseJsonldEventToEvent } from './parseJsonldEventToEvent';
 
 describe('how parsing events from JSON+LD works', () => {
     it('can parse Eventbrite event', () => {
-        expect(parseJsonldToEvent({ semanticEvent: _EVENTBRITE_SAMPLE_JSONLD })).toEqual(_EVENTBRITE_SAMPLE_EVENT);
+        expect(parseJsonldEventToEvent({ semanticEvent: _EVENTBRITE_SAMPLE_JSONLD })).toEqual(_EVENTBRITE_SAMPLE_EVENT);
     });
     it('can parse Facebook event', () => {
-        expect(parseJsonldToEvent({ semanticEvent: _FACEBOOK_SAMPLE_JSONLD })).toEqual(_FACEBOOK_SAMPLE_EVENT);
+        expect(parseJsonldEventToEvent({ semanticEvent: _FACEBOOK_SAMPLE_JSONLD })).toEqual(_FACEBOOK_SAMPLE_EVENT);
     });
     it('can parse KatalogAkci event', () => {
-        expect(parseJsonldToEvent({ semanticEvent: _KATALOGAKCI_SAMPLE_JSONLD })).toEqual(_KATALOGAKCI_SAMPLE_EVENT);
+        expect(parseJsonldEventToEvent({ semanticEvent: _KATALOGAKCI_SAMPLE_JSONLD })).toEqual(
+            _KATALOGAKCI_SAMPLE_EVENT,
+        );
     });
     it('can parse Meetup event', () => {
-        expect(parseJsonldToEvent({ semanticEvent: _MEETUP_SAMPLE_JSONLD })).toEqual(_MEETUP_SAMPLE_EVENT);
+        expect(parseJsonldEventToEvent({ semanticEvent: _MEETUP_SAMPLE_JSONLD })).toEqual(_MEETUP_SAMPLE_EVENT);
     });
 
     it('can parse Czechstartups.org event', () => {
         expect(
-            parseJsonldToEvent({
+            parseJsonldEventToEvent({
                 url: 'https://www.czechstartups.org/novinky/event/webexpo-2021/',
                 semanticEvent: _CZECHSTARTUPS_SAMPLE_JSONLD,
             }),
@@ -31,7 +33,7 @@ describe('how parsing events from JSON+LD works', () => {
 
     it('can parse Czechstartups.org event #2', () => {
         expect(
-            parseJsonldToEvent({
+            parseJsonldEventToEvent({
                 semanticEvent: {
                     '@context': 'https://schema.org',
                     '@type': 'Event',
