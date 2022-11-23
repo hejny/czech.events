@@ -1,8 +1,8 @@
 import ical from 'ical';
+import { parseKeywords } from 'n12';
 import { parseCity } from '../../server/utils/parsing/city/parseCity';
 import { parseCancel } from '../../server/utils/parsing/parseCancel';
 import { parseEventType } from '../../server/utils/parsing/parseEventType';
-import { parseKeywordsFromIcalEvent } from '../../server/utils/parsing/parseKeywordsFromIcalEvent';
 import { parseNameAndTopic } from '../../server/utils/parsing/parseNameAndTopic';
 import { parseOnline } from '../../server/utils/parsing/parseOnline';
 import { parseTimesAndDates } from '../../server/utils/parsing/parseTimesAndDates';
@@ -17,16 +17,22 @@ export function parseIcalEventToEvent(icalEvent: IcalEventForParsing): Partial<E
     try {
         const serializeId: string = icalEvent.uid; /* <- TODO: Should be this processed by parseSerializeId? */
 
-        const { days, startDate, durationInHours } = parseTimesAndDates({ icalEvent });
-        const year = startDate.getFullYear();
-        const month = startDate.getMonth() + 1;
-        const { keywords, keywordsFromName, keywordsFromDescription } = parseKeywordsFromIcalEvent({
-            icalEvent,
-        });
+        const { name, topic } = parseNameAndTopic(icalEvent.summary);
+
+        const startDate = icalEvent.start;
+        const endDate = icalEvent.end || icalEvent.start;
+        const { days, durationInHours, year, month } = parseTimesAndDates({ startDate, endDate });
+
+        const keywords = parseKeywords(icalEvent);
+        const keywordsFromName = parseKeywords(name);
+        const keywordsFromDescription = parseKeywords({ topic, escription: icalEvent.description });
+
+        console.log('!!!', { keywords, keywordsFromName, keywordsFromDescription });
+
         const { type } = parseEventType({ keywordsFromName, keywordsFromDescription, icalEvent, durationInHours });
         const { online } = parseOnline({ icalEvent, keywords });
         const { canceled } = parseCancel({ icalEvent, keywords });
-        const { name, topic } = parseNameAndTopic(icalEvent.summary);
+
         // [0] const { price, priceCurrency } = parsePrice({ icalEvent, keywords });
         const { city } = parseCity({ icalEvent, keywords });
 

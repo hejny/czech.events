@@ -25,9 +25,10 @@ export function parseJsonldEventToEvent({
         jsonldEvent = { description: '', ...jsonldEvent };
 
         const serializeId = parseSerializeId(url || jsonldEvent.url);
-        const { days, startDate, durationInHours } = parseTimesAndDates({ jsonldEvent });
-        const year = startDate.getFullYear();
-        const month = startDate.getMonth() + 1;
+        const startDate = new Date(jsonldEvent.startDate);
+        const endDate = new Date(jsonldEvent.endDate || jsonldEvent.startDate);
+        const { days, durationInHours, year, month } = parseTimesAndDates({ startDate, endDate });
+
         const { keywords, keywordsFromName, keywordsFromDescription } = parseKeywordsFromJsonldEvent({
             jsonldEvent,
         });
