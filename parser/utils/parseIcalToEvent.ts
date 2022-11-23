@@ -8,12 +8,12 @@ import { parseOnline } from '../../server/utils/parsing/parseOnline';
 import { parseTimesAndDates } from '../../server/utils/parsing/parseTimesAndDates';
 import { Event } from '../../src/model/database/Event';
 
-type IParseIcalInput = { type: 'VEVENT' } & Pick<
+type IcalEventForParsing = { type: 'VEVENT' } & Pick<
     ical.CalendarComponent,
     'type' | 'start' | 'end' | 'status' | 'summary' | 'description' | 'class' | 'geo' | 'location' | 'url' | 'uid'
 >;
 
-export function parseIcalToEvent(icalEvent: IParseIcalInput): Partial<Event> {
+export function parseIcalToEvent(icalEvent: IcalEventForParsing): Partial<Event> {
     try {
         const serializeId: string = icalEvent.uid; /* <- TODO: Should be this processed by parseSerializeId? */
 
@@ -62,7 +62,7 @@ export function parseIcalToEvent(icalEvent: IParseIcalInput): Partial<Event> {
     } catch (error) {
         console.error(error);
         console.info({ icalEvent });
-        throw new Error(`Can not parse Event from ICal`);
+        throw new Error(`Can not parse Event from Ical`);
     }
 }
 
