@@ -8,7 +8,7 @@ import { parseTimesAndDates } from './parseTimesAndDates';
 describe('how parsing event type works', () => {
     it('can detect conference', () => {
         expect(
-            parseEventTypeFromSementicEvent({
+            parseEventTypeFromSemanticEvent({
                 '\u0040context': 'http://schema.org',
                 '\u0040type': 'Event',
                 startDate: '2021-09-15T09:00:00+0200',
@@ -27,7 +27,7 @@ describe('how parsing event type works', () => {
         ).toEqual(EventType.CONFERENCE);
 
         expect(
-            parseEventTypeFromSementicEvent({
+            parseEventTypeFromSemanticEvent({
                 '@context': 'https://schema.org',
                 '@type': 'Event',
                 name: 'Coding4Good 2021',
@@ -67,7 +67,7 @@ describe('how parsing event type works', () => {
         ).toEqual(EventType.CONFERENCE);
 
         expect(
-            parseEventTypeFromSementicEvent({
+            parseEventTypeFromSemanticEvent({
                 '\u0040context': 'http://schema.org',
                 '\u0040type': 'Event',
                 startDate: '2021-09-30T08:00:00+0200',
@@ -89,13 +89,13 @@ describe('how parsing event type works', () => {
     /*
     TODO:
     it('can detect meetup', () => {
-        expect(parseEventTypeFromSementicEvent({...})).toEqual(EventType.MEETUP);
+        expect(parseEventTypeFromSemanticEvent({...})).toEqual(EventType.MEETUP);
     });
     */
 
     it('can detect workshop', () => {
         expect(
-            parseEventTypeFromSementicEvent({
+            parseEventTypeFromSemanticEvent({
                 '@context': 'https://schema.org',
                 '@type': 'Event',
                 name: 'Webin\u00e1\u0159: Odprezentujte sv\u016fj n\u00e1pad skv\u011ble hned napoprv\u00e9',
@@ -115,7 +115,7 @@ describe('how parsing event type works', () => {
         ).toEqual(EventType.WORKSHOP);
 
         expect(
-            parseEventTypeFromSementicEvent({
+            parseEventTypeFromSemanticEvent({
                 '@context': 'https://schema.org',
                 '@type': 'Event',
                 name: 'Workshop: Guest from Izrael - Michael Mizrahi',
@@ -142,17 +142,19 @@ describe('how parsing event type works', () => {
     /*
     TODO:
     it('can detect hackathon', () => {
-        expect(parseEventTypeFromSementicEvent({...})).toEqual(EventType.HACKATHON);
+        expect(parseEventTypeFromSemanticEvent({...})).toEqual(EventType.HACKATHON);
     });
 
     */
 });
 
-function parseEventTypeFromSementicEvent(jsonldEvent: IJsonldEvent) {
+function parseEventTypeFromSemanticEvent(jsonldEvent: IJsonldEvent) {
     jsonldEvent = decodeHexDeep(jsonldEvent);
     jsonldEvent = { description: '', ...jsonldEvent };
-    const { durationInHours } = parseTimesAndDates({ jsonldEvent });
+    const startDate = new Date(jsonldEvent.startDate);
+    const endDate = new Date(jsonldEvent.endDate || jsonldEvent.startDate);
+    const { durationInHours } = parseTimesAndDates({ startDate, endDate });
     const { keywordsFromName, keywordsFromDescription } = parseKeywordsFromJsonldEvent({ jsonldEvent });
-    const { type } = parseEventType({ keywordsFromName, keywordsFromDescription, jsonldEvent, durationInHours });
+    const { type } = parseEventType({ keywordsFromName, keywordsFromDescription, durationInHours });
     return type;
 }
