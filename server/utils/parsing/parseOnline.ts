@@ -10,7 +10,7 @@ export function parseOnline({ keywords, jsonldEvent }: { keywords: string[]; jso
     if (keywords.includes('webinár')) online = true;
 
     if (jsonldEvent?.location?.['@type'] === 'VirtualLocation') {
-        // [0]
+        // [🏙️]
         online = true;
     }
 
@@ -18,6 +18,6 @@ export function parseOnline({ keywords, jsonldEvent }: { keywords: string[]; jso
 }
 
 /**
- * TODO: [0] Can be done the same with ical - for example from geo?
+ * TODO: [🏙️] Can be done the same with ical - for example from geo?
  * !!! isOnline
  */

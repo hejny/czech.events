@@ -30,11 +30,11 @@ export function parseIcalEventToEvent(icalEvent: IcalEventForParsing): Partial<E
         console.log('!!!', { keywords, keywordsFromName, keywordsFromDescription });
 
         const { type } = parseEventType({ keywordsFromName, keywordsFromDescription, durationInHours });
-        const { online } = parseOnline({  keywords });
+        const { online } = parseOnline({ keywords });
         const { canceled } = parseCancel({ keywords });
 
         // [0] const { price, priceCurrency } = parsePrice({ icalEvent, keywords });
-        const { city } = parseCity({ icalEvent, keywords });
+        const { city } = parseCity({ keywords });
 
         // TODO: To special parse
         let time = `${startDate.getHours().toString().padStart(2, '0')}:${startDate

@@ -3,13 +3,14 @@ import { CITIES } from './CITIES';
 import { normalizeCity } from './normalizeCity';
 
 export function parseCity({
-    jsonldEvent,
     keywords,
+    jsonldEvent,
 }: {
-    jsonldEvent: IJsonldEvent;
     keywords: string[];
+    jsonldEvent?: IJsonldEvent;
 }): { city: string | null } {
     if (!jsonldEvent || !jsonldEvent.location || jsonldEvent?.location?.['@type'] === 'VirtualLocation') {
+        // [🏙️]
         return { city: null };
     }
 
@@ -51,3 +52,7 @@ export function parseCity({
 
     return { city: null };
 }
+
+/**
+ * TODO: [🏙️] Can be done the same with ical - for example from geo?
+ */
