@@ -1,8 +1,6 @@
-import { IJsonldEvent } from '../../interfaces/jsonld/IJsonldEvent';
-
-export function parseCancel({ jsonldEvent, keywords }: { jsonldEvent: IJsonldEvent; keywords: string[] }) {
+export function parseCancel({ keywords }: { keywords: string[] }) {
     let canceled = false;
-    // Probbably? Note: canceled is detected by not fetching JSON LD
+
     if (keywords.includes('zruseno')) canceled = true;
     if (keywords.includes('canceled')) canceled = true;
     if (keywords.includes('postponed')) canceled = true;
@@ -10,5 +8,6 @@ export function parseCancel({ jsonldEvent, keywords }: { jsonldEvent: IJsonldEve
 }
 
 /**
- * !!! isCanceled
+ * TODO: !!! isCanceled
+ * TODO: !!! Probbably try to fetch the event web url and from it determine if it is canceled
  */

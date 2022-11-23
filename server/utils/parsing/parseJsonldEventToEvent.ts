@@ -32,9 +32,9 @@ export function parseJsonldEventToEvent({
         const { keywords, keywordsFromName, keywordsFromDescription } = parseKeywordsFromJsonldEvent({
             jsonldEvent,
         });
-        const { type } = parseEventType({ keywordsFromName, keywordsFromDescription, jsonldEvent, durationInHours });
+        const { type } = parseEventType({ keywordsFromName, keywordsFromDescription, durationInHours });
         const { online } = parseOnline({ jsonldEvent, keywords });
-        const { canceled } = parseCancel({ jsonldEvent, keywords });
+        const { canceled } = parseCancel({ keywords });
         const { name, topic } = parseNameAndTopic(jsonldEvent.name);
         const { price, priceCurrency } = parsePrice({ jsonldEvent, keywords });
         const { city } = parseCity({ jsonldEvent, keywords });
