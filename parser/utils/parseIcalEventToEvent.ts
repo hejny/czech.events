@@ -30,7 +30,7 @@ export function parseIcalEventToEvent(icalEvent: IcalEventForParsing): Partial<E
         console.log('!!!', { keywords, keywordsFromName, keywordsFromDescription });
 
         const { type } = parseEventType({ keywordsFromName, keywordsFromDescription, durationInHours });
-        const { online } = parseOnline({ icalEvent, keywords });
+        const { online } = parseOnline({  keywords });
         const { canceled } = parseCancel({ keywords });
 
         // [0] const { price, priceCurrency } = parsePrice({ icalEvent, keywords });

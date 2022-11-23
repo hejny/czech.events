@@ -1,6 +1,6 @@
 import { IJsonldEvent } from '../../interfaces/jsonld/IJsonldEvent';
 
-export function parseOnline({ jsonldEvent, keywords }: { jsonldEvent: IJsonldEvent; keywords: string[] }) {
+export function parseOnline({ keywords, jsonldEvent }: { keywords: string[]; jsonldEvent?: IJsonldEvent }) {
     let online = false;
     if (keywords.includes('online')) online = true;
     if (keywords.includes('stream')) online = true;
@@ -10,6 +10,7 @@ export function parseOnline({ jsonldEvent, keywords }: { jsonldEvent: IJsonldEve
     if (keywords.includes('webinár')) online = true;
 
     if (jsonldEvent?.location?.['@type'] === 'VirtualLocation') {
+        // [0]
         online = true;
     }
 
@@ -17,5 +18,6 @@ export function parseOnline({ jsonldEvent, keywords }: { jsonldEvent: IJsonldEve
 }
 
 /**
+ * TODO: [0] Can be done the same with ical - for example from geo?
  * !!! isOnline
  */
