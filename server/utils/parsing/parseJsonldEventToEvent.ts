@@ -33,8 +33,8 @@ export function parseJsonldEventToEvent({
             jsonldEvent,
         });
         const { type } = parseEventType({ keywordsFromName, keywordsFromDescription, durationInHours });
-        const { online } = parseOnline({ jsonldEvent, keywords });
-        const { canceled } = parseCancel({ keywords });
+        const { isOnline } = parseOnline({ jsonldEvent, keywords });
+        const { isCanceled } = parseCancel({ keywords });
         const { name, topic } = parseNameAndTopic(jsonldEvent.name);
         const { price, priceCurrency } = parsePrice({ jsonldEvent, keywords });
         const { city } = parseCity({ jsonldEvent, keywords });
@@ -64,8 +64,8 @@ export function parseJsonldEventToEvent({
             time,
             price,
             priceCurrency,
-            online: online ? 1 : 0,
-            canceled: canceled ? 1 : 0,
+            online: isOnline ? 1 : 0,
+            canceled: isCanceled ? 1 : 0,
 
             //visibility: EventVisibility;
             //note: string | null;

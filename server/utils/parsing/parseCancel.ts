@@ -1,13 +1,12 @@
 export function parseCancel({ keywords }: { keywords: string[] }) {
-    let canceled = false;
+    let isCanceled = false;
 
-    if (keywords.includes('zruseno')) canceled = true;
-    if (keywords.includes('canceled')) canceled = true;
-    if (keywords.includes('postponed')) canceled = true;
-    return { canceled };
+    if (keywords.includes('zruseno')) isCanceled = true;
+    if (keywords.includes('canceled')) isCanceled = true;
+    if (keywords.includes('postponed')) isCanceled = true;
+    return { isCanceled };
 }
 
 /**
- * TODO: !!! isCanceled
  * TODO: !!! Probbably try to fetch the event web url and from it determine if it is canceled
  */

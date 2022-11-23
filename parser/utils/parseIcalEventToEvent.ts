@@ -30,8 +30,8 @@ export function parseIcalEventToEvent(icalEvent: IcalEventForParsing): Partial<E
         console.log('!!!', { keywords, keywordsFromName, keywordsFromDescription });
 
         const { type } = parseEventType({ keywordsFromName, keywordsFromDescription, durationInHours });
-        const { online } = parseOnline({ keywords });
-        const { canceled } = parseCancel({ keywords });
+        const { isOnline } = parseOnline({ keywords });
+        const { isCanceled } = parseCancel({ keywords });
 
         // [0] const { price, priceCurrency } = parsePrice({ icalEvent, keywords });
         const { city } = parseCity({ keywords });
@@ -62,8 +62,8 @@ export function parseIcalEventToEvent(icalEvent: IcalEventForParsing): Partial<E
             // TODO: [0] price,
             // TODO: [0] priceCurrency,
             // TODO: visibility,
-            online: online ? 1 : 0,
-            canceled: canceled ? 1 : 0,
+            online: isOnline ? 1 : 0,
+            canceled: isCanceled ? 1 : 0,
         };
     } catch (error) {
         console.error(error);
