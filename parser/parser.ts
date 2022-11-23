@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import { readFile } from 'fs/promises';
 import ical from 'ical';
 import { join } from 'path';
+import { IcalEventForParsing, parseIcalEventToEvent } from './utils/parseIcalEventToEvent';
 
 main();
 
@@ -11,13 +12,12 @@ async function main() {
     const icsString = await readFile(join(__dirname, 'mocks/meetup.ics'), 'utf-8');
     const fullCalendar = ical.parseICS(icsString);
 
-    Object.values(fullCalendar)
+    const events = Object.values(fullCalendar)
         .filter(({ type }) => type === 'VEVENT')
-        .forEach((event) => console.log(JSON.stringify(event, null, 4)));
-    //.map(parseIcalToEvent);
+        // .forEach((event) => console.log(JSON.stringify(event, null, 4)))
+        .map((event) => parseIcalEventToEvent(event as IcalEventForParsing));
 
-    console.log(Object.values(fullCalendar)[0]);
-
+    console.info(events);
     console.info(chalk.bgGreen('[ Done ]'));
 }
 

@@ -9,24 +9,26 @@ export function parseCity({
     keywords: string[];
     jsonldEvent?: IJsonldEvent;
 }): { city: string | null } {
-    if (!jsonldEvent || !jsonldEvent.location || jsonldEvent?.location?.['@type'] === 'VirtualLocation') {
+    if (jsonldEvent?.location?.['@type'] === 'VirtualLocation') {
         // [🏙️]
         return { city: null };
     }
 
-    for (const possibleCity of [jsonldEvent.location.name, jsonldEvent.location.address?.addressLocality].filter(
-        (adress) => adress !== null && adress !== undefined,
-    )) {
-        // console.log({ possibleCity });
-        // TODO: Normalize aleternatives from CITIES
+    if (jsonldEvent?.location) {
+        for (const possibleCity of [jsonldEvent.location.name, jsonldEvent.location.address?.addressLocality].filter(
+            (adress) => adress !== null && adress !== undefined,
+        )) {
+            // console.log({ possibleCity });
+            // TODO: Normalize aleternatives from CITIES
 
-        const normalizedCity = normalizeCity(possibleCity);
+            const normalizedCity = normalizeCity(possibleCity);
 
-        if (normalizedCity) {
-            return { city: normalizedCity };
-        } /*else {
+            if (normalizedCity) {
+                return { city: normalizedCity };
+            } /*else {
             console.warn(`City "${possibleCity}" is not in the list.`);
         }*/
+        }
     }
 
     const citiesFromKeywords: Set<string> = new Set();
@@ -42,6 +44,8 @@ export function parseCity({
             }
         }
     }
+
+
 
     if (citiesFromKeywords.size === 1) {
         return { city: Array.from(citiesFromKeywords)[0] };

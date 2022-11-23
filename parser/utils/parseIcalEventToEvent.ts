@@ -8,9 +8,9 @@ import { parseOnline } from '../../server/utils/parsing/parseOnline';
 import { parseTimesAndDates } from '../../server/utils/parsing/parseTimesAndDates';
 import { Event } from '../../src/model/database/Event';
 
-type IcalEventForParsing = { type: 'VEVENT' } & Pick<
+export type IcalEventForParsing = { type: 'VEVENT' } & Pick<
     ical.CalendarComponent,
-    'type' | 'start' | 'end' | 'status' | 'summary' | 'description' | 'class' | 'geo' | 'location' | 'url' | 'uid'
+    'type' | 'start' | 'end' | /*'status' | */ 'summary' | 'description' | 'class' | 'geo' | 'location' | 'url' | 'uid'
 >;
 
 export function parseIcalEventToEvent(icalEvent: IcalEventForParsing): Partial<Event> {
@@ -23,11 +23,15 @@ export function parseIcalEventToEvent(icalEvent: IcalEventForParsing): Partial<E
         const endDate = icalEvent.end || icalEvent.start;
         const { days, durationInHours, year, month } = parseTimesAndDates({ startDate, endDate });
 
-        const keywords = parseKeywords(icalEvent);
+        const keywords = parseKeywords({
+            ...icalEvent,
+            start: undefined /* <- Note: [1] It can contain city in the timezone */,
+            end: undefined /* <- Note: [1] */,
+        });
         const keywordsFromName = parseKeywords(name);
         const keywordsFromDescription = parseKeywords({ topic, escription: icalEvent.description });
 
-        console.log('!!!', { keywords, keywordsFromName, keywordsFromDescription });
+        // console.log('!!!', name, { icalEvent, keywords, keywordsFromName, keywordsFromDescription });
 
         const { type } = parseEventType({ keywordsFromName, keywordsFromDescription, durationInHours });
         const { isOnline } = parseOnline({ keywords });
