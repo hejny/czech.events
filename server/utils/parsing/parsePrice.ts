@@ -1,11 +1,11 @@
 import { EventPriceCurrency } from '../../../src/model/database/Event';
-import { ISemanticEvent } from '../../interfaces/jsonld/ISemanticEvent';
+import { IJsonldEvent } from '../../interfaces/jsonld/IJsonldEvent';
 import { makeArray } from '../makeArray';
 
-export function parsePrice({ semanticEvent, keywords }: { semanticEvent: ISemanticEvent; keywords: string[] }) {
+export function parsePrice({ jsonldEvent, keywords }: { jsonldEvent: IJsonldEvent; keywords: string[] }) {
     let price: null | number = null;
     let priceCurrency: null | EventPriceCurrency = null;
-    const bestOffer = makeArray(semanticEvent.offers)
+    const bestOffer = makeArray(jsonldEvent.offers)
         .map((offer) => {
             const price = +(offer.price ?? offer.highPrice);
             return {

@@ -1,7 +1,7 @@
 import { Event, EventType } from '../../src/model/database/Event';
-import { ISemanticEvent } from '../interfaces/jsonld/ISemanticEvent';
+import { IJsonldEvent } from '../interfaces/jsonld/IJsonldEvent';
 
-export const _MEETUP_SAMPLE_JSONLD: ISemanticEvent = {
+export const _MEETUP_SAMPLE_JSONLD: IJsonldEvent = {
     '@context': 'http://schema.org',
     '@type': 'Event',
     name: 'Online iOS Talk: Hands-on Mac Catalyst',

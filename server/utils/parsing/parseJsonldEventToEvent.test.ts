@@ -8,25 +8,23 @@ import { parseJsonldEventToEvent } from './parseJsonldEventToEvent';
 
 describe('how parsing events from JSON+LD works', () => {
     it('can parse Eventbrite event', () => {
-        expect(parseJsonldEventToEvent({ semanticEvent: _EVENTBRITE_SAMPLE_JSONLD })).toEqual(_EVENTBRITE_SAMPLE_EVENT);
+        expect(parseJsonldEventToEvent({ jsonldEvent: _EVENTBRITE_SAMPLE_JSONLD })).toEqual(_EVENTBRITE_SAMPLE_EVENT);
     });
     it('can parse Facebook event', () => {
-        expect(parseJsonldEventToEvent({ semanticEvent: _FACEBOOK_SAMPLE_JSONLD })).toEqual(_FACEBOOK_SAMPLE_EVENT);
+        expect(parseJsonldEventToEvent({ jsonldEvent: _FACEBOOK_SAMPLE_JSONLD })).toEqual(_FACEBOOK_SAMPLE_EVENT);
     });
     it('can parse KatalogAkci event', () => {
-        expect(parseJsonldEventToEvent({ semanticEvent: _KATALOGAKCI_SAMPLE_JSONLD })).toEqual(
-            _KATALOGAKCI_SAMPLE_EVENT,
-        );
+        expect(parseJsonldEventToEvent({ jsonldEvent: _KATALOGAKCI_SAMPLE_JSONLD })).toEqual(_KATALOGAKCI_SAMPLE_EVENT);
     });
     it('can parse Meetup event', () => {
-        expect(parseJsonldEventToEvent({ semanticEvent: _MEETUP_SAMPLE_JSONLD })).toEqual(_MEETUP_SAMPLE_EVENT);
+        expect(parseJsonldEventToEvent({ jsonldEvent: _MEETUP_SAMPLE_JSONLD })).toEqual(_MEETUP_SAMPLE_EVENT);
     });
 
     it('can parse Czechstartups.org event', () => {
         expect(
             parseJsonldEventToEvent({
                 url: 'https://www.czechstartups.org/novinky/event/webexpo-2021/',
-                semanticEvent: _CZECHSTARTUPS_SAMPLE_JSONLD,
+                jsonldEvent: _CZECHSTARTUPS_SAMPLE_JSONLD,
             }),
         ).toEqual(_CZECHSTARTUPS_SAMPLE_EVENT);
     });
@@ -34,7 +32,7 @@ describe('how parsing events from JSON+LD works', () => {
     it('can parse Czechstartups.org event #2', () => {
         expect(
             parseJsonldEventToEvent({
-                semanticEvent: {
+                jsonldEvent: {
                     '@context': 'https://schema.org',
                     '@type': 'Event',
                     name: '[ONLINE] CZSK PPUG Setk&#xE1;n&#xED; a pov&#xED;d&#xE1;n&#xED; 10/21',

@@ -1,9 +1,9 @@
-import { ISemanticEvent } from '../interfaces/jsonld/ISemanticEvent';
+import { IJsonldEvent } from '../interfaces/jsonld/IJsonldEvent';
 
-export async function extractJsonldFromHtml(html: string): Promise<ISemanticEvent> {
+export async function extractJsonldFromHtml(html: string): Promise<IJsonldEvent> {
     const pattern = /<script[\sa-zA-Z0-p-_="']+type=["']application\/ld\+json["'][\sa-zA-Z0-p-_="']*>(.*?)<\/script\s*>/gs;
 
-    const jsonlds: ISemanticEvent[] = [];
+    const jsonlds: IJsonldEvent[] = [];
 
     // TODO: Can I parse RegExp more elegantly - functionally?
     let match: RegExpExecArray | null;

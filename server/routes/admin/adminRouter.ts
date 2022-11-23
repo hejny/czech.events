@@ -58,7 +58,7 @@ const adminEventsRouteHandler = async (request: Request, response: Response) => 
                 const jsonld = await extractJsonldFromHtml(content);
 
                 const eventData = await parseJsonldEventToEvent({
-                    semanticEvent: jsonld,
+                    jsonldEvent: jsonld,
                     url: request.query.serializeId as string,
                 });
 

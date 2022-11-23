@@ -71,7 +71,7 @@ export class UpdateEventsDeamon {
              */
 
             const jsonld = await extractJsonldFromHtml(await (await fetch(lastEvent.web)).text());
-            eventData = await parseJsonldEventToEvent({ semanticEvent: jsonld, url: lastEvent.web });
+            eventData = await parseJsonldEventToEvent({ jsonldEvent: jsonld, url: lastEvent.web });
         } catch (error) {
             eventData = {
                 /*

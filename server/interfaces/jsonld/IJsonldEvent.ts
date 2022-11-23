@@ -3,11 +3,11 @@ type string_url = string;
 type currency = 'CZK' | 'USD' | 'EUR';
 
 /**
- * This is just apporximated version of JSON+LD semantic event taken from real data of some sites!!!
+ * This is just apporximated version of JSON+LD semantic event taken from real data of some sites
  *
  * Note: not using WithContext<Event> from 'schema-dts' (or other advanced library) because real production app did not correspond well with this rigid definition
  */
-export interface ISemanticEvent {
+export interface IJsonldEvent {
     [key: string]: string | number | object;
     '@context': 'http://schema.org' | 'https://schema.org';
     '@type': 'Event' | 'EducationEvent';
@@ -24,8 +24,8 @@ export interface ISemanticEvent {
         | 'OnlineEventAttendanceMode'
         | 'https://schema.org/OnlineEventAttendanceMode'
         | string_url;
-    offers?: ISemanticEventOffer[] | ISemanticEventOffer;
-    location?: ISemanticPlace | ISemanticPlaceVirtual;
+    offers?: IJsonldEventOffer[] | IJsonldEventOffer;
+    location?: IJsonldPlace | IJsonldPlaceVirtual;
 
     /*location: {
         url: 'https://www.eventbrite.com/e/online-ios-talk-hands-on-mac-catalyst-tickets-140831903013';
@@ -43,7 +43,7 @@ export interface ISemanticEvent {
     performers?: any;
 }
 
-export interface ISemanticEventOffer {
+export interface IJsonldEventOffer {
     // [key: string]: string | number;
     '@type': 'Offer' | 'AggregateOffer';
     name?: string;
@@ -58,7 +58,7 @@ export interface ISemanticEventOffer {
     validFrom?: string_iso_date;
 }
 
-export interface ISemanticPlace {
+export interface IJsonldPlace {
     '@type': 'Place';
     name: string;
     url?: string_url;
@@ -70,20 +70,16 @@ export interface ISemanticPlace {
         addressCountry?: string;
         telephone?: string;
     };
-    geo?: ISemanticGeoCoordinates;
+    geo?: IJsonldGeoCoordinates;
 }
 
-export interface ISemanticPlaceVirtual {
+export interface IJsonldPlaceVirtual {
     '@type': 'VirtualLocation';
     url: string_url;
 }
 
-export interface ISemanticGeoCoordinates {
+export interface IJsonldGeoCoordinates {
     '@type': 'GeoCoordinates';
     latitude: number | string;
     longitude: number | string;
 }
-
-/**
- * TODO: !!! ACRY remane semanticEvent to JsonLdEvent
- */

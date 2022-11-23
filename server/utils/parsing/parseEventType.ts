@@ -1,16 +1,16 @@
 import { EventType } from '../../../src/model/database/Event';
-import { ISemanticEvent } from '../../interfaces/jsonld/ISemanticEvent';
+import { IJsonldEvent } from '../../interfaces/jsonld/IJsonldEvent';
 import { findItemsWithBiggestQuantity } from '../findItemsWithBiggestQuantity';
 
 export function parseEventType({
     keywordsFromName,
     keywordsFromDescription,
-    semanticEvent: { name },
+    jsonldEvent: { name },
     durationInHours,
 }: {
     keywordsFromName: string[];
     keywordsFromDescription: string[];
-    semanticEvent: ISemanticEvent;
+    jsonldEvent: IJsonldEvent;
 
     durationInHours: number;
 }): { type: EventType } {

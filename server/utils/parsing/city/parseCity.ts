@@ -1,19 +1,19 @@
-import { ISemanticEvent } from '../../../interfaces/jsonld/ISemanticEvent';
+import { IJsonldEvent } from '../../../interfaces/jsonld/IJsonldEvent';
 import { CITIES } from './CITIES';
 import { normalizeCity } from './normalizeCity';
 
 export function parseCity({
-    semanticEvent,
+    jsonldEvent,
     keywords,
 }: {
-    semanticEvent: ISemanticEvent;
+    jsonldEvent: IJsonldEvent;
     keywords: string[];
 }): { city: string | null } {
-    if (!semanticEvent || !semanticEvent.location || semanticEvent?.location?.['@type'] === 'VirtualLocation') {
+    if (!jsonldEvent || !jsonldEvent.location || jsonldEvent?.location?.['@type'] === 'VirtualLocation') {
         return { city: null };
     }
 
-    for (const possibleCity of [semanticEvent.location.name, semanticEvent.location.address?.addressLocality].filter(
+    for (const possibleCity of [jsonldEvent.location.name, jsonldEvent.location.address?.addressLocality].filter(
         (adress) => adress !== null && adress !== undefined,
     )) {
         // console.log({ possibleCity });

@@ -1,7 +1,7 @@
 import { Event, EventType } from '../../src/model/database/Event';
-import { ISemanticEvent } from '../interfaces/jsonld/ISemanticEvent';
+import { IJsonldEvent } from '../interfaces/jsonld/IJsonldEvent';
 
-export const _EVENTBRITE_SAMPLE_JSONLD: ISemanticEvent = {
+export const _EVENTBRITE_SAMPLE_JSONLD: IJsonldEvent = {
     '@context': 'http://schema.org',
     '@type': 'EducationEvent',
     startDate: '2021-02-25T18:00:00+01:00',

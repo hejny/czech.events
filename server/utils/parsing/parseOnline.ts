@@ -1,6 +1,6 @@
-import { ISemanticEvent } from '../../interfaces/jsonld/ISemanticEvent';
+import { IJsonldEvent } from '../../interfaces/jsonld/IJsonldEvent';
 
-export function parseOnline({ semanticEvent, keywords }: { semanticEvent: ISemanticEvent; keywords: string[] }) {
+export function parseOnline({ jsonldEvent, keywords }: { jsonldEvent: IJsonldEvent; keywords: string[] }) {
     let online = false;
     if (keywords.includes('online')) online = true;
     if (keywords.includes('stream')) online = true;
@@ -9,7 +9,7 @@ export function parseOnline({ semanticEvent, keywords }: { semanticEvent: ISeman
     if (keywords.includes('virtual')) online = true;
     if (keywords.includes('webinár')) online = true;
 
-    if (semanticEvent?.location?.['@type'] === 'VirtualLocation') {
+    if (jsonldEvent?.location?.['@type'] === 'VirtualLocation') {
         online = true;
     }
 

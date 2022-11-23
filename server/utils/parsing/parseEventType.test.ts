@@ -1,8 +1,8 @@
 import { EventType } from '../../../src/model/database/Event';
-import { ISemanticEvent } from '../../interfaces/jsonld/ISemanticEvent';
+import { IJsonldEvent } from '../../interfaces/jsonld/IJsonldEvent';
 import { decodeHexDeep } from '../decodeHexDeep';
 import { parseEventType } from './parseEventType';
-import { parseKeywordsFromSemanticEvent } from './parseKeywordsFromSemanticEvent';
+import { parseKeywordsFromJsonldEvent } from './parseKeywordsFromJsonldEvent';
 import { parseTimesAndDates } from './parseTimesAndDates';
 
 describe('how parsing event type works', () => {
@@ -148,11 +148,11 @@ describe('how parsing event type works', () => {
     */
 });
 
-function parseEventTypeFromSementicEvent(semanticEvent: ISemanticEvent) {
-    semanticEvent = decodeHexDeep(semanticEvent);
-    semanticEvent = { description: '', ...semanticEvent };
-    const { durationInHours } = parseTimesAndDates({ semanticEvent });
-    const { keywordsFromName, keywordsFromDescription } = parseKeywordsFromSemanticEvent({ semanticEvent });
-    const { type } = parseEventType({ keywordsFromName, keywordsFromDescription, semanticEvent, durationInHours });
+function parseEventTypeFromSementicEvent(jsonldEvent: IJsonldEvent) {
+    jsonldEvent = decodeHexDeep(jsonldEvent);
+    jsonldEvent = { description: '', ...jsonldEvent };
+    const { durationInHours } = parseTimesAndDates({ jsonldEvent });
+    const { keywordsFromName, keywordsFromDescription } = parseKeywordsFromJsonldEvent({ jsonldEvent });
+    const { type } = parseEventType({ keywordsFromName, keywordsFromDescription, jsonldEvent, durationInHours });
     return type;
 }

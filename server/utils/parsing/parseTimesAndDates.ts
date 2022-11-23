@@ -1,8 +1,8 @@
-import { ISemanticEvent } from '../../interfaces/jsonld/ISemanticEvent';
+import { IJsonldEvent } from '../../interfaces/jsonld/IJsonldEvent';
 
-export function parseTimesAndDates({ semanticEvent }: { semanticEvent: ISemanticEvent }) {
-    const startDate = new Date(semanticEvent.startDate);
-    const endDate = new Date(semanticEvent.endDate || semanticEvent.startDate);
+export function parseTimesAndDates({ jsonldEvent }: { jsonldEvent: IJsonldEvent }) {
+    const startDate = new Date(jsonldEvent.startDate);
+    const endDate = new Date(jsonldEvent.endDate || jsonldEvent.startDate);
 
     const days =
         startDate.getDate() === endDate.getDate()

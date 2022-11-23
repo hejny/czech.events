@@ -1,10 +1,10 @@
 import { Event } from '../../../src/model/database/Event';
-import { ISemanticEvent } from '../../interfaces/jsonld/ISemanticEvent';
+import { IJsonldEvent } from '../../interfaces/jsonld/IJsonldEvent';
 import { decodeHexDeep } from '../decodeHexDeep';
 import { parseCity } from './city/parseCity';
 import { parseCancel } from './parseCancel';
 import { parseEventType } from './parseEventType';
-import { parseKeywordsFromSemanticEvent } from './parseKeywordsFromSemanticEvent';
+import { parseKeywordsFromJsonldEvent } from './parseKeywordsFromJsonldEvent';
 import { parseNameAndTopic } from './parseNameAndTopic';
 import { parseOnline } from './parseOnline';
 import { parsePrice } from './parsePrice';
@@ -12,31 +12,31 @@ import { parseSerializeId } from './parseSerializeId';
 import { parseTimesAndDates } from './parseTimesAndDates';
 
 export function parseJsonldEventToEvent({
-    semanticEvent,
+    jsonldEvent,
     url,
 }: {
-    semanticEvent: ISemanticEvent;
+    jsonldEvent: IJsonldEvent;
     url?: string;
 }): Partial<Event> {
     try {
         // TODO: Price is not in JSON LD and should be probbably scraped by puppeteer
 
-        semanticEvent = decodeHexDeep(semanticEvent);
-        semanticEvent = { description: '', ...semanticEvent };
+        jsonldEvent = decodeHexDeep(jsonldEvent);
+        jsonldEvent = { description: '', ...jsonldEvent };
 
-        const serializeId = parseSerializeId(url || semanticEvent.url);
-        const { days, startDate, durationInHours } = parseTimesAndDates({ semanticEvent });
+        const serializeId = parseSerializeId(url || jsonldEvent.url);
+        const { days, startDate, durationInHours } = parseTimesAndDates({ jsonldEvent });
         const year = startDate.getFullYear();
         const month = startDate.getMonth() + 1;
-        const { keywords, keywordsFromName, keywordsFromDescription } = parseKeywordsFromSemanticEvent({
-            semanticEvent,
+        const { keywords, keywordsFromName, keywordsFromDescription } = parseKeywordsFromJsonldEvent({
+            jsonldEvent,
         });
-        const { type } = parseEventType({ keywordsFromName, keywordsFromDescription, semanticEvent, durationInHours });
-        const { online } = parseOnline({ semanticEvent, keywords });
-        const { canceled } = parseCancel({ semanticEvent, keywords });
-        const { name, topic } = parseNameAndTopic(semanticEvent.name);
-        const { price, priceCurrency } = parsePrice({ semanticEvent, keywords });
-        const { city } = parseCity({ semanticEvent, keywords });
+        const { type } = parseEventType({ keywordsFromName, keywordsFromDescription, jsonldEvent, durationInHours });
+        const { online } = parseOnline({ jsonldEvent, keywords });
+        const { canceled } = parseCancel({ jsonldEvent, keywords });
+        const { name, topic } = parseNameAndTopic(jsonldEvent.name);
+        const { price, priceCurrency } = parsePrice({ jsonldEvent, keywords });
+        const { city } = parseCity({ jsonldEvent, keywords });
 
         // TODO: To special parse
         let time = `${startDate.getHours().toString().padStart(2, '0')}:${startDate
@@ -47,7 +47,7 @@ export function parseJsonldEventToEvent({
             time = null;
         }
 
-        let web = url || semanticEvent.url;
+        let web = url || jsonldEvent.url;
         web = web.split('m.facebook.com').join('www.facebook.com');
 
         return {
@@ -71,7 +71,7 @@ export function parseJsonldEventToEvent({
         };
     } catch (error) {
         console.error(error);
-        console.info({ semanticEvent });
+        console.info({ jsonldEvent });
         throw new Error(`Can not parse Event from JSON+LD`);
     }
 }

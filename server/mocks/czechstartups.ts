@@ -1,7 +1,7 @@
 import { Event, EventType } from '../../src/model/database/Event';
-import { ISemanticEvent } from '../interfaces/jsonld/ISemanticEvent';
+import { IJsonldEvent } from '../interfaces/jsonld/IJsonldEvent';
 
-export const _CZECHSTARTUPS_SAMPLE_JSONLD: ISemanticEvent = {
+export const _CZECHSTARTUPS_SAMPLE_JSONLD: IJsonldEvent = {
     '@context': 'https://schema.org',
     '@type': 'Event',
     name: 'WebExpo 2021',
