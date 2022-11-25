@@ -1,9 +1,11 @@
-export function parseCancel({ keywords }: { keywords: string[] }) {
+import { IKeywords } from 'n12';
+
+export function parseCancel({ keywords }: { keywords: IKeywords }) {
     let isCanceled = false;
 
-    if (keywords.includes('zruseno')) isCanceled = true;
-    if (keywords.includes('canceled')) isCanceled = true;
-    if (keywords.includes('postponed')) isCanceled = true;
+    if (keywords.has('zruseno')) isCanceled = true;
+    if (keywords.has('canceled')) isCanceled = true;
+    if (keywords.has('postponed')) isCanceled = true;
     return { isCanceled };
 }
 

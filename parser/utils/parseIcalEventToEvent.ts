@@ -10,11 +10,29 @@ import { Event } from '../../src/model/database/Event';
 
 export type IcalEventForParsing = { type: 'VEVENT' } & Pick<
     ical.CalendarComponent,
-    'type' | 'start' | 'end' | /*'status' | */ 'summary' | 'description' | 'class' | 'geo' | 'location' | 'url' | 'uid'
+    // TODO: [2] DRY
+    'type' | 'start' | 'end' | 'summary' | 'description' | 'class' | 'geo' | 'location' | 'url' | 'uid'
 >;
 
-export function parseIcalEventToEvent(icalEvent: IcalEventForParsing): Partial<Event> {
+export function parseIcalEventToEvent(icalEventRaw: IcalEventForParsing): Partial<Event> {
     try {
+        const icalEvent: IcalEventForParsing = {} as any;
+        for (const key of [
+            // TODO: [2] DRY
+            'type',
+            'start',
+            'end',
+            'summary',
+            'description',
+            'class',
+            'geo',
+            'location',
+            'url',
+            'uid',
+        ]) {
+            icalEvent[key] = icalEventRaw[key];
+        }
+
         const serializeId: string = icalEvent.uid; /* <- TODO: Should be this processed by parseSerializeId? */
 
         const { name, topic } = parseNameAndTopic(icalEvent.summary);
@@ -25,11 +43,12 @@ export function parseIcalEventToEvent(icalEvent: IcalEventForParsing): Partial<E
 
         const keywords = parseKeywords({
             ...icalEvent,
+            // !!! Remove for new n12 - just parseKeywords(icalEvent);
             start: undefined /* <- Note: [1] It can contain city in the timezone */,
             end: undefined /* <- Note: [1] */,
         });
         const keywordsFromName = parseKeywords(name);
-        const keywordsFromDescription = parseKeywords({ topic, escription: icalEvent.description });
+        const keywordsFromDescription = parseKeywords([topic, icalEvent.description]);
 
         // console.log('!!!', name, { icalEvent, keywords, keywordsFromName, keywordsFromDescription });
 
@@ -71,7 +90,7 @@ export function parseIcalEventToEvent(icalEvent: IcalEventForParsing): Partial<E
         };
     } catch (error) {
         console.error(error);
-        console.info({ icalEvent });
+        console.info({ icalEventRaw });
         throw new Error(`Can not parse Event from Ical`);
     }
 }

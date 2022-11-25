@@ -1,3 +1,4 @@
+import { IKeywords } from 'n12';
 import { IJsonldEvent } from '../../../interfaces/jsonld/IJsonldEvent';
 import { CITIES } from './CITIES';
 import { normalizeCity } from './normalizeCity';
@@ -6,7 +7,7 @@ export function parseCity({
     keywords,
     jsonldEvent,
 }: {
-    keywords: string[];
+    keywords: IKeywords;
     jsonldEvent?: IJsonldEvent;
 }): { city: string | null } {
     if (jsonldEvent?.location?.['@type'] === 'VirtualLocation') {
@@ -34,18 +35,16 @@ export function parseCity({
     const citiesFromKeywords: Set<string> = new Set();
 
     for (const [key, alternatives] of Object.entries(CITIES)) {
-        if (keywords.includes(key.toLowerCase())) {
+        if (keywords.has(key.toLowerCase())) {
             citiesFromKeywords.add(key);
         }
 
         for (const alternative of alternatives) {
-            if (keywords.includes(alternative.toLowerCase())) {
+            if (keywords.has(alternative.toLowerCase())) {
                 citiesFromKeywords.add(key);
             }
         }
     }
-
-
 
     if (citiesFromKeywords.size === 1) {
         return { city: Array.from(citiesFromKeywords)[0] };

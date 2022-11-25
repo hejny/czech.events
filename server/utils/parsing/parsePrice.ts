@@ -1,8 +1,9 @@
+import { IKeywords } from 'n12';
 import { EventPriceCurrency } from '../../../src/model/database/Event';
 import { IJsonldEvent } from '../../interfaces/jsonld/IJsonldEvent';
 import { makeArray } from '../makeArray';
 
-export function parsePrice({ jsonldEvent, keywords }: { jsonldEvent: IJsonldEvent; keywords: string[] }) {
+export function parsePrice({ jsonldEvent, keywords }: { jsonldEvent: IJsonldEvent; keywords: IKeywords }) {
     let price: null | number = null;
     let priceCurrency: null | EventPriceCurrency = null;
     const bestOffer = makeArray(jsonldEvent.offers)
@@ -22,7 +23,7 @@ export function parsePrice({ jsonldEvent, keywords }: { jsonldEvent: IJsonldEven
 
     if (price === 0) priceCurrency = null;
     if (price === null) {
-        if (keywords.includes('zdarma') || keywords.includes('free')) price = 0;
+        if (keywords.has('zdarma') || keywords.has('free')) price = 0;
     }
     return { price, priceCurrency };
 }

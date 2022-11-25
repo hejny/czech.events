@@ -1,3 +1,4 @@
+import { IKeywords } from 'n12';
 import { EventType } from '../../../src/model/database/Event';
 import { findItemsWithBiggestQuantity } from '../findItemsWithBiggestQuantity';
 
@@ -6,32 +7,32 @@ export function parseEventType({
     keywordsFromDescription,
     durationInHours,
 }: {
-    keywordsFromName: string[];
-    keywordsFromDescription: string[];
+    keywordsFromName: IKeywords;
+    keywordsFromDescription: IKeywords;
     durationInHours: number;
 }): { type: EventType } {
     const possibleTypes: EventType[] = [];
 
-    // Note: giving bigger priority to keywordsFromName
-    for (const keywords of [keywordsFromName, [...keywordsFromName, ...keywordsFromDescription]]) {
-        if (keywords.includes('hackathon')) possibleTypes.push(EventType.HACKATHON);
-        if (keywords.includes('startup') && keywords.includes('weekend')) possibleTypes.push(EventType.HACKATHON);
-        if (keywords.includes('meetup')) possibleTypes.push(EventType.MEETUP);
-        if (keywords.includes('sraz')) possibleTypes.push(EventType.MEETUP);
-        if (keywords.includes('srazu')) possibleTypes.push(EventType.MEETUP);
-        if (keywords.includes('setkani')) possibleTypes.push(EventType.MEETUP);
-        if (keywords.includes('workshop')) possibleTypes.push(EventType.WORKSHOP);
-        if (keywords.includes('workshopu')) possibleTypes.push(EventType.WORKSHOP);
-        if (keywords.includes('webinar')) possibleTypes.push(EventType.WORKSHOP);
-        if (keywords.includes('webinari')) possibleTypes.push(EventType.WORKSHOP);
-        if (keywords.includes('webinare')) possibleTypes.push(EventType.WORKSHOP);
-        if (keywords.includes('seminár')) possibleTypes.push(EventType.WORKSHOP);
-        if (keywords.includes('seminari')) possibleTypes.push(EventType.WORKSHOP);
-        if (keywords.includes('seminare')) possibleTypes.push(EventType.WORKSHOP);
-        if (keywords.includes('kurz')) possibleTypes.push(EventType.WORKSHOP);
-        if (keywords.includes('kurzu')) possibleTypes.push(EventType.WORKSHOP);
-        if (keywords.includes('konference')) possibleTypes.push(EventType.CONFERENCE);
-        if (keywords.includes('festival')) possibleTypes.push(EventType.CONFERENCE);
+    // TODO: Giving bigger priority to keywordsFromName
+    for (const keywords of [keywordsFromName, new Set([...keywordsFromName, ...keywordsFromDescription])]) {
+        if (keywords.has('hackathon')) possibleTypes.push(EventType.HACKATHON);
+        if (keywords.has('startup') && keywords.has('weekend')) possibleTypes.push(EventType.HACKATHON);
+        if (keywords.has('meetup')) possibleTypes.push(EventType.MEETUP);
+        if (keywords.has('sraz')) possibleTypes.push(EventType.MEETUP);
+        if (keywords.has('srazu')) possibleTypes.push(EventType.MEETUP);
+        if (keywords.has('setkani')) possibleTypes.push(EventType.MEETUP);
+        if (keywords.has('workshop')) possibleTypes.push(EventType.WORKSHOP);
+        if (keywords.has('workshopu')) possibleTypes.push(EventType.WORKSHOP);
+        if (keywords.has('webinar')) possibleTypes.push(EventType.WORKSHOP);
+        if (keywords.has('webinari')) possibleTypes.push(EventType.WORKSHOP);
+        if (keywords.has('webinare')) possibleTypes.push(EventType.WORKSHOP);
+        if (keywords.has('seminár')) possibleTypes.push(EventType.WORKSHOP);
+        if (keywords.has('seminari')) possibleTypes.push(EventType.WORKSHOP);
+        if (keywords.has('seminare')) possibleTypes.push(EventType.WORKSHOP);
+        if (keywords.has('kurz')) possibleTypes.push(EventType.WORKSHOP);
+        if (keywords.has('kurzu')) possibleTypes.push(EventType.WORKSHOP);
+        if (keywords.has('konference')) possibleTypes.push(EventType.CONFERENCE);
+        if (keywords.has('festival')) possibleTypes.push(EventType.CONFERENCE);
     }
 
     if (durationInHours < 2.5) possibleTypes.push(EventType.MEETUP, EventType.WORKSHOP);

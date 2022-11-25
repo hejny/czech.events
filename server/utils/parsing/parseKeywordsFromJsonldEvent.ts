@@ -1,11 +1,11 @@
-import { parseKeywords } from 'n12';
+import { IKeywords, parseKeywords } from 'n12';
 import { IJsonldEvent } from '../../interfaces/jsonld/IJsonldEvent';
 
 export function parseKeywordsFromJsonldEvent({
     jsonldEvent,
 }: {
     jsonldEvent: IJsonldEvent;
-}): { keywords: string[]; keywordsFromName: string[]; keywordsFromDescription: string[] } {
+}): { keywords: IKeywords; keywordsFromName: IKeywords; keywordsFromDescription: IKeywords } {
     const keywords = parseKeywords(jsonldEvent);
     const keywordsFromName = parseKeywords(jsonldEvent.name);
     const keywordsFromDescription = parseKeywords(jsonldEvent.description);
