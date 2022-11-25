@@ -20,7 +20,7 @@ async function main() {
     for (let { url } of eventSources) {
         await forPlay();
         if (url.match(/meetup\.com/)) {
-            url = url + 'events/ical';
+            url = url.replace(/(\/events)?\/?$/, '/events/ical');
         } else if (url.match(/facebook\.com/) && !url.match(/facebook\.com\/events\/ical/)) {
             continue;
         } else if (url.match(/eventbrite\.com/)) {
@@ -36,6 +36,8 @@ async function main() {
 
         const response = await fetch(url);
         const icsString = await response.text();
+
+        // console.log({ icsString });
 
         // const icsString = await readFile(join(__dirname, 'mocks/meetup.ics'), 'utf-8');
         const fullCalendar = ical.parseICS(icsString);

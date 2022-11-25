@@ -18,13 +18,15 @@
         {
             "name": "👨🏽‍💻🔥 Scraper",
             "cwd": "./scraper",
-            "command": "npx ts-node scraper.ts"
+            "command": "npx ts-node scraper.ts",
+            "focus": true
         },
         {
-          "name": "👨🏽‍💻🔥 Parser",
-          "cwd": "./parser",
-          "command": "npx ts-node parser.ts"
-      },
+            "name": "👨🏽‍💻🔥 Parser",
+            "cwd": "./parser",
+            "command": "npx ts-node parser.ts",
+            "focus": true
+        },
         {
             "name": "👨🏽‍💻🖊️ Writer",
             "cwd": "./scraper",
