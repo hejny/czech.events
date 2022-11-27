@@ -1,14 +1,13 @@
 import { locateChrome } from 'locate-app';
-import { forEver, forTime } from 'waitasecond';
+import { forImmediate } from 'waitasecond';
 import { setFacebookCookies } from '../../scraper/setFacebookCookies';
 import { FACEBOOK_COOKIES } from '../config';
 
-import { join } from 'path';
 import puppeteer from 'puppeteer-core';
 
 export async function fetchIcal(url: string, isPuppeteerUsed = false): Promise<string> {
     try {
-        let icalString;
+        let icalString: string;
 
         if (!isPuppeteerUsed) {
             const response = await fetch(url);
@@ -20,33 +19,28 @@ export async function fetchIcal(url: string, isPuppeteerUsed = false): Promise<s
                 defaultViewport: null,
             });
 
-            await forTime(1000 /* !!! */);
-
             const page = await browser.newPage();
 
             if (/^https:\/\/www.facebook.com/.test(url)) {
                 await setFacebookCookies(page, FACEBOOK_COOKIES);
             }
 
-            await forTime(1000 /* !!! */);
-            console.log(1 /* !!! */);
+            (async () => {
+                await forImmediate();
+                await page.goto(url).catch(() => {
+                    // Note: Here will just happen an error bacause puppeteer can not download a file
+                    //       But it does not matter because response is already intercepter in the code just bellow
+                });
+            })();
 
-            await (page as any)._client.send('Page.setDownloadBehavior', {
-                behavior: 'allow',
-                downloadPath: join(__dirname, 'facebook.html'),
+            icalString = await new Promise<string>((resolve, reject) => {
+                page.on('response', async (response) => {
+                    try {
+                        const content = await response.text();
+                        resolve(content);
+                    } catch (error) {}
+                });
             });
-
-            await page.goto('https://www.facebook.com');
-            //await page.goto( url /* , { waitUntil: 'networkidle0' }*/);
-
-            console.log(2 /* !!! */);
-            await forTime(1000 /* !!! */);
-            icalString = await page.content();
-
-            console.log(3 /* !!! */);
-
-            console.log({ icalString /* !!! */ });
-            await forEver();
         }
 
         // console.log({ icalString });

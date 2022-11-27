@@ -1,0 +1,12 @@
+{
+    "author": "Pavol Hejný",
+    "name": "Text ICal",
+    "description": "Show ICal as text",
+    "version": "0.0.1",
+    "manifest_version": 2,
+    "background": {
+        "scripts": ["response-interception.js"],
+        "persistent": true
+    },
+    "permissions": ["webRequest", "webRequestBlocking", "<all_urls>"]
+}
