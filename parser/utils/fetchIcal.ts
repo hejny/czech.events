@@ -1,8 +1,10 @@
+import { readdir, readFile } from 'fs/promises';
 import { locateChrome } from 'locate-app';
-import { forImmediate } from 'waitasecond';
+import { forTime } from 'waitasecond';
 import { setFacebookCookies } from '../../scraper/setFacebookCookies';
 import { FACEBOOK_COOKIES } from '../config';
 
+import { join } from 'path';
 import puppeteer from 'puppeteer-core';
 
 export async function fetchIcal(url: string, isPuppeteerUsed = false): Promise<string> {
@@ -25,26 +27,33 @@ export async function fetchIcal(url: string, isPuppeteerUsed = false): Promise<s
                 await setFacebookCookies(page, FACEBOOK_COOKIES);
             }
 
-            (async () => {
-                await forImmediate();
-                await page.goto(url).catch(() => {
-                    // Note: Here will just happen an error bacause puppeteer can not download a file
-                    //       But it does not matter because response is already intercepter in the code just bellow
-                });
-            })();
+            const downloadPath = join(__dirname, 'tmp'); /* <- !!! Better tmp folder */
 
-            icalString = await new Promise<string>((resolve, reject) => {
-                page.on('response', async (response) => {
-                    if (response.url() !== url) {
-                        return;
-                    }
-
-                    console.log(response);
-
-                    const content = await response.text();
-                    resolve(content);
-                });
+            const client = await page.target().createCDPSession();
+            await client.send('Page.setDownloadBehavior', {
+                behavior: 'allow',
+                downloadPath,
             });
+
+            await page.goto(url).catch(() => {
+                // Note: This is a weird hack without it there occurs an error "net::ERR_ABORTED"
+            });
+
+            await forTime(
+                1000 * 3 /* Note: Maybe this waiting is pointless but to be sure that the file is fully downloaded */,
+            );
+
+            // TODO: Maybe recycle the browser until the end of the parsing
+            browser.close();
+
+            const files = await readdir(downloadPath);
+
+            // !!! There is more than one downloaded file
+            //     ${downloadPath} was not clean or two parsers are running in parallel
+
+            const file = files[0];
+
+            icalString = await readFile(join(downloadPath, file), 'utf-8');
         }
 
         // console.log({ icalString });
