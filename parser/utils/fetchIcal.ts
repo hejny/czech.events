@@ -35,10 +35,14 @@ export async function fetchIcal(url: string, isPuppeteerUsed = false): Promise<s
 
             icalString = await new Promise<string>((resolve, reject) => {
                 page.on('response', async (response) => {
-                    try {
-                        const content = await response.text();
-                        resolve(content);
-                    } catch (error) {}
+                    if (response.url() !== url) {
+                        return;
+                    }
+
+                    console.log(response);
+
+                    const content = await response.text();
+                    resolve(content);
                 });
             });
         }
