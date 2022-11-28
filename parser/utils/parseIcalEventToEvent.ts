@@ -73,6 +73,13 @@ export function parseIcalEventToEvent(icalEventRaw: IcalEventForParsing): Partia
 
         // !!! Check some essentials - maybe in external util
         // !!! Do not allow empty names
+        /*
+          if (newEvent.serializeId.length < 3) {
+            // !!! Do this checking in external util
+            console.info(chalk.red(`${newEvent.name} has strange serializeId "${newEvent.serializeId}"`));
+            continue;
+        }
+        */
 
         return {
             serializeId /* <- !!! Show in adminer */,

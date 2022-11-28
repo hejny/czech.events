@@ -70,18 +70,11 @@ async function main() {
     console.log(chalk.bgBlue(' 🔥 Importer '));
 
     for (const newEvent of events) {
-        if (newEvent.serializeId.length < 3) {
-            // !!! Do this checking in external util
-            console.info(chalk.red(`${newEvent.name} has strange serializeId "${newEvent.serializeId}"`));
-            continue;
-        }
-
         const oldEvent = await connection.manager.findOne(Event, {
             where: { serializeId: newEvent.serializeId },
         });
 
-        // !!! Updating
-        // !!! Better comparison by name (and maybe topic)
+        // TODO: Updating
 
         if (oldEvent) {
             console.info(chalk.gray(`${newEvent.name} already exists in database as ${oldEvent.id}`));
@@ -100,6 +93,6 @@ async function main() {
  * TODO: !!!! Find sources again
  * TODO: !!!! Find Meetup sources
  * TODO: !!!! Sort important TODOs
- * TODO: !!!! Make picker
+ * TODO: !!!! Make Picker - probbably as another script OR by adminer view
  * TODO: !!!! Save parsed to the database
  */
