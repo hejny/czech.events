@@ -71,8 +71,11 @@ export function parseIcalEventToEvent(icalEventRaw: IcalEventForParsing): Partia
         let web = icalEvent.url;
         web = web.split('m.facebook.com').join('www.facebook.com');
 
+        // !!! Check some essentials - maybe in external util
+        // !!! Do not allow empty names
+
         return {
-            serializeId,
+            serializeId /* <- !!! Show in adminer */,
             name,
             topic,
             type,

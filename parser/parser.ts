@@ -71,6 +71,7 @@ async function main() {
 
     for (const newEvent of events) {
         if (newEvent.serializeId.length < 3) {
+            // !!! Do this checking in external util
             console.info(chalk.red(`${newEvent.name} has strange serializeId "${newEvent.serializeId}"`));
             continue;
         }
@@ -80,7 +81,7 @@ async function main() {
         });
 
         // !!! Updating
-        // !!! Better comparison by name and topic
+        // !!! Better comparison by name (and maybe topic)
 
         if (oldEvent) {
             console.info(chalk.gray(`${newEvent.name} already exists in database as ${oldEvent.id}`));
