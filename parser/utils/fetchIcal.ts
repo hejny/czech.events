@@ -1,4 +1,4 @@
-import { readdir, readFile } from 'fs/promises';
+import { readdir, readFile, unlink } from 'fs/promises';
 import { locateChrome } from 'locate-app';
 import { forTime } from 'waitasecond';
 import { setFacebookCookies } from '../../scraper/setFacebookCookies';
@@ -51,9 +51,12 @@ export async function fetchIcal(url: string, isPuppeteerUsed = false): Promise<s
             // !!! There is more than one downloaded file
             //     ${downloadPath} was not clean or two parsers are running in parallel
 
-            const file = files[0];
+            const fileName = files[0];
+            const filePath = join(downloadPath, fileName);
 
-            icalString = await readFile(join(downloadPath, file), 'utf-8');
+            icalString = await readFile(filePath, 'utf-8');
+
+            await unlink(filePath);
         }
 
         // console.log({ icalString });
