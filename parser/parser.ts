@@ -2,6 +2,7 @@ import chalk from 'chalk';
 import ical from 'ical';
 import { forPlay } from '../scraper/forPlay';
 import { connectionPromise } from '../server/database';
+import { Event } from '../src/model/database/Event';
 import { EventSource } from '../src/model/database/EventSource';
 import { fetchIcal } from './utils/fetchIcal';
 import { IcalEventForParsing, parseIcalEventToEvent } from './utils/parseIcalEventToEvent';
@@ -12,7 +13,9 @@ async function main() {
     console.clear();
     console.log(chalk.bgBlue(' 🔥 Parser '));
 
-    const eventSources = await (await connectionPromise).manager.find(EventSource, {
+    const connection = await connectionPromise;
+
+    const eventSources = await connection.manager.find(EventSource, {
         order: { id: /* !!! 'ASC'*/ 'DESC' },
     });
 
@@ -62,11 +65,32 @@ async function main() {
         } catch (error) {
             console.error(chalk.red(error));
         }
-
-        break;
     }
 
-    console.info(events);
+    console.log(chalk.bgBlue(' 🔥 Importer '));
+
+    for (const newEvent of events) {
+        if (newEvent.serializeId.length < 3) {
+            console.info(chalk.red(`${newEvent.name} has strange serializeId "${newEvent.serializeId}"`));
+            continue;
+        }
+
+        const oldEvent = await connection.manager.findOne(Event, {
+            where: { serializeId: newEvent.serializeId },
+        });
+
+        // !!! Updating
+        // !!! Better comparison by name and topic
+
+        if (oldEvent) {
+            console.info(chalk.gray(`${newEvent.name} already exists in database as ${oldEvent.id}`));
+        } else {
+            const result = await connection.manager.insert(Event, newEvent);
+            console.info(chalk.green(`${newEvent.name} added to database as ${result.identifiers[0].id}`));
+        }
+    }
+
+    // console.info(events);
     console.info(chalk.bgGreen('[ Done ]'));
     process.exit(0);
 }
