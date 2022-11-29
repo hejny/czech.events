@@ -6,6 +6,7 @@ import { removeMetalabels } from './removeMetalabels';
 export function parseNameAndTopic(
     fullName: string /*  TODO: Maybe a description as input? */,
 ): { name: string; topic: string | null } {
+    // TODO: Change for the Take library (in Collboard)
     fullName = new Chain(fullName, { log: false })
         .apply(removeMetalabels)
         .apply(expandShortcuts)
@@ -25,6 +26,10 @@ export function parseNameAndTopic(
 
         if (topic === '' || topic === 'Opět') {
             topic = null;
+        }
+
+        if (name === '' && topic !== '') {
+            return parseNameAndTopic(topic);
         }
 
         return { name, topic };

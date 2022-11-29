@@ -57,6 +57,11 @@ describe('how parsing name and topic works', () => {
             name: `Power platform user group`,
             topic: `Setkání a povídání`,
         });
+
+        expect(parseNameAndTopic(`Brno: Vánoční meetup | Frontendisti.cz`)).toEqual({
+            name: `Vánoční meetup`,
+            topic: `Frontendisti.cz`,
+        });
     });
 
     it('can parsing name and topic WITH extra meta-labels', () => {

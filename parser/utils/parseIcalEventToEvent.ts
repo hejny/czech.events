@@ -36,6 +36,8 @@ export function parseIcalEventToEvent(icalEventRaw: IcalEventForParsing): Partia
 
         const serializeId: string = icalEvent.uid; /* <- TODO: Should be this processed by parseSerializeId? */
 
+
+        
         const { name, topic } = parseNameAndTopic(icalEvent.summary);
 
         const startDate = icalEvent.start;
