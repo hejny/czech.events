@@ -1,3 +1,4 @@
+import React from 'react';
 import { Event } from '../model/database/Event';
 import { translateCurrency } from '../utils/translate';
 

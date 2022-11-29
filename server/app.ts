@@ -1,4 +1,3 @@
-import { json } from 'body-parser';
 import cors from 'cors';
 import express from 'express';
 import http from 'http';
@@ -13,7 +12,7 @@ const packageJson = require('../package.json');
 export async function createApp(): Promise<{ app: express.Application; server: http.Server }> {
     const app = express();
 
-    app.use(json());
+    // TODO: !!! Make working OR remove> app.use(json());
     app.use(cors());
 
     app.use(adminRouter);

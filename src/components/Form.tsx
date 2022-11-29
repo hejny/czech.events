@@ -1,4 +1,3 @@
-import * as React from 'react';
 import styled from 'styled-components';
 import { ApiClient } from '../api/ApiClient';
 import { Subscriber } from '../model/database/Subscriber';

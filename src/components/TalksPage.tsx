@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { ApiClient } from '../api/ApiClient';
 import { Event } from '../model/database/Event';
 import { DateRange, RangeConstant } from '../model/DateRange';

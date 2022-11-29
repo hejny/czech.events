@@ -1,4 +1,3 @@
-import * as React from 'react';
 import { Event } from '../model/database/Event';
 import { NewsletterContentPosition } from '../model/database/NewsletterContent';
 import { DateRange } from '../model/DateRange';

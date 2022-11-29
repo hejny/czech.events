@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Event } from '../model/database/Event';
 import { Subscriber } from '../model/database/Subscriber';
 import { constructObjectFromJSON } from '../utils/constructObjectFromJSON';

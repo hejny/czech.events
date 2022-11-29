@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { EventVisibility } from '../model/database/Event';
 import { IEventComponentProps } from './EventComponent';
 

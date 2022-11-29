@@ -2,7 +2,6 @@ import 'reflect-metadata';
 import { createApp } from './app';
 import { PORT } from './config';
 //import fetch from 'node-fetch';
-import { UpdateEventsDeamon } from './deamons/UpdateEventsDeamon';
 
 main();
 
@@ -18,7 +17,8 @@ async function main() {
     });
     /**/
 
-    const updateEventsDeamon = new UpdateEventsDeamon();
+    // TODO: Not using auto-updating deamon anymore
+    // const updateEventsDeamon = new UpdateEventsDeamon();
 
     // TODO As an arg
     //updateEventsDeamon.run();

@@ -1,7 +1,7 @@
 import { RequestHandler } from 'express';
 import ical from 'ical-generator';
 import moment from 'moment';
-import * as React from 'react';
+import React from 'react';
 import spaceTrim from 'spacetrim';
 import { FindConditions, In } from 'typeorm';
 import { EventSummary } from '../../src/components/EventSummary';

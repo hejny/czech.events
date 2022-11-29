@@ -1,6 +1,5 @@
 import moment from 'moment';
 import 'moment/locale/cs';
-import * as React from 'react';
 import { IEventComponentProps } from './EventComponent';
 
 export function EventTimeComponent({ event }: IEventComponentProps) {

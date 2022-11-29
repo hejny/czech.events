@@ -1,4 +1,3 @@
-import * as React from 'react';
 import spaceTrim from 'spacetrim';
 import styled from 'styled-components';
 import { PageDiv } from './PageDiv';
@@ -41,7 +40,7 @@ export function AboutPage(props: IAboutPageProps) {
                                         (Stáhnout)
                                     </a>
                                     <pre>
-                                        {spaceTrim(`                                     
+                                        {spaceTrim(`
                                             <a href="https://czech.events/">
                                                 <img src="${url}" alt="Czech.events logo" width="200" />
                                             </a>
