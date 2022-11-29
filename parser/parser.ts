@@ -76,6 +76,9 @@ async function main() {
 
         if (oldEvent) {
             const updateData = { ...newEvent };
+            delete updateData.name;
+            delete updateData.topic;
+            delete updateData.type;
             delete updateData.visibility;
 
             const updateResult = await connection
