@@ -41,7 +41,9 @@ export const getExportIcalRouteHandler: RequestHandler = async (request, respons
                 }
 
                 calendar.createEvent({
-                    start: moment(event.date /* !!! Include time into event.date */),
+                    // TODO: !! Make uid: SHA256 + salt of serializeId
+
+                    start: moment(event.date /* <- TODO: !! Include time into event.date */),
                     // TODO: !! Also include end> end: moment().add(1, 'hour'),
 
                     summary: getCharForEventTag(event.type) + jsxToString(EventSummary({ event })),
@@ -64,7 +66,7 @@ export const getExportIcalRouteHandler: RequestHandler = async (request, respons
                     `),
                     location: event.city,
                     url: event.web,
-                    id: event.serializeId /* TODO: !!! Make here some normalization + mix with Czech events */,
+                    id: event.serializeId /* <- TODO: !! Make here some normalization + mix with Czech events */,
                 });
             } catch (error) {
                 console.error(`Can not create calendar event for ${event.name}\n${error.message}`);

@@ -16,7 +16,7 @@ export async function fetchIcal(url: string, isPuppeteerUsed = false): Promise<s
             icalString = await response.text();
         } else {
             const browser = await puppeteer.launch({
-                headless: false /* <- !!! true */,
+                headless: true,
                 executablePath: await locateChrome(),
                 defaultViewport: null,
             });
@@ -27,7 +27,7 @@ export async function fetchIcal(url: string, isPuppeteerUsed = false): Promise<s
                 await setFacebookCookies(page, FACEBOOK_COOKIES);
             }
 
-            const downloadPath = join(__dirname, 'tmp'); /* <- !!! Better tmp folder */
+            const downloadPath = join(__dirname, 'tmp'); /* <- !! Better tmp folder */
 
             const client = await page.target().createCDPSession();
             await client.send('Page.setDownloadBehavior', {
@@ -48,8 +48,14 @@ export async function fetchIcal(url: string, isPuppeteerUsed = false): Promise<s
 
             const files = await readdir(downloadPath);
 
-            // !!! There is more than one downloaded file
-            //     ${downloadPath} was not clean or two parsers are running in parallel
+            if (files.length > 1) {
+                throw new Error(
+                    spaceTrim(`
+                        There is more than one downloaded file
+                        ${downloadPath} was not clean or two parsers are running in parallel
+                    `),
+                );
+            }
 
             const fileName = files[0];
             const filePath = join(downloadPath, fileName);

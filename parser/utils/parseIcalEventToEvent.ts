@@ -42,15 +42,10 @@ export function parseIcalEventToEvent(icalEventRaw: IcalEventForParsing): Partia
         const { days, durationInHours, year, month } = parseTimesAndDates({ startDate, endDate });
 
         const keywords = parseKeywords({
-            ...icalEvent,
-            // !!! Remove for new n12 - just parseKeywords(icalEvent);
-            start: undefined /* <- Note: [1] It can contain city in the timezone */,
-            end: undefined /* <- Note: [1] */,
+            icalEvent,
         });
         const keywordsFromName = parseKeywords(name);
         const keywordsFromDescription = parseKeywords([topic, icalEvent.description]);
-
-        // console.log('!!!', name, { icalEvent, keywords, keywordsFromName, keywordsFromDescription });
 
         const { type } = parseEventType({ keywordsFromName, keywordsFromDescription, durationInHours });
         const { isOnline } = parseOnline({ keywords });
@@ -82,7 +77,7 @@ export function parseIcalEventToEvent(icalEventRaw: IcalEventForParsing): Partia
         */
 
         return {
-            serializeId /* <- !!! Show in adminer */,
+            serializeId /* <- TODO: !! Show email-like strings in Adminer */,
             name,
             topic,
             type,

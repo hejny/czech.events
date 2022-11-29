@@ -1,6 +1,5 @@
 export function parseTimesAndDates({ startDate, endDate }: { startDate: Date; endDate: Date }) {
 
-// !!! What if startDate is undefined
 
     const days =
         startDate.getDate() === endDate.getDate()

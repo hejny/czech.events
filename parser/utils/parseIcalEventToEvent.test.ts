@@ -38,6 +38,6 @@ describe('how parsing events from ical works', () => {
 });
 
 /**
- * TODO: !!!! Make Facebook
- * TODO: All platforms
+ * TODO: Make Facebook sample
+ * TODO: All platforms samples
  */

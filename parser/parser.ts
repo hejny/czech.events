@@ -16,7 +16,7 @@ async function main() {
     const connection = await connectionPromise;
 
     const eventSources = await connection.manager.find(EventSource, {
-        order: { id: /* !!! 'ASC'*/ 'DESC' },
+        order: { id: 'DESC' },
     });
 
     const events = [];
@@ -106,7 +106,3 @@ async function main() {
     console.info(chalk.bgGreen('[ Done ]'));
     process.exit(0);
 }
-
-/**
- * TODO: !!! What is uid of export from czechEvents? - SHA256 + salt of serializeId
- */

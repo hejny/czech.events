@@ -42,7 +42,7 @@
         },
         {
             "name": "🌍 ssh pavolhejny.com",
-            "command": "ssh root@pavolhejny.com",
+            "command": "ssh root@138.68.100.38",
             "onlySingle": true,
             "focus": true
         },

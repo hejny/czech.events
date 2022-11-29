@@ -10,5 +10,5 @@ export function parseCancel({ keywords }: { keywords: IKeywords }) {
 }
 
 /**
- * TODO: !!! Probbably try to fetch the event web url and from it determine if it is canceled
+ * TODO: Probbably try to fetch the event web url and from it determine if it is canceled
  */

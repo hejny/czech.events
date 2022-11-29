@@ -60,7 +60,7 @@ async function main() {
     await forPlay();
 
     const eventSources = await (await connectionPromise).manager.find(EventSource, {
-        order: { id: /* !!! 'ASC'*/ 'DESC' },
+        order: { id: 'DESC' },
     });
 
     for (const eventSource of eventSources) {
@@ -141,7 +141,7 @@ async function main() {
                 const isScrapable = await Promise.race([
                     eventPage.waitForXPath(`//*[contains(@class, 'update-visible')]`).then(() => 'SCRAPABLE'),
                     eventPage.waitForXPath(`//*[contains(@class, 'update')]`).then(() => 'SCRAPED'),
-                    forTime(5000 /* !!! What is the best number to wait */).then(() => 'NOT_SCRAPABLE'),
+                    forTime(5000 /* TODO: !! What is the best number to wait */).then(() => 'NOT_SCRAPABLE'),
                 ]);
 
                 if (isScrapable === 'SCRAPABLE') {
