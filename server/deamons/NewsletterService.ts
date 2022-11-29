@@ -1,7 +1,7 @@
-import { Newsletter } from '../../../src/model/database/Newsletter';
-import { Subscriber } from '../../../src/model/database/Subscriber';
+import { Newsletter } from '../../src/model/database/Newsletter';
+import { Subscriber } from '../../src/model/database/Subscriber';
 import { forTime } from 'waitasecond';
-import { constructObjectFromJSON } from '../../../src/utils/constructObjectFromJSON';
+import { constructObjectFromJSON } from '../../src/utils/constructObjectFromJSON';
 import { databaseConnectionPromise } from '../../database';
 import { EmailService } from '../EmailService/EmailService';
 import { INewsletterServiceStatus } from './INewsletterServiceStatus';
@@ -32,14 +32,12 @@ export class NewsletterService {
     }
 
     private async initSendingLoop(test: boolean) {
-
         await this.emailService.send({
             to: 'me@pavolhejny.com',
             from: 'me+czech.events@pavolhejny.com',
             subject: 'Czech.events - NewsletterService tick started',
             body: 'test<hr/>test',
         });
-
 
         //if (test) {
         while (true) {
