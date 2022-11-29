@@ -7,6 +7,7 @@ import { parseNameAndTopic } from '../../server/utils/parsing/parseNameAndTopic'
 import { parseOnline } from '../../server/utils/parsing/parseOnline';
 import { parseTimesAndDates } from '../../server/utils/parsing/parseTimesAndDates';
 import { Event } from '../../src/model/database/Event';
+import { checkEvent } from './checkEvent';
 
 export type IcalEventForParsing = { type: 'VEVENT' } & Pick<
     ical.CalendarComponent,
@@ -66,17 +67,7 @@ export function parseIcalEventToEvent(icalEventRaw: IcalEventForParsing): Partia
         let web = icalEvent.url;
         web = web.split('m.facebook.com').join('www.facebook.com');
 
-        // !!! Check some essentials - maybe in external util
-        // !!! Do not allow empty names
-        /*
-          if (newEvent.serializeId.length < 3) {
-            // !!! Do this checking in external util
-            console.info(chalk.red(`${newEvent.name} has strange serializeId "${newEvent.serializeId}"`));
-            continue;
-        }
-        */
-
-        return {
+        return checkEvent({
             serializeId /* <- TODO: !! Show email-like strings in Adminer */,
             name,
             topic,
@@ -92,7 +83,7 @@ export function parseIcalEventToEvent(icalEventRaw: IcalEventForParsing): Partia
             // TODO: visibility,
             online: isOnline ? 1 : 0,
             canceled: isCanceled ? 1 : 0,
-        };
+        });
     } catch (error) {
         console.error(error);
         console.info({ icalEventRaw });

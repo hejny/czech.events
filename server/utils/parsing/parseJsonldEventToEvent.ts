@@ -1,3 +1,4 @@
+import { checkEvent } from '../../../parser/utils/checkEvent';
 import { Event } from '../../../src/model/database/Event';
 import { IJsonldEvent } from '../../interfaces/jsonld/IJsonldEvent';
 import { decodeHexDeep } from '../decodeHexDeep';
@@ -51,7 +52,7 @@ export function parseJsonldEventToEvent({
         let web = url || jsonldEvent.url;
         web = web.split('m.facebook.com').join('www.facebook.com');
 
-        return {
+        return checkEvent({
             serializeId,
             name,
             topic,
@@ -69,7 +70,7 @@ export function parseJsonldEventToEvent({
 
             //visibility: EventVisibility;
             //note: string | null;
-        };
+        });
     } catch (error) {
         console.error(error);
         console.info({ jsonldEvent });
