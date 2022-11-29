@@ -74,13 +74,28 @@ async function main() {
             where: { serializeId: newEvent.serializeId },
         });
 
-        // TODO: Updating
-
         if (oldEvent) {
-            console.info(chalk.gray(`${newEvent.name} already exists in database as ${oldEvent.id}`));
+            const updateData = { ...newEvent };
+            delete updateData.visibility;
+
+            const updateResult = await connection
+                .createQueryBuilder()
+                .update(Event)
+                .set(updateData)
+                .where({
+                    serializeId: newEvent.serializeId,
+                })
+                .limit(1)
+                .execute();
+
+            if (updateResult.raw.changedRows !== 0) {
+                console.info(chalk.bgBlue(`[ Updated ]`) + ' ' + chalk.blue(newEvent.name));
+            } else {
+                console.info('            ' + chalk.gray(newEvent.name));
+            }
         } else {
-            const result = await connection.manager.insert(Event, newEvent);
-            console.info(chalk.green(`${newEvent.name} added to database as ${result.identifiers[0].id}`));
+            await connection.manager.insert(Event, newEvent);
+            console.info('  ' + chalk.bgGreen(`[ Added ]`) + ' ' + chalk.green(newEvent.name));
         }
     }
 
@@ -90,9 +105,5 @@ async function main() {
 }
 
 /**
- * TODO: !!!! Find sources again
- * TODO: !!!! Find Meetup sources
- * TODO: !!!! Sort important TODOs
- * TODO: !!!! Make Picker - probbably as another script OR by adminer view
- * TODO: !!!! Save parsed to the database
+ * TODO: !!! What is uid of export from czechEvents? - SHA256 + salt of serializeId
  */
