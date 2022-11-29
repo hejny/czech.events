@@ -1,4 +1,4 @@
-import { Newsletter } from '../../src/model/database/Newsletter';
+import { NewsletterContent } from '../../src/model/database/NewsletterContent';
 import { Subscriber } from '../../src/model/database/Subscriber';
 import { forTime } from 'waitasecond';
 import { constructObjectFromJSON } from '../../src/utils/constructObjectFromJSON';
@@ -80,9 +80,9 @@ export class NewsletterService {
 
             //console.log('newslettersData', newslettersData);
 
-            const newsletters = newslettersData.map((newsletterData: Partial<Newsletter>) =>
-                constructObjectFromJSON(Newsletter, newsletterData),
-            ) as Newsletter[];
+            const newsletters = newslettersData.map((newsletterData: Partial<NewsletterContent>) =>
+                constructObjectFromJSON(NewsletterContent, newsletterData),
+            ) as NewsletterContent[];
 
             await Promise.all(newsletters.map((newsletter) => this.sendingTickOneNewsletter(newsletter, test)));
         } catch (error) {
@@ -90,7 +90,7 @@ export class NewsletterService {
         }
     }
 
-    private async sendingTickOneNewsletter(newsletter: Newsletter, test: boolean): Promise<void> {
+    private async sendingTickOneNewsletter(newsletter: NewsletterContent, test: boolean): Promise<void> {
         const databaseConnection = await databaseConnectionPromise;
         let subscribers = await databaseConnection.manager.find(Subscriber, { where: test ? { test: 1 } : {} });
         subscribers = [subscribers[0]]; // TODO: Remove after testing
