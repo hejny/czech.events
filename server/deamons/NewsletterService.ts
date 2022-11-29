@@ -2,9 +2,9 @@ import { NewsletterContent } from '../../src/model/database/NewsletterContent';
 import { Subscriber } from '../../src/model/database/Subscriber';
 import { forTime } from 'waitasecond';
 import { constructObjectFromJSON } from '../../src/utils/constructObjectFromJSON';
-import { databaseConnectionPromise } from '../../database';
 import { EmailService } from '../EmailService/EmailService';
 import { INewsletterServiceStatus } from './INewsletterServiceStatus';
+import { connectionPromise } from 'server/database';
 
 // TODO: to waitasecond
 export async function forTimeSynced(period: number, shift: number = 0): Promise<void> {
@@ -64,7 +64,7 @@ export class NewsletterService {
     }
 
     public async sendingTick(test: boolean): Promise<void> {
-        const databaseConnection = await databaseConnectionPromise;
+        const connection = await connectionPromise;
         try {
             const sql = `
                 SELECT
@@ -76,7 +76,7 @@ export class NewsletterService {
                     /* TODO: Maybe some better way how to figure out Newsletter is sent? */
             `;
 
-            const newslettersData = await databaseConnection.manager.query(sql);
+            const newslettersData = await connection.manager.query(sql);
 
             //console.log('newslettersData', newslettersData);
 
@@ -91,8 +91,8 @@ export class NewsletterService {
     }
 
     private async sendingTickOneNewsletter(newsletter: NewsletterContent, test: boolean): Promise<void> {
-        const databaseConnection = await databaseConnectionPromise;
-        let subscribers = await databaseConnection.manager.find(Subscriber, { where: test ? { test: 1 } : {} });
+        const connection = await connectionPromise;
+        let subscribers = await connection.manager.find(Subscriber, { where: test ? { test: 1 } : {} });
         subscribers = [subscribers[0]]; // TODO: Remove after testing
 
         for (const subscriber of subscribers) {
