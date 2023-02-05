@@ -1,0 +1,63 @@
+BEGIN:VCALENDAR
+VERSION:2.0
+PRODID:-//Meetup//RemoteApi//EN
+CALSCALE:GREGORIAN
+METHOD:PUBLISH
+X-ORIGINAL-URL:https://www.meetup.com/STRV-Meetups/events/ical/
+X-WR-CALNAME:Events - STRV Meetups
+BEGIN:VTIMEZONE
+TZID:Europe/Prague
+TZURL:http://tzurl.org/zoneinfo-outlook/Europe/Prague
+X-LIC-LOCATION:Europe/Prague
+BEGIN:DAYLIGHT
+TZOFFSETFROM:+0100
+TZOFFSETTO:+0200
+TZNAME:CEST
+DTSTART:19700329T020000
+RRULE:FREQ=YEARLY;BYMONTH=3;BYDAY=-1SU
+END:DAYLIGHT
+BEGIN:STANDARD
+TZOFFSETFROM:+0200
+TZOFFSETTO:+0100
+TZNAME:CET
+DTSTART:19701025T030000
+RRULE:FREQ=YEARLY;BYMONTH=10;BYDAY=-1SU
+END:STANDARD
+END:VTIMEZONE
+BEGIN:VEVENT
+DTSTAMP:20221119T103300Z
+DTSTART;TZID=Europe/Prague:20221122T180000
+DTEND;TZID=Europe/Prague:20221122T220000
+STATUS:CONFIRMED
+SUMMARY:STRV Backend Meetup - How We Build Backend BRN
+DESCRIPTION:STRV Meetups\nTuesday\, November 22 at 6:00 PM\n\n**🔥 (https
+ ://www.eventbrite.com/e/backend-meetup-how-we-build-backend-brn-tickets-
+ 464983557337?aff=meetup) 🔥** Curious about how we build backend solu...
+ \n\nhttps://www.meetup.com/strv-meetups/events/289663618/
+CLASS:PUBLIC
+CREATED:20221110T113133Z
+GEO:50.08;14.43
+LOCATION:STRV (Přízova 284/5\, Brno-střed\, Czech Republic 602 00)
+URL:https://www.meetup.com/strv-meetups/events/289663618/
+LAST-MODIFIED:20221110T113133Z
+UID:event_289663618@meetup.com
+END:VEVENT
+BEGIN:VEVENT
+DTSTAMP:20221119T103300Z
+DTSTART;TZID=Europe/Prague:20221124T180000
+DTEND;TZID=Europe/Prague:20221124T220000
+STATUS:CONFIRMED
+SUMMARY:STRV Backend Meetup - How We Build Backend PRG
+DESCRIPTION:STRV Meetups\nThursday\, November 24 at 6:00 PM\n\n**(https:/
+ /www.eventbrite.com/e/backend-meetup-how-we-build-backend-prg-tickets-46
+ 4986867237?aff=meetup)** Curious about how we build backend solution...\
+ n\nhttps://www.meetup.com/strv-meetups/events/289663632/
+CLASS:PUBLIC
+CREATED:20221110T113453Z
+GEO:50.08;14.43
+LOCATION:STRV Prague (Rohanske nabrezi 678/23\, Prague\, Czech Republic)
+URL:https://www.meetup.com/strv-meetups/events/289663632/
+LAST-MODIFIED:20221110T113453Z
+UID:event_289663632@meetup.com
+END:VEVENT
+END:VCALENDAR

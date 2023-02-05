@@ -1,0 +1,26 @@
+{
+    "compilerOptions": {
+        "target": "es6",
+        "module": "commonjs",
+        "lib": ["es2017"],
+        "rootDir": "./",
+        "downlevelIteration": true,
+        "sourceMap": false,
+        "allowJs": true,
+        "jsx": "react",
+        "moduleResolution": "node",
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitReturns": true,
+        "noImplicitThis": true,
+        "noImplicitAny": true,
+        "strictNullChecks": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "noUnusedLocals": false,
+        "esModuleInterop":true,
+        "experimentalDecorators": true,
+        "emitDecoratorMetadata":true,
+    },
+    "exclude": [
+        "node_modules"
+    ]
+}

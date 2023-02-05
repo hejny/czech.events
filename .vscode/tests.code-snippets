@@ -1,0 +1,16 @@
+{
+    "test": {
+        "scope": "typescript",
+        "prefix": "Test boilerplate",
+        "description": "Test",
+        "body": [
+            "  describe('how $1 works', () => {",
+            "      it('can $1$1__', () => {",
+            "          const $2 = new $1();",
+            "",
+            "          expect($2.$1).toEqual('$1')",
+            "      });",
+            "  });"
+        ]
+    }
+}
