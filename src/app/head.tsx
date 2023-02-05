@@ -8,3 +8,6 @@ export default function Head() {
     </>
   )
 }
+
+
+/* TODO: !!! Remove boilerplate */
