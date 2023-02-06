@@ -15,5 +15,3 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </html>
     );
 }
-
-/* TODO: !!! Remove boilerplate */
