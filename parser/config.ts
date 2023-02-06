@@ -1,7 +1,7 @@
 import { ConfigChecker } from 'configchecker';
 import dotenv from 'dotenv';
 import path from 'path';
-import { IFacebookCookies } from '../scraper/setFacebookCookies';
+import { IFacebookCookies } from './utils/setFacebookCookies';
 
 dotenv.config({ path: path.join(__dirname, '.env') });
 const config = ConfigChecker.from(process.env);

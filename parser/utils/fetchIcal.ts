@@ -2,7 +2,8 @@ import { readdir, readFile, unlink } from 'fs/promises';
 import { locateChrome } from 'locate-app';
 import { spaceTrim } from 'spacetrim';
 import { forTime } from 'waitasecond';
-import { setFacebookCookies } from '../../scraper/setFacebookCookies';
+import fetch from 'node-fetch';
+import { setFacebookCookies } from './setFacebookCookies';
 import { FACEBOOK_COOKIES } from '../config';
 
 import { join } from 'path';
