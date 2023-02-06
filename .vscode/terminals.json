@@ -16,23 +16,9 @@
             "onlySingle": false
         },
         {
-            "name": "👨🏽‍💻🔥 Scraper",
-            "cwd": "./scraper",
-            "command": "npx ts-node scraper.ts",
-            "onlySingle": true,
-            "focus": true
-        },
-        {
             "name": "👨🏽‍💻🔥 Parser",
             "cwd": "./parser",
             "command": "npx ts-node parser.ts",
-            "onlySingle": true,
-            "focus": true
-        },
-        {
-            "name": "👨🏽‍💻🖊️ Writer",
-            "cwd": "./scraper",
-            "command": "npx ts-node writer.ts",
             "onlySingle": true,
             "focus": true
         },
