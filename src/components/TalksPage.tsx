@@ -187,5 +187,6 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
 }
 
 /**
+ * TODO: !!! Compare design with current running version
  * TODO: Remake to functional component
  */
