@@ -47,6 +47,12 @@
             "focus": true
         },
         {
+            "name": "🧪 Lint",
+            "command": "npm run lint",
+            "onlySingle": true,
+            "focus": true
+        },
+        {
             "name": "🌍🧪 Check calendar feed",
             "commands": [
                 "start \"https://larrybolt.github.io/online-ics-feed-viewer/#feed=http%3A//localhost%3A7755/export/ical/czech.events.ics&cors=false&title=My%20Feed&hideinput=false\"",
