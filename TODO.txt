@@ -1,2 +1,3 @@
 TODO: !!! Remove styled-components and replace by css modules
 TODO: Deploy via Github actions
+TODO: (In old version, not sure if it will be still in the new one) In some time suddenly occures "Failed to fetch" in the

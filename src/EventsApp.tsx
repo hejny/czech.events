@@ -9,9 +9,9 @@ import { SaveUkraine } from './components/SaveUkraine';
 import { TalksPage } from './components/TalksPage';
 import * as serviceWorker from './serviceWorker';
 
-// TODO: In some time suddenly occures "Failed to fetch" in the
 
-// TODO: Join app and createApp
+// TODO: !!! Spread to Next
+
 
 export class EventsApp {
     private apiClient: ApiClient;
