@@ -6,13 +6,13 @@ import { ErrorComponent } from './ErrorComponent';
 import { Form } from './Form';
 import { LoadingComponent } from './LoadingComponent';
 import { PageDiv } from './PageDiv';
-// TODO: Remove @deprecated import { Newsletter } from '../model/database/Newsletter';
 import { Partners } from './Partners';
+// TODO: Remove @deprecated import { Newsletter } from '../model/database/Newsletter';
 import { TalksPageEmail } from './TalksPageEmail';
+import czechEventsTransparentLogoFit from '../../public/design/logos/czech.events.transparent-logo.fit.png';
+import Image from 'next/image';
 
 interface ITalksPageProps {
-    selfUrl: string;
-
     /**
      * @deprecated use prepared React context to pass apiClient
      */
@@ -71,6 +71,10 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
             // TODO: Remove @deprecated //console.log('newsletter', newsletter);
             // TODO: Remove @deprecated this.setState({ newsletter });
         } catch (error) {
+            if (!(error instanceof Error)) {
+                throw error;
+            }
+
             this.setState({ error: error.message });
         }
     }
@@ -82,11 +86,7 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                     <div className="front black">
                         <div className="inner">
                             <div className="head">
-                                <img
-                                    src={`${this.props.selfUrl}/design/logos/czech.events.transparent-logo.fit.png`}
-                                    alt="Czech.events logo"
-                                    width="200"
-                                />
+                                <Image src={czechEventsTransparentLogoFit} alt="Czech.events logo" width={200} />
 
                                 <h1>Mějte přehled o nejzajímavějších událostech z IT &amp; startupového světa.</h1>
                             </div>
@@ -116,7 +116,9 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                                     }}
                                 >
                                     {OPTIONS.map((item) => (
-                                        <option value={item.value}>{item.desc}</option>
+                                        <option key={item.value} value={item.value}>
+                                            {item.desc}
+                                        </option>
                                     ))}
                                 </select>
                             </h2>
@@ -177,9 +179,13 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                     </div>
                 </div>
                 <div className="group">
-                    <Partners {...{ selfUrl: this.props.selfUrl }} />{' '}
+                    <Partners />
                 </div>
             </PageDiv>
         );
     }
 }
+
+/**
+ * TODO: Remake to functional component
+ */

@@ -9,9 +9,7 @@ import { SaveUkraine } from './components/SaveUkraine';
 import { TalksPage } from './components/TalksPage';
 import * as serviceWorker from './serviceWorker';
 
-
 // TODO: !!! Spread to Next
-
 
 export class EventsApp {
     private apiClient: ApiClient;

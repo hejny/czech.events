@@ -17,7 +17,7 @@ export const PageDiv = styled.div`
 
     .white {
         /*We are using here standart Gmail font*/
-        font-family: Arial, Helvetica, sans-serif, 'Montserrat', serif;
+        font-family: Arial, Helvetica, sans-serif, 'Montserrat', sans-serif;
     }
 
     .white a {
@@ -36,7 +36,9 @@ export const PageDiv = styled.div`
     }
 
     .front .inner .head {
-        text-align: center;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
 
     .front .separator {
@@ -44,7 +46,7 @@ export const PageDiv = styled.div`
     }
 
     .black {
-        font-family: 'Montserrat', serif;
+        font-family: 'Montserrat', sans-serif;
         /*font-family: 'Oswald', serif;*/
     }
 
@@ -131,7 +133,7 @@ export const PageDiv = styled.div`
         border: 2px solid rgba(255, 255, 255, 0.5);
         font-weight: 100;
         font-size: 20px;
-        font-family: 'Montserrat', serif;
+        font-family: 'Montserrat', sans-serif;
     }
 
     .option-in-text option {

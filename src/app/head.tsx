@@ -11,14 +11,7 @@ export default function Head() {
             <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
             <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
             <meta property="og:image" content="https://czech.events/fb-image.jpg" />
-            <link
-                // TODO: !!! Fix Google fonts
-                // TODO: Repair what linter is saying
-                href="https://fonts.googleapis.com/css?family=Oswald|Montserrat:100,400,700,800,900&display=swap"
-                rel="stylesheet"
-                type="text/css"
-            />
-
+      
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70710834-7"></script>
             <script>
                 {`
