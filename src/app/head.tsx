@@ -12,6 +12,7 @@ export default function Head() {
             <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
             <meta property="og:image" content="https://czech.events/fb-image.jpg" />
             <link
+                // TODO: !!! Fix Google fonts
                 // TODO: Repair what linter is saying
                 href="https://fonts.googleapis.com/css?family=Oswald|Montserrat:100,400,700,800,900&display=swap"
                 rel="stylesheet"
