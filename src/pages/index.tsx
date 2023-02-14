@@ -1,5 +1,4 @@
 import spaceTrim from 'spacetrim';
-import styled from 'styled-components';
 import { PageDiv } from '../components/PageDiv/PageDiv';
 import czechEventsBlackLogo from '../../public/design/logos/czech.events.black-logo.png';
 import czechEventsWhiteLogo from '../../public/design/logos/czech.events.white-logo.png';
@@ -34,9 +33,9 @@ export default function IndexPage() {
 
     return (
         <RootLayout>
-            <PageDiv>
+            <div className="group">
                 <TalksPage {...{ apiClient }} />
-            </PageDiv>
+            </div>
         </RootLayout>
     );
 }

@@ -1,5 +1,4 @@
 import spaceTrim from 'spacetrim';
-import styled from 'styled-components';
 import { PageDiv } from '../components/PageDiv/PageDiv';
 import startupWeekendPragueLogo from '../../public/design/logos/partners/startup-weekend-prague.png';
 import startupWeekendBratislavaLogo from '../../public/design/logos/partners/startup-weekend-bratislava.png';
@@ -16,9 +15,9 @@ import { Partners } from 'src/components/Partners/Partners';
 export default function PartnersPage() {
     return (
         <RootLayout>
-            <PageDiv>
+            <div className="group">
                 <Partners />
-            </PageDiv>
+            </div>
         </RootLayout>
     );
 }

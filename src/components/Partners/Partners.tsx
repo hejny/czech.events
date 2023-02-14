@@ -1,12 +1,12 @@
 import spaceTrim from 'spacetrim';
-import styled from 'styled-components';
+import styles from './Partners.module.css';
 import { PageDiv } from '../PageDiv/PageDiv';
-import startupWeekendPragueLogo from '../../public/design/logos/partners/startup-weekend-prague.png';
-import startupWeekendBratislavaLogo from '../../public/design/logos/partners/startup-weekend-bratislava.png';
-import undoutSleepBoxLogo from '../../public/design/logos/partners/undout.png';
-import hackPragueLogo from '../../public/design/logos/partners/hackprague.svg';
-import startupBoxLogo from '../../public/design/logos/partners/startupbox.png';
-import collboardLogo from '../../public/design/logos/partners/collboard.png';
+import startupWeekendPragueLogo from '../../../public/design/logos/partners/startup-weekend-prague.png';
+import startupWeekendBratislavaLogo from '../../../public/design/logos/partners/startup-weekend-bratislava.png';
+import undoutSleepBoxLogo from '../../../public/design/logos/partners/undout.png';
+import hackPragueLogo from '../../../public/design/logos/partners/hackprague.svg';
+import startupBoxLogo from '../../../public/design/logos/partners/startupbox.png';
+import collboardLogo from '../../../public/design/logos/partners/collboard.png';
 import Image from 'next/image';
 import Head from 'next/head';
 import RootLayout from 'src/app/layout';
@@ -14,7 +14,7 @@ import { shuffleArray } from 'src/utils/shuffleArray';
 
 export function Partners() {
     return (
-        <PartnersDiv className="partners">
+        <div className={styles.Partners}>
             <h2>Partneři</h2>
 
             <div className="partners">
@@ -84,60 +84,9 @@ export function Partners() {
                     O nás
                 </Link>
                  */}
-        </PartnersDiv>
+        </div>
     );
 }
-
-export const PartnersDiv = styled.div`
-    text-align: center;
-    font-family: Arial, Helvetica, sans-serif, 'Montserrat', sans-serif;
-    color: rgb(212, 212, 212);
-    padding: 2em;
-    /* padding-top: 0; */
-
-    h2 {
-        font-size: 1.5rem;
-        font-family: 'Montserrat', sans-serif;
-    }
-
-    .partners {
-        /*/
-        border: 1px dotted red;
-        /**/
-
-        display: flex;
-        flex-wrap: wrap;
-    }
-
-    .partner {
-        /*/
-        border: 1px dotted red;
-        /**/
-
-        margin: 20px;
-
-        width: 100px;
-        display: inline-block;
-        color: white;
-        font-size: 0.9rem;
-    }
-
-    .logo {
-        width: 100px;
-        height: 100px;
-        border-radius: 7px;
-        background-size: contain;
-        background-repeat: no-repeat;
-        background-position: center;
-        margin-bottom: 10px;
-    }
-
-    .our-logos {
-        font-size: 0.8em;
-        color: white;
-        display: block;
-    }
-`;
 
 /**
  * TODO: Link back to home

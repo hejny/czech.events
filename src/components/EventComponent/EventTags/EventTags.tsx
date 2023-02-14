@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styles from './EventTags.module.css';
 import { Event } from '../../../model/database/Event';
 import { CalendarLink } from './CalendarLink/CalendarLink';
 import { IEventComponentProps } from '../EventComponent';
@@ -20,49 +20,40 @@ export function getEventTags(event: Event): JSX.Element[] {
     */
 
     if (event.canceled === 1) {
-        tags.push(<EventTagSpan key="canceled">🚫&nbsp;Zrušeno&nbsp;</EventTagSpan>);
+        tags.push(
+            <span className={styles.canceled} key="canceled">
+                🚫&nbsp;Zrušeno&nbsp;
+            </span>,
+        );
     }
     if (event.city) {
         tags.push(
-            <EventTagSpan key="city">
+            <span key="city">
                 {getCharForCity(event.city)}&nbsp;{event.city}&nbsp;
-            </EventTagSpan>,
+            </span>,
         );
     }
     if (event.online) {
-        tags.push(<EventTagSpan key="online">🌍&nbsp;Online&nbsp;</EventTagSpan>);
+        tags.push(<span key="online">🌍&nbsp;Online&nbsp;</span>);
     }
 
     tags.push(
-        <EventTagSpan key="date">
+        <span key="date">
             <CalendarLink event={event}>
                 <EventDateComponent {...{ event }} />
             </CalendarLink>
-        </EventTagSpan>,
+        </span>,
     );
     tags.push(
-        <EventTagSpan key="time">
+        <span key="time">
             <EventTimeComponent {...{ event }} />
-        </EventTagSpan>,
+        </span>,
     );
     tags.push(
-        <EventTagSpan key="price">
+        <span key="price">
             <EventPrice {...{ event }} />
-        </EventTagSpan>,
+        </span>,
     );
 
     return tags;
 }
-
-const EventTagSpan = styled.span`
-    /*border: 1px dashed red;*/
-
-    &:not(:first-child) {
-        padding-left: 0.1rem;
-        margin-left: 0.1rem;
-
-        /*
-        border-left: 1px solid #777;
-        /*margin-left: 0px;*/
-    }
-`;

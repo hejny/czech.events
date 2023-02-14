@@ -5,11 +5,11 @@ import { DateRange, RangeConstant } from '../../model/DateRange';
 import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
 import { Form } from '../Form/Form';
 import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
-import { PageDiv } from '../PageDiv/PageDiv';
+import styles from '../../pages/page.module.css';
 import { Partners } from '../Partners/Partners';
 // TODO: Remove @deprecated import { Newsletter } from '../model/database/Newsletter';
 import { TalksPageEmail } from '../TalksPageEmail/TalksPageEmail';
-import czechEventsTransparentLogoFit from '../../public/design/logos/czech.events.transparent-logo.fit.png';
+import czechEventsTransparentLogoFit from '../../../public/design/logos/czech.events.transparent-logo.fit.png';
 import Image from 'next/image';
 
 interface ITalksPageProps {
@@ -81,7 +81,8 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
 
     render() {
         return (
-            <PageDiv>
+            // !!! Why so many nested groups
+            <div className="page">
                 <div className="group">
                     <div className="front black">
                         <div className="inner">
@@ -181,7 +182,7 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                 <div className="group">
                     <Partners />
                 </div>
-            </PageDiv>
+            </div>
         );
     }
 }

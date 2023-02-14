@@ -1,12 +1,10 @@
 import React from 'react';
-import styled from 'styled-components';
+import styles from './ErrorComponent.module.css';
 
-// TODO: Deprecated remove
 export function ErrorComponent({ children }: React.PropsWithChildren<{}>) {
-    return <ErrorDiv>{children}</ErrorDiv>;
+    return <div className={styles.ErrorComponent}>{children}</div>;
 }
 
-const ErrorDiv = styled.form`
-    background-color: #f00;
-    color: #fff;
-`;
+/**
+ * TODO: This component is deprecated and should be removed
+ */

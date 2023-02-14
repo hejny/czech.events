@@ -1,10 +1,5 @@
-import styled from 'styled-components';
+import styles from './LoadingComponent.module.css';
 
 export function LoadingComponent() {
-    return <LoadingDiv>Načítání...</LoadingDiv>;
+    return <div className={styles.LoadingComponent}>Načítání...</div>;
 }
-
-const LoadingDiv = styled.form`
-    background-color: #ccc;
-    color: #fff;
-`;

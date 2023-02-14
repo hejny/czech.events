@@ -1,5 +1,5 @@
 import React from 'react';
-import styled from 'styled-components';
+import styles from './CalendarLink.module.css';
 import { ApiClientContext } from '../../../../api/ApiClient';
 import { IEventComponentProps } from '../../EventComponent';
 
@@ -12,9 +12,9 @@ export function CalendarLink({ event, children }: ICalendarLinkProps) {
         return <>{children}</>;
     }
 
-    return <CalendarA href={apiClient.createEventCalendarUrl(event)}>{children}</CalendarA>;
+    return (
+        <a className={styles.CalendarLink} href={apiClient.createEventCalendarUrl(event)}>
+            {children}
+        </a>
+    );
 }
-
-const CalendarA = styled.a`
-    text-decoration: none;
-`;
