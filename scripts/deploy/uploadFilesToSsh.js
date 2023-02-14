@@ -23,8 +23,9 @@ export async function uploadFilesToSsh(sshCredentials, localDir, remoteDir, only
             }
         })
         .map((file) => path.normalize(file));
+
     const files = localFiles.map((localFile) => {
-        const remoteFile = localFile.replace(localDir, remoteDir).split('\\').join('/');
+        const remoteFile = localFile.split('\\').join('/').replace(localDir, remoteDir).split('\\').join('/');
 
         return {
             localFile,
@@ -44,7 +45,7 @@ export async function uploadFilesToSsh(sshCredentials, localDir, remoteDir, only
 
     await Promise.all(
         files.map(async ({ localFile, remoteFile }) => {
-            //console.info(`Uploading file "${remoteFile}"...`);
+            console.info(`Uploading file "${remoteFile}"...`);
             //console.info('localFile', localFile);
             //console.info('remoteFile', remoteFile);
             //console.info('-----');
@@ -61,7 +62,7 @@ export async function uploadFilesToSsh(sshCredentials, localDir, remoteDir, only
             .split('\\')
             .join('/');
 
-  
+
         console.info(`Uploading file "${remoteFile}"...`);
         //console.info('localFile', localFile);
         //console.info('remoteFile', remoteFile);

@@ -8,7 +8,7 @@ export async function deployApi(remote) {
     const remoteDir = path.join(remote.baseVersionsDir, version).split('\\').join('/');
 
     /**/
-    await uploadFilesToSsh(remote.credentials, path.join(__dirname, '..', '..'), remoteDir, [
+    await uploadFilesToSsh(remote.credentials, path.join(__dirname, '..', '..').split('\\').join('/'), remoteDir, [
         'server',
         'parser',
         'src',
