@@ -1,12 +1,12 @@
-import { Event } from '../model/database/Event';
-import { NewsletterContentPosition } from '../model/database/NewsletterContent';
-import { DateRange } from '../model/DateRange';
-import { createNewsletter } from '../utils/createNewsletter';
-import { joinArray } from '../utils/joinArray';
-import { randomItem } from '../utils/randomItem';
-import { shuffleArray } from '../utils/shuffleArray';
-import { NewsletterComponent } from './NewsletterComponent';
-import { NewsletterContentsComponent } from './NewsletterContentsComponent';
+import { Event } from '../../model/database/Event';
+import { NewsletterContentPosition } from '../../model/database/NewsletterContent';
+import { DateRange } from '../../model/DateRange';
+import { createNewsletter } from '../../utils/createNewsletter';
+import { joinArray } from '../../utils/joinArray';
+import { randomItem } from '../../utils/randomItem';
+import { shuffleArray } from '../../utils/shuffleArray';
+import { NewsletterComponent } from '../NewsletterComponent/NewsletterComponent';
+import { NewsletterContentsComponent } from '../NewsletterComponent/NewsletterContentsComponent/NewsletterContentsComponent';
 
 // TODO: Remove @deprecated import { Newsletter } from '../model/database/Newsletter';
 

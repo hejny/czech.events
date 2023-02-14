@@ -1,6 +1,6 @@
 import React from 'react';
-import { Event } from '../model/database/Event';
-import { EventPrice } from './EventPrice';
+import { Event } from '../../model/database/Event';
+import { EventPrice } from '../EventComponent/EventPrice/EventPrice';
 
 interface IEventCodeParagraphProps {
     event: Event;

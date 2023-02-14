@@ -1,6 +1,6 @@
 import React from 'react';
-import { Event } from '../model/database/Event';
-import { translateCurrency } from '../utils/translate';
+import { Event } from '../../../model/database/Event';
+import { translateCurrency } from '../../../utils/translate';
 
 interface IEventPriceProps {
     event: Event;

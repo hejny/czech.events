@@ -1,7 +1,7 @@
 import React from 'react';
 import moment from 'moment';
 import 'moment/locale/cs';
-import { IEventComponentProps } from './EventComponent';
+import { IEventComponentProps } from '../EventComponent';
 
 export function EventTimeComponent({ event }: IEventComponentProps) {
     const { time } = event;

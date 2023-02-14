@@ -1,9 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Event } from '../model/database/Event';
-import { EventCodeParagraph } from './EventCodeParagraph';
-import { EventSummary } from './EventSummary';
-import { EventTags } from './EventTags';
+import { Event } from '../../model/database/Event';
+import { EventCodeParagraph } from '../EventCodeParagraph/EventCodeParagraph';
+import { EventSummary } from './EventSummary/EventSummary';
+import { EventTags } from './EventTags/EventTags';
 
 export interface IEventComponentProps {
     event: Event;

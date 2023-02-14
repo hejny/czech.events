@@ -1,6 +1,6 @@
 import React from 'react';
-import { EventVisibility } from '../model/database/Event';
-import { IEventComponentProps } from './EventComponent';
+import { EventVisibility } from '../../../model/database/Event';
+import { IEventComponentProps } from '../EventComponent';
 
 export function EventSummary({ event }: IEventComponentProps) {
     return (

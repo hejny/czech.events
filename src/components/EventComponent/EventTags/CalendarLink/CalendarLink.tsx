@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { ApiClientContext } from '../api/ApiClient';
-import { IEventComponentProps } from './EventComponent';
+import { ApiClientContext } from '../../../../api/ApiClient';
+import { IEventComponentProps } from '../../EventComponent';
 
 export type ICalendarLinkProps = React.PropsWithChildren<IEventComponentProps>;
 

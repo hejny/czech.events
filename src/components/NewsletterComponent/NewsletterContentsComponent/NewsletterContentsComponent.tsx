@@ -1,5 +1,5 @@
 import React from 'react';
-import { NewsletterContent, NewsletterContentPosition } from '../model/database/NewsletterContent';
+import { NewsletterContent, NewsletterContentPosition } from '../../../model/database/NewsletterContent';
 
 interface INewsletterContentsComponentProps {
     position: NewsletterContentPosition;

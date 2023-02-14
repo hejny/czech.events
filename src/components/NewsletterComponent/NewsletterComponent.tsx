@@ -1,10 +1,10 @@
 import React from 'react';
-import { EventType } from '../model/database/Event';
-import { INewsletter } from '../model/INewsletter';
-import { eventTypeToNewsletterContentPosition } from '../utils/eventTypeToNewsletterContentPosition';
-import { translateEventType } from '../utils/translate';
-import { EventComponent } from './EventComponent';
-import { NewsletterContentsComponent } from './NewsletterContentsComponent';
+import { EventType } from '../../model/database/Event';
+import { INewsletter } from '../../model/INewsletter';
+import { eventTypeToNewsletterContentPosition } from '../../utils/eventTypeToNewsletterContentPosition';
+import { translateEventType } from '../../utils/translate';
+import { EventComponent } from '../EventComponent/EventComponent';
+import { NewsletterContentsComponent } from './NewsletterContentsComponent/NewsletterContentsComponent';
 
 // TODO: Remove @deprecated import { Newsletter } from '../model/database/Newsletter';
 

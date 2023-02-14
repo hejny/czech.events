@@ -1,11 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Event } from '../model/database/Event';
-import { CalendarLink } from './CalendarLink';
-import { IEventComponentProps } from './EventComponent';
-import { EventDateComponent } from './EventDateComponent';
-import { EventPrice } from './EventPrice';
-import { EventTimeComponent } from './EventTimeComponent';
+import { Event } from '../../../model/database/Event';
+import { CalendarLink } from './CalendarLink/CalendarLink';
+import { IEventComponentProps } from '../EventComponent';
+import { EventDateComponent } from '../EventDateComponent/EventDateComponent';
+import { EventPrice } from '../EventPrice/EventPrice';
+import { EventTimeComponent } from '../EventTimeComponent/EventTimeComponent';
 import { getCharForCity } from './getCharForCity';
 
 export function EventTags({ event }: IEventComponentProps) {

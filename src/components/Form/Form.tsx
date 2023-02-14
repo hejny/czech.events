@@ -1,7 +1,7 @@
 import styled from 'styled-components';
-import { ApiClient } from '../api/ApiClient';
-import { Subscriber } from '../model/database/Subscriber';
-import { constructObjectFromJSON } from '../utils/constructObjectFromJSON';
+import { ApiClient } from '../../api/ApiClient';
+import { Subscriber } from '../../model/database/Subscriber';
+import { constructObjectFromJSON } from '../../utils/constructObjectFromJSON';
 
 interface IFormProps {
     apiClient: ApiClient;

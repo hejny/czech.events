@@ -1,8 +1,8 @@
 import React from 'react';
 import moment from 'moment';
 import 'moment/locale/cs';
-import { Event } from '../model/database/Event';
-import { capitalizeFirstLetter } from '../utils/capitalizeFirstLetter';
+import { Event } from '../../../model/database/Event';
+import { capitalizeFirstLetter } from '../../../utils/capitalizeFirstLetter';
 
 interface EventDateComponentProps {
     event: Event;

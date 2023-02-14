@@ -1,14 +1,14 @@
 import React from 'react';
-import { ApiClient } from '../api/ApiClient';
-import { Event } from '../model/database/Event';
-import { DateRange, RangeConstant } from '../model/DateRange';
-import { ErrorComponent } from './ErrorComponent';
-import { Form } from './Form';
-import { LoadingComponent } from './LoadingComponent';
-import { PageDiv } from './PageDiv';
-import { Partners } from './Partners';
+import { ApiClient } from '../../api/ApiClient';
+import { Event } from '../../model/database/Event';
+import { DateRange, RangeConstant } from '../../model/DateRange';
+import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
+import { Form } from '../Form/Form';
+import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
+import { PageDiv } from '../PageDiv/PageDiv';
+import { Partners } from '../Partners/Partners';
 // TODO: Remove @deprecated import { Newsletter } from '../model/database/Newsletter';
-import { TalksPageEmail } from './TalksPageEmail';
+import { TalksPageEmail } from '../TalksPageEmail/TalksPageEmail';
 import czechEventsTransparentLogoFit from '../../public/design/logos/czech.events.transparent-logo.fit.png';
 import Image from 'next/image';
 

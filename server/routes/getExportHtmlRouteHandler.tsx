@@ -5,7 +5,7 @@ import prettier from 'prettier';
 import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { In } from 'typeorm';
-import { NewsletterComponent } from '../../src/components/NewsletterComponent';
+import { NewsletterComponent } from '../../src/components/NewsletterComponent/NewsletterComponent';
 import { Event, EventVisibility } from '../../src/model/database/Event';
 import { DateRange } from '../../src/model/DateRange';
 import { createNewsletter } from '../../src/utils/createNewsletter';
