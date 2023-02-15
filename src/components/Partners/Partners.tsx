@@ -70,7 +70,7 @@ export function Partners() {
                     return (
                         <a key={image.src} href={image.src} target="_blank" rel="noopener noreferrer" title={name}>
                             <div key={name} className="partner">
-                                {/* TODO: Use image and cointan css property */}
+                                {/* TODO: Use <Image and cointan css property */}
                                 <div className="logo" style={{ backgroundImage: `url(${image.src})` }}></div>
                                 {name}
                             </div>

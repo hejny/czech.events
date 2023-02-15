@@ -6,7 +6,7 @@ export function EventSummary({ event }: IEventComponentProps) {
     return (
         <>
             {event.visibility === EventVisibility.FEATURED ? <>⭐</> : <></>}
-            <a href={event.web.toString()} target="_blank" rel="nofolow noopener noreferrer">
+            <a href={event.web!.toString()} target="_blank" rel="nofolow noopener noreferrer">
                 <b>{event.name}</b>
                 {event.topic ? ` – ${event.topic}` : ''}
             </a>
