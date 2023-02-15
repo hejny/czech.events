@@ -81,7 +81,7 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
 
     render() {
         return (
-            // !!! Why so many nested groups
+            // TODO: Why so many nested groups - cleanup this
             <div className="page">
                 <div className="group">
                     <div className="front black">
@@ -103,7 +103,7 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                             <h2 className="line separator font-light">
                                 A jak takový mail vypadá? Tady máte živou ukázku z rozpracovaného mailu
                                 <select
-                                    className={'font-light option-in-text'}
+                                    className={'font-light select-inline'}
                                     onChange={(event) => {
                                         const range = DateRange.fromConstant(event.target.value as RangeConstant);
                                         /*console.log(
@@ -181,6 +181,9 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
 }
 
 /**
- * TODO: !!! Compare design with current running version
+ * TODO: !!! Make toggle work
+ * TODO: [🥞] Make here some footer
+ * TODO: [🥞] Common skeleton - logo + footer for all pages
  * TODO: Remake to functional component
+ * TODO: This should be using Next API and be server - pre-rendered
  */

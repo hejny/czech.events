@@ -18,7 +18,7 @@ export function EventDateComponent({ event }: EventDateComponentProps) {
             dateString = dateString.split('00:00')[0];
             //TODO: More elegant way
             dateString = dateString.replace('leden', 'ledna');
-            dateString = dateString.replace('únor', 'února');
+            dateString = dateString.replace('února', 'února');
             dateString = dateString.replace('březen', 'března');
             dateString = dateString.replace('duben', 'dubna');
             dateString = dateString.replace('květen', 'května');

@@ -11,7 +11,7 @@ import RootLayout from 'src/app/layout';
 export default function AboutPage() {
     return (
         <RootLayout>
-            <div className="group">
+            <div className="page">
                 <div>
                     <div className="front black">
                         <div className="inner">
@@ -61,5 +61,6 @@ export default function AboutPage() {
 }
 
 /**
- * TODO: Link back to home
+ * TODO: [🥞] Link back to home
+ * TODO: [🥞] Common skeleton - logo + footer for all pages
  */

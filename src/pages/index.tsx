@@ -37,3 +37,8 @@ export default function IndexPage() {
         </RootLayout>
     );
 }
+
+
+/**
+ * TODO: [🥞] Common skeleton - logo + footer for all pages
+ */

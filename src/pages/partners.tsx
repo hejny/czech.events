@@ -15,7 +15,7 @@ import { Partners } from 'src/components/Partners/Partners';
 export default function PartnersPage() {
     return (
         <RootLayout>
-            <div className="group">
+            <div className="page">
                 <Partners />
             </div>
         </RootLayout>
@@ -23,5 +23,6 @@ export default function PartnersPage() {
 }
 
 /**
- * TODO: Link back to home
+ * TODO: [🥞] Link back to home
+ * TODO: [🥞] Common skeleton - logo + footer for all pages
  */

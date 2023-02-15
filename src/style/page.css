@@ -100,7 +100,7 @@
     background: rgba(33, 150, 243, 0.3);
 }
 
-.option-in-text {
+.select-inline {
     background: none;
     color: white;
     margin-left: 0.35em;
@@ -113,7 +113,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-.option-in-text option {
+.select-inline option {
     background: white;
     color: black;
 }

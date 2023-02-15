@@ -16,3 +16,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </html>
     );
 }
+
+/**
+ * TODO: [🥞] Common skeleton can be here
+ */
