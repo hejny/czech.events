@@ -1,6 +1,5 @@
 import spaceTrim from 'spacetrim';
 import styles from './Partners.module.css';
-import { PageDiv } from '../PageDiv/PageDiv';
 import startupWeekendPragueLogo from '../../../public/design/logos/partners/startup-weekend-prague.png';
 import startupWeekendBratislavaLogo from '../../../public/design/logos/partners/startup-weekend-bratislava.png';
 import undoutSleepBoxLogo from '../../../public/design/logos/partners/undout.png';
@@ -17,7 +16,7 @@ export function Partners() {
         <div className={styles.Partners}>
             <h2>Partneři</h2>
 
-            <div className="partners">
+            <div className={styles.list}>
                 {shuffleArray([
                     // TODO: To some other file or even to DB
                     {
@@ -68,22 +67,13 @@ export function Partners() {
                     // TODO: Random shuffle
                 ]).map(({ name, image, link }) => {
                     return (
-                        <a key={image.src} href={image.src} target="_blank" rel="noopener noreferrer" title={name}>
-                            <div key={name} className="partner">
-                                {/* TODO: Use <Image and cointan css property */}
-                                <div className="logo" style={{ backgroundImage: `url(${image.src})` }}></div>
-                                {name}
-                            </div>
+                        <a key={name} href={link} target="_blank" rel="noopener noreferrer" title={name}>
+                            <Image src={image} alt={`Logo of ${name}`} />
+                            {name}
                         </a>
                     );
                 })}
             </div>
-
-            {/*
-                <Link to="/about" className="our-logos">
-                    O nás
-                </Link>
-                 */}
         </div>
     );
 }

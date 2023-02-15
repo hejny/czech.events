@@ -3,7 +3,11 @@
     font-family: Arial, Helvetica, sans-serif, 'Montserrat', sans-serif;
     color: rgb(212, 212, 212);
     padding: 2em;
-    /* padding-top: 0; */
+}
+
+.list {
+    display: flex;
+    flex-wrap: wrap;
 }
 
 .Partners h2 {
@@ -11,18 +15,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 
-/* !!!! Prefix with .Partners */
-
-.partners {
-    /*/
-        border: 1px dotted red;
-        /**/
-
-    display: flex;
-    flex-wrap: wrap;
-}
-
-.partner {
+.Partners a {
     /*/
         border: 1px dotted red;
         /**/
@@ -35,7 +28,7 @@
     font-size: 0.9rem;
 }
 
-.logo {
+.Partners img {
     width: 100px;
     height: 100px;
     border-radius: 7px;
@@ -43,10 +36,4 @@
     background-repeat: no-repeat;
     background-position: center;
     margin-bottom: 10px;
-}
-
-.our-logos {
-    font-size: 0.8em;
-    color: white;
-    display: block;
 }
