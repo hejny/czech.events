@@ -123,13 +123,6 @@ export class TalksPage extends React.Component<ITalksPageProps, ITalksPageState>
                                     ))}
                                 </select>
                             </h2>
-
-                            {/*TODO: Semantically h2 is not very ideal here at all*/}
-                            <h2 className="line separator font-light warning">
-                                ⚠️ V tuto chvíli bohužel Czech.events dočasně nefungují, pracujeme na její opravě.
-                                <br />
-                                Napište nám Váš email a my se Vám ozveme ihned, jakmile to znovu zprovozníme.
-                            </h2>
                         </div>
                     </div>
 
