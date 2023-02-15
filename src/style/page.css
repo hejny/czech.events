@@ -90,38 +90,14 @@
 
 .black .group {
     width: 100%;
-    height: 90px;
+    margin-top: 10px;
+    margin-bottom: 15px;
     overflow: hidden;
     position: relative;
-}
-.black .group.checkbox {
-    width: 100%;
-    height: 40px;
-}
-
-.black .bar {
-    background: rgba(255, 255, 255, 0.5);
-    content: '';
-    max-width: 500px;
-    height: 2px;
-    transition: 0.3s ease;
-    position: relative;
-}
-.black .bar:before {
-    content: '';
-    /* !!! position: absolute; */
-    width: 100%;
-    height: 150%;
-    background: #01ccbf;
-    transform: translateX(-100%);
 }
 
 .black ::selection {
     background: rgba(33, 150, 243, 0.3);
-}
-
-.line {
-    line-height: 32px;
 }
 
 .option-in-text {
@@ -130,6 +106,8 @@
     margin-left: 0.35em;
     outline: none;
     border: 2px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
     font-weight: 100;
     font-size: 20px;
     font-family: 'Montserrat', sans-serif;
@@ -146,3 +124,10 @@
     background-color: white;
     border-radius: 50px;
 }
+
+/**
+ * TODO: In this file may be some unused rules - remove them
+ * TODO: Split-up this file into components
+ * TODO: Use CSS variabiles
+ * TODO: Make dark/light mode
+ */

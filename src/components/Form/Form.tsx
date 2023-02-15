@@ -42,15 +42,13 @@ export function Form(props: IFormProps) {
             }}
         >
             <div className="group">
-                <input type="text" name="fullname" className={styles.field} defaultValue="" />
                 <label htmlFor="name">Vaše jméno:</label>
-                <div className={styles.bar}></div>
+                <input type="text" name="fullname" className={styles.field} defaultValue="" />
             </div>
 
             <div className="group">
-                <input type="email" name="email" defaultValue="@" required className={styles.field} />
                 <label htmlFor="email">E-mail: *</label>
-                <div className={styles.bar}></div>
+                <input type="email"  name="email" defaultValue="@" required className={styles.field} />
             </div>
 
             <div className={classNames('group', 'checkbox', styles.gdpr)}>

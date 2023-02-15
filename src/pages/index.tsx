@@ -33,9 +33,7 @@ export default function IndexPage() {
 
     return (
         <RootLayout>
-            <div className="group">
-                <TalksPage {...{ apiClient }} />
-            </div>
+            <TalksPage {...{ apiClient }} />
         </RootLayout>
     );
 }
