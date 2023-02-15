@@ -17,38 +17,5 @@
             "     );",
             " }"
         ]
-    },
-    "classReactcomponent": {
-        "scope": "typescriptreact",
-        "prefix": "Class React component",
-        "description": "Class React component",
-        "body": [
-            "import { observer } from 'mobx-react';",
-            "import * as React from 'react';",
-            "",
-            "interface I$1ComponentProps {}",
-            "",
-            "interface I$1ComponentState {}",
-            "",
-            "@observer",
-            "export class $1Component extends React.Component<I$1ComponentProps, I$1ComponentState> {",
-            "    state: I$1ComponentState = {};",
-            "",
-            "    /*/",
-            "    constructor(props: I$1ComponentProps) {",
-            "        super(props);",
-            "    }",
-            "    /**/",
-            "",
-            "    render() {",
-            "        return (",
-            "            <>",
-            "                {/*",
-            "                 */}",
-            "            </>",
-            "        );",
-            "    }",
-            "}"
-        ]
     }
 }
