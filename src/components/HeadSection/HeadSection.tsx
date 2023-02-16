@@ -1,4 +1,5 @@
 import Script from 'next/script';
+import favicon from '../../../public/favicon.ico';
 
 interface HeadSectionProps {
     subtitle?: string;
@@ -14,7 +15,8 @@ export function HeadSection(props: HeadSectionProps) {
             <title>{`Czech.events | ${subtitle}`}</title>
             <meta name="description" content="!!!!" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="icon" href="/favicon.ico" />
+            <link rel="shortcut icon" href={favicon.src} type="image/x-icon" />
+            <link rel="author" href="https://pavolhejny.com/" />
 
             <meta property="og:title" content={`Czech.events | ${subtitle}`} />
             <meta property="og:image" content={`!!!`} />
