@@ -18,6 +18,10 @@ export function EventTimeComponent({ event }: IEventComponentProps) {
         }
         return <>⏱️&nbsp;{timeString}</>;
     } catch (error) {
+        if (!(error instanceof Error)) {
+            throw error;
+        }
+
         console.error(`Problem when parsing moment('2010-10-20 ' + '${time}').format('LT'); See more below:`);
         console.error(error);
         return <></>;

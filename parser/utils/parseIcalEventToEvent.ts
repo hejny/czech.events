@@ -31,13 +31,12 @@ export function parseIcalEventToEvent(icalEventRaw: IcalEventForParsing): Partia
             'url',
             'uid',
         ]) {
+            // @ts-ignore
             icalEvent[key] = icalEventRaw[key];
         }
 
         const serializeId: string = icalEvent.uid; /* <- TODO: Should be this processed by parseSerializeId? */
 
-
-        
         const { name, topic } = parseNameAndTopic(icalEvent.summary);
 
         const startDate = icalEvent.start;
@@ -87,6 +86,10 @@ export function parseIcalEventToEvent(icalEventRaw: IcalEventForParsing): Partia
             canceled: isCanceled ? 1 : 0,
         });
     } catch (error) {
+        if (!(error instanceof Error)) {
+            throw error;
+        }
+
         console.error(error);
         console.info({ icalEventRaw });
         throw new Error(`Can not parse Event from Ical`);

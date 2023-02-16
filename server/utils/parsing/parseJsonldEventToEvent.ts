@@ -72,6 +72,10 @@ export function parseJsonldEventToEvent({
             //note: string | null;
         });
     } catch (error) {
+        if (!(error instanceof Error)) {
+            throw error;
+        }
+
         console.error(error);
         console.info({ jsonldEvent });
         throw new Error(`Can not parse Event from JSON+LD`);

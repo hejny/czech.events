@@ -2,8 +2,6 @@ import { Event } from '../../model/database/Event';
 import { NewsletterContentPosition } from '../../model/database/NewsletterContent';
 import { DateRange } from '../../model/DateRange';
 import { createNewsletter } from '../../utils/createNewsletter';
-import { joinArray } from '../../utils/joinArray';
-import { randomItem } from '../../utils/randomItem';
 import { NewsletterComponent } from '../NewsletterComponent/NewsletterComponent';
 import { NewsletterContentsComponent } from '../NewsletterComponent/NewsletterContentsComponent/NewsletterContentsComponent';
 import { Shuffle } from '../Shuffle/Shuffle';

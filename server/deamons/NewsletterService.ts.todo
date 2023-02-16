@@ -51,6 +51,9 @@ export class NewsletterService {
                     body: 'test<hr/>test',
                 });
             } catch (error) {
+                if (!(error instanceof Error)) {
+                    throw error;
+                }
                 console.error(error);
             }
             //this.sendingTick(test);
@@ -86,6 +89,9 @@ export class NewsletterService {
 
             await Promise.all(newsletters.map((newsletter) => this.sendingTickOneNewsletter(newsletter, test)));
         } catch (error) {
+            if (!(error instanceof Error)) {
+                throw error;
+            }
             console.error(error);
         }
     }

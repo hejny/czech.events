@@ -63,6 +63,10 @@ async function main() {
         }
         */
         } catch (error) {
+            if (!(error instanceof Error)) {
+                throw error;
+            }
+
             console.error(chalk.red(error));
         }
     }

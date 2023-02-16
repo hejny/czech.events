@@ -12,6 +12,11 @@ export async function fetchJsonRetry(url) {
             const response = await fetch(url, { cache: 'no-store' });
             return await response.json();
         } catch (error) {
+
+          if (!(error instanceof Error)) {
+            throw error;
+        }
+        
             lastError = error;
         }
     }

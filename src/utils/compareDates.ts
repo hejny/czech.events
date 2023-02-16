@@ -18,6 +18,10 @@ export function compareDates(date1: Date, date2: Date): CompareResult {
             return 0;
         }
     } catch (error) {
+        if (!(error instanceof Error)) {
+            throw error;
+        }
+
         console.warn(error);
         return -1;
     }

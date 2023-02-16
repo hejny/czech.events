@@ -33,6 +33,10 @@ export function EventDateComponent({ event }: EventDateComponentProps) {
             dateString = capitalizeFirstLetter(dateString);
             return <>📅&nbsp;{dateString}</>;
         } catch (error) {
+            if (!(error instanceof Error)) {
+                throw error;
+            }
+
             console.error(`Problem when parsing moment('${date}').format('LLLL'); See more below:`);
             console.error(error);
             return <></>;

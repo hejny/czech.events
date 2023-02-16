@@ -23,6 +23,11 @@ export async function deploy(deployConfig) {
             await removeOldVersions(remote);
         }
     } catch (error) {
+
+      if (!(error instanceof Error)) {
+        throw error;
+    }
+    
         console.error(error);
         process.exit(1);
     }

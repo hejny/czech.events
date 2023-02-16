@@ -82,6 +82,10 @@ export async function fetchIcal(url: string, isPuppeteerUsed = false): Promise<s
 
         return icalString;
     } catch (error) {
+        if (!(error instanceof Error)) {
+            throw error;
+        }
+
         if (!isPuppeteerUsed) {
             // TODO: What to use in async tail recursion: return OR return await
             return await fetchIcal(url, true);

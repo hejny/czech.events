@@ -19,6 +19,11 @@ export async function deployedVersionCheck(remote) {
 
         console.info(`"${remote.name}" was successfully deployed and checked in version "${deployedVersion}".`);
     } catch (error) {
+
+      if (!(error instanceof Error)) {
+        throw error;
+    }
+    
         throw new Error(`There is some problem with deploy, please check ${remote.versionUrl} . ${error.message}`);
     }
 }

@@ -14,7 +14,10 @@ export function parseEventType({
     const possibleTypes: EventType[] = [];
 
     // TODO: Giving bigger priority to keywordsFromName
-    for (const keywords of [keywordsFromName, new Set([...keywordsFromName, ...keywordsFromDescription])]) {
+    for (const keywords of [
+        keywordsFromName,
+        new Set([...Array.from(keywordsFromName), ...Array.from(keywordsFromDescription)]),
+    ]) {
         if (keywords.has('hackathon')) possibleTypes.push(EventType.HACKATHON);
         if (keywords.has('startup') && keywords.has('weekend')) possibleTypes.push(EventType.HACKATHON);
         if (keywords.has('meetup')) possibleTypes.push(EventType.MEETUP);

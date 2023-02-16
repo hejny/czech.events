@@ -14,7 +14,9 @@
         "isolatedModules": true,
         "jsx": "preserve",
         "incremental": true,
-        "strictNullChecks": true,
+        "strictNullChecks": false,
+        "experimentalDecorators": true,
+        "downlevelIteration": true,
         "plugins": [
             {
                 "name": "next"

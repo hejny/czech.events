@@ -1,4 +1,4 @@
-import { EventType } from '../model/database/Event';
+import { EventType } from '../../../model/database/Event';
 
 export function getCharForEventTag(eventType: EventType): string {
     switch (eventType) {

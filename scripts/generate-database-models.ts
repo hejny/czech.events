@@ -13,6 +13,10 @@ async function main() {
         try {
             await execAsyncFull(`git diff --exit-code`);
         } catch (error) {
+            if (!(error instanceof Error)) {
+                throw error;
+            }
+
             throw new Error(`You should commit changes first before generating new database models.`);
         }
 
@@ -21,10 +25,15 @@ async function main() {
                 `npx typeorm-model-generator -h ${DB_HOST} -d ${DB_NAME} -u ${DB_USER} -x "${DB_PASSWORD}" -e mysql -o ${baseFolder}`,
             );
         } catch (error) {
+
+            if (!(error instanceof Error)) {
+                throw error;
+            }
+
             if (error.message.includes('operation not permitted, unlink')) {
                 // TODO: weird error on Windows
                 /*
-                Error: EPERM: operation not permitted, unlink 'C:\Users\me\AppData\Roaming\npm-cache\_npx\11612\node_modules\typeorm-model-generator\node_modules\sqlite3\lib\binding\node-v72-win32-x64\node_sqlite3.node'        
+                Error: EPERM: operation not permitted, unlink 'C:\Users\me\AppData\Roaming\npm-cache\_npx\11612\node_modules\typeorm-model-generator\node_modules\sqlite3\lib\binding\node-v72-win32-x64\node_sqlite3.node'
                     at Object.unlinkSync (fs.js:976:3)
                     at fixWinEPERMSync (C:\Program Files\nodejs\node_modules\npm\node_modules\rimraf\rimraf.js:211:13)
                     at rimrafSync (C:\Program Files\nodejs\node_modules\npm\node_modules\rimraf\rimraf.js:311:28)
@@ -51,6 +60,11 @@ async function main() {
         // TODO: Automatically push to specific branch and create merge to current branch
         //await execAsyncFull(`cp ${baseFolder}/entities`);
     } catch (error) {
+
+        if (!(error instanceof Error)) {
+            throw error;
+        }
+
         console.error('\x1b[41m', '\x1b[37m', error.message, '\x1b[0m');
     }
 }

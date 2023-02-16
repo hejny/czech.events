@@ -6,7 +6,7 @@ import spaceTrim from 'spacetrim';
 import { FindConditions, In } from 'typeorm';
 import { EventSummary } from '../../src/components/EventComponent/EventSummary/EventSummary';
 import { getEventTags } from '../../src/components/EventComponent/EventTags/EventTags';
-import { getCharForEventTag } from '../../src/components/getCharForEventTag';
+import { getCharForEventTag } from '../../src/components/EventComponent/EventTags/getCharForEventTag';
 import { Event, EventVisibility } from '../../src/model/database/Event';
 import { jsxToString } from '../../src/utils/jsxToString';
 import { connectionPromise } from '../database';
@@ -69,6 +69,10 @@ export const getExportIcalRouteHandler: RequestHandler = async (request, respons
                     id: event.serializeId /* <- TODO: !! Make here some normalization + mix with Czech events */,
                 });
             } catch (error) {
+                if (!(error instanceof Error)) {
+                    throw error;
+                }
+
                 console.error(`Can not create calendar event for ${event.name}\n${error.message}`);
                 // throw new Error(`Can not create calendar event for ${event.name}\n${error.message}`);
             }
@@ -80,6 +84,9 @@ export const getExportIcalRouteHandler: RequestHandler = async (request, respons
             .header('Content-Disposition', extension === 'txt' ? 'inline' : `attachment; filename="${filename}"`)
             .send(calendar.toString());
     } catch (error) {
+        if (!(error instanceof Error)) {
+            throw error;
+        }
         // console.error(error);
         return response.status(400).send({ error: { name: error.name, message: error.message, ...error } });
     }

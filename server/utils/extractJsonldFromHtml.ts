@@ -39,7 +39,7 @@ export async function extractJsonldFromHtml(html: string): Promise<IJsonldEvent>
     return jsonldsEvents[0];
 }
 
-class ParsingError extends Error {
+export class ParsingError extends Error {
     public name = 'ParsingError';
 
     constructor(message: string, public unparsableHtml: string, public details?: any) {

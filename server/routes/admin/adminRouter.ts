@@ -2,7 +2,7 @@ import { NextFunction, Request, Response, Router } from 'express';
 import fetch from 'node-fetch';
 import { Event } from '../../../src/model/database/Event';
 import { connectionPromise } from '../../database';
-import { extractJsonldFromHtml } from '../../utils/extractJsonldFromHtml';
+import { extractJsonldFromHtml, ParsingError } from '../../utils/extractJsonldFromHtml';
 import { parseJsonldEventToEvent } from '../../utils/parsing/parseJsonldEventToEvent';
 import { ADMIN_TOKEN } from './../../config';
 
@@ -79,6 +79,9 @@ const adminEventsRouteHandler = async (request: Request, response: Response) => 
                     });
                 }
             } catch (error) {
+                if (!(error instanceof ParsingError)) {
+                    throw error;
+                }
                 // console.error(error);
 
                 if (!request.query.html) {
@@ -129,6 +132,9 @@ adminRouter.put('/admin/events', async (request, response) => {
         console.log(`updateResult`, updateResult);
         return response.send(updateResult);
     } catch (error) {
+        if (!(error instanceof Error)) {
+            throw error;
+        }
         // console.error(error);
         return response.status(400).send({ error: { name: error.name, message: error.message, ...error } });
     }

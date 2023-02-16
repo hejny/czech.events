@@ -23,6 +23,12 @@ export const subscriberPostRouteHandler: RequestHandler = async (request, respon
         // TODO: Purge internal IDs
         return response.send(insertedSubscriber);
     } catch (error) {
+
+        if (!(error instanceof Error)) {
+            throw error;
+        }
+
+
         console.error(error);
         return response.send({
             error:

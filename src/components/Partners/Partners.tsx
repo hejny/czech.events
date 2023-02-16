@@ -7,8 +7,6 @@ import hackPragueLogo from '../../../public/design/logos/partners/hackprague.svg
 import startupBoxLogo from '../../../public/design/logos/partners/startupbox.png';
 import collboardLogo from '../../../public/design/logos/partners/collboard.png';
 import Image from 'next/image';
-import Head from 'next/head';
-import RootLayout from 'src/app/layout';
 import { Shuffle } from '../Shuffle/Shuffle';
 
 export function Partners() {

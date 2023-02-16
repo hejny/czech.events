@@ -37,6 +37,10 @@ export function Form(props: IFormProps) {
                     form.reset();
                     alert(`Děkujeme, můžete se těšit na další email!`);
                 } catch (error) {
+                    if (!(error instanceof Error)) {
+                        throw error;
+                    }
+
                     alert(error.message /*TODO: Better*/);
                 }
             }}
@@ -48,7 +52,7 @@ export function Form(props: IFormProps) {
 
             <div className="group">
                 <label htmlFor="email">E-mail: *</label>
-                <input type="email"  name="email" defaultValue="@" required className={styles.field} />
+                <input type="email" name="email" defaultValue="@" required className={styles.field} />
             </div>
 
             <div className={classNames('group', 'checkbox', styles.gdpr)}>

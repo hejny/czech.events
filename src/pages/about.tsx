@@ -1,12 +1,10 @@
 import spaceTrim from 'spacetrim';
 import styles from './about.module.css';
-import { PageDiv } from '../components/PageDiv/PageDiv';
 import czechEventsBlackLogo from '../../public/design/logos/czech.events.black-logo.png';
 import czechEventsWhiteLogo from '../../public/design/logos/czech.events.white-logo.png';
 import czechEventsTransparentLogo from '../../public/design/logos/czech.events.transparent-logo.png';
 import Image from 'next/image';
 import Head from 'next/head';
-import RootLayout from 'src/app/layout';
 import { HeadSection } from 'src/components/HeadSection/HeadSection';
 
 export default function AboutPage() {
