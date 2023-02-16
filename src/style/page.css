@@ -125,6 +125,10 @@
     border-radius: 50px;
 }
 
+.past-event {
+    opacity: 0.5;
+}
+
 /**
  * TODO: In this file may be some unused rules - remove them
  * TODO: Split-up this file into components

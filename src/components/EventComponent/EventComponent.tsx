@@ -11,7 +11,7 @@ export interface IEventComponentProps {
 
 export function EventComponent({ event }: IEventComponentProps) {
     return (
-        <span className={`${event.dateToCompare < new Date() ? styles.past : ''}`}>
+        <span className={`${event.dateToCompare < new Date() ? 'past-event' : 'future-event'}`}>
             <EventSummary {...{ event }} />
             <br />
             <EventTags {...{ event }} />
