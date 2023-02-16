@@ -9,7 +9,6 @@ import collboardLogo from '../../public/design/logos/partners/collboard.png';
 import Image from 'next/image';
 import Head from 'next/head';
 import RootLayout from 'src/app/layout';
-import { shuffleArray } from 'src/utils/shuffleArray';
 import { Partners } from 'src/components/Partners/Partners';
 
 export default function PartnersPage() {

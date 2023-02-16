@@ -32,9 +32,9 @@ export default function AboutPage() {
                                     name: 'Průhledná verze',
                                     image: czechEventsTransparentLogo,
                                 },
-                            ].map(({ name, image }, i) => {
+                            ].map(({ name, image }, index) => {
                                 return (
-                                    <div key={i} className={styles.logo}>
+                                    <div key={index} className={styles.logo}>
                                         <a href={image.src}>
                                             <Image src={image} alt="Czech.events logo" />
                                         </a>

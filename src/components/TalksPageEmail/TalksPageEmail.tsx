@@ -4,9 +4,9 @@ import { DateRange } from '../../model/DateRange';
 import { createNewsletter } from '../../utils/createNewsletter';
 import { joinArray } from '../../utils/joinArray';
 import { randomItem } from '../../utils/randomItem';
-import { shuffleArray } from '../../utils/shuffleArray';
 import { NewsletterComponent } from '../NewsletterComponent/NewsletterComponent';
 import { NewsletterContentsComponent } from '../NewsletterComponent/NewsletterContentsComponent/NewsletterContentsComponent';
+import { Shuffle } from '../Shuffle/Shuffle';
 
 // TODO: Remove @deprecated import { Newsletter } from '../model/database/Newsletter';
 
@@ -29,8 +29,8 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
             <p>
                 Ahoj,
                 <br />
-                opět jsme pro vás {randomItem('dali dohromady', 'sestavili')} seznam událostí, na které se vyplatí
-                zajít.
+                opět jsme pro vás {/* !!! Do deterministic> randomItem('dali dohromady', 'sestavili') */ 'sestavili '}
+                seznam událostí, na které se vyplatí zajít.
             </p>
             <p>
                 Nově si také můžete přidat{' '}
@@ -58,19 +58,14 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
             */}
             <br />
             <br />
-            {joinArray(
-                shuffleArray([
-                    <>
-                        <a href="https://www.pavolhejny.com/?utm_source=czech.events-mail&amp;utm_medium=referral&amp;utm_campaign=signature">
-                            Pavol Hejný
-                        </a>
-                    </>,
-                    <>
-                        <a href="https://www.linkedin.com/in/tereza-texlova/">Tereza Texlová</a>
-                    </>,
-                ]),
-                <>&nbsp;&amp;&nbsp;</>,
-            )}
+            <Shuffle seed={'authors'}>
+                <a href="https://www.pavolhejny.com/?utm_source=czech.events-mail&amp;utm_medium=referral&amp;utm_campaign=signature">
+                    Pavol Hejný
+                </a>
+                <></>
+                {/* TODO: Place <>&nbsp;&amp;&nbsp;</> between */}
+                {/* !!! <a href="https://www.linkedin.com/in/tereza-texlova/">Tereza Texlová</a> */}
+            </Shuffle>
         </>
     );
 }

@@ -2,7 +2,7 @@ export default function Head() {
     return (
         <>
             <meta charSet="utf-8" />
-            <title>Czech.events | Co se děje v IT</title>
+            <title>!!! Czech.events | Co se děje v IT</title>
 
             <link rel="icon" href="profile_photo.png" />
             <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -11,7 +11,7 @@ export default function Head() {
             <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
             <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
             <meta property="og:image" content="https://czech.events/fb-image.jpg" />
-      
+
             <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70710834-7"></script>
             <script>
                 {`
@@ -26,3 +26,9 @@ export default function Head() {
         </>
     );
 }
+
+/**
+ * TODO: !!! Remove all traces of CRA
+ * TODO: !!! Google Analytics working
+ * TODO: !!! Cookies
+ */

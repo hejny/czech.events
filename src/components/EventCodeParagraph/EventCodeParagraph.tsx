@@ -11,8 +11,8 @@ interface IEventCodeParagraphProps {
 export function EventCodeParagraph({ event, showCode, verbose }: IEventCodeParagraphProps) {
     return (
         <>
-            {event.eventCodes.map((eventCode, key) => (
-                <span {...{ key }}>
+            {event.eventCodes.map((eventCode, index) => (
+                <span key={index}>
                     <br />
 
                     {showCode ? (

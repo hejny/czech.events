@@ -11,9 +11,9 @@ export function NewsletterContentsComponent({ newsletterContents, position }: IN
         <>
             {newsletterContents
                 .filter((newsletterContent) => newsletterContent.position === position)
-                .sort((a, b) => (a.order > b.order ? 1 : -1) /* TODO: Correct? */)
-                .map((newsletterContent, key) => (
-                    <div key={key}>
+                .sort((a, b) => ((a.order || 0) > (b.order || 0) ? 1 : -1) /* TODO: Correct? */)
+                .map((newsletterContent, index) => (
+                    <div key={index}>
                         <span dangerouslySetInnerHTML={{ __html: newsletterContent.html.split('\n').join('<br/>') }} />
                         {position !== NewsletterContentPosition.SUBJECT && (
                             <>

@@ -26,7 +26,7 @@ export function NewsletterComponent(props: INewsletterComponentProps) {
                     />
                     <span>
                         {categorizedEvents![type].map((event) => (
-                            <EventComponent {...{ event, key: event.serializeId }} />
+                            <EventComponent key={event.serializeId} {...{ event }} />
                         ))}
                     </span>
                 </div>
