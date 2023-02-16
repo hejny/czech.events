@@ -10,14 +10,18 @@ import Image from 'next/image';
 import Head from 'next/head';
 import RootLayout from 'src/app/layout';
 import { Partners } from 'src/components/Partners/Partners';
+import { HeadSection } from 'src/components/HeadSection/HeadSection';
 
 export default function PartnersPage() {
     return (
-        <RootLayout>
+        <>
+            <Head>
+                <HeadSection subtitle="Gallery" />
+            </Head>
             <div className="page">
                 <Partners />
             </div>
-        </RootLayout>
+        </>
     );
 }
 

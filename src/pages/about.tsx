@@ -7,10 +7,14 @@ import czechEventsTransparentLogo from '../../public/design/logos/czech.events.t
 import Image from 'next/image';
 import Head from 'next/head';
 import RootLayout from 'src/app/layout';
+import { HeadSection } from 'src/components/HeadSection/HeadSection';
 
 export default function AboutPage() {
     return (
-        <RootLayout>
+        <>
+            <Head>
+                <HeadSection subtitle="Gallery" />
+            </Head>
             <div className="page">
                 <div>
                     <div className="front black">
@@ -56,7 +60,7 @@ export default function AboutPage() {
                     </div>
                 </div>
             </div>
-        </RootLayout>
+        </>
     );
 }
 

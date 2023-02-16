@@ -9,6 +9,7 @@ import RootLayout from 'src/app/layout';
 import { TalksPage } from 'src/components/TalksPage/TalksPage';
 import { useMemo } from 'react';
 import { ApiClient } from 'src/api/ApiClient';
+import { HeadSection } from 'src/components/HeadSection/HeadSection';
 
 export default function IndexPage() {
     /*
@@ -30,14 +31,15 @@ export default function IndexPage() {
     const apiUrl = 'https://api.pavolhejny.com/czech-events';
 
     const apiClient = useMemo(() => new ApiClient(apiUrl), [apiUrl]);
-
     return (
-        <RootLayout>
+        <>
+            <Head>
+                <HeadSection subtitle="Gallery" />
+            </Head>
             <TalksPage {...{ apiClient }} />
-        </RootLayout>
+        </>
     );
 }
-
 
 /**
  * TODO: [🥞] Common skeleton - logo + footer for all pages
