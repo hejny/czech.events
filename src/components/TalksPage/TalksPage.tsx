@@ -43,8 +43,6 @@ const OPTIONS = [
 ];
 
 export function TalksPage(props: ITalksPageProps) {
-    console.log('!!! TalksPage render');
-
     const { apiClient } = props;
 
     const [error, setError] = useState<null | Error>(null);
@@ -82,24 +80,12 @@ export function TalksPage(props: ITalksPageProps) {
                         <Form {...{ apiClient }} />
 
                         {/*TODO: Semantically h2 is not very ideal here at all*/}
-                        <h2
-                            className="line separator font-light"
-                            onClick={() => {
-                                console.log('!!!');
-                            }}
-                        >
+                        <h2 className="line separator font-light">
                             A jak takový mail vypadá? Tady máte živou ukázku z rozpracovaného mailu
                             <select
                                 className={'font-light select-inline'}
-                                onChange={
-                                    (event) => {
-                                        console.log('!!!', event.target.value);
-                                        const newRange = DateRange.fromConstant(event.target.value as RangeConstant);
-                                        console.log('!!!', { range, newRange });
-                                        setRange(newRange);
-                                        return;
-                                    }
-                                    // !!! void setRange(DateRange.fromConstant(event.target.value as RangeConstant))
+                                onChange={(event) =>
+                                    void setRange(DateRange.fromConstant(event.target.value as RangeConstant))
                                 }
                             >
                                 {OPTIONS.map((item) => (
@@ -166,8 +152,6 @@ export function TalksPage(props: ITalksPageProps) {
 }
 
 /**
- * TODO: !!! Make toggle work
- * TODO: !!! Remake to functional component
  * TODO: !!! Test error
  * TODO: [🥞] Make here some footer
  * TODO: [🥞] Common skeleton - logo + footer for all pages

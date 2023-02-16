@@ -36,7 +36,7 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
                     události přímo do svého kalendáře
                 </a>
                 .<br />
-                Nebo můžete ťuknout na ikonku 📅 a událost se pošle do vašeho kalendáře. {/* <- !!! */}
+                Nebo můžete ťuknout na ikonku 📅 a událost se pošle do vašeho kalendáře. {/* <- !!! 📅 */}
             </p>
             <NewsletterContentsComponent {...{ newsletterContents, position: NewsletterContentPosition.HEAD }} />
             <NewsletterComponent {...{ newsletter }} />
