@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './EventComponent.module.css';
 import { Event } from '../../model/database/Event';
 import { EventCodeParagraph } from '../EventCodeParagraph/EventCodeParagraph';
 import { EventSummary } from './EventSummary/EventSummary';
