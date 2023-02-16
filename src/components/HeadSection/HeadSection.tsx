@@ -1,3 +1,5 @@
+import Script from 'next/script';
+
 interface HeadSectionProps {
     subtitle?: string;
 }
@@ -19,9 +21,8 @@ export function HeadSection(props: HeadSectionProps) {
 
             <meta name="theme-color" content="#000000" />
 
-            {/* !!! Lint error */}
-            <script async src="https://www.googletagmanager.com/gtag/js?id=UA-70710834-7"></script>
-            <script>
+            <Script src="https://www.googletagmanager.com/gtag/js?id=UA-70710834-7" strategy="afterInteractive" />
+            <Script id="google-analytics" strategy="afterInteractive">
                 {`
                 window.dataLayer = window.dataLayer || [];
                 function gtag() {
@@ -30,7 +31,7 @@ export function HeadSection(props: HeadSectionProps) {
                 gtag('js', new Date());
                 gtag('config', 'UA-70710834-7');
               `}
-            </script>
+            </Script>
         </>
     );
 }
