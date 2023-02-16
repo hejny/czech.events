@@ -1,5 +1,4 @@
 import React from 'react';
-import styles from './EventTags.module.css';
 import { Event } from '../../../model/database/Event';
 import { CalendarLink } from './CalendarLink/CalendarLink';
 import { IEventComponentProps } from '../EventComponent';
@@ -20,11 +19,7 @@ export function getEventTags(event: Event): JSX.Element[] {
     */
 
     if (event.canceled === 1) {
-        tags.push(
-            <span className={styles.canceled} key="canceled">
-                🚫&nbsp;Zrušeno&nbsp;
-            </span>,
-        );
+        tags.push(<span key="canceled">🚫&nbsp;Zrušeno&nbsp;</span>);
     }
     if (event.city) {
         tags.push(

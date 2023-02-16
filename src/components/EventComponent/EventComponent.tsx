@@ -1,4 +1,5 @@
 import React from 'react';
+import { classNames } from '../../utils/classNames';
 import { Event } from '../../model/database/Event';
 import { EventCodeParagraph } from '../EventCodeParagraph/EventCodeParagraph';
 import { EventSummary } from './EventSummary/EventSummary';
@@ -10,7 +11,14 @@ export interface IEventComponentProps {
 
 export function EventComponent({ event }: IEventComponentProps) {
     return (
-        <span className={`${event.dateToCompare < new Date() ? 'past-event' : 'future-event'}`}>
+        <span
+            className={classNames(
+                `${event.dateToCompare < new Date() ? 'past-event' : 'future-event'}`,
+                event.canceled && 'canceled-event',
+                event.online && 'online-event',
+                event.city && 'offline-event',
+            )}
+        >
             <EventSummary {...{ event }} />
             <br />
             <EventTags {...{ event }} />
