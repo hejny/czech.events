@@ -1,8 +1,28 @@
+const withExportImages = require('next-export-optimize-images');
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    appDir: true,
-  },
-}
+    reactStrictMode: true,
+    experimental: {
+        appDir: true,
+    },
+    images: {
+        remotePatterns: [
+            /*{
+                protocol: 'https',
+                hostname: 'www.gravatar.com',
+                port: '',
+                pathname: '/avatar/**',
+            },*/
+        ],
+    },
 
-module.exports = nextConfig
+    async exportPathMap() {
+        return {
+            '/': { page: '/' },
+            // !!!
+        };
+    },
+};
+
+module.exports = withExportImages(nextConfig);
