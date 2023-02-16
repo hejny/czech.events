@@ -5,7 +5,7 @@ import czechEventsWhiteLogo from '../../public/design/logos/czech.events.white-l
 import czechEventsTransparentLogo from '../../public/design/logos/czech.events.transparent-logo.png';
 import Image from 'next/image';
 import Head from 'next/head';
-import { HeadSection } from 'src/components/HeadSection/HeadSection';
+import { HeadSection } from '../components/HeadSection/HeadSection';
 
 export default function AboutPage() {
     return (

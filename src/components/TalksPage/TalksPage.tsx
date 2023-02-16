@@ -11,7 +11,7 @@ import { Partners } from '../Partners/Partners';
 import { TalksPageEmail } from '../TalksPageEmail/TalksPageEmail';
 import czechEventsTransparentLogoFit from '../../../public/design/logos/czech.events.transparent-logo.fit.png';
 import Image from 'next/image';
-import { useAsyncMemo } from 'src/utils/useAsyncMemo';
+import { useAsyncMemo } from '../../utils/useAsyncMemo';
 
 interface ITalksPageProps {
     /**
