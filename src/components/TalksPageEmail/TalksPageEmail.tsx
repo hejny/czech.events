@@ -66,6 +66,8 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
                 {/* TODO: Place <>&nbsp;&amp;&nbsp;</> between */}
                 {/* !!! <a href="https://www.linkedin.com/in/tereza-texlova/">Tereza Texlová</a> */}
             </Shuffle>
+            <>&nbsp;&amp;&nbsp;</>
+            <a href="https://www.linkedin.com/in/tereza-texlova/">Tereza Texlová</a>
         </>
     );
 }
