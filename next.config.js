@@ -1,4 +1,4 @@
-const withExportImages = require('next-export-optimize-images');
+// !!! const withExportImages = require('next-export-optimize-images');
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -7,6 +7,7 @@ const nextConfig = {
         appDir: true,
     },
     images: {
+        unoptimized: true,
         remotePatterns: [
             /*{
                 protocol: 'https',
@@ -26,4 +27,4 @@ const nextConfig = {
     },
 };
 
-module.exports = withExportImages(nextConfig);
+module.exports = nextConfig; // !!! withExportImages(nextConfig);
