@@ -4,6 +4,7 @@ import { TalksPage } from 'src/components/TalksPage/TalksPage';
 import { useMemo } from 'react';
 import { ApiClient } from 'src/api/ApiClient';
 import { HeadSection } from 'src/components/HeadSection/HeadSection';
+import { Footer } from '../components/Footer/Footer';
 
 export default function IndexPage() {
     /*
@@ -31,6 +32,7 @@ export default function IndexPage() {
                 <HeadSection subtitle="Gallery" />
             </Head>
             <TalksPage {...{ apiClient }} />
+            <Footer />
         </>
     );
 }

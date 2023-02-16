@@ -1,0 +1,59 @@
+.footer {
+    /*/
+    outline: 1px dotted red; /**/
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    flex-wrap: wrap;
+
+    background-color: hsl(222.2, 60%, 7%) /* <- [🎨] */;
+
+    padding: 20px;
+}
+
+.footer ul li:not(:first-child):before {
+    content: '|';
+    color: rgb(17, 96, 117) /* <- [🎨] */;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.footer ul {
+    /*/
+    outline: 1px dotted red; /**/
+
+    padding-left: 30px;
+    padding-right: 30px;
+
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.footer ul li {
+    /*/
+    outline: 1px dotted red; /**/
+
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    white-space: nowrap;
+
+    color: rgb(163, 163, 163);
+}
+
+.footer ul li a {
+    /*/
+  outline: 1px dotted red; /**/
+
+    color: inherit;
+    text-decoration: none;
+}
