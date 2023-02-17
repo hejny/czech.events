@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { ApiClientContext } from '../../../../api/ApiClient';
 import { IEventComponentProps } from '../../EventComponent';
 
 export type ICalendarLinkProps = React.PropsWithChildren<IEventComponentProps>;
 
 export function CalendarLink({ event, children }: ICalendarLinkProps) {
-    const apiClient = React.useContext(ApiClientContext);
+    const apiClient = useContext(ApiClientContext);
 
     if (!apiClient) {
         return <>{children}</>;
