@@ -11,7 +11,7 @@ export default function AboutPage() {
     return (
         <>
             <Head>
-                <HeadSection subtitle="Gallery" />
+                <HeadSection subtitle="O nás" />
             </Head>
             <div className="page">
                 <div>
