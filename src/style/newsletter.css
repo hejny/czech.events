@@ -1,5 +1,5 @@
 /**
- * Note: Keep this file for the embeding from the server
+ * Note: This file is used both in frontent (Next.js) app in static bundle and by server for foreign embeddings (like StartupBox)
  */
 
 .future-event {
