@@ -29,7 +29,7 @@ export default function IndexPage() {
     return (
         <>
             <Head>
-                <HeadSection subtitle="Gallery" />
+                <HeadSection />
             </Head>
             <TalksPage {...{ apiClient }} />
             <Footer />

@@ -6,7 +6,7 @@ export default function PartnersPage() {
     return (
         <>
             <Head>
-                <HeadSection subtitle="Gallery" />
+                <HeadSection subtitle="Partneři" />
             </Head>
             <div className="page">
                 <Partners />
