@@ -1,12 +1,44 @@
-/*
-Note: Keep this file for the embeding
-*/
+/**
+ * Note: Keep this file for the embeding from the server
+ */
 
-.past {
+.future-event {
+    opacity: 1;
+}
+
+.past-event {
     opacity: 0.5;
 }
 
-.canceled {
+/*
+.online-event {
+  No style yet
+}
+*/
+
+/*
+.offline-event {
+  No style yet
+}
+*/
+
+.canceled-event {
     opacity: 0.5;
     text-decoration: line-through;
 }
+
+.event-calendar-link {
+    text-decoration: none;
+}
+
+/*
+TODO: Remove or use+scope
+&:not(:first-child) {
+padding-left: 0.1rem;
+margin-left: 0.1rem;
+
+/*
+    border-left: 1px solid #777;
+    /*margin-left: 0px;* /
+}
+*/
