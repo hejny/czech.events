@@ -22,8 +22,8 @@
         "server-develop": "ts-node-dev --project ./server/tsconfig.json ./server/index.ts",
         "server-deploy": "cd ./scripts && npm start",
         "generate-database-models": "cd ./scripts && npm run generate-database-models",
-        "update-packages": "npm-check-updates -u && git add ./package.json && git commit -m \"Update packages\" && npm run force-reinstall",
-        "force-reinstall": "rm ./package-lock.json ; rm -rf ./node_modules ; npm install && git add ./package-lock.json && git commit -m \"Force reinstall\""
+        "--update-packages": "npm-check-updates -u && git add ./package.json && git commit -m \"Update packages\" && npm run --force-reinstall",
+        "--force-reinstall": "rm ./package-lock.json ; rm -rf ./node_modules ; npm install && git add ./package-lock.json && git commit -m \"Force reinstall\""
     },
     "dependencies": {
         "@next/font": "13.1.6",
