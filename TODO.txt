@@ -1,3 +1,4 @@
+TODO: Install only in root level - move all dependencies from ./scripts/package.json to  ./package.json
 TODO: !! Set strictNullChecks=true
 TODO: !! Add your event as pending
 TODO: Deploy via Github actions
