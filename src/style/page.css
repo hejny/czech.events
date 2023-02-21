@@ -1,3 +1,7 @@
+html {
+    min-width: 400px; /* <- TODO: !!! Is this a good prevention of right edge void on mobile ? */
+}
+
 .page {
     display: flex;
     flex-direction: column;
@@ -124,7 +128,6 @@
     background-color: white;
     border-radius: 50px;
 }
-
 
 /**
  * TODO: In this file may be some unused rules - remove them
