@@ -41,7 +41,7 @@ export function parseIcalEventToEvent(icalEventRaw: IcalEventForParsing): Partia
 
         const startDate = icalEvent.start;
         const endDate = icalEvent.end || icalEvent.start;
-        const { days, durationInHours, year, month } = parseTimesAndDates({ startDate, endDate });
+        const { days, durationInHours, year, month, time } = parseTimesAndDates({ startDate, endDate });
 
         const keywords = parseKeywords({
             icalEvent,
@@ -55,15 +55,6 @@ export function parseIcalEventToEvent(icalEventRaw: IcalEventForParsing): Partia
 
         // [0] const { price, priceCurrency } = parsePrice({ icalEvent, keywords });
         const { city } = parseCity({ keywords });
-
-        // TODO: To special parse
-        let time = `${startDate.getHours().toString().padStart(2, '0')}:${startDate
-            .getMinutes()
-            .toString()
-            .padStart(2, '0')}`;
-        if (time === '00:00') {
-            time = null;
-        }
 
         let web = icalEvent.url;
         web = web.split('m.facebook.com').join('www.facebook.com');

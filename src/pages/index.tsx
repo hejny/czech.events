@@ -3,34 +3,17 @@ import Head from 'next/head';
 import { TalksPage } from '../components/TalksPage/TalksPage';
 import { useMemo } from 'react';
 import { ApiClient } from '../api/ApiClient';
-import { HeadSection } from '../components/HeadSection/HeadSection';
+import { AppHead } from '../components/AppHead/AppHead';
 import { Footer } from '../components/Footer/Footer';
+import { useApiClient } from 'src/api/useApiClient';
 
 export default function IndexPage() {
-    /*
-    TODO:
-    TODO: Use Next methods to fetch data
-    let apiUrl: string;
 
+  const apiClient = useApiClient();
 
-        if (window.location.hostname === 'localhost') {
-            apiUrl = 'http://localhost:7755';
-            // selfUrl = 'http://localhost:7754';
-        } else {
-            apiUrl = 'https://api.pavolhejny.com/czech-events';
-            // selfUrl = 'https://czech.events';
-        }
-    }
-    */
-
-    const apiUrl = 'https://api.pavolhejny.com/czech-events';
-
-    const apiClient = useMemo(() => new ApiClient(apiUrl), [apiUrl]);
     return (
         <>
-            <Head>
-                <HeadSection />
-            </Head>
+            <AppHead />
             <TalksPage {...{ apiClient }} />
             <Footer />
         </>

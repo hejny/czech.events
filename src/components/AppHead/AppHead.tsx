@@ -1,28 +1,28 @@
+import Head from 'next/head';
 import Script from 'next/script';
 import favicon from '../../../public/favicon.ico';
 
-interface HeadSectionProps {
+interface AppHeadSectionProps {
     subtitle?: string;
 }
 
-// TODO: !!! Maybe name CzechEventsHead or ProjectHead, AppHead,... + 0-1>
-export function HeadSection(props: HeadSectionProps) {
+export function AppHead(props: AppHeadSectionProps) {
     const { subtitle = 'Co se děje v IT' } = props;
 
     return (
-        // TODO: !!! Maybe <Head should be here + 0-1>
         <>
-            <title>{`Czech.events | ${subtitle}`}</title>
-            <meta name="description" content="!!!!" />
-            <meta name="viewport" content="width=device-width, initial-scale=1" />
-            <link rel="shortcut icon" href={favicon.src} type="image/x-icon" />
-            <link rel="author" href="https://pavolhejny.com/" />
+            <Head>
+                <title>{`Czech.events | ${subtitle}`}</title>
+                <meta name="description" content="!!!!" />
+                <meta name="viewport" content="width=device-width, initial-scale=1" />
+                <link rel="shortcut icon" href={favicon.src} type="image/x-icon" />
+                <link rel="author" href="https://pavolhejny.com/" />
 
-            <meta property="og:title" content={`Czech.events | ${subtitle}`} />
-            <meta property="og:image" content={`!!!`} />
+                <meta property="og:title" content={`Czech.events | ${subtitle}`} />
+                <meta property="og:image" content={`!!!`} />
 
-            <meta name="theme-color" content="#000000" />
-
+                <meta name="theme-color" content="#000000" />
+            </Head>
             <Script src="https://www.googletagmanager.com/gtag/js?id=UA-70710834-7" strategy="afterInteractive" />
             <Script id="google-analytics" strategy="afterInteractive">
                 {`

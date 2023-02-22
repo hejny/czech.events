@@ -24,9 +24,17 @@ export class ApiClient {
     public async postSubscriber(subscriber: Subscriber): Promise<Subscriber> {
         const data = await this.post(
             `/subscribers`,
-            subscriber /* TODO: Should be subscriber data directly in request body or should it be wrapped in {subscriber:{...}} */,
+            subscriber /* TODO: [0] Should be subscriber data directly in request body or should it be wrapped in {subscriber:{...}} */,
         );
         return constructObjectFromJSON(Subscriber, data);
+    }
+
+    public async postEventProposal(event: Partial<Event>): Promise<Event> {
+        const data = await this.post(
+            `/events`,
+            event /* TODO: [0] Should be event data directly in request body or should it be wrapped in {event:{...}} */,
+        );
+        return constructObjectFromJSON(Event, data);
     }
 
     // TODO: Create AbscractApiClient library

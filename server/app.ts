@@ -6,7 +6,8 @@ import { adminRouter } from './routes/admin/adminRouter';
 import { getEventsRouteHandler } from './routes/getEventsRouteHandler';
 import { getExportHtmlRouteHandler } from './routes/getExportHtmlRouteHandler';
 import { getExportIcalRouteHandler } from './routes/getExportIcalRouteHandler';
-import { subscriberPostRouteHandler } from './routes/subscriberPostRouteHandler';
+import { postSubscriberRouteHandler } from './routes/postSubscriberRouteHandler';
+import { postEventRouteHandler } from './routes/postEventRouteHandler';
 
 const packageJson = require('../package.json');
 
@@ -31,7 +32,8 @@ export async function createApp(): Promise<{ app: express.Application; server: h
     });
 
     app.get('/events', getEventsRouteHandler);
-    app.post('/subscribers', subscriberPostRouteHandler);
+    app.post('/events', postEventRouteHandler);
+    app.post('/subscribers', postSubscriberRouteHandler);
     app.get('/export/html', getExportHtmlRouteHandler);
     app.get('/export/ical*', getExportIcalRouteHandler);
 

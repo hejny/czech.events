@@ -7,6 +7,7 @@ export enum EventType {
     MEETUP = 'MEETUP',
     WORKSHOP = 'WORKSHOP',
     HACKATHON = 'HACKATHON',
+    UNKNOWN = 'UNKNOWN',
 }
 
 export enum EventPriceCurrency {

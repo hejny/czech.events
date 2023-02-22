@@ -4,7 +4,7 @@ import { RequestHandler } from 'express';
 import { connectionPromise } from '../database';
 import { v4 } from 'uuid';
 
-export const subscriberPostRouteHandler: RequestHandler = async (request, response, next) => {
+export const postSubscriberRouteHandler: RequestHandler = async (request, response, next) => {
     try {
         const connection = await connectionPromise;
         // TODO: Purge internal IDs

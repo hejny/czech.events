@@ -1,13 +1,11 @@
 import Head from 'next/head';
 import { Partners } from '../components/Partners/Partners';
-import { HeadSection } from '../components/HeadSection/HeadSection';
+import { AppHead } from '../components/AppHead/AppHead';
 
 export default function PartnersPage() {
     return (
         <>
-            <Head>
-                <HeadSection subtitle="Partneři" />
-            </Head>
+            <AppHead subtitle="Partneři" />
             <div className="page">
                 <Partners />
             </div>

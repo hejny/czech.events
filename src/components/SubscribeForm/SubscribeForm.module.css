@@ -1,0 +1,84 @@
+.SubscribeForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 25px;
+    margin-bottom: 15px;
+}
+
+.SubscribeForm label {
+    top: 20px;
+    color: rgba(255, 255, 255, 0.5);
+    font: 400 16px Montserrat;
+    cursor: text;
+    transition: 0.25s ease;
+}
+
+.gdpr label {
+    top: 2px;
+    padding-left: 8px;
+}
+
+.field {
+    display: block;
+    width: 100%;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    border-radius: 0;
+    color: white;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+    font-size: 20px;
+    transition: 0.3s ease;
+}
+.field:valid ~ label {
+    top: 0;
+    font: 700 16px;
+    transition: 0.3s ease;
+}
+
+.field:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+}
+.field:focus ~ label {
+    top: 0;
+    font: 700 16px Montserrat;
+    color: #01ccbf;
+    transition: 0.3s ease;
+    transform: translateX(0);
+}
+
+.button {
+    display: block;
+    width: 100%;
+    padding-top: 42px;
+    border: none;
+    border-radius: 0;
+    color: white;
+    background: transparent;
+    font-size: 20px;
+    transition: 0.3s ease;
+
+    text-decoration: none;
+    font: 100 18px Montserrat;
+    padding: 16px 20px;
+    color: white;
+    cursor: pointer;
+    display: inline-block;
+    background-color: transparent;
+    border: 2px solid rgba(255, 255, 255, 0.5);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 6px;
+}
+
+.button:hover {
+    background-color: white;
+    color: black;
+}
+
+.center {
+    text-align: center;
+    margin: 0 auto;
+}

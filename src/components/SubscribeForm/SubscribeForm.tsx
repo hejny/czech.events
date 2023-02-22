@@ -1,18 +1,18 @@
-import styles from './Form.module.css';
+import styles from './SubscribeForm.module.css';
 import { ApiClient } from '../../api/ApiClient';
 import { Subscriber } from '../../model/database/Subscriber';
 import { constructObjectFromJSON } from '../../utils/constructObjectFromJSON';
 import { classNames } from '../../utils/classNames';
 
-interface IFormProps {
+interface ISubscribeFormProps {
     apiClient: ApiClient;
 }
 
-export function Form(props: IFormProps) {
+export function SubscribeForm(props: ISubscribeFormProps) {
     // TODO: To Config
     return (
         <form
-            className={styles.Form}
+            className={styles.SubscribeForm}
             onSubmit={async (event) => {
                 event.preventDefault();
                 const form = event.target as HTMLFormElement;
@@ -23,9 +23,12 @@ export function Form(props: IFormProps) {
                     return;
                 }
 
+                const email = formData.get('email') as string;
+                const fullname = formData.get('fullname') as string;
+
                 const subscriber = constructObjectFromJSON(Subscriber, {
-                    email: formData.get('email') as string,
-                    fullname: formData.get('fullname') as string,
+                    email,
+                    fullname,
                     source: window.location.toString(),
                 });
 

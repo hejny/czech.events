@@ -5,14 +5,12 @@ import czechEventsWhiteLogo from '../../public/design/logos/czech.events.white-l
 import czechEventsTransparentLogo from '../../public/design/logos/czech.events.transparent-logo.png';
 import Image from 'next/image';
 import Head from 'next/head';
-import { HeadSection } from '../components/HeadSection/HeadSection';
+import { AppHead } from '../components/AppHead/AppHead';
 
 export default function AboutPage() {
     return (
         <>
-            <Head>
-                <HeadSection subtitle="O nás" />
-            </Head>
+            <AppHead subtitle="O nás" />
             <div className="page">
                 <div>
                     <div className="front black">

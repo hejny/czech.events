@@ -3,7 +3,7 @@ import { ApiClient } from '../../api/ApiClient';
 import { Event } from '../../model/database/Event';
 import { DateRange, RangeConstant } from '../../model/DateRange';
 import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
-import { Form } from '../Form/Form';
+import { SubscribeForm } from '../SubscribeForm/SubscribeForm';
 import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
 import styles from '../../pages/page.module.css';
 import { Partners } from '../Partners/Partners';
@@ -77,7 +77,7 @@ export function TalksPage(props: ITalksPageProps) {
                             Dejte nám Vaší emailovou adresu a my Vám budeme pravidelně jednou za měsíc posílat co se
                             děje:
                         </h2>
-                        <Form {...{ apiClient }} />
+                        <SubscribeForm {...{ apiClient }} />
 
                         {/*TODO: Semantically h2 is not very ideal here at all*/}
                         <h2 className="line separator font-light">
