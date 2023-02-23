@@ -10,7 +10,7 @@ export function useApiClient(): ApiClient {
 
         if (window.location.hostname === 'localhost') {
             apiUrl = 'http://localhost:7755';
-            // selfUrl = 'http://localhost:7754';
+            // selfUrl = 'http://localhost:17754';
         } else {
             apiUrl = 'https://api.pavolhejny.com/czech-events';
             // selfUrl = 'https://czech.events';

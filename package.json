@@ -12,7 +12,7 @@
         "start": "next start",
         "lint": "next lint",
         "test": "jest --config jestconfig.json",
-        "frontend-develop": "next dev -p 7754",
+        "frontend-develop": "next dev -p 17754",
         "frontend-develop-emit-decorator-metadata": "tsc --project src/model/database/_emitDecoratorMetadata.tsconfig.json && tsc --watch --project src/model/database/_emitDecoratorMetadata.tsconfig.json",
         "frontend-develop-delete-decorator-metadata": "find ./src/model/database/ -name '*.js' -delete",
         "frontend-build": "rm -rf ./build && npm run frontend-develop-delete-decorator-metadata && next build & next export -o build",
