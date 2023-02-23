@@ -22,7 +22,13 @@ export function ProposeForm(props: IProposeFormProps) {
                 const formElement = event.target as HTMLFormElement;
 
                 function getInputByName(name: string) {
-                    return formElement.querySelector(`input[name="${name}"]`) as HTMLInputElement;
+                    return formElement.querySelector(
+                        `
+                          input[name="${name}"],
+                          select[name="${name}"],
+                          textarea[name="${name}"]
+                        `,
+                    ) as HTMLInputElement;
                 }
 
                 const email = getInputByName(`email`).value;
@@ -32,9 +38,18 @@ export function ProposeForm(props: IProposeFormProps) {
                 const type = getInputByName(`type`).value as EventType;
                 const web = getInputByName(`web`).value;
                 const city = getInputByName(`city`).value;
-                const startDate = getInputByName(`start-date`).valueAsDate;
-                const endDate = getInputByName(`end-date`).valueAsDate;
+                const note = getInputByName(`note`).value;
+
+                const startDate = new Date(
+                    getInputByName(`start-date`).value,
+                ); /* <- Note: For some reason can not be used valueAsDate */
+                const endDateString = getInputByName(`end-date`).value;
+                const endDate = endDateString && new Date(endDateString);
+
                 const { year, month, days, time } = parseTimesAndDates({ startDate, endDate });
+
+                console.info({ year, month, days, time });
+
                 const online = getInputByName(`online`).checked;
 
                 const subscriber = constructObjectFromJSON(Subscriber, {
@@ -59,35 +74,43 @@ export function ProposeForm(props: IProposeFormProps) {
                     online: online ? 1 : 0,
                     note: spaceTrim(`
 
-              From: "${fullname}" <${email}>
+                        From: "${fullname}" <${email}>
 
-              ${formData.get('note') as string}
+                        ${note}
 
-            `),
+                    `),
                 });
 
                 try {
+                    console.info({
+                        proposedEvent,
+                        subscriber,
+                    });
+
                     const resultEvent = await props.apiClient.postEventProposal(proposedEvent);
                     const resultSubscriber = await props.apiClient.postSubscriber(subscriber);
 
-                    console.log({
+                    console.info({
                         resultEvent,
                         resultSubscriber,
                     });
 
-                    const formElement = event.target as HTMLFormElement;
+                    // !!! formElement.reset();
                     alert(`Děkujeme za návrh, můžete se těšit na další email!`);
                 } catch (error) {
                     if (!(error instanceof Error)) {
                         throw error;
                     }
 
+                    // !!! Correctly filled form BUT with duplicate - allow to send
+
+                    console.error(error);
                     alert(error.message /*TODO: Better*/);
                 }
             }}
         >
             <div className="group">
-                <label htmlFor="web">Odkaz: *</label>
+                <label htmlFor="web">Web události: *</label>
                 <input type="url" name="web" className={styles.field} defaultValue="" required />
                 {/* TODO: Try to autofetch the details */}
             </div>
@@ -116,8 +139,8 @@ export function ProposeForm(props: IProposeFormProps) {
             </div>
             <div className="group">
                 <label htmlFor="type">Typ:</label>
-                <select name="type" className={styles.field}>
-                    <option value={null} selected>
+                <select name="type" className={styles.field} required>
+                    <option value="" selected disabled hidden>
                         ---
                     </option>
                     <option value={EventType.CONFERENCE}>Konference</option>
@@ -134,7 +157,7 @@ export function ProposeForm(props: IProposeFormProps) {
                     type="datetime-local"
                     name="start-date"
                     className={styles.field}
-                    min={new Date().toISOString()}
+                    min={new Date().toISOString()} /* <- !!! Is min working? */
                     required
                 />
             </div>
@@ -164,7 +187,7 @@ export function ProposeForm(props: IProposeFormProps) {
             </div>
             <div className="group">
                 <label htmlFor="email">Váš E-mail:</label>
-                <input type="email" name="email" defaultValue="@" className={styles.field} />
+                <input type="email" name="email" className={styles.field} />
             </div>
 
             <div className="group">
@@ -173,7 +196,7 @@ export function ProposeForm(props: IProposeFormProps) {
                     <br />
                     <i>Libovolné doplňující informace k události</i>
                 </label>
-                <input type="text" name="city" className={styles.field} defaultValue="" />
+                <textarea name="note" className={styles.field} />
             </div>
 
             <div className={styles.center}>

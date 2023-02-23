@@ -51,17 +51,18 @@ export function Partners() {
                         },
 
                         /*
-                    TODO:
-                    {
-                        name: 'CEEHACKS',
-                        logoUrl: `${props.selfUrl}/design/logos/partners/ceehacks.png`,
-                        link: 'https://www.ceehacks.com/',
-                    },
-                    {
-                        name: 'TechHeaven',
-                        logoUrl: `${props.selfUrl}/design/logos/partners/techheaven.svg`,
-                        link: 'https://techheaven.org/',
-                    },*/
+                        TODO:
+                        {
+                            name: 'CEEHACKS',
+                            logoUrl: `${props.selfUrl}/design/logos/partners/ceehacks.png`,
+                            link: 'https://www.ceehacks.com/',
+                        },
+                        {
+                            name: 'TechHeaven',
+                            logoUrl: `${props.selfUrl}/design/logos/partners/techheaven.svg`,
+                            link: 'https://techheaven.org/',
+                        },
+                        */
                         // TODO: CzechFuture tech
                         // TODO: Random shuffle
                     ].map(({ name, image, link }) => {

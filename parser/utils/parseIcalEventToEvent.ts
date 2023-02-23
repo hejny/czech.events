@@ -40,7 +40,7 @@ export function parseIcalEventToEvent(icalEventRaw: IcalEventForParsing): Partia
         const { name, topic } = parseNameAndTopic(icalEvent.summary);
 
         const startDate = icalEvent.start;
-        const endDate = icalEvent.end || icalEvent.start;
+        const endDate = icalEvent.end ;
         const { days, durationInHours, year, month, time } = parseTimesAndDates({ startDate, endDate });
 
         const keywords = parseKeywords({

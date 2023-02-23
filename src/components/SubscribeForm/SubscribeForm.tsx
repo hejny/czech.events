@@ -45,6 +45,8 @@ export function SubscribeForm(props: ISubscribeFormProps) {
                         throw error;
                     }
 
+                    console.error(error);
+
                     alert(error.message /*TODO: Better*/);
                 }
             }}
