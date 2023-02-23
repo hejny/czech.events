@@ -17,6 +17,7 @@ export function translateCurrency(currency: EventPriceCurrency): string {
 export function translateEventType(eventType: EventType): string {
     // TODO: Plular
     // TODO: Hardcoded
+    // TODO: Use getCharForEventTag internally
     switch (eventType) {
         case EventType.HACKATHON:
             return '🐱‍💻 Hackathony';
@@ -26,5 +27,7 @@ export function translateEventType(eventType: EventType): string {
             return '🧑🏽‍🤝‍🧑🏽 Meetupy';
         case EventType.WORKSHOP:
             return '🎓 Workshopy';
+        case EventType.UNKNOWN:
+            return '❔ Neznámé';
     }
 }

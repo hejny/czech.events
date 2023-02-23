@@ -19,8 +19,10 @@ export function ProposeForm(props: IProposeFormProps) {
             onSubmit={async (event) => {
                 event.preventDefault();
 
+                const formElement = event.target as HTMLFormElement;
+
                 function getInputByName(name: string) {
-                    return (event.target as HTMLFormElement).querySelector(`input[name="${name}"]`) as HTMLInputElement;
+                    return formElement.querySelector(`input[name="${name}"]`) as HTMLInputElement;
                 }
 
                 const email = getInputByName(`email`).value;
@@ -30,8 +32,9 @@ export function ProposeForm(props: IProposeFormProps) {
                 const type = getInputByName(`type`).value as EventType;
                 const web = getInputByName(`web`).value;
                 const city = getInputByName(`city`).value;
-                const date = getInputByName(`date`).valueAsDate;
-                const { year, month, days, time } = parseTimesAndDates({ startDate: date, endDate: date });
+                const startDate = getInputByName(`start-date`).valueAsDate;
+                const endDate = getInputByName(`end-date`).valueAsDate;
+                const { year, month, days, time } = parseTimesAndDates({ startDate, endDate });
                 const online = getInputByName(`online`).checked;
 
                 const subscriber = constructObjectFromJSON(Subscriber, {
@@ -72,7 +75,7 @@ export function ProposeForm(props: IProposeFormProps) {
                         resultSubscriber,
                     });
 
-                    form.reset();
+                    const formElement = event.target as HTMLFormElement;
                     alert(`Děkujeme za návrh, můžete se těšit na další email!`);
                 } catch (error) {
                     if (!(error instanceof Error)) {
@@ -126,9 +129,19 @@ export function ProposeForm(props: IProposeFormProps) {
             </div>
 
             <div className="group">
-                <label htmlFor="date">Datum a čas:</label>
-                {/* !!! Timezones */}
-                <input type="datetime-local" name="date" className={styles.field} defaultValue="" />
+                <label htmlFor="date">Datum a čas začátku:</label>
+                <input
+                    type="datetime-local"
+                    name="start-date"
+                    className={styles.field}
+                    min={new Date().toISOString()}
+                    required
+                />
+            </div>
+
+            <div className="group">
+                <label htmlFor="date">Datum a čas konce:</label>
+                <input type="datetime-local" name="end-date" className={styles.field} min={new Date().toISOString()} />
             </div>
 
             <div className="group">
@@ -152,6 +165,15 @@ export function ProposeForm(props: IProposeFormProps) {
             <div className="group">
                 <label htmlFor="email">Váš E-mail:</label>
                 <input type="email" name="email" defaultValue="@" className={styles.field} />
+            </div>
+
+            <div className="group">
+                <label htmlFor="city">
+                    Poznámka:
+                    <br />
+                    <i>Libovolné doplňující informace k události</i>
+                </label>
+                <input type="text" name="city" className={styles.field} defaultValue="" />
             </div>
 
             <div className={styles.center}>

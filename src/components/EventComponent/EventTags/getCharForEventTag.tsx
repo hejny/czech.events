@@ -10,5 +10,7 @@ export function getCharForEventTag(eventType: EventType): string {
             return `📚`;
         case EventType.HACKATHON:
             return `💻`;
+        case EventType.UNKNOWN:
+            return '❔';
     }
 }

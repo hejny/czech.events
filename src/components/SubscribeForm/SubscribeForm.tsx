@@ -15,8 +15,9 @@ export function SubscribeForm(props: ISubscribeFormProps) {
             className={styles.SubscribeForm}
             onSubmit={async (event) => {
                 event.preventDefault();
-                const form = event.target as HTMLFormElement;
-                const formData = new FormData(form);
+
+                const formElement = event.target as HTMLFormElement;
+                const formData = new FormData(formElement);
 
                 if (!formData.get('gdpr')) {
                     alert(`Potřebujeme od Vás zaškrtnout souhlas se zpracováním osobních údajů.`);
@@ -37,7 +38,7 @@ export function SubscribeForm(props: ISubscribeFormProps) {
 
                     console.log('result', result);
 
-                    form.reset();
+                    formElement.reset();
                     alert(`Děkujeme, můžete se těšit na další email!`);
                 } catch (error) {
                     if (!(error instanceof Error)) {
