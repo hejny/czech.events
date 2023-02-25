@@ -67,6 +67,7 @@ async function main() {
                 throw error;
             }
 
+            console.info(chalk.red(`NOT Parsed events from ${url}`));
             console.error(chalk.red(error));
         }
     }

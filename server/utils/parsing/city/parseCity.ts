@@ -3,13 +3,9 @@ import { IJsonldEvent } from '../../../interfaces/jsonld/IJsonldEvent';
 import { CITIES } from './CITIES';
 import { normalizeCity } from './normalizeCity';
 
-export function parseCity({
-    keywords,
-    jsonldEvent,
-}: {
-    keywords: IKeywords;
-    jsonldEvent?: IJsonldEvent;
-}): { city: string | null } {
+export function parseCity({ keywords, jsonldEvent }: { keywords: IKeywords; jsonldEvent?: IJsonldEvent }): {
+    city: string | null;
+} {
     if (jsonldEvent?.location?.['@type'] === 'VirtualLocation') {
         // [🏙️]
         return { city: null };
@@ -49,7 +45,10 @@ export function parseCity({
     if (citiesFromKeywords.size === 1) {
         return { city: Array.from(citiesFromKeywords)[0] };
     } else if (citiesFromKeywords.size > 1) {
-        console.warn(`There are more cities parsed from keywords ${[Array.from(citiesFromKeywords)].join(', ')}.`);
+        console.warn(
+            `Warning: There are more cities parsed from keywords ${[Array.from(citiesFromKeywords)].join(', ')}.`,
+            // { jsonldEvent, keywords },
+        );
         return { city: null };
     }
 

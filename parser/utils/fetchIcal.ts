@@ -1,15 +1,21 @@
-import { readdir, readFile, unlink } from 'fs/promises';
+import { readdir, readFile, unlink, mkdir, writeFile } from 'fs/promises';
 import { locateChrome } from 'locate-app';
 import { spaceTrim } from 'spacetrim';
 import { forTime } from 'waitasecond';
 import fetch from 'node-fetch';
 import { setFacebookCookies } from './setFacebookCookies';
 import { FACEBOOK_COOKIES } from '../config';
-
 import { join } from 'path';
 import puppeteer from 'puppeteer-core';
 
+const tmpPath = join(__dirname, 'tmp'); /* <- !! Better tmp folder */
+const downloadPath = join(tmpPath, 'downloads');
+const errorsPath = join(tmpPath, 'errors');
+
 export async function fetchIcal(url: string, isPuppeteerUsed = false): Promise<string> {
+    await mkdir(downloadPath, { recursive: true });
+    await mkdir(errorsPath, { recursive: true });
+
     try {
         let icalString: string;
 
@@ -28,8 +34,6 @@ export async function fetchIcal(url: string, isPuppeteerUsed = false): Promise<s
             if (/^https:\/\/www.facebook.com/.test(url)) {
                 await setFacebookCookies(page, FACEBOOK_COOKIES);
             }
-
-            const downloadPath = join(__dirname, 'tmp'); /* <- !! Better tmp folder */
 
             const client = await page.target().createCDPSession();
             await client.send('Page.setDownloadBehavior', {
@@ -77,7 +81,16 @@ export async function fetchIcal(url: string, isPuppeteerUsed = false): Promise<s
         }
 
         if (!/BEGIN\:VCALENDAR/.test(icalString)) {
-            throw new Error(`Source does not looks like a valid ICal`);
+            const errorPath = join(errorsPath, url + '.html');
+            await writeFile(errorPath, icalString);
+            throw new Error(
+                spaceTrim(`
+                Source does not looks like a valid ICal
+
+                See the file ${errorPath.split('\\').join('/')}
+
+            `),
+            );
         }
 
         return icalString;
