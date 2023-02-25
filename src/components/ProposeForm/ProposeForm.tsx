@@ -55,7 +55,7 @@ export function ProposeForm(props: IProposeFormProps) {
                 const subscriber = constructObjectFromJSON(Subscriber, {
                     email,
                     fullname,
-                    source: window.location.toString(/* !!! Is /propose propagated */),
+                    source: window.location.toString(),
                 });
 
                 const proposedEvent = constructObjectFromJSON(Event, {
@@ -97,7 +97,7 @@ export function ProposeForm(props: IProposeFormProps) {
                         resultSubscriber,
                     });
 
-                    // !!! formElement.reset();
+                    formElement.reset();
                     alert(`Děkujeme Vám za návrh!`);
                 } catch (error) {
                     if (!(error instanceof Error)) {
@@ -214,6 +214,5 @@ export function ProposeForm(props: IProposeFormProps) {
 }
 
 /**
- * !!! Persist in LocalStorage
- * !!! Info about the feed
+ * TODO: Persist in LocalStorage
  */

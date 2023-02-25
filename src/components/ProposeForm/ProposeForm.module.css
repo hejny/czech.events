@@ -1,6 +1,7 @@
 .ProposeForm {
     color: white;
     max-width: 500px;
+    font-family: Montserrat /* <- TODO: Global*/;
 }
 
 .field {
@@ -70,7 +71,7 @@ TODO:
     transition: 0.3s ease;
 
     text-decoration: none;
-    font: 100 18px Montserrat /* <- !!! Global*/;
+    font: 100 18px Montserrat /* <- TODO: Global*/;
     padding: 16px 20px;
     color: white;
     cursor: pointer;
@@ -82,7 +83,7 @@ TODO:
 }
 
 .button:hover {
-    /* TODO: !!! Better */
+    /* TODO:  Better */
     background-color: white;
     color: black;
 }
