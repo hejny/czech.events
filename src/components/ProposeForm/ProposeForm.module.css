@@ -1,23 +1,20 @@
 .ProposeForm {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    margin-top: 25px;
-    margin-bottom: 15px;
-}
-
-.ProposeForm label {
-    top: 20px;
-    color: rgba(255, 255, 255, 0.5);
-    font: 400 16px Montserrat;
-    cursor: text;
-    transition: 0.25s ease;
+    color: white;
+    max-width: 500px;
 }
 
 .field {
     display: block;
+    margin-top: 10px;
+}
+
+.field label {
+    display: block;
+}
+
+.field input,
+.field select,
+.field textarea {
     width: 100%;
     border: 2px solid rgba(255, 255, 255, 0.5);
     border-radius: 0;
@@ -26,28 +23,44 @@
     border-radius: 6px;
     font-size: 20px;
     transition: 0.3s ease;
-}
-.field:valid ~ label {
-    top: 0;
-    font: 700 16px;
-    transition: 0.3s ease;
+
+    /*
+    TODO: Mark valid/invalid
+    */
 }
 
-.field:focus {
+.field input[type='checkbox'] {
+    width: auto;
+}
+
+.field select option {
+    color: white;
+    background: #1d1c21;
+}
+
+.field textarea {
+    height: 120px;
+}
+
+/*
+TODO:
+.field input:focus {
     outline: none;
     background: rgba(255, 255, 255, 0.1);
 }
-.field:focus ~ label {
-    top: 0;
-    font: 700 16px Montserrat;
-    color: #01ccbf;
-    transition: 0.3s ease;
-    transform: translateX(0);
+*/
+
+.submit {
+    display: flex;
+    align-items: start;
+    justify-content: center;
+    margin-bottom: 100px;
 }
 
 .button {
+    /* TODO: Global buttons */
     display: block;
-    width: 100%;
+    width: 200px;
     padding-top: 42px;
     border: none;
     border-radius: 0;
@@ -57,7 +70,7 @@
     transition: 0.3s ease;
 
     text-decoration: none;
-    font: 100 18px Montserrat;
+    font: 100 18px Montserrat /* <- !!! Global*/;
     padding: 16px 20px;
     color: white;
     cursor: pointer;
@@ -69,11 +82,7 @@
 }
 
 .button:hover {
+    /* TODO: !!! Better */
     background-color: white;
     color: black;
-}
-
-.center {
-    text-align: center;
-    margin: 0 auto;
 }

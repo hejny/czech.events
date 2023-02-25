@@ -15,7 +15,7 @@ export function ProposeForm(props: IProposeFormProps) {
     // TODO: To Config
     return (
         <form
-            className={styles.SubscribeForm}
+            className={styles.ProposeForm}
             onSubmit={async (event) => {
                 event.preventDefault();
 
@@ -109,97 +109,92 @@ export function ProposeForm(props: IProposeFormProps) {
                 }
             }}
         >
-            <div className="group">
+            <h2>Navrhněte událost do emailu:</h2>
+            <p>
+                Cca 2x za měsíc Vaše návrhy procházíme a přidáváme do emailu. Pokud máte organizujete více událostí a
+                máte feed, napište mi na <a href="mailto:pavol@hejny.org">pavol@hejny.org</a>.
+            </p>
+            <div className={styles.field}>
                 <label htmlFor="web">Web události: *</label>
-                <input type="url" name="web" className={styles.field} defaultValue="" required />
+                <input type="url" name="web" defaultValue="" required />
                 {/* TODO: Try to autofetch the details */}
             </div>
 
-            <div className="group">
+            <div className={styles.field}>
                 <label htmlFor="name">Název:</label>
-                <input
-                    type="text"
-                    name="name"
-                    className={styles.field}
-                    defaultValue=""
-                    placeholder="např. StartupWeekend"
-                    required
-                />
+                <input type="text" name="name" defaultValue="" placeholder="např. StartupWeekend" required />
             </div>
 
-            <div className="group">
+            <div className={styles.field}>
                 <label htmlFor="topic">Podtitul:</label>
-                <input
-                    type="text"
-                    name="topic"
-                    className={styles.field}
-                    defaultValue=""
-                    placeholder="např. Inovace ve vzdělávání"
-                />
+                <input type="text" name="topic" defaultValue="" placeholder="např. Inovace ve vzdělávání" />
             </div>
-            <div className="group">
+            <div className={styles.field}>
                 <label htmlFor="type">Typ:</label>
-                <select name="type" className={styles.field} required>
+                <select name="type" required>
                     <option value="" selected disabled hidden>
                         ---
                     </option>
-                    <option value={EventType.CONFERENCE}>Konference</option>
-                    <option value={EventType.MEETUP}>Meetup</option>
-                    <option value={EventType.WORKSHOP}>Workshop</option>
-                    <option value={EventType.HACKATHON}>Hackathon</option>
-                    <option value={EventType.UNKNOWN}>Nevím / nejsem si jistý</option>
+                    <option value={EventType.CONFERENCE}>📛 Konference</option>
+                    <option value={EventType.MEETUP}>🧑🏽‍🤝‍🧑🏽 Meetup</option>
+                    <option value={EventType.WORKSHOP}>🎓 Workshop</option>
+                    <option value={EventType.HACKATHON}>🐱‍💻 Hackathon</option>
+                    <option value={EventType.UNKNOWN}>❔ Nevím / nejsem si jistý</option>
                 </select>
             </div>
 
-            <div className="group">
-                <label htmlFor="date">Datum a čas začátku:</label>
+            <div className={styles.field}>
+                <label htmlFor="date">Datum a čas začátku: *</label>
                 <input
                     type="datetime-local"
                     name="start-date"
-                    className={styles.field}
-                    min={new Date().toISOString()} /* <- !!! Is min working? */
+                    /* min={new Date().toISOString()} <- TODO: Make it working? */
                     required
                 />
             </div>
 
-            <div className="group">
+            <div className={styles.field}>
                 <label htmlFor="date">Datum a čas konce:</label>
-                <input type="datetime-local" name="end-date" className={styles.field} min={new Date().toISOString()} />
+                <input
+                    type="datetime-local"
+                    name="end-date" /* min={new Date().toISOString()} <- TODO: Make it working? */
+                />
             </div>
 
-            <div className="group">
+            <div className={styles.field}>
                 <label htmlFor="city">
                     Město:
                     <br />
                     <i>(pokud jde o čistě online událost, nechte město nevyplněné)</i>
                 </label>
-                <input type="text" name="city" className={styles.field} defaultValue="" />
+                <input type="text" name="city" defaultValue="" />
             </div>
 
-            <div className={classNames('group', 'checkbox', styles.gdpr)}>
-                <input type="checkbox" name="online" defaultChecked={false} />
-                <label htmlFor="online">Událost je vysílaná i online</label>
+            <div className={styles.field}>
+                <label>
+                    <input type="checkbox" name="online" defaultChecked={false} /> Událost je vysílaná i online
+                </label>
             </div>
 
-            <div className="group">
+            <div className={styles.field}>
                 <label htmlFor="name">Vaše jméno:</label>
-                <input type="text" name="fullname" className={styles.field} defaultValue="" />
+                <input type="text" name="fullname" defaultValue="" />
             </div>
-            <div className="group">
+            <div className={styles.field}>
                 <label htmlFor="email">Váš E-mail:</label>
-                <input type="email" name="email" className={styles.field} />
+                <input type="email" name="email" />
             </div>
 
-            <div className="group">
+            <div className={styles.field}>
                 <label htmlFor="city">
                     Poznámka:
                     <br />
                     <i>Libovolné doplňující informace k události</i>
                 </label>
-                <textarea name="note" className={styles.field} />
+                <textarea name="note" />
             </div>
 
-            <div className={styles.center}>
+            <div className={styles.submit}>
                 <input value="Poslat návrh " type="submit" id="submit" name="submit" className={styles.button} />
             </div>
         </form>
