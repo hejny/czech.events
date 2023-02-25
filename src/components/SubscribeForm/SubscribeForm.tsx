@@ -3,6 +3,7 @@ import { ApiClient } from '../../api/ApiClient';
 import { Subscriber } from '../../model/database/Subscriber';
 import { constructObjectFromJSON } from '../../utils/constructObjectFromJSON';
 import { classNames } from '../../utils/classNames';
+import spaceTrim from 'spacetrim';
 
 interface ISubscribeFormProps {
     apiClient: ApiClient;
@@ -47,7 +48,13 @@ export function SubscribeForm(props: ISubscribeFormProps) {
 
                     console.error(error);
 
-                    alert(error.message /*TODO: Better*/);
+                    // TODO: Do not use alert but custom modal
+                    alert(
+                        spaceTrim(`
+                            Omlouváme se, ale něco se pokazilo
+
+                            Vyzkoušejte se přihlásit později nebo mi napište na pavol@hejny.org`),
+                    );
                 }
             }}
         >

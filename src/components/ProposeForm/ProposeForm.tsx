@@ -72,13 +72,15 @@ export function ProposeForm(props: IProposeFormProps) {
                     // TODO: priceCurrency,
                     // TODO: canceled,
                     online: online ? 1 : 0,
-                    note: spaceTrim(`
+                    note: spaceTrim(
+                        (block) => `
 
-                        From: "${fullname}" <${email}>
+                          From: "${fullname}" <${email}>
+                          Note:
+                          ${block(note)}
 
-                        ${note}
-
-                    `),
+                    `,
+                    ),
                 });
 
                 try {
@@ -96,16 +98,21 @@ export function ProposeForm(props: IProposeFormProps) {
                     });
 
                     // !!! formElement.reset();
-                    alert(`Děkujeme za návrh, můžete se těšit na další email!`);
+                    alert(`Děkujeme Vám za návrh!`);
                 } catch (error) {
                     if (!(error instanceof Error)) {
                         throw error;
                     }
 
-                    // !!! Correctly filled form BUT with duplicate - allow to send
-
                     console.error(error);
-                    alert(error.message /*TODO: Better*/);
+
+                    // TODO: Do not use alert but custom modal
+                    alert(
+                        spaceTrim(`
+                            Omlouváme se, ale něco se pokazilo
+
+                            Vyzkoušejte poslat návrh později nebo mi napište na pavol@hejny.org`),
+                    );
                 }
             }}
         >
@@ -148,7 +155,9 @@ export function ProposeForm(props: IProposeFormProps) {
                 <input
                     type="datetime-local"
                     name="start-date"
-                    /* min={new Date().toISOString()} <- TODO: Make it working? */
+                    min="2023-01-01T00:00"
+                    max="2030-01-01T00:00"
+                    /* min={new Date().toISOString()} <- TODO: Make min=today */
                     required
                 />
             </div>
@@ -157,7 +166,10 @@ export function ProposeForm(props: IProposeFormProps) {
                 <label htmlFor="date">Datum a čas konce:</label>
                 <input
                     type="datetime-local"
-                    name="end-date" /* min={new Date().toISOString()} <- TODO: Make it working? */
+                    name="end-date"
+                    min="2023-01-01T00:00"
+                    max="2030-01-01T00:00"
+                    /* min={new Date().toISOString()} <- TODO: Make min=start-date  */
                 />
             </div>
 

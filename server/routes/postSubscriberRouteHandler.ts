@@ -12,7 +12,6 @@ export const postSubscriberRouteHandler: RequestHandler = async (request, respon
         subscriber.created = new Date();
         subscriber.uuid = v4();
 
-
         const insertResult = await connection.manager.insert(Subscriber, subscriber);
 
         if (insertResult.identifiers.length !== 1) {
@@ -23,16 +22,13 @@ export const postSubscriberRouteHandler: RequestHandler = async (request, respon
         // TODO: Purge internal IDs
         return response.send(insertedSubscriber);
     } catch (error) {
-
         if (!(error instanceof Error)) {
             throw error;
         }
 
-
         console.error(error);
         return response.send({
-            error:
-                'Omlouváme se, ale něco se pokazilo\n Vyzkoušejte se přihlásit později nebo mi napište na pavol@hejny.org',
+            error: error.message,
         });
         // TODO: some error
     }

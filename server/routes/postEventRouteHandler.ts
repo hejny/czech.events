@@ -14,7 +14,7 @@ export const postEventRouteHandler: RequestHandler = async (request, response, n
         delete event.id;
         // TODO: delete event.uuid;
         // TODO: event.uuid = v4();
-        event.serializeId = event.web;
+        event.serializeId = event.web + `#proposal-at-${new Date().toISOString()}`;
         // name	varchar(300)
         // topic	varchar(500) NULL
         // type	enum('CONFERENCE','MEETUP','WORKSHOP','HACKATHON')
@@ -29,11 +29,13 @@ export const postEventRouteHandler: RequestHandler = async (request, response, n
         event.visibility = EventVisibility.PENDING;
         // canceled	tinyint(2) NULL
         // online	tinyint(2) NULL
-        event.note = spaceTrim(`
-            Proposed from web
+        event.note = spaceTrim(
+            (block) => `
 
-            ${event.note}
-        `);
+                Proposed from web
+                ${block(event.note)}
+        `,
+        );
         event.created = new Date();
         // updated
 
@@ -53,8 +55,7 @@ export const postEventRouteHandler: RequestHandler = async (request, response, n
 
         console.error(error);
         return response.send({
-            error: 'Omlouváme se, ale něco se pokazilo\n Vyzkoušejte se přihlásit později nebo mi napište na pavol@hejny.org',
+            error: error.message,
         });
-        // TODO: some error
     }
 };
