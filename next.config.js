@@ -25,6 +25,7 @@ const nextConfig = {
             '/partners': { page: '/partners' },
             '/propose': { page: '/propose' },
             '/add': { page: '/propose' },
+            '/admin': { page: '/admin' },
         };
     },
 };

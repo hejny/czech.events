@@ -40,7 +40,8 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
             </p>
             <NewsletterContentsComponent {...{ newsletterContents, position: NewsletterContentPosition.HEAD }} />
             <NewsletterComponent {...{ newsletter }} />
-            <br /> <br />
+            <br />
+            <br />
             <NewsletterContentsComponent {...{ newsletterContents, position: NewsletterContentPosition.BOTTOM }} />
             {/* <i>
                 PS: <b>Budeme rádi za vaše návrhy a připomínky</b>, můžete <b>odpovědět rovnou na email</b>.<br />
