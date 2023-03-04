@@ -15,7 +15,10 @@ export function EventDateComponent({ event }: EventDateComponentProps) {
         try {
             moment.locale('cs');
             let dateString = moment(date).format('LLLL');
-            dateString = dateString.split('00:00')[0];
+
+            // Note: "LLLL" produces date like "sobota 4. března 2023 11:47", following line is erasing the date:
+            dateString = dateString.replace(/\d{1,2}:\d{1,2}$/, '');
+
             //TODO: More elegant way
             dateString = dateString.replace('leden', 'ledna');
             dateString = dateString.replace('února', 'února');
