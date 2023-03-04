@@ -13,7 +13,7 @@ import { createNewsletter } from 'src/utils/createNewsletter';
 import { Event } from 'src/model/database/Event';
 import { constructObjectFromJSON } from 'src/utils/constructObjectFromJSON';
 
-export async function getServerSideProps() {
+export async function getStaticProps() {
     // Fetch data from external API
     const response = await fetch(`https://api.pavolhejny.com/czech-events/events`);
     const eventsData = await response.json();
