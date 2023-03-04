@@ -15,13 +15,11 @@ describe('how parsing event type works', () => {
                 endDate: '2021-09-15T17:00:00+0200',
                 eventAttendanceMode: '',
                 name: 'FutureEdu: Budoucnost vzd\u011bl\u00e1v\u00e1n\u00ed v digit\u00e1ln\u00ed dob\u011b',
-                url:
-                    'https://cs-cz.facebook.com/events/opero/futureedu-budoucnost-vzd\u0025C4\u00259Bl\u0025C3\u0025A1v\u0025C3\u0025A1n\u0025C3\u0025AD-v-digit\u0025C3\u0025A1ln\u0025C3\u0025AD-dob\u0025C4\u00259B/198585498929834/',
+                url: 'https://cs-cz.facebook.com/events/opero/futureedu-budoucnost-vzd\u0025C4\u00259Bl\u0025C3\u0025A1v\u0025C3\u0025A1n\u0025C3\u0025AD-v-digit\u0025C3\u0025A1ln\u0025C3\u0025AD-dob\u0025C4\u00259B/198585498929834/',
                 location: { '\u0040type': 'Place', name: 'OPERO' },
                 description:
                     'Zku\u0161enosti uplynul\u00e9ho roku pomohly znovu a z jin\u00e9 perspektivy nasv\u00edtit n\u011bkter\u00e1 dlouhodob\u00e1 t\u00e9mata a v\u00fdzvy \u010desk\u00e9ho vzd\u011bl\u00e1vac\u00edho syst\u00e9mu. Maj\u00ed v\u0161ichni studenti p\u0159\u00edstup ke kvalitn\u00edmu vzd\u011bl\u00e1v\u00e1n\u00ed? P\u0159ipravuj\u00ed na\u0161e \u0161koly lidi na \u017eivot v digit\u00e1ln\u00ed dob\u011b, s jej\u00edmi v\u00fdhodami i riziky? Maj\u00ed pedagogov\u00e9 i studenti mo\u017enost a pot\u0159ebu se vzd\u011bl\u00e1vat celo\u017eivotn\u011b? Jak m\u00e1 vypadat \u0161kola a v\u00fduka v dob\u011b \u00fapln\u00e9 dostupnosti informac\u00ed? \n\nOdborn\u00e1 konference si klade za c\u00edl p\u0159isp\u011bt k definici vize \u010desk\u00e9ho vzd\u011bl\u00e1vac\u00edho syst\u00e9mu. Jej\u00edm obsahem bude sd\u00edlen\u00ed lok\u00e1ln\u00ed dobr\u00e9 praxe p\u0159\u00edklad\u016f \u0159e\u0161en\u00ed definovan\u00fdch v\u00fdzev, diskuse mezi kl\u00ed\u010dov\u00fdmi institucion\u00e1ln\u00edmi a st\u00e1tn\u00edmi stakeholdery a diskutovat sv\u011btov\u00e9 trendy ve vzd\u011bl\u00e1v\u00e1n\u00ed. Cel\u00fdm dnem v\u00e1s bude prov\u00e1zet Michael Rozsypal.\n\nHlavn\u00ed \u0159e\u010dn\u00edci:\n\n\ud83c\udfa4 Salman Khan (founder Khan Academy)\n\ud83c\udfa4 Robert Plaga (ministr \u0161kolstv\u00ed \u010cR)\n\ud83c\udfa4 Andreas Schleicher (OECD)\n\n\u25b6\ufe0e V\u00edce informac\u00ed o konferenci a konkr\u00e9tn\u00ed program najdete na webu https://www.futureedu.cz/. \u25c0\ufe0e\n\n\u017div\u00fd p\u0159enos konference bude vys\u00edl\u00e1n na kan\u00e1lech vydavatelstv\u00ed Economie - odkaz bude dostupn\u00fd na webu https://www.futureedu.cz/.\n\n\ud83d\udce9 V p\u0159\u00edpad\u011b z\u00e1jmu o fyzickou \u00fa\u010dast kontaktujte Evu \u0160\u00e1lkovou na eva.salkova\u0040opero.cz.',
-                image:
-                    'https://scontent.fprg5-1.fna.fbcdn.net/v/t1.6435-9/c80.0.206.206a/p206x206/240779384_1304200303315939_115494719489692238_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=b386c4&_nc_ohc=g-rwnFPqzM4AX_auT47&_nc_ht=scontent.fprg5-1.fna&oh=1af866d456b9f58933b39139670e060f&oe=615F5FFF',
+                image: 'https://scontent.fprg5-1.fna.fbcdn.net/v/t1.6435-9/c80.0.206.206a/p206x206/240779384_1304200303315939_115494719489692238_n.jpg?_nc_cat=103&ccb=1-5&_nc_sid=b386c4&_nc_ohc=g-rwnFPqzM4AX_auT47&_nc_ht=scontent.fprg5-1.fna&oh=1af866d456b9f58933b39139670e060f&oe=615F5FFF',
                 performers: [],
             }),
         ).toEqual(EventType.CONFERENCE);
@@ -74,13 +72,11 @@ describe('how parsing event type works', () => {
                 endDate: '2021-10-01T12:00:00+0200',
                 eventAttendanceMode: '',
                 name: 'Inovujeme Plze\u0148 2021',
-                url:
-                    'https://cs-cz.facebook.com/events/cukrovarsk\u0025C3\u0025A1-20-plze\u0025C5\u002588/inovujeme-plze\u0025C5\u002588-2021/956068355189849/',
+                url: 'https://cs-cz.facebook.com/events/cukrovarsk\u0025C3\u0025A1-20-plze\u0025C5\u002588/inovujeme-plze\u0025C5\u002588-2021/956068355189849/',
                 location: { '\u0040type': 'Place', name: 'Cukrovarsk\u00e1 20, Plze\u0148' },
                 description:
                     'Plze\u0148 je m\u011bsto inovac\u00ed, v\u00fdvoje a v\u00fdzkumu. \n\nFestival Inovujeme Plze\u0148 ukazuje atraktivn\u00ed projekty budoucnosti, pokrok technologi\u00ed, st\u00e1v\u00e1 se m\u00edstem nev\u0161edn\u00edch z\u00e1\u017eitk\u016f a zaj\u00edmav\u00fdch setk\u00e1n\u00ed - mo\u017en\u00e1 t\u011bch kl\u00ed\u010dov\u00fdch pro rozjezd kari\u00e9ry. \nT\u0159et\u00ed ro\u010dn\u00edk akce, kterou organizuje m\u011bsto Plze\u0148, se odehraje ve \u010dtvrtek 30. z\u00e1\u0159\u00ed a v p\u00e1tek 1. \u0159\u00edjna v are\u00e1lu SIT Port, Cukrovarsk\u00e1 ul. v Plzni. \nN\u00e1v\u0161t\u011bvn\u00edci zde uvid\u00ed technologie z oblasti um\u011bl\u00e9 inteligence, d\u00e1le tak\u00e9 \u0159e\u0161en\u00ed pro chytr\u00e1 m\u011bsta, pr\u016fmyslov\u00e9 inovace od region\u00e1ln\u00edch firem a v\u00fdzkum z univerzitn\u00edho prost\u0159ed\u00ed. V leto\u0161n\u00edm roce bude p\u0159ipravena tak\u00e9 konference Smart City.\n\n',
-                image:
-                    'https://scontent.fprg5-1.fna.fbcdn.net/v/t1.6435-9/c80.0.206.206a/p206x206/197923672_1376581042716929_5412772673843574171_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=b386c4&_nc_ohc=Djqpb19pMPcAX8EDem7&_nc_ht=scontent.fprg5-1.fna&oh=07c73056e3be65a2df1a429907ab4ee1&oe=615F63CC',
+                image: 'https://scontent.fprg5-1.fna.fbcdn.net/v/t1.6435-9/c80.0.206.206a/p206x206/197923672_1376581042716929_5412772673843574171_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=b386c4&_nc_ohc=Djqpb19pMPcAX8EDem7&_nc_ht=scontent.fprg5-1.fna&oh=07c73056e3be65a2df1a429907ab4ee1&oe=615F63CC',
                 performers: [],
             }),
         ).toEqual(EventType.CONFERENCE);
@@ -150,6 +146,7 @@ describe('how parsing event type works', () => {
 
 function parseEventTypeFromSemanticEvent(jsonldEvent: IJsonldEvent) {
     jsonldEvent = decodeHexDeep(jsonldEvent);
+    // @ts-ignore
     jsonldEvent = { description: '', ...jsonldEvent };
     const startDate = new Date(jsonldEvent.startDate);
     const endDate = new Date(jsonldEvent.endDate || jsonldEvent.startDate);

@@ -18,7 +18,7 @@ export function parseCity({ keywords, jsonldEvent }: { keywords: IKeywords; json
             // console.log({ possibleCity });
             // TODO: Normalize aleternatives from CITIES
 
-            const normalizedCity = normalizeCity(possibleCity);
+            const normalizedCity = !possibleCity ? null : normalizeCity(possibleCity);
 
             if (normalizedCity) {
                 return { city: normalizedCity };

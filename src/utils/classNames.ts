@@ -5,6 +5,6 @@
  * final string
  *
  */
-export function classNames(...classes: Array<string | undefined | false | null>) {
+export function classNames(...classes: Array<string | undefined | false | null | 0>) {
     return classes.filter((className) => className).join(' ');
 }

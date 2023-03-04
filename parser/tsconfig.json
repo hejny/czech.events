@@ -18,7 +18,8 @@
         "noUnusedLocals": false,
         "esModuleInterop": true,
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true
+        "emitDecoratorMetadata": true,
+        "strictNullChecks": true,
     },
     "exclude": ["node_modules"]
 }

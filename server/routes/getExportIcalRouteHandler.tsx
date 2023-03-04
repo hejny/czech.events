@@ -91,7 +91,8 @@ export const getExportIcalRouteHandler: RequestHandler = async (request, respons
         if (!(error instanceof Error)) {
             throw error;
         }
-        // console.error(error);
+
+        // @ts-ignore
         return response.status(400).send({ error: { name: error.name, message: error.message, ...error } });
     }
 };

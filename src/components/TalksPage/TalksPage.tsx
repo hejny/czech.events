@@ -47,7 +47,6 @@ export function TalksPage(props: ITalksPageProps) {
 
     const [range, setRange] = useState<DateRange>(DateRange.fromConstant('CURRENT_MONTH-NEXT_MONTH'));
 
-    console.log('!!!', 'TalksPage');
     const currentEvents = useAsyncMemo(async () => {
         try {
             return await apiClient.getEvents();

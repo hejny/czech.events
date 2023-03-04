@@ -3,12 +3,18 @@ import { Event } from '../model/database/Event';
 type CompareResult = 1 | -1 | 0;
 
 export function compareEventsbyDate(event1?: Event, event2?: Event): CompareResult {
+    if (!event1) {
+        return 1;
+    }
+    if (!event2) {
+        return -1;
+    }
     return compareDates(event1.dateToCompare, event2.dateToCompare);
 }
 
 export function compareDates(date1: Date, date2: Date): CompareResult {
     try {
-        const delta = ((new Date(date2) as any) as number) - ((new Date(date1) as any) as number);
+        const delta = (new Date(date2) as any as number) - (new Date(date1) as any as number);
 
         if (delta > 0) {
             return -1;

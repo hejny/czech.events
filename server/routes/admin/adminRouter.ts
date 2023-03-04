@@ -87,8 +87,10 @@ const adminEventsRouteHandler = async (request: Request, response: Response) => 
                 if (!request.query.html) {
                     return response.status(400).send({
                         error: {
+                            // @ts-ignore
                             name: error.name,
                             hint: `Add &html=1 to URL to see just a HTML`,
+                            // @ts-ignore
                             message: error.message,
                             url: request.query.serializeId,
                             ...error,
@@ -104,7 +106,9 @@ const adminEventsRouteHandler = async (request: Request, response: Response) => 
     // console.log({ event });
 
     // TODO: Dry or make eagers some other way
+    // @ts-ignore
     delete event!.eventCodes;
+    // @ts-ignore
     delete event!.newsletterContents;
 
     return response.send(event);
@@ -135,7 +139,8 @@ adminRouter.put('/admin/events', async (request, response) => {
         if (!(error instanceof Error)) {
             throw error;
         }
-        // console.error(error);
+
+        // @ts-ignore
         return response.status(400).send({ error: { name: error.name, message: error.message, ...error } });
     }
 });

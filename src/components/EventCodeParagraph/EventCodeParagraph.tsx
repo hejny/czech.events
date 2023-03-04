@@ -29,7 +29,7 @@ export function EventCodeParagraph({ event, showCode, verbose }: IEventCodeParag
 
                     {verbose && (
                         <>
-                            , tzn. za <EventPrice {...{ event, price: event.price * (1 - eventCode.value) }} />
+                            , tzn. za <EventPrice {...{ event, price: event.price! * (1 - eventCode.value) }} />
                         </>
                     )}
                 </span>

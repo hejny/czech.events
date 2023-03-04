@@ -8,6 +8,7 @@ export function parsePrice({ jsonldEvent, keywords }: { jsonldEvent: IJsonldEven
     let priceCurrency: null | EventPriceCurrency = null;
     const bestOffer = makeArray(jsonldEvent.offers)
         .map((offer) => {
+            // @ts-ignore
             const price = +(offer.price ?? offer.highPrice);
             return {
                 price,

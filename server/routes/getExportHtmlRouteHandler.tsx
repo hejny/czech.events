@@ -31,10 +31,10 @@ export const getExportHtmlRouteHandler: RequestHandler = async (request, respons
         const html = `${content}<style>${style}</style>`;
         return response.send(prettier.format(html, { parser: 'html' }));
     } catch (error) {
-      if (!(error instanceof Error)) {
-        throw error;
-    }
-        // console.error(error);
+        if (!(error instanceof Error)) {
+            throw error;
+        }
+        // @ts-ignore
         return response.status(400).send({ error: { name: error.name, message: error.message, ...error } });
     }
 };

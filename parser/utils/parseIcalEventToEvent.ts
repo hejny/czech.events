@@ -35,12 +35,21 @@ export function parseIcalEventToEvent(icalEventRaw: IcalEventForParsing): Partia
             icalEvent[key] = icalEventRaw[key];
         }
 
-        const serializeId: string = icalEvent.uid; /* <- TODO: Should be this processed by parseSerializeId? */
+        const serializeId = icalEvent.uid; /* <- TODO: Should be this processed by parseSerializeId? */
 
-        const { name, topic } = parseNameAndTopic(icalEvent.summary);
+        if (!serializeId) {
+            throw new Error(`Missing uid in ical event`);
+        }
+
+        const { name, topic } = parseNameAndTopic(icalEvent.summary || '');
 
         const startDate = icalEvent.start;
-        const endDate = icalEvent.end ;
+
+        if (!startDate) {
+            throw new Error(`Missing start in ical event`);
+        }
+
+        const endDate = icalEvent.end;
         const { days, durationInHours, year, month, time } = parseTimesAndDates({ startDate, endDate });
 
         const keywords = parseKeywords({
@@ -56,7 +65,7 @@ export function parseIcalEventToEvent(icalEventRaw: IcalEventForParsing): Partia
         // [0] const { price, priceCurrency } = parsePrice({ icalEvent, keywords });
         const { city } = parseCity({ keywords });
 
-        let web = icalEvent.url;
+        let web = icalEvent.url || '';
         web = web.split('m.facebook.com').join('www.facebook.com');
 
         return checkEvent({

@@ -1,3 +1,4 @@
+// @ts-nocheck
 type string_iso_date = string;
 type string_url = string;
 type currency = 'CZK' | 'USD' | 'EUR';

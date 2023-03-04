@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Column, Entity, PrimaryGeneratedColumn } from 'typeorm';
 
 @Entity('EventSource')

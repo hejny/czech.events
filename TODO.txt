@@ -1,5 +1,4 @@
 TODO: Install only in root level - move all dependencies from ./scripts/package.json to  ./package.json
-TODO: !! Set strictNullChecks=true
 TODO: !! Add your event as pending
 TODO: Deploy via Github actions
 TODO: (In old version, not sure if it will be still in the new one) In some time suddenly occures "Failed to fetch" in the

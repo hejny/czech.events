@@ -44,7 +44,7 @@ export function ProposeForm(props: IProposeFormProps) {
                     getInputByName(`start-date`).value,
                 ); /* <- Note: For some reason can not be used valueAsDate */
                 const endDateString = getInputByName(`end-date`).value;
-                const endDate = endDateString && new Date(endDateString);
+                const endDate = !endDateString ? undefined : new Date(endDateString);
 
                 const { year, month, days, time } = parseTimesAndDates({ startDate, endDate });
 

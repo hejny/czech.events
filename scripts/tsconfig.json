@@ -19,7 +19,7 @@
         "suppressImplicitAnyIndexErrors": true,
         "experimentalDecorators": true,
         "noUnusedLocals": false,
-        "esModuleInterop": true
+        "esModuleInterop": true,
     },
     "exclude": ["node_modules"]
 }

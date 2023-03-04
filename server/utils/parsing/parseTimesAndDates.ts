@@ -1,4 +1,10 @@
-export function parseTimesAndDates({ startDate, endDate }: { startDate: Date; endDate?: Date }) {
+export function parseTimesAndDates({ startDate, endDate }: { startDate: Date; endDate?: Date }): {
+    days: string;
+    durationInHours: number;
+    year: number;
+    month: number;
+    time: string | null;
+} {
     endDate = endDate || startDate;
 
     if (isNaN(startDate.getDate()) || isNaN(endDate.getDate())) {
@@ -18,7 +24,7 @@ export function parseTimesAndDates({ startDate, endDate }: { startDate: Date; en
     const hours = startDate.getHours();
     const minutes = startDate.getMinutes();
 
-    let time: string;
+    let time: string | null;
     if (isNaN(hours) || isNaN(minutes)) {
         console.error(
             `Something went wrong in parseTimesAndDates, parsing:`,

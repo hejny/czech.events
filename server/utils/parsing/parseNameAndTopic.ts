@@ -3,9 +3,10 @@ import { expandShortcuts } from './expandShortcuts';
 import { processNameOrTopic } from './processNameOrTopic';
 import { removeMetalabels } from './removeMetalabels';
 
-export function parseNameAndTopic(
-    fullName: string /*  TODO: Maybe a description as input? */,
-): { name: string; topic: string | null } {
+export function parseNameAndTopic(fullName: string /*  TODO: Maybe a description as input? */): {
+    name: string;
+    topic: string | null;
+} {
     // TODO: Change for the Take library (in Collboard)
     fullName = new Chain(fullName, { log: false })
         .apply(removeMetalabels)
@@ -19,7 +20,9 @@ export function parseNameAndTopic(
     const result = /\s*(?<name>.*?)\s*(–|-|~|(#\d+)|(\|)|(:))\s*(?<topic>.*)\s*/.exec(fullName);
 
     if (result) {
-        let { name, topic } = result.groups!;
+        let name: string;
+        let topic: string | null;
+        ({ name, topic } = result.groups!);
 
         name = processNameOrTopic(name);
         topic = processNameOrTopic(topic);
@@ -28,7 +31,7 @@ export function parseNameAndTopic(
             topic = null;
         }
 
-        if (name === '' && topic !== '') {
+        if (name === '' && topic && topic !== '') {
             return parseNameAndTopic(topic);
         }
 

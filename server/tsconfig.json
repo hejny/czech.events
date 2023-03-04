@@ -2,7 +2,7 @@
     "compilerOptions": {
         "target": "es6",
         "module": "commonjs",
-        "lib": ["es2017","DOM"],
+        "lib": ["es2017", "DOM"],
         "rootDir": "../",
         "downlevelIteration": true,
         "baseUrl": "../",
@@ -19,6 +19,7 @@
         "esModuleInterop": true,
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
+        "strictNullChecks": true
     },
     "exclude": ["node_modules", "src"]
 }

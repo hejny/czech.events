@@ -1,7 +1,8 @@
 import { IJsonldEvent } from '../interfaces/jsonld/IJsonldEvent';
 
 export async function extractJsonldFromHtml(html: string): Promise<IJsonldEvent> {
-    const pattern = /<script[\sa-zA-Z0-p-_="']+type=["']application\/ld\+json["'][\sa-zA-Z0-p-_="']*>(.*?)<\/script\s*>/gs;
+    const pattern =
+        /<script[\sa-zA-Z0-p-_="']+type=["']application\/ld\+json["'][\sa-zA-Z0-p-_="']*>(.*?)<\/script\s*>/gs;
 
     const jsonlds: IJsonldEvent[] = [];
 
@@ -23,6 +24,7 @@ export async function extractJsonldFromHtml(html: string): Promise<IJsonldEvent>
         const errorMatch = /class="fb_content.*<h2.*>(?<message>.*)<\/h2>/.exec(html);
 
         if (errorMatch) {
+            // @ts-ignore
             const { message } = errorMatch.groups;
             throw new ParsingError(`Facebook: ` + message, html);
         } else {

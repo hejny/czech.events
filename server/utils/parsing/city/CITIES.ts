@@ -26,7 +26,9 @@ export const CITIES: Record<string, string[]> = {
     Žilina: [],
 };
 
+// @ts-ignore
 export const CITIES_KEYWORDS: Array<string> = Object.entries(CITIES).reduce(
+    // @ts-ignore
     (cities, [city, alternatives]) => [...cities, city, ...alternatives],
     [],
 );

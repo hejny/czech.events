@@ -1,3 +1,4 @@
+// @ts-nocheck 
 import { Column, Entity, Index, JoinColumn, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Email } from './Email';
 

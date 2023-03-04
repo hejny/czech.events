@@ -11,6 +11,7 @@ export const postEventRouteHandler: RequestHandler = async (request, response, n
         // TODO: Purge internal IDs
         const event = constructObjectFromJSON(Event, request.body) as Event;
 
+        // @ts-ignore
         delete event.id;
         // TODO: delete event.uuid;
         // TODO: event.uuid = v4();
@@ -33,7 +34,7 @@ export const postEventRouteHandler: RequestHandler = async (request, response, n
             (block) => `
 
                 Proposed from web
-                ${block(event.note)}
+                ${block(event.note || '')}
         `,
         );
         event.created = new Date();

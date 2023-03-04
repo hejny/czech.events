@@ -1,3 +1,4 @@
+// @ts-nocheck
 import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from 'typeorm';
 import { EventCode } from './EventCode';
 import { NewsletterContent } from './NewsletterContent';

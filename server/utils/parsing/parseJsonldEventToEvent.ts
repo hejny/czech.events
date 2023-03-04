@@ -23,8 +23,10 @@ export function parseJsonldEventToEvent({
         // TODO: Price is not in JSON LD and should be probbably scraped by puppeteer
 
         jsonldEvent = decodeHexDeep(jsonldEvent);
+        // @ts-ignore
         jsonldEvent = { description: '', ...jsonldEvent };
 
+        // @ts-ignore
         const serializeId = parseSerializeId(url || jsonldEvent.url);
         const startDate = new Date(jsonldEvent.startDate);
         const endDate = new Date(jsonldEvent.endDate || jsonldEvent.startDate);
@@ -41,7 +43,7 @@ export function parseJsonldEventToEvent({
         const { city } = parseCity({ jsonldEvent, keywords });
 
         // TODO: To special parse
-        let time = `${startDate.getHours().toString().padStart(2, '0')}:${startDate
+        let time: string | null = `${startDate.getHours().toString().padStart(2, '0')}:${startDate
             .getMinutes()
             .toString()
             .padStart(2, '0')}`;
@@ -50,7 +52,7 @@ export function parseJsonldEventToEvent({
         }
 
         let web = url || jsonldEvent.url;
-        web = web.split('m.facebook.com').join('www.facebook.com');
+        web = web && web.split('m.facebook.com').join('www.facebook.com');
 
         return checkEvent({
             serializeId,

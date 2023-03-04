@@ -9,7 +9,7 @@ interface IEventPriceProps {
 
 // TODO: Component name suffix to all components
 export function EventPrice({ event, price }: IEventPriceProps) {
-    if (!price) price = event.price;
+    if (!price) price = event.price || undefined;
     if (price === null || price === undefined) return <></>;
     if (price === 0) return <>💸&nbsp;Zdarma</>;
     return <>💸&nbsp;{`${Math.ceil(price * 100) / 100} ${translateCurrency(event.priceCurrency!)}`}</>;
