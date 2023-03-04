@@ -6,15 +6,26 @@ import { ApiClient } from '../api/ApiClient';
 import { AppHead } from '../components/AppHead/AppHead';
 import { Footer } from '../components/Footer/Footer';
 import { useApiClient } from 'src/api/useApiClient';
+import { constructObjectFromJSON } from 'src/utils/constructObjectFromJSON';
+import { getApiUrl } from 'src/api/getApiUrl';
+import { Event } from 'src/model/database/Event';
 
-export default function IndexPage() {
+export async function getStaticProps() {
+    const response = await fetch(`${getApiUrl().href}/events`);
+    const eventsData = await response.json();
+    return { props: { eventsData } };
+}
 
-  const apiClient = useApiClient();
+export default function IndexPage(props: { eventsData: Event[] }) {
+    const { eventsData } = props;
+    const events = eventsData.map((data: any) => constructObjectFromJSON(Event, data));
+
+    const apiClient = useApiClient();
 
     return (
         <>
             <AppHead />
-            <TalksPage {...{ apiClient }} />
+            <TalksPage {...{ apiClient, events }} />
             <Footer />
         </>
     );

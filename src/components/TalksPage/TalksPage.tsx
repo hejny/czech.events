@@ -2,10 +2,7 @@ import React, { useState } from 'react';
 import { ApiClient } from '../../api/ApiClient';
 import { Event } from '../../model/database/Event';
 import { DateRange, RangeConstant } from '../../model/DateRange';
-import { ErrorComponent } from '../ErrorComponent/ErrorComponent';
 import { SubscribeForm } from '../SubscribeForm/SubscribeForm';
-import { LoadingComponent } from '../LoadingComponent/LoadingComponent';
-import styles from '../../pages/page.module.css';
 import { Partners } from '../Partners/Partners';
 // TODO: Remove @deprecated import { Newsletter } from '../model/database/Newsletter';
 import { TalksPageEmail } from '../TalksPageEmail/TalksPageEmail';
@@ -15,9 +12,12 @@ import { useAsyncMemo } from '../../utils/useAsyncMemo';
 
 interface ITalksPageProps {
     /**
+     * @deprecated Events are passed via getStaticProps
      * @deprecated use prepared React context to pass apiClient
      */
     apiClient: ApiClient;
+
+    events: Event[];
 }
 
 const OPTIONS = [
@@ -43,22 +43,9 @@ const OPTIONS = [
 ];
 
 export function TalksPage(props: ITalksPageProps) {
-    const { apiClient } = props;
+    const { apiClient, events } = props;
 
-    const [error, setError] = useState<null | Error>(null);
     const [range, setRange] = useState<DateRange>(DateRange.fromConstant('CURRENT_MONTH-NEXT_MONTH'));
-    const events = useAsyncMemo(async () => {
-        try {
-            return await apiClient.getEvents();
-        } catch (error) {
-            if (!(error instanceof Error)) {
-                throw error;
-            }
-
-            // TODO: Is it OK to set state in the memo?
-            setError(error);
-        }
-    }, [apiClient, range]);
 
     return (
         // TODO: Why so many nested groups - cleanup this
@@ -122,25 +109,13 @@ export function TalksPage(props: ITalksPageProps) {
                             </select>
 
                             */}
-
-                        {error ? (
-                            <ErrorComponent>
-                                <pre>
-                                    Omlouváme se, ale nastal technický problém při načítání.
-                                    {/*this.state.error*/}
-                                </pre>
-                            </ErrorComponent>
-                        ) : !events ? (
-                            <LoadingComponent />
-                        ) : (
-                            <TalksPageEmail
-                                {...{
-                                    events,
-                                    // TODO: Remove @deprecated newsletter: newsletter,
-                                    range,
-                                }}
-                            />
-                        )}
+                        <TalksPageEmail
+                            {...{
+                                events,
+                                // TODO: Remove @deprecated newsletter: newsletter,
+                                range,
+                            }}
+                        />
                     </div>
                 </div>
             </div>
@@ -152,7 +127,6 @@ export function TalksPage(props: ITalksPageProps) {
 }
 
 /**
- * TODO: !!! Test error
  * TODO: [🥞] Make here some footer
  * TODO: [🥞] Common skeleton - logo + footer for all pages
  * TODO: This should be using Next API and be server - pre-rendered

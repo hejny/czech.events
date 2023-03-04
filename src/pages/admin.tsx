@@ -22,7 +22,6 @@ export async function getStaticProps() {
 
 export default function IndexPage(props: { eventsData: Event[] }) {
     const { eventsData } = props;
-
     const events = eventsData.map((data: any) => constructObjectFromJSON(Event, data));
 
     // const apiClient = useApiClient();
