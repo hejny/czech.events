@@ -17,7 +17,7 @@ interface ITalksPageProps {
      */
     apiClient: ApiClient;
 
-    events: Event[];
+    prerenderedEvents: Event[];
 }
 
 const OPTIONS = [
@@ -43,9 +43,22 @@ const OPTIONS = [
 ];
 
 export function TalksPage(props: ITalksPageProps) {
-    const { apiClient, events } = props;
+    const { apiClient, prerenderedEvents } = props;
 
     const [range, setRange] = useState<DateRange>(DateRange.fromConstant('CURRENT_MONTH-NEXT_MONTH'));
+
+    console.log('!!!', 'TalksPage');
+    const currentEvents = useAsyncMemo(async () => {
+        try {
+            return await apiClient.getEvents();
+        } catch (error) {
+            if (!(error instanceof Error)) {
+                throw error;
+            }
+
+            console.error(error);
+        }
+    }, [apiClient]);
 
     return (
         // TODO: Why so many nested groups - cleanup this
@@ -111,7 +124,7 @@ export function TalksPage(props: ITalksPageProps) {
                             */}
                         <TalksPageEmail
                             {...{
-                                events,
+                                events: currentEvents || prerenderedEvents,
                                 // TODO: Remove @deprecated newsletter: newsletter,
                                 range,
                             }}

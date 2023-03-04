@@ -18,14 +18,14 @@ export async function getStaticProps() {
 
 export default function IndexPage(props: { eventsData: Event[] }) {
     const { eventsData } = props;
-    const events = eventsData.map((data: any) => constructObjectFromJSON(Event, data));
+    const prerenderedEvents = eventsData.map((data: any) => constructObjectFromJSON(Event, data));
 
     const apiClient = useApiClient();
 
     return (
         <>
             <AppHead />
-            <TalksPage {...{ apiClient, events }} />
+            <TalksPage {...{ apiClient, prerenderedEvents }} />
             <Footer />
         </>
     );
