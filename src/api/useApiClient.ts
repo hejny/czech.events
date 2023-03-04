@@ -3,12 +3,6 @@ import { ApiClient } from './ApiClient';
 import { getApiUrl } from './getApiUrl';
 
 export function useApiClient(): ApiClient {
-    const apiUrl = getApiUrl().href;
-    const apiClient = useMemo(() => new ApiClient(apiUrl), [apiUrl]);
+  return useMemo(() => new ApiClient(getApiUrl()),[]);
 
-    return apiClient;
 }
-
-/**
- *  TODO: Use Next methods to fetch data
- */
