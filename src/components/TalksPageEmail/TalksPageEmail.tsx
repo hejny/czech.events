@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Event } from '../../model/database/Event';
 import { NewsletterContentPosition } from '../../model/database/NewsletterContent';
 import { DateRange } from '../../model/DateRange';
@@ -36,25 +37,20 @@ export function TalksPageEmail(props: ITalksPageEmailProps) {
                     události přímo do svého kalendáře
                 </a>
                 .<br />
-                Nebo můžete ťuknout na ikonku 📅 a událost se pošle do vašeho kalendáře. {/* <- !!! 📅 */}
+                {/* TODO: Nebo můžete ťuknout na ikonku 📅 a událost se pošle do vašeho kalendáře.  */}
             </p>
             <NewsletterContentsComponent {...{ newsletterContents, position: NewsletterContentPosition.HEAD }} />
             <NewsletterComponent {...{ newsletter }} />
-            <br />
-            <br />
             <NewsletterContentsComponent {...{ newsletterContents, position: NewsletterContentPosition.BOTTOM }} />
-            {/* <i>
-                PS: <b>Budeme rádi za vaše návrhy a připomínky</b>, můžete <b>odpovědět rovnou na email</b>.<br />
-                PPS: E-mail posíláme na základě Vaší registrace na stránce{' '}
+            <i>
+                PS: Pokud nám v seznamu událostí některá chybí, <Link href="/propose">navrhněte nám ji!</Link>
+                {/*PPS: E-mail posíláme na základě Vaší registrace na stránce{' '}
                 <a href="https://czech.events/?utm_source=mail&amp;utm_medium=referral&amp;utm_campaign=2020-02_unsubscribe">
                     czech.events
                 </a>
-                . Pokud už další email nechcete dostat, napište nám rychlou odpověď.
-            </i> */}
-            {/*
-            <br />
-            PPS: Pokud už nechcete dostat další email, klikněte sem pro jejich odhlášení.
-            */}
+                . Pokud už další email nechcete dostat, napište nám rychlou odpověď. */}
+            </i>
+
             <br />
             <br />
             <Shuffle seed={'authors'}>
