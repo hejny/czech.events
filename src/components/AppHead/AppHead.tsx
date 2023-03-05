@@ -44,8 +44,6 @@ export function AppHead(props: AppHeadSectionProps) {
 
 /**
  * TODO: Is Google Analytics working
- * TODO: !!! Real favicon
  * TODO: Dark and light favicon
  * TODO: !!! Cookies bar
- * TODO: !!! Test social sharing
  */
