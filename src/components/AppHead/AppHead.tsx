@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Script from 'next/script';
 import favicon from '../../../public/favicon.ico';
+import profile_photo from '../../../public/profile_photo.png';
 
 interface AppHeadSectionProps {
     subtitle?: string;
@@ -13,13 +14,16 @@ export function AppHead(props: AppHeadSectionProps) {
         <>
             <Head>
                 <title>{`Czech.events | ${subtitle}`}</title>
-                <meta name="description" content="!!!!" />
+                <meta
+                    name="description"
+                    content="Mějte přehled o nejzajímavějších událostech z IT & startupového světa."
+                />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="shortcut icon" href={favicon.src} type="image/x-icon" />
                 <link rel="author" href="https://pavolhejny.com/" />
 
                 <meta property="og:title" content={`Czech.events | ${subtitle}`} />
-                <meta property="og:image" content={`!!!`} />
+                <meta property="og:image" content={profile_photo.src} />
 
                 <meta name="theme-color" content="#000000" />
             </Head>
