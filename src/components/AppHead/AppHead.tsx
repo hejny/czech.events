@@ -1,7 +1,7 @@
 import Head from 'next/head';
 import Script from 'next/script';
 import favicon from '../../../public/favicon.ico';
-import profile_photo from '../../../public/profile_photo.png';
+import fbimage from '../../../public/fb-image.jpg';
 
 interface AppHeadSectionProps {
     subtitle?: string;
@@ -23,7 +23,7 @@ export function AppHead(props: AppHeadSectionProps) {
                 <link rel="author" href="https://pavolhejny.com/" />
 
                 <meta property="og:title" content={`Czech.events | ${subtitle}`} />
-                <meta property="og:image" content={profile_photo.src} />
+                <meta property="og:image" content={fbimage.src} />
 
                 <meta name="theme-color" content="#000000" />
             </Head>
@@ -47,6 +47,7 @@ export function AppHead(props: AppHeadSectionProps) {
 and comments as text in the title and hydration will likely fail and fall back to client rendering
  * TODO: Is Google Analytics working
  * TODO: !!! Real favicon
+ * TODO: Dark and light favicon
  * TODO: !!! Cookies bar
  * TODO: !!! Test social sharing
  */
