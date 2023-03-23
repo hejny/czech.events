@@ -94,5 +94,6 @@
         "next-export-optimize-images": "2.0.0",
         "prettier": "2.8.4"
     },
-    "license": "SEE LICENSE IN LICENSE"
+    "license": "SEE LICENSE IN LICENSE",
+    "description": "Keep track of the most interesting events from the IT & startup world on Czech.events."
 }
