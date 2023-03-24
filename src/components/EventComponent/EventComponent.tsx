@@ -1,6 +1,5 @@
-import React from 'react';
-import { classNames } from '../../utils/classNames';
 import { Event } from '../../model/database/Event';
+import { classNames } from '../../utils/classNames';
 import { EventCodeParagraph } from '../EventCodeParagraph/EventCodeParagraph';
 import { EventSummary } from './EventSummary/EventSummary';
 import { EventTags } from './EventTags/EventTags';

@@ -1,7 +1,7 @@
 import { Event } from '../model/database/Event';
 import { NewsletterContent } from '../model/database/NewsletterContent';
-import { INewsletter } from '../model/INewsletter';
 import { DateRange } from '../model/DateRange';
+import { INewsletter } from '../model/INewsletter';
 import { categorizeEvents } from '../utils/categorizeEvents';
 import { compareEventsbyDate } from '../utils/compareDates';
 

@@ -1,10 +1,10 @@
 import chalk from 'chalk';
 import ical from 'ical';
-import { forPlay } from './utils/forPlay';
 import { connectionPromise } from '../server/database';
 import { Event } from '../src/model/database/Event';
 import { EventSource } from '../src/model/database/EventSource';
 import { fetchIcal } from './utils/fetchIcal';
+import { forPlay } from './utils/forPlay';
 import { IcalEventForParsing, parseIcalEventToEvent } from './utils/parseIcalEventToEvent';
 
 main();

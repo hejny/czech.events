@@ -1,10 +1,9 @@
-import React from 'react';
 import { Event } from '../../../model/database/Event';
-import { CalendarLink } from './CalendarLink/CalendarLink';
 import { IEventComponentProps } from '../EventComponent';
 import { EventDateComponent } from '../EventDateComponent/EventDateComponent';
 import { EventPrice } from '../EventPrice/EventPrice';
 import { EventTimeComponent } from '../EventTimeComponent/EventTimeComponent';
+import { CalendarLink } from './CalendarLink/CalendarLink';
 import { getCharForCity } from './getCharForCity';
 
 export function EventTags({ event }: IEventComponentProps) {

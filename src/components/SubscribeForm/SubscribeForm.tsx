@@ -1,9 +1,9 @@
-import styles from './SubscribeForm.module.css';
+import spaceTrim from 'spacetrim';
 import { ApiClient } from '../../api/ApiClient';
 import { Subscriber } from '../../model/database/Subscriber';
-import { constructObjectFromJSON } from '../../utils/constructObjectFromJSON';
 import { classNames } from '../../utils/classNames';
-import spaceTrim from 'spacetrim';
+import { constructObjectFromJSON } from '../../utils/constructObjectFromJSON';
+import styles from './SubscribeForm.module.css';
 
 interface ISubscribeFormProps {
     apiClient: ApiClient;

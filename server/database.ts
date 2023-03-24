@@ -1,9 +1,9 @@
 import { createConnection } from 'typeorm';
 import { Event } from '../src/model/database/Event';
 import { EventCode } from './../src/model/database/EventCode';
+import { EventSource } from './../src/model/database/EventSource';
 import { NewsletterContent } from './../src/model/database/NewsletterContent';
 import { Subscriber } from './../src/model/database/Subscriber';
-import { EventSource } from './../src/model/database/EventSource';
 import { DB_HOST, DB_LOGGING, DB_NAME, DB_PASSWORD, DB_SYNCHRONIZE, DB_USER } from './config';
 
 // TODO: remove knex and objection

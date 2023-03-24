@@ -1,11 +1,10 @@
-import spaceTrim from 'spacetrim';
-import styles from './about.module.css';
-import czechEventsBlackLogo from '../../public/design/logos/czech.events.black-logo.png';
-import czechEventsWhiteLogo from '../../public/design/logos/czech.events.white-logo.png';
-import czechEventsTransparentLogo from '../../public/design/logos/czech.events.transparent-logo.png';
 import Image from 'next/image';
-import Head from 'next/head';
+import spaceTrim from 'spacetrim';
+import czechEventsBlackLogo from '../../public/design/logos/czech.events.black-logo.png';
+import czechEventsTransparentLogo from '../../public/design/logos/czech.events.transparent-logo.png';
+import czechEventsWhiteLogo from '../../public/design/logos/czech.events.white-logo.png';
 import { AppHead } from '../components/AppHead/AppHead';
+import styles from './about.module.css';
 
 export default function AboutPage() {
     return (

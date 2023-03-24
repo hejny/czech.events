@@ -1,9 +1,8 @@
+import { RequestHandler } from 'express';
+import spaceTrim from 'spacetrim';
 import { Event, EventVisibility } from '../../src/model/database/Event';
 import { constructObjectFromJSON } from '../../src/utils/constructObjectFromJSON';
-import { RequestHandler } from 'express';
 import { connectionPromise } from '../database';
-import { v4 } from 'uuid';
-import spaceTrim from 'spacetrim';
 
 export const postEventRouteHandler: RequestHandler = async (request, response, next) => {
     try {

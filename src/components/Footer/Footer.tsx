@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { VERSION } from '../../../config';
 import styles from './Footer.module.css';
 

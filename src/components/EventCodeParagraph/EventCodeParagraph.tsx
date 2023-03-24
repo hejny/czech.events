@@ -1,4 +1,3 @@
-import React from 'react';
 import { Event } from '../../model/database/Event';
 import { EventPrice } from '../EventComponent/EventPrice/EventPrice';
 

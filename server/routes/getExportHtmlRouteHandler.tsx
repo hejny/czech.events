@@ -2,7 +2,6 @@ import { RequestHandler } from 'express';
 import { promises as fsp } from 'fs';
 import { join } from 'path';
 import prettier from 'prettier';
-import React from 'react';
 import ReactDOMServer from 'react-dom/server';
 import { In } from 'typeorm';
 import { NewsletterComponent } from '../../src/components/NewsletterComponent/NewsletterComponent';

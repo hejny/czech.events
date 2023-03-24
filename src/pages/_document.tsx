@@ -1,5 +1,4 @@
 import { Head, Html, Main, NextScript } from 'next/document';
-import { createContext } from 'react';
 import { ShuffleSeedContext } from '../components/Shuffle/Shuffle';
 
 export default function Document() {

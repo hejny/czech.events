@@ -1,17 +1,9 @@
-import Image from 'next/image';
-import Head from 'next/head';
-import { TalksPage } from '../components/TalksPage/TalksPage';
-import { useMemo } from 'react';
-import { ApiClient } from '../api/ApiClient';
-import { AppHead } from '../components/AppHead/AppHead';
-import { Footer } from '../components/Footer/Footer';
-import { useApiClient } from 'src/api/useApiClient';
-import { TalksPageEmail } from 'src/components/TalksPageEmail/TalksPageEmail';
-import { DateRange } from 'src/model/DateRange';
 import { NewsletterComponent } from 'src/components/NewsletterComponent/NewsletterComponent';
-import { createNewsletter } from 'src/utils/createNewsletter';
 import { Event } from 'src/model/database/Event';
+import { DateRange } from 'src/model/DateRange';
 import { constructObjectFromJSON } from 'src/utils/constructObjectFromJSON';
+import { createNewsletter } from 'src/utils/createNewsletter';
+import { AppHead } from '../components/AppHead/AppHead';
 
 export async function getStaticProps() {
     // Fetch data from external API
