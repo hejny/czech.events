@@ -40,6 +40,8 @@ async function main() {
                 continue;
             }
 
+            // TODO: !!!Also fetch ld+json AND add to sources https://www.paralelnipolis.cz/program
+
             const icalString = await fetchIcal(url);
             // const icalString = await readFile(join(__dirname, 'mocks/meetup.ics'), 'utf-8');
 
