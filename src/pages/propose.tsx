@@ -20,6 +20,8 @@ export default function PartnersPage() {
                     alt="Czech.events logo"
                     width={200}
                     style={{ marginTop: 50 }}
+                    draggable="false"
+                    placeholder="blur"
                 />
                 <ProposeForm apiClient={apiClient} />
             </div>

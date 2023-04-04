@@ -66,7 +66,13 @@ export function TalksPage(props: ITalksPageProps) {
                 <div className="front black">
                     <div className="inner">
                         <div className="head">
-                            <Image src={czechEventsTransparentLogoFit} alt="Czech.events logo" width={200} />
+                            <Image
+                                alt="Czech.events logo"
+                                src={czechEventsTransparentLogoFit}
+                                width={200}
+                                draggable="false"
+                                placeholder="blur"
+                            />
 
                             <h1>Mějte přehled o nejzajímavějších událostech z IT &amp; startupového světa.</h1>
                         </div>

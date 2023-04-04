@@ -68,7 +68,7 @@ export function Partners() {
                     ].map(({ name, image, link }) => {
                         return (
                             <a key={name} href={link} target="_blank" rel="noopener noreferrer" title={name}>
-                                <Image src={image} alt={`Logo of ${name}`} />
+                                <Image src={image} alt={`Logo of ${name}`} draggable="false" placeholder="blur" />
                                 {name}
                             </a>
                         );

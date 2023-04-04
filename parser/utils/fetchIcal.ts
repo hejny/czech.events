@@ -1,12 +1,14 @@
 import { readdir, readFile, unlink, mkdir, writeFile } from 'fs/promises';
 import { locateChrome } from 'locate-app';
 import { spaceTrim } from 'spacetrim';
-import { forTime } from 'waitasecond';
+import { forEver, forTime } from 'waitasecond';
 import fetch from 'node-fetch';
 import { setFacebookCookies } from './setFacebookCookies';
-import { FACEBOOK_COOKIES } from '../config';
+import { FACEBOOK_COOKIES, MEETUP_COOKIES } from '../config';
 import { join } from 'path';
 import puppeteer from 'puppeteer-core';
+import { setMeetupCookies } from './setMeetupCookies';
+import { forPlay, forPlayFirstWithPause, forPlayWithPause } from './forPlay';
 
 const tmpPath = join(__dirname, 'tmp'); /* <- !! Better tmp folder */
 const downloadPath = join(tmpPath, 'downloads');
@@ -27,12 +29,17 @@ export async function fetchIcal(url: string, isPuppeteerUsed = false): Promise<s
                 headless: true,
                 executablePath: await locateChrome(),
                 defaultViewport: null,
+                userDataDir: join(process.cwd(), '.tmp', 'puppeteer', 'scraper-user-data'),
             });
 
             const page = await browser.newPage();
 
             if (/^https:\/\/www.facebook.com/.test(url)) {
                 await setFacebookCookies(page, FACEBOOK_COOKIES);
+                // await forPlayFirstWithPause('scraping facebook with cookies');
+            } else if (/^https:\/\/www.meetup.com/.test(url)) {
+                await setMeetupCookies(page, MEETUP_COOKIES);
+                // await forPlayFirstWithPause('scraping meetup with cookies');
             }
 
             const client = await page.target().createCDPSession();

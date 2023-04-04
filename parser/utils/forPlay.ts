@@ -5,6 +5,20 @@ let isPlaying = false;
 let resume: Promise<void>;
 let resumeResolve: () => void;
 
+function togglePauseKey() {
+    isPlaying = !isPlaying;
+    if (isPlaying) {
+        if (resumeResolve) {
+            resumeResolve();
+        }
+    } else {
+        console.info(`[ Pausing ]`);
+        resume = new Promise((resolve) => {
+            resumeResolve = resolve;
+        });
+    }
+}
+
 export function initForPlay() {
     if (isInitialized) {
         return;
@@ -21,17 +35,7 @@ export function initForPlay() {
 
     process.stdin.on('keypress', (chunk, key) => {
         if (key && key.name === 'p') {
-            isPlaying = !isPlaying;
-            if (isPlaying) {
-                if (resumeResolve) {
-                    resumeResolve();
-                }
-            } else {
-                console.info(`[ Pausing ]`);
-                resume = new Promise((resolve) => {
-                    resumeResolve = resolve;
-                });
-            }
+            togglePauseKey();
         } else if (key && key.name === 'c' && key.ctrl) {
             // Note: When set raw mode, Ctrl+C will not cause SIGINT so we need to do it manually
             console.info(`[ Terminated ]`);
@@ -51,7 +55,6 @@ export function initForPlay() {
  * Note: On first run this function will register stdin callback so it contains ! SIDE EFFECTS !
  * Note: Only aviable in node environment
  */
-
 export async function forPlay(): Promise<void> {
     initForPlay();
 
@@ -62,5 +65,30 @@ export async function forPlay(): Promise<void> {
 }
 
 /**
- * TODO: Probbably to waitasecond
+ * Wait until resume is pressed in terminal
+ */
+export async function forPlayWithPause(): Promise<void> {
+    togglePauseKey();
+    await forPlay();
+}
+
+const pausedTasks = new Set<string | number | symbol>();
+
+/**
+ * Wait until resume is pressed in terminal
+ * - For **first** time behaves like forPlayWithPause
+ * - Next time(s) with same task behaves like forPlay
+ */
+export async function forPlayFirstWithPause(taskId: string | number | symbol): Promise<void> {
+    if (!pausedTasks.has(taskId)) {
+        console.info(`[ Pausing on ${taskId.toString()} ]`);
+
+        pausedTasks.add(taskId);
+        await forPlayWithPause();
+    }
+    await forPlay();
+}
+
+/**
+ * TODO: Probbably to @waitasecond/node
  */

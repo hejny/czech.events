@@ -47,15 +47,26 @@ async function main() {
 
             const fullCalendar = ical.parseICS(icalString);
 
-            const eventsFromSource = Object.values(fullCalendar)
-                .filter(({ type }) => type === 'VEVENT')
-                // .forEach((event) => console.log(JSON.stringify(event, null, 4)))
-                .map((event) => parseIcalEventToEvent(event as IcalEventForParsing));
+            let parsedCount = 0;
+            let parsedErrorCount = 0;
+            for (const icalEvent of Object.values(fullCalendar).filter(({ type }) => type === 'VEVENT')) {
+                try {
+                    const event = parseIcalEventToEvent(icalEvent as IcalEventForParsing);
+                    events.push(event);
+                    parsedCount++;
+                } catch (error) {
+                    if (!(error instanceof Error)) {
+                        throw error;
+                    }
+                    parsedErrorCount++;
+                    console.error(error);
+                }
+            }
 
-            events.push(...eventsFromSource);
-
-            console.info(chalk.cyan(`Parsed ${eventsFromSource.length} events from ${url}`));
-
+            console.info(chalk.cyan(`Parsed ${parsedCount} events from ${url}`));
+            if (parsedErrorCount) {
+                console.info(chalk.red(`NOT Parsed ${parsedErrorCount} events from ${url}`));
+            }
             /*
         if (eventsFromSource.length === 0 && icsString.length > 15) {
             console.warn(chalk.yellow(`BUT downloaded calendar does not look empty:`));
@@ -112,3 +123,7 @@ async function main() {
     console.info(chalk.bgGreen('[ Done ]'));
     process.exit(0);
 }
+
+/**
+ * !!! Rename parser to ?scraper, ?downloadAndParse, -> feeder <-
+ */

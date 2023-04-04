@@ -36,7 +36,12 @@ export default function AboutPage() {
                                 return (
                                     <div key={index} className={styles.logo}>
                                         <a href={image.src}>
-                                            <Image src={image} alt="Czech.events logo" />
+                                            <Image
+                                                alt="Czech.events logo"
+                                                src={image}
+                                                draggable="false"
+                                                placeholder="blur"
+                                            />
                                         </a>
                                         {`${name} `}
                                         <a href={image.src} download>

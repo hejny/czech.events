@@ -1,17 +1,16 @@
 import { Page } from 'puppeteer-core';
 
-export interface IFacebookCookies {
-    c_user: number;
-    xs: string;
+export interface IMeetupCookies {
+    // TODO:
 }
 
 /**
  * @deprecated use userDataDir pattern instead
  */
-export async function setFacebookCookies(page: Page, facebookCookies: IFacebookCookies): Promise<void> {
+export async function setMeetupCookies(page: Page, facebookCookies: IMeetupCookies): Promise<void> {
     for (const [name, value] of Object.entries(facebookCookies)) {
         await page.setCookie({
-            domain: '.facebook.com',
+            domain: '.meetup.com',
             name,
             value: value.toString(),
         });

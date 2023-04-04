@@ -32,5 +32,6 @@ export default function IndexPage(props: { eventsData: Event[] }) {
 }
 
 /**
+ * TODO: Maybe use getInitialProps
  * TODO: [🥞] Common skeleton - logo + footer for all pages
  */
