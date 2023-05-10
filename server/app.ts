@@ -6,8 +6,8 @@ import { adminRouter } from './routes/admin/adminRouter';
 import { getEventsRouteHandler } from './routes/getEventsRouteHandler';
 import { getExportHtmlRouteHandler } from './routes/getExportHtmlRouteHandler';
 import { getExportIcalRouteHandler } from './routes/getExportIcalRouteHandler';
-import { postSubscriberRouteHandler } from './routes/postSubscriberRouteHandler';
 import { postEventRouteHandler } from './routes/postEventRouteHandler';
+import { postSubscriberRouteHandler } from './routes/postSubscriberRouteHandler';
 
 const packageJson = require('../package.json');
 

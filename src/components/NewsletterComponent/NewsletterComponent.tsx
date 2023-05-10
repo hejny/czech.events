@@ -1,4 +1,3 @@
-import React from 'react';
 import { EventType } from '../../model/database/Event';
 import { INewsletter } from '../../model/INewsletter';
 import { eventTypeToNewsletterContentPosition } from '../../utils/eventTypeToNewsletterContentPosition';

@@ -1,4 +1,4 @@
-import { readdir, readFile, unlink, mkdir, writeFile } from 'fs/promises';
+import { mkdir, readdir, readFile, unlink, writeFile } from 'fs/promises';
 import { locateChrome } from 'locate-app';
 import { spaceTrim } from 'spacetrim';
 import { forEver, forTime } from 'waitasecond';
@@ -9,6 +9,13 @@ import { join } from 'path';
 import puppeteer from 'puppeteer-core';
 import { setMeetupCookies } from './setMeetupCookies';
 import { forPlay, forPlayFirstWithPause, forPlayWithPause } from './forPlay';
+import fetch from 'node-fetch';
+import { join } from 'path';
+import puppeteer from 'puppeteer-core';
+import { spaceTrim } from 'spacetrim';
+import { forTime } from 'waitasecond';
+import { FACEBOOK_COOKIES } from '../config';
+import { setFacebookCookies } from './setFacebookCookies';
 
 const tmpPath = join(__dirname, 'tmp'); /* <- !! Better tmp folder */
 const downloadPath = join(tmpPath, 'downloads');

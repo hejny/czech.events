@@ -1,8 +1,8 @@
+import { RequestHandler } from 'express';
+import { v4 } from 'uuid';
 import { Subscriber } from '../../src/model/database/Subscriber';
 import { constructObjectFromJSON } from '../../src/utils/constructObjectFromJSON';
-import { RequestHandler } from 'express';
 import { connectionPromise } from '../database';
-import { v4 } from 'uuid';
 
 export const postSubscriberRouteHandler: RequestHandler = async (request, response, next) => {
     try {

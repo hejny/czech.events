@@ -1,4 +1,3 @@
-import React from 'react';
 import moment from 'moment';
 import 'moment/locale/cs';
 import { IEventComponentProps } from '../EventComponent';

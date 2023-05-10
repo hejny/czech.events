@@ -1,5 +1,5 @@
-import { NewsletterContentPosition } from '../model/database/NewsletterContent';
 import { EventType } from '../model/database/Event';
+import { NewsletterContentPosition } from '../model/database/NewsletterContent';
 
 export function eventTypeToNewsletterContentPosition(eventType: EventType): NewsletterContentPosition {
     switch (eventType) {

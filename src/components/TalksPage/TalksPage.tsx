@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import { ApiClient } from '../../api/ApiClient';
 import { Event } from '../../model/database/Event';
 import { DateRange, RangeConstant } from '../../model/DateRange';
-import { SubscribeForm } from '../SubscribeForm/SubscribeForm';
 import { Partners } from '../Partners/Partners';
+import { SubscribeForm } from '../SubscribeForm/SubscribeForm';
 // TODO: Remove @deprecated import { Newsletter } from '../model/database/Newsletter';
-import { TalksPageEmail } from '../TalksPageEmail/TalksPageEmail';
-import czechEventsTransparentLogoFit from '../../../public/design/logos/czech.events.transparent-logo.fit.png';
 import Image from 'next/image';
+import czechEventsTransparentLogoFit from '../../../public/design/logos/czech.events.transparent-logo.fit.png';
 import { useAsyncMemo } from '../../utils/useAsyncMemo';
+import { TalksPageEmail } from '../TalksPageEmail/TalksPageEmail';
 
 interface ITalksPageProps {
     /**

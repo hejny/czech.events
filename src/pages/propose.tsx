@@ -1,12 +1,8 @@
-import Head from 'next/head';
-import { Partners } from '../components/Partners/Partners';
-import { AppHead } from '../components/AppHead/AppHead';
-import { constructObjectFromJSON } from 'src/utils/constructObjectFromJSON';
-import { Event } from 'src/model/database/Event';
-import { ProposeForm } from 'src/components/ProposeForm/ProposeForm';
-import { useApiClient } from 'src/api/useApiClient';
-import czechEventsTransparentLogoFit from '../../public/design/logos/czech.events.transparent-logo.fit.png';
 import Image from 'next/image';
+import { useApiClient } from 'src/api/useApiClient';
+import { ProposeForm } from 'src/components/ProposeForm/ProposeForm';
+import czechEventsTransparentLogoFit from '../../public/design/logos/czech.events.transparent-logo.fit.png';
+import { AppHead } from '../components/AppHead/AppHead';
 
 export default function PartnersPage() {
     const apiClient = useApiClient();

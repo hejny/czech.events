@@ -1,6 +1,5 @@
-import Head from 'next/head';
-import { Partners } from '../components/Partners/Partners';
 import { AppHead } from '../components/AppHead/AppHead';
+import { Partners } from '../components/Partners/Partners';
 
 export default function PartnersPage() {
     return (
